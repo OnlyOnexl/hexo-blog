@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527, Love">
+    <meta name="keywords" content="5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527 | Love</title>
+    <title>5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527</h1>
+                    <h1 class="description center-align post-title">5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525</h1>
                 </div>
             </div>
         </div>
@@ -464,80 +464,141 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战-pxe部署-从uefi启动-过程超详细-已成功测试-20210527"><a href="#实战-pxe部署-从uefi启动-过程超详细-已成功测试-20210527" class="headerlink" title="实战-pxe部署-从uefi启动-过程超详细-已成功测试-20210527"></a>实战-pxe部署-从uefi启动-过程超详细-已成功测试-20210527</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527100516880.png" alt="image-20210527100516880"></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    以下文档是关于如何搭建从uefi启动的pxe环境的完整实验，如果你的工作中有这个需求，可以参考本篇内容进行搭建自己的pxe server。</p>
-<h2 id="实验涉及软件百度云链接"><a href="#实验涉及软件百度云链接" class="headerlink" title="实验涉及软件百度云链接"></a>实验涉及软件百度云链接</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1kTN-0OdWOOqbRDHc8-D00Q">https://pan.baidu.com/s/1kTN-0OdWOOqbRDHc8-D00Q</a> </p>
-<p>提取码：c4ue</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527110446681.png" alt="image-20210527110446681"></p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>​    注意：本次实验环境是基于我的上一篇博客基础上修改的，具体如何配置pxe环境，请翻阅</p>
-<p><a href="https://www.onlyonexl.cn/2021/05/25/2-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Ebios%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210525-md/">实战-pxe部署(从bios启动)-(过程超详细-已成功测试)-20210525</a>文章。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1台win10 pc;</span><br><span class="line">1台pxe server为centos7.7虚机 ,要安装的目标机器系统也是centos7.7；</span><br><span class="line">虚机添加2块网卡：</span><br><span class="line">	nat网卡：172.29.9.11</span><br><span class="line">	仅主机网卡： pxe所使用的ip为192.168.1.30(同时作为dhcp server的ip)</span><br><span class="line"></span><br><span class="line">本次pxe脚本包含功能：</span><br><span class="line">	最小化安装系统；</span><br><span class="line">	规划好系统分区；</span><br><span class="line">	包含数据盘划分脚本；(本次实验不涉及，但提供脚本文件)</span><br><span class="line">	包含升级ssh脚本；</span><br><span class="line">	包含基于服务器sn号来配置主机名和网卡(一般工作汇中会做bond mode=1主备多一些)；(本次实验不涉及，但提供脚本文件)</span><br><span class="line">	</span><br><span class="line">注意：</span><br><span class="line">	本次pxe环境是直接使用工作中常用的部署方式进行测试的，因此，在学习本节内容后，你将能够独立完成对批量物理机的系统安装工作。</span><br></pre></td></tr></table></figure>
+                <h2 id="实战-docker配置静态ip-过程超详细-已测试成功-20210525"><a href="#实战-docker配置静态ip-过程超详细-已测试成功-20210525" class="headerlink" title="实战-docker配置静态ip(过程超详细-已测试成功)-20210525"></a>实战-docker配置静态ip(过程超详细-已测试成功)-20210525</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527145051136.png" alt="image-20210527145051136"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验涉及软件百度云链接"><a href="#实验涉及软件百度云链接" class="headerlink" title="实验涉及软件百度云链接"></a>实验涉及软件百度云链接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1ScjBiN3Q27wsHu1VLwGXYw </span><br><span class="line">提取码：3q06 </span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526103614315.png" alt="image-20210526103614315"></p>
-<h2 id="1、修改dhcpd-conf配置文件"><a href="#1、修改dhcpd-conf配置文件" class="headerlink" title="1、修改dhcpd.conf配置文件"></a>1、修改dhcpd.conf配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#只需要将&quot;pxelinux.0&quot;修改为&quot;uefi/shim.efi&quot;就好：</span></span><br><span class="line"></span><br><span class="line">[root@pxe ~]<span class="comment"># vim /etc/dhcp/dhcpd.conf</span></span><br><span class="line">allow booting;</span><br><span class="line">allow bootp;</span><br><span class="line">subnet 192.168.1.0 netmask 255.255.255.0 &#123;</span><br><span class="line">        option routers 192.168.1.30;</span><br><span class="line">        option subnet-mask 255.255.255.0;</span><br><span class="line">        option nis-domain <span class="string">&quot;domain.org&quot;</span>;</span><br><span class="line">        option domain-name <span class="string">&quot;domain.org&quot;</span>;</span><br><span class="line">        option domain-name-servers 192.168.1.30;</span><br><span class="line">        option time-offset -18000;</span><br><span class="line">        range dynamic-bootp 192.168.1.50 192.168.1.244;</span><br><span class="line">        default-lease-time 21600;</span><br><span class="line">        max-lease-time 43200;</span><br><span class="line">        next-server 192.168.1.30;</span><br><span class="line">        filename <span class="string">&quot;uefi/shim.efi&quot;</span>; <span class="comment">#不用写绝对路径，写相对路径就可以，相对的就是/var/lib/tftpboot/这个主工作目录</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526104051737.png" alt="image-20210526104051737"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526104332060.png" alt="image-20210526104332060"></p>
-<h2 id="2、在-var-lib-tftpboot-下创建文件夹"><a href="#2、在-var-lib-tftpboot-下创建文件夹" class="headerlink" title="2、在/var/lib/tftpboot 下创建文件夹"></a>2、在/var/lib/tftpboot 下创建文件夹</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@pxe ~]<span class="comment"># cd /var/lib/tftpboot/</span></span><br><span class="line">[root@pxe tftpboot]<span class="comment"># mkdir -p uefi/centos7.7</span></span><br><span class="line">[root@pxe tftpboot]<span class="comment"># cd !$</span></span><br><span class="line"><span class="built_in">cd</span> uefi/centos7.6</span><br><span class="line">[root@pxe centos7.6]<span class="comment"># cp /var/ftp/pub/iso/centos7.7/isolinux/initrd.img .</span></span><br><span class="line">[root@pxe centos7.6]<span class="comment"># cp /var/ftp/pub/iso/centos7.7/isolinux/vmlinuz .</span></span><br><span class="line">[root@pxe centos7.6]<span class="comment"># pwd</span></span><br><span class="line">/var/lib/tftpboot/uefi/centos7.6</span><br><span class="line">[root@pxe centos7.6]<span class="comment"># ls</span></span><br><span class="line">initrd.img  vmlinuz</span><br><span class="line">[root@pxe centos7.6]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526105352363.png" alt="image-20210526105352363"></p>
-<h2 id="3、将这三个文件上传到-varlib-tftpboot-uefi-下"><a href="#3、将这三个文件上传到-varlib-tftpboot-uefi-下" class="headerlink" title="3、将这三个文件上传到/varlib/tftpboot/uefi 下"></a>3、将这三个文件上传到/varlib/tftpboot/uefi 下</h2><p>​    需要说明grub.cfg就类似推传统bios的default文件，另外两个需要下载，现在这2个文件已提前下载好了，直接用可以。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526104924605.png" alt="image-20210526104924605"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526105439748.png" alt="image-20210526105439748"></p>
-<h2 id="4、编辑grub-cfg-文件"><a href="#4、编辑grub-cfg-文件" class="headerlink" title="4、编辑grub.cfg 文件"></a>4、编辑grub.cfg 文件</h2><p>需要修改标红色框的<br>ftp路径表示ks文件所在路径<br>下面一行表示指定到刚才拷贝centos7.7镜像下的 uefi/centos7.7initrd.img文件路径</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@pxe uefi]<span class="comment"># vim grub.cfg</span></span><br><span class="line"><span class="comment">### BEGIN /etc/grub.d/10_linux ### 修改这一段就行，这是对应到安装界面会自动选择install Centos 7</span></span><br><span class="line">menuentry <span class="string">&#x27;Install CentOS 7&#x27;</span> --class fedora --class gnu-linux --class gnu --class os &#123;</span><br><span class="line">        linuxefi uefi/centos7.7/vmlinuz ks=<span class="string">&quot;ftp://192.168.1.30/pub/ks/ks.cfg&quot;</span> nofb text ksdevice=bootif</span><br><span class="line">        initrdefi uefi/centos7.7/initrd.img</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#重要的一点：给刚才上传的这3个文件给777权限(别问我为什么，干就是了！！！)</span></span><br><span class="line">[root@pxe uefi]<span class="comment"># chmod 777 grub*</span></span><br><span class="line">[root@pxe uefi]<span class="comment"># chmod 777 shim.efi </span></span><br><span class="line">[root@pxe uefi]<span class="comment"># ll </span></span><br><span class="line">总用量 2300</span><br><span class="line">drwxr-xr-x 2 root root      39 5月  26 10:53 centos7.7</span><br><span class="line">-rwxrwxrwx 1 root root    1333 5月  26 11:01 grub.cfg</span><br><span class="line">-rwxrwxrwx 1 root root 1051520 8月   8 2020 grubx64.efi</span><br><span class="line">-rwxrwxrwx 1 root root 1296176 8月   8 2020 shim.efi</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526110106651.png" alt="image-20210526110106651"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526153909374.png" alt="image-20210526153909374"></p>
-<p>对应如下选项，系统会自动选择第一项开始uefi系统安装:</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526110400861.png" alt="image-20210526110400861"></p>
-<h2 id="5、修改ks（推送uefi-必须要创建boot-efi分区）"><a href="#5、修改ks（推送uefi-必须要创建boot-efi分区）" class="headerlink" title="5、修改ks（推送uefi 必须要创建boot/efi分区）"></a>5、修改ks（推送uefi 必须要创建boot/efi分区）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@pxe ~]<span class="comment"># vim /var/ftp/pub/ks/ks.cfg</span></span><br><span class="line">url --url=ftp://192.168.1.30/pub/iso/centos7.7</span><br><span class="line"><span class="comment"># Disk partitioning information</span></span><br><span class="line">part /boot/efi --fstype=<span class="string">&quot;xfs&quot;</span> --size=2048 --ondisk=sda</span><br><span class="line">part /boot --fstype xfs --size=2048 --ondisk=sda</span><br><span class="line">part / --fstype xfs --size=10240 --asprimary --ondisk=sda</span><br><span class="line">part /var --fstype xfs --size=1 --grow --ondisk=sda</span><br><span class="line">part swap --size=4096 --ondisk=sda</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526110528325.png" alt="image-20210526110528325"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526111025960.png" alt="image-20210526111025960"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526111141178.png" alt="image-20210526111141178"></p>
-<h2 id="6、测试"><a href="#6、测试" class="headerlink" title="6、测试"></a>6、测试</h2><p>创建1台虚机，开机，并观察是否能获取到dhcp：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526201948208.png" alt="image-20210526201948208"></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>​    一个还原到之前安装了 docker 的虚拟机快照：centos7.7 1908虚机。如何在centos7上安装docker环境，可以在我的博客查找文章：<a href="https://www.onlyonexl.cn/2021/05/26/3-%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F-20210522/">3-实战-centos上安装docker-(过程超详细-已测试成功)-20210522</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526202310508.png" alt="image-20210526202310508"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525211938499.png" alt="image-20210525211938499"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="1-Docker-的-4-种网络模式"><a href="#1-Docker-的-4-种网络模式" class="headerlink" title="(1)Docker 的 4 种网络模式"></a>(1)Docker 的 4 种网络模式</h3><p>Docker有以下4种网络模式︰</p>
 <ul>
-<li>注意：因为我的pxe server  ens37 192.168.1.30是nat模式，因此将要创建的pxe client测试虚机也需要设置为仅主机模式：</li>
-<li>虚机内存设置2g或以上；</li>
+<li><strong>host模式</strong>，使用–net=host指定。</li>
+<li><strong>container模式</strong>，使用–net=container:NAME_or_ID指定。</li>
+<li><strong>none模式</strong>，使用–net=none指定。</li>
+<li><strong>bridge模式</strong>，使用–net=bridge指定，<strong>默认就是bridge模式</strong>。</li>
 </ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524151557203.png" alt="image-20210524151557203"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525092920610.png" alt="image-20210525092920610"></p>
-<p>重要的一点是，<strong>虚机这边要设置从uefi启动</strong>：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526141416752.png" alt="image-20210526141416752"></p>
-<p>开启，观察效果：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526141448183.png" alt="image-20210526141448183"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526153419312.png" alt="image-20210526153419312"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526145657414.png" alt="image-20210526145657414"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526145810189.png" alt="image-20210526145810189"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526153704851.png" alt="image-20210526153704851"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526153818159.png" alt="image-20210526153818159"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526160442737.png" alt="image-20210526160442737"></p>
-<h2 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h2><h3 id="1-推送uefi和传统bios的区别解释"><a href="#1-推送uefi和传统bios的区别解释" class="headerlink" title="(1)推送uefi和传统bios的区别解释"></a>(1)推送uefi和传统bios的区别解释</h3><p>参考文章：<a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_50df29030102xd21.html">http://blog.sina.com.cn/s/blog_50df29030102xd21.html</a></p>
-<p>​    主要不同的还是tftp下面，已经不使用default文件了，<strong>而是使用grub.cfg进行菜单安装了</strong>。</p>
-<p>​    以下是uefi和bios最大的不同点，看tree，就知道不同了，我相同颜色的框框就是不同的地方。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527095918942.png" alt="image-20210527095918942"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527100123787.png" alt="image-20210527100123787"></p>
-<h3 id="2-关于-boot-efi分区和-boot分区大小问题"><a href="#2-关于-boot-efi分区和-boot分区大小问题" class="headerlink" title="(2)关于/boot/efi分区和/boot分区大小问题"></a>(2)关于/boot/efi分区和/boot分区大小问题</h3><ul>
-<li>工作实战脚本1：</li>
-</ul>
-<p>/boot和/boot/efi分区大小都是2g；</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527103229655.png" alt="image-20210527103229655"></p>
+<p>​    默认选择bridge的情况下，容器启动后会通过DHCP 获取一个地址，这可能不是我们想要的，在centos7系统上，docker环境下可以使用**pipework脚本(官方提供的脚本)**对容器分配固定IP(这个IP可以是和物理机同网段IP)</p>
+<p>​    注: docker 默认是bridge ( –net=bridge )模式，<strong>相当于VMware 中NAT模式</strong>。docker环境下可以使用pipework脚本对容器分配固定IP，相当于VMware中桥接模式。<strong>注:Pipework有个缺陷，容器重启后IP设置会自动消失，需要重新设置</strong>。</p>
 <ul>
-<li>工作实战脚本2：</li>
+<li>扩展∶**–privileged=true  #允许开启特权功能**</li>
 </ul>
-<p>/boot分区是2g；<br>/boot/efi分区是300M；</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527103338515.png" alt="image-20210527103338515"></p>
-<h3 id="3-注意要对刚上传的3个文件给777权限"><a href="#3-注意要对刚上传的3个文件给777权限" class="headerlink" title="(3)注意要对刚上传的3个文件给777权限"></a>(3)注意要对刚上传的3个文件给777权限</h3><p>​    因为自己在测试过程中，如果没给权限的话，测试是没有效果的，这3个文件给与了777权限后，立马就有现象了。至于为什么，等后期遇到了再更新这里的知识点。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527103552123.png" alt="image-20210527103552123"></p>
-<h3 id="4-注意上传的三个文件和原来bios中的对应关系"><a href="#4-注意上传的三个文件和原来bios中的对应关系" class="headerlink" title="(4)注意上传的三个文件和原来bios中的对应关系"></a>(4)注意上传的三个文件和原来bios中的对应关系</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@pxe tftpboot]<span class="comment"># pwd</span></span><br><span class="line">/var/lib/tftpboot</span><br><span class="line">[root@pxe tftpboot]<span class="comment"># tree uefi</span></span><br><span class="line">uefi</span><br><span class="line">├── centos7.7 <span class="comment">#这个目录下的2个文件就是bios里的/var/ib/tftpboot/下的那些镜像文件；</span></span><br><span class="line">│   ├── initrd.img</span><br><span class="line">│   └── vmlinuz</span><br><span class="line">├── grub.cfg <span class="comment">#这个相当于bios里的pxelinux.cfg/default文件</span></span><br><span class="line">├── grubx64.efi</span><br><span class="line">└── shim.efi  <span class="comment">#这个相当于bios里的pxelinux.linux文件，这个是从本地pxe server导出的文件</span></span><br><span class="line"></span><br><span class="line">1 directory, 5 files</span><br><span class="line">[root@pxe tftpboot]<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+<p>privileged [‘prrvalrdgd]有特权的</p>
+<p>​    在docker 0.6版以后，privileged 被引入docker。使用该参数，container内的root拥有真正的root权限。否则，container内的root只是外部物理机的一个普通用户权限。<strong>使用privileged启动的容器，可以看到很多host上的设备，并且可以执行mount</strong>。<strong>甚至允许你在docker容器中启动docker容器。不启用privileged，容器中root用户不能执行mount。</strong></p>
+<h3 id="2-扩展：测试-privileged-特权功能"><a href="#2-扩展：测试-privileged-特权功能" class="headerlink" title="(2)扩展：测试 privileged 特权功能"></a>(2)扩展：测试 privileged 特权功能</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523233704694.png" alt="image-20210523233704694"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523233759654.png" alt="image-20210523233759654"></p>
+<p>1、未设置 privileged 特权的容器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker run -it centos bash</span></span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># ls /dev/ #可以看到的设备文件比较少</span></span><br><span class="line">console  core  fd  full  mqueue  null  ptmx  pts  random  shm  stderr  stdin  stdout  tty  urandom  zero</span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># mount /dev/sda1 /opt/ #不可以挂载成功， </span></span><br><span class="line">mount 命令执行失败mount: /opt: permission denied.</span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># mount -o bind /etc/ </span></span><br><span class="line">/optmount: /opt: permission denied.</span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># exit</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527095918942.png" alt="image-20210527095918942"></p>
-<h3 id="5-关于shim-efi文件的下载方式"><a href="#5-关于shim-efi文件的下载方式" class="headerlink" title="(5)关于shim.efi文件的下载方式"></a>(5)关于shim.efi文件的下载方式</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@pxe tftpboot]<span class="comment"># pwd</span></span><br><span class="line">/var/lib/tftpboot</span><br><span class="line">[root@pxe tftpboot]<span class="comment"># tree uefi</span></span><br><span class="line">uefi</span><br><span class="line">├── centos7.7 <span class="comment">#这个目录下的2个文件就是bios里的/var/ib/tftpboot/下的那些镜像文件；</span></span><br><span class="line">│   ├── initrd.img</span><br><span class="line">│   └── vmlinuz</span><br><span class="line">├── grub.cfg <span class="comment">#这个相当于bios里的pxelinux.cfg/default文件</span></span><br><span class="line">├── grubx64.efi</span><br><span class="line">└── shim.efi  <span class="comment">#这个相当于bios里的pxelinux.linux文件，这个是从本地pxe server导出的文件</span></span><br><span class="line"></span><br><span class="line">1 directory, 5 files</span><br><span class="line">[root@pxe tftpboot]<span class="comment"># </span></span><br><span class="line"></span><br><span class="line"><span class="comment">#注意，经过本次测试，这个shim.efi文件可以是不同版本下载下来的rpm包，但最好还是下载自己系统的rpm包。(应该centos7.x相邻的都差不多，这次是centos7.4用在centos7.7上的，是没问题的)</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523234255610.png" alt="image-20210523234255610"></p>
+<p>2、使用 privileged 特权的容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker run -it --privileged centos bash</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># ls /dev/ #可以看到很多设备文件</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># mount /dev/sda1 /opt/ #可以挂载物理机上的 sda1 分区</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># umount  /opt</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># mount -o bind /etc/ /opt #可以挂载成功</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># umount  /opt/</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">[root@docker ~]<span class="comment">#</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -it --privileged centos bash</span></span><br><span class="line">[root@906b0421babd /]<span class="comment"># init 0 #不能使用 init 0 关机，还是使用 exit 退出 </span></span><br><span class="line">dockerCouldn<span class="string">&#x27;t find an alternative telinit implementation to spawn.</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527104812584.png" alt="image-20210527104812584"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    以上就是关于如何搭建从uefi启动的pxe环境了，pxe没什么难度，多使用就能积累一些经验。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527105948406.png" alt="image-20210527105948406"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523234414242.png" alt="image-20210523234414242"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523235051950.png" alt="image-20210523235051950"></p>
+<h2 id="0、基础环境配置"><a href="#0、基础环境配置" class="headerlink" title="0、基础环境配置"></a>0、基础环境配置</h2><p>一个还原到之前安装了 docker 的虚拟机快照：centos7.7 1908虚机。如何在centos7上安装docker环境，可以在我的博客查找文章。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525211938499.png" alt="image-20210525211938499"></p>
+<h2 id="1、配置桥接网络"><a href="#1、配置桥接网络" class="headerlink" title="1、配置桥接网络"></a>1、配置桥接网络</h2><p>​    桥接本地物理网络的目的,是为了局域网内用户方便访问docker实例中服务,不要需要各种端口映射即可访问服务。<strong>但是这样做又违背了docker 容器的安全隔离的原则</strong>,工作中辩证的选择。</p>
+<ul>
+<li>创建桥设备 br0：</li>
+</ul>
+<p>安装包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># yum install -y bridge-utils</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>把 ens33 绑到 br0 桥设备上：</li>
+</ul>
+<p>配置前网卡配置如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525213116010.png" alt="image-20210525213116010"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开始配置</span></span><br><span class="line">[root@docker ~]<span class="comment"># cd /etc/sysconfig/network-scripts/</span></span><br><span class="line">[root@docker network-scripts]<span class="comment"># cp ifcfg-ens33 /opt/ #备份ifcfg-ens33</span></span><br><span class="line">[root@docker network-scripts]<span class="comment"># vim ifcfg-ens33 #编辑配置文件为以下内容</span></span><br><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line"><span class="comment">#UUID=3bff16f1-d739-485c-9e02-197c4678f51c</span></span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BRIDGE=<span class="string">&quot;br0&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523230750320.png" alt="image-20210523230750320"></p>
+<ul>
+<li>生成桥设备 br0 的配置文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@docker network-scripts]<span class="comment"># vim ifcfg-br0 #创建 ifcfg-br0 文件，并写入以下内容</span></span><br><span class="line">DEVICE=<span class="string">&quot;br0&quot;</span></span><br><span class="line">NM_CONTROLLED=<span class="string">&quot;yes&quot;</span> </span><br><span class="line">ONBOOT=<span class="string">&quot;yes&quot;</span></span><br><span class="line">TYPE=<span class="string">&quot;Bridge&quot;</span></span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=172.29.9.11</span><br><span class="line">NETMASK=255.255.0.0</span><br><span class="line">GATEWAY=172.29.0.254</span><br><span class="line">DNS1=114.114.114.114</span><br><span class="line"></span><br><span class="line">注：TYPE=<span class="string">&quot;Bridge&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>重启网络并测试,</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># systemctl restart network</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523231509682.png" alt="image-20210523231509682"></p>
+<p>配置桥接网络后，查看ip：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523231615346.png" alt="image-20210523231615346"></p>
+<h2 id="2、使用-pipework-脚本配置静态-IP"><a href="#2、使用-pipework-脚本配置静态-IP" class="headerlink" title="2、使用 pipework 脚本配置静态 IP"></a>2、使用 pipework 脚本配置静态 IP</h2><p>方法 1：直接下载 pipework zip 包<br><a target="_blank" rel="noopener" href="https://github.com/jpetazzo/pipework">https://github.com/jpetazzo/pipework</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232153000.png" alt="image-20210523232153000"></p>
+<p>方法 2：使用 git 获得：<br>git 下载链接：<a target="_blank" rel="noopener" href="https://github.com/jpetazzo/pipework.git">https://github.com/jpetazzo/pipework.git</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232206143.png" alt="image-20210523232206143"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/jpetazzo/pipework.git</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>本次使用方法直接把压缩包上传到Linux机器上</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># unzip pipework-master.zip  # 不需要编译，因为 pipework 是一个shell 脚本</span></span><br><span class="line">[root@docker ~]<span class="comment"># cd pipework-master</span></span><br><span class="line"><span class="comment">#[root@docker pipework-master]# vim pipework #查看pipework脚本内容，480几行的内容</span></span><br><span class="line">[root@docker pipework-master]<span class="comment"># cp pipework /usr/bin/ #方便后期使用 pipework 命令</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232347487.png" alt="image-20210523232347487"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232442514.png" alt="image-20210523232442514"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232627982.png" alt="image-20210523232627982"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232722758.png" alt="image-20210523232722758"></p>
+<p>到此 pipework 已经安装成功。</p>
+<p>启动docker:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># systemctl start docker</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>拉取一个centos镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523233110302.png" alt="image-20210523233110302"></p>
+<h2 id="3、使用静态-IP-启动一个-docker-实例"><a href="#3、使用静态-IP-启动一个-docker-实例" class="headerlink" title="3、使用静态 IP 启动一个 docker 实例"></a>3、使用静态 IP 启动一个 docker 实例</h2><p>例:以none模式，使用–net=none启动一个容器，并且开启docker 特权模式。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker run -itd --net=none --privileged=true centos bashe5ca1cc49de1db462ebf405a5735a2dc1ee43f28b2887bd00559c2ae22b4b505</span></span><br><span class="line">[root@docker ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>扩展结束，接着给容器配置表态 IP 地址</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMESe5ca1cc49de1   centos    <span class="string">&quot;bash&quot;</span>    12 minutes ago   Up 12 minutes             </span><br><span class="line">trusting_rosalind</span><br><span class="line">[root@docker ~]<span class="comment">#可以看到容器启动的 ID ,比如是e5ca1cc49de1</span></span><br></pre></td></tr></table></figure>
+
+<p>给此容器配置地址：<br>pipework语法:<code>pipework  网桥名 容器实例ID 分配给容器的IP/掩码@网关</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># pipework br0 e5ca1cc49de1 172.29.9.21/16@172.29.0.254 #注：容器的 DNS 地址，会直接使用物理机的 dns</span></span><br></pre></td></tr></table></figure>
+
+<p>注意用pipwork脚本配置ip后，不需要重启网络，容器ip马上就会生效的。</p>
+<ul>
+<li>测试 IP：#可以看到 docker 实例的 IP 已经可以使用</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203047053.png" alt="image-20210524203047053"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMESe5ca1cc49de1   centos    <span class="string">&quot;bash&quot;</span>    16 minutes ago   Up 16 minutes             trusting_rosalind[root@docker ~]<span class="comment"># docker inspect e5ca1cc49de1 #查看容器的详细情况</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203216307.png" alt="image-20210524203216307"></p>
+<ul>
+<li>进入入容器,测试网络：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker ps</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker exec -it e5ca1cc49de1 bash #进入容器</span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># yum install -y net-tools #安装ifconfig命令</span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># cat /etc/resolv.conf </span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># ifconfig</span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># route -n</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203338020.png" alt="image-20210524203338020"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203405904.png" alt="image-20210524203405904"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525221020105.png" alt="image-20210525221020105"></p>
+<p>到此，docker 实例配置静态 IP 成功。</p>
+<h2 id="小案例：-使用静态-IP-启动的-docker-实例运行，一个-web-服务器"><a href="#小案例：-使用静态-IP-启动的-docker-实例运行，一个-web-服务器" class="headerlink" title="小案例： 使用静态 IP 启动的 docker 实例运行，一个 web 服务器"></a>小案例： 使用静态 IP 启动的 docker 实例运行，一个 web 服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@c8f88d9bf76e /]<span class="comment"># yum install -y httpd</span></span><br><span class="line">[root@c8f88d9bf76e /]<span class="comment"># systemctl start httpd</span></span><br><span class="line">System has not been booted with systemd as init system (PID 1). Can<span class="string">&#x27;t operate.</span></span><br><span class="line"><span class="string">Failed to connect to bus: Host is down</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]#</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]# /usr/sbin/httpd -DFOREGROUND &amp;</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]# netstat -antup|grep 80</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]# cd /var/www/html/</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e html]# ls</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e html]# echo  Linux-k8s &gt; index.html</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525222257857.png" alt="image-20210525222257857"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525223517947.png" alt="image-20210525223517947"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于如何给docker配置静态ip，配置步骤总结如下：</p>
+<p>1、创建一个 br0 桥接设备</p>
+<p>2、下载 pipework 包并安装</p>
+<p>3、安装并运行 docker</p>
+<p>4、拉取一个 centos docker 镜像</p>
+<p>5、启动一个 docker 实例 注意加参数： –net=none –privileged=true</p>
+<p>6、使用 pipework 给 docker 实例配置 IP</p>
+<p>7、小案例：使用静态 IP 启动的 docker 实例运行，一个 web 服务器</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527145422000.png" alt="image-20210527145422000"></p>
 
                 
             </div>
@@ -564,7 +625,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/">https://www.onlyonexl.cn/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/</a>
+                    <a href="https://www.onlyonexl.cn/2021/05/27/5-%E5%AE%9E%E6%88%98-docker%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-20210525/">https://www.onlyonexl.cn/2021/05/27/5-%E5%AE%9E%E6%88%98-docker%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-20210525/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -771,9 +832,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/05/27/5-%E5%AE%9E%E6%88%98-docker%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-20210525/">
                     <div class="card-image">
@@ -791,9 +853,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -802,6 +864,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -812,13 +875,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/26/3-%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F-20210522/">
+                <a href="/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="3-实战-centos上安装docker-(过程超详细-已测试成功)-20210522">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527">
                         
-                        <span class="card-title">3-实战-centos上安装docker-(过程超详细-已测试成功)-20210522</span>
+                        <span class="card-title">4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -829,7 +892,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-27
                             </span>
                         <span class="publish-author">
                             
