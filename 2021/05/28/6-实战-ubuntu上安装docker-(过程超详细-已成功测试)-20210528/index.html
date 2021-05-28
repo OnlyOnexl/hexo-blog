@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525, 你是人间四月天">
+    <meta name="keywords" content="6-实战-ubuntu上安装docker-(过程超详细-已成功测试)-20210528, 你是人间四月天">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525 | 你是人间四月天</title>
+    <title>6-实战-ubuntu上安装docker-(过程超详细-已成功测试)-20210528 | 你是人间四月天</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/3.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525</h1>
+                    <h1 class="description center-align post-title">6-实战-ubuntu上安装docker-(过程超详细-已成功测试)-20210528</h1>
                 </div>
             </div>
         </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-05-27
+                    2021-05-28
                 </div>
                 
 
@@ -477,141 +477,110 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战-docker配置静态ip-过程超详细-已测试成功-20210525"><a href="#实战-docker配置静态ip-过程超详细-已测试成功-20210525" class="headerlink" title="实战-docker配置静态ip(过程超详细-已测试成功)-20210525"></a>实战-docker配置静态ip(过程超详细-已测试成功)-20210525</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527145051136.png" alt="image-20210527145051136"></p>
+                <h2 id="避坑实战-ubuntu上安装docker-过程超详细-已成功测试-20210528"><a href="#避坑实战-ubuntu上安装docker-过程超详细-已成功测试-20210528" class="headerlink" title="避坑实战-ubuntu上安装docker-(过程超详细-已成功测试)-20210528"></a>避坑实战-ubuntu上安装docker-(过程超详细-已成功测试)-20210528</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528210510734.png" alt="image-20210528210510734"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验涉及软件百度云链接"><a href="#实验涉及软件百度云链接" class="headerlink" title="实验涉及软件百度云链接"></a>实验涉及软件百度云链接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">链接：https://pan.baidu.com/s/1ScjBiN3Q27wsHu1VLwGXYw </span><br><span class="line">提取码：3q06 </span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526201948208.png" alt="image-20210526201948208"></p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>​    一个还原到之前安装了 docker 的虚拟机快照：centos7.7 1908虚机。如何在centos7上安装docker环境，可以在我的博客查找文章：<a href="https://www.onlyonexl.cn/2021/05/26/3-%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F-20210522/">3-实战-centos上安装docker-(过程超详细-已测试成功)-20210522</a></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526202310508.png" alt="image-20210526202310508"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525211938499.png" alt="image-20210525211938499"></p>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="1-Docker-的-4-种网络模式"><a href="#1-Docker-的-4-种网络模式" class="headerlink" title="(1)Docker 的 4 种网络模式"></a>(1)Docker 的 4 种网络模式</h3><p>Docker有以下4种网络模式︰</p>
-<ul>
-<li><strong>host模式</strong>，使用–net=host指定。</li>
-<li><strong>container模式</strong>，使用–net=container:NAME_or_ID指定。</li>
-<li><strong>none模式</strong>，使用–net=none指定。</li>
-<li><strong>bridge模式</strong>，使用–net=bridge指定，<strong>默认就是bridge模式</strong>。</li>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li>本人博客宗旨</li>
 </ul>
-<p>​    默认选择bridge的情况下，容器启动后会通过DHCP 获取一个地址，这可能不是我们想要的，在centos7系统上，docker环境下可以使用**pipework脚本(官方提供的脚本)**对容器分配固定IP(这个IP可以是和物理机同网段IP)</p>
-<p>​    注: docker 默认是bridge ( –net=bridge )模式，<strong>相当于VMware 中NAT模式</strong>。docker环境下可以使用pipework脚本对容器分配固定IP，相当于VMware中桥接模式。<strong>注:Pipework有个缺陷，容器重启后IP设置会自动消失，需要重新设置</strong>。</p>
-<ul>
-<li>扩展∶**–privileged=true  #允许开启特权功能**</li>
-</ul>
-<p>privileged [‘prrvalrdgd]有特权的</p>
-<p>​    在docker 0.6版以后，privileged 被引入docker。使用该参数，container内的root拥有真正的root权限。否则，container内的root只是外部物理机的一个普通用户权限。<strong>使用privileged启动的容器，可以看到很多host上的设备，并且可以执行mount</strong>。<strong>甚至允许你在docker容器中启动docker容器。不启用privileged，容器中root用户不能执行mount。</strong></p>
-<h3 id="2-扩展：测试-privileged-特权功能"><a href="#2-扩展：测试-privileged-特权功能" class="headerlink" title="(2)扩展：测试 privileged 特权功能"></a>(2)扩展：测试 privileged 特权功能</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523233704694.png" alt="image-20210523233704694"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523233759654.png" alt="image-20210523233759654"></p>
-<p>1、未设置 privileged 特权的容器：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker run -it centos bash</span></span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># ls /dev/ #可以看到的设备文件比较少</span></span><br><span class="line">console  core  fd  full  mqueue  null  ptmx  pts  random  shm  stderr  stdin  stdout  tty  urandom  zero</span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># mount /dev/sda1 /opt/ #不可以挂载成功， </span></span><br><span class="line">mount 命令执行失败mount: /opt: permission denied.</span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># mount -o bind /etc/ </span></span><br><span class="line">/optmount: /opt: permission denied.</span><br><span class="line">[root@80a9f7e36df2 /]<span class="comment"># exit</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.本人提供的实战文档过程超详细，拿着我的博客，每个人最终都可以成功测试出实验现象，完全避免网上的一些埋着很多坑的博客(特别浪费时间，个人深有感触)；</span><br><span class="line">2.博客排版美观、组织语言简明扼要；</span><br><span class="line">3.提供实验涉及软件、源码；</span><br><span class="line">4.实验过程如有遇到任何问题或者文章中有任何不足之处，欢迎留言或随时联系鄙人，微信：x2675263825，QQ：2675263825，在it学习的道路上，让我们一起共同成长!</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523234255610.png" alt="image-20210523234255610"></p>
-<p>2、使用 privileged 特权的容器</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker run -it --privileged centos bash</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># ls /dev/ #可以看到很多设备文件</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># mount /dev/sda1 /opt/ #可以挂载物理机上的 sda1 分区</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># umount  /opt</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># mount -o bind /etc/ /opt #可以挂载成功</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># umount  /opt/</span></span><br><span class="line">[root@fac986b64e15 /]<span class="comment"># exit</span></span><br><span class="line"><span class="built_in">exit</span></span><br><span class="line">[root@docker ~]<span class="comment">#</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker run -it --privileged centos bash</span></span><br><span class="line">[root@906b0421babd /]<span class="comment"># init 0 #不能使用 init 0 关机，还是使用 exit 退出 </span></span><br><span class="line">dockerCouldn<span class="string">&#x27;t find an alternative telinit implementation to spawn.</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523234414242.png" alt="image-20210523234414242"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523235051950.png" alt="image-20210523235051950"></p>
-<h2 id="0、基础环境配置"><a href="#0、基础环境配置" class="headerlink" title="0、基础环境配置"></a>0、基础环境配置</h2><p>一个还原到之前安装了 docker 的虚拟机快照：centos7.7 1908虚机。如何在centos7上安装docker环境，可以在我的博客查找文章。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525211938499.png" alt="image-20210525211938499"></p>
-<h2 id="1、配置桥接网络"><a href="#1、配置桥接网络" class="headerlink" title="1、配置桥接网络"></a>1、配置桥接网络</h2><p>​    桥接本地物理网络的目的,是为了局域网内用户方便访问docker实例中服务,不要需要各种端口映射即可访问服务。<strong>但是这样做又违背了docker 容器的安全隔离的原则</strong>,工作中辩证的选择。</p>
-<ul>
-<li>创建桥设备 br0：</li>
-</ul>
-<p>安装包：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># yum install -y bridge-utils</span></span><br></pre></td></tr></table></figure>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><h2 id="0、前期环境准备"><a href="#0、前期环境准备" class="headerlink" title="0、前期环境准备"></a>0、前期环境准备</h2><table>
+<thead>
+<tr>
+<th align="center">系统版本</th>
+<th align="center">主机名</th>
+<th align="center">ip</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ubuntu1804-docker</td>
+<td align="center">ubuntu1804-docker</td>
+<td align="center">172.29.9.9</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">备注：</span><br><span class="line">1台linux虚机，ubuntu系统版本：18.04.5 LTS (Bionic Beaver) <span class="comment">#cat /etc/os-release</span></span><br></pre></td></tr></table></figure>
 
 
 
 <ul>
-<li>把 ens33 绑到 br0 桥设备上：</li>
+<li>配置ip：虚机网络为nat，保证可以ping通百度；</li>
 </ul>
-<p>配置前网卡配置如下：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525213116010.png" alt="image-20210525213116010"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开始配置</span></span><br><span class="line">[root@docker ~]<span class="comment"># cd /etc/sysconfig/network-scripts/</span></span><br><span class="line">[root@docker network-scripts]<span class="comment"># cp ifcfg-ens33 /opt/ #备份ifcfg-ens33</span></span><br><span class="line">[root@docker network-scripts]<span class="comment"># vim ifcfg-ens33 #编辑配置文件为以下内容</span></span><br><span class="line">TYPE=Ethernet</span><br><span class="line">PROXY_METHOD=none</span><br><span class="line">BROWSER_ONLY=no</span><br><span class="line">BOOTPROTO=static</span><br><span class="line">DEFROUTE=yes</span><br><span class="line">IPV4_FAILURE_FATAL=no</span><br><span class="line">IPV6INIT=yes</span><br><span class="line">IPV6_AUTOCONF=yes</span><br><span class="line">IPV6_DEFROUTE=yes</span><br><span class="line">IPV6_FAILURE_FATAL=no</span><br><span class="line">IPV6_ADDR_GEN_MODE=stable-privacy</span><br><span class="line">NAME=ens33</span><br><span class="line"><span class="comment">#UUID=3bff16f1-d739-485c-9e02-197c4678f51c</span></span><br><span class="line">DEVICE=ens33</span><br><span class="line">ONBOOT=yes</span><br><span class="line">BRIDGE=<span class="string">&quot;br0&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># vim /etc/netplan/01-netcfg.yaml</span></span><br><span class="line"><span class="comment"># This file describes the network interfaces available on your system</span></span><br><span class="line"><span class="comment"># For more information, see netplan(5).</span></span><br><span class="line">network:</span><br><span class="line">  version: 2</span><br><span class="line">  renderer: networkd</span><br><span class="line">  ethernets:</span><br><span class="line">    eth0:</span><br><span class="line">      dhcp4: no</span><br><span class="line">      dhcp6: no</span><br><span class="line">      addresses: [172.29.9.9/16]</span><br><span class="line">      gateway4: 172.29.0.254</span><br><span class="line">      nameservers:</span><br><span class="line">        addresses: [223.6.6.6]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523230750320.png" alt="image-20210523230750320"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528203221648.png" alt="image-20210528203221648"></p>
+<p>可通百度：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528203753811.png" alt="image-20210528203753811"></p>
 <ul>
-<li>生成桥设备 br0 的配置文件：</li>
+<li>配置软件源为国内阿里云的</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@docker network-scripts]<span class="comment"># vim ifcfg-br0 #创建 ifcfg-br0 文件，并写入以下内容</span></span><br><span class="line">DEVICE=<span class="string">&quot;br0&quot;</span></span><br><span class="line">NM_CONTROLLED=<span class="string">&quot;yes&quot;</span> </span><br><span class="line">ONBOOT=<span class="string">&quot;yes&quot;</span></span><br><span class="line">TYPE=<span class="string">&quot;Bridge&quot;</span></span><br><span class="line">BOOTPROTO=none</span><br><span class="line">IPADDR=172.29.9.11</span><br><span class="line">NETMASK=255.255.0.0</span><br><span class="line">GATEWAY=172.29.0.254</span><br><span class="line">DNS1=114.114.114.114</span><br><span class="line"></span><br><span class="line">注：TYPE=<span class="string">&quot;Bridge&quot;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># vim /etc/apt/sources.list</span></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse</span><br><span class="line"></span><br><span class="line">deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br><span class="line">deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure>
 
-
-
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528203448158.png" alt="image-20210528203448158"></p>
 <ul>
-<li>重启网络并测试,</li>
+<li>主机名配置</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># systemctl restart network</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523231509682.png" alt="image-20210523231509682"></p>
-<p>配置桥接网络后，查看ip：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523231615346.png" alt="image-20210523231615346"></p>
-<h2 id="2、使用-pipework-脚本配置静态-IP"><a href="#2、使用-pipework-脚本配置静态-IP" class="headerlink" title="2、使用 pipework 脚本配置静态 IP"></a>2、使用 pipework 脚本配置静态 IP</h2><p>方法 1：直接下载 pipework zip 包<br><a target="_blank" rel="noopener" href="https://github.com/jpetazzo/pipework">https://github.com/jpetazzo/pipework</a></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232153000.png" alt="image-20210523232153000"></p>
-<p>方法 2：使用 git 获得：<br>git 下载链接：<a target="_blank" rel="noopener" href="https://github.com/jpetazzo/pipework.git">https://github.com/jpetazzo/pipework.git</a></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232206143.png" alt="image-20210523232206143"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/jpetazzo/pipework.git</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-template:~<span class="comment"># hostnamectl --static set-hostname ubuntu1804-docker</span></span><br><span class="line">root@ubuntu1804-template:~<span class="comment"># exec bash</span></span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
 
 
 
 <ul>
-<li>本次使用方法直接把压缩包上传到Linux机器上</li>
+<li>注意：此时对做好初始化的虚机做一个快照！</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># unzip pipework-master.zip  # 不需要编译，因为 pipework 是一个shell 脚本</span></span><br><span class="line">[root@docker ~]<span class="comment"># cd pipework-master</span></span><br><span class="line"><span class="comment">#[root@docker pipework-master]# vim pipework #查看pipework脚本内容，480几行的内容</span></span><br><span class="line">[root@docker pipework-master]<span class="comment"># cp pipework /usr/bin/ #方便后期使用 pipework 命令</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528204345848.png" alt="image-20210528204345848"></p>
+<h2 id="1、卸载旧版本docker（如果存在的话）"><a href="#1、卸载旧版本docker（如果存在的话）" class="headerlink" title="1、卸载旧版本docker（如果存在的话）"></a>1、卸载旧版本docker（如果存在的话）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-get remove docker docker-engine docker.io containerd runc</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232347487.png" alt="image-20210523232347487"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232442514.png" alt="image-20210523232442514"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232627982.png" alt="image-20210523232627982"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523232722758.png" alt="image-20210523232722758"></p>
-<p>到此 pipework 已经安装成功。</p>
-<p>启动docker:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># systemctl start docker</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528204450025.png" alt="image-20210528204450025"></p>
+<h2 id="2、安装必要的一些系统工具"><a href="#2、安装必要的一些系统工具" class="headerlink" title="2、安装必要的一些系统工具"></a>2、安装必要的一些系统工具</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-get update</span></span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-get -y install apt-transport-https ca-certificates curl software-properties-common</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、安装GPG证书"><a href="#3、安装GPG证书" class="headerlink" title="3、安装GPG证书"></a>3、安装GPG证书</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528204803003.png" alt="image-20210528204803003"></p>
+<h2 id="4、写入软件源信息"><a href="#4、写入软件源信息" class="headerlink" title="4、写入软件源信息"></a>4、写入软件源信息</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># add-apt-repository &quot;deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528204930022.png" alt="image-20210528204930022"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528204944493.png" alt="image-20210528204944493"></p>
+<h2 id="5、更新并安装Docker-CE"><a href="#5、更新并安装Docker-CE" class="headerlink" title="5、更新并安装Docker-CE"></a>5、更新并安装Docker-CE</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-get update</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#开始安装docker-ce</span></span><br><span class="line"><span class="comment">#这里需要注意：如果要装固定版本的docker，改如何装呢？（不指定版本的话，默认是安装的是最新版本）</span></span><br><span class="line"><span class="comment">#注意：docker-ce是服务端，docker-ce-cli是客户端；</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p>拉取一个centos镜像：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull centos</span><br></pre></td></tr></table></figure>
+<p><strong>(1)默认是安装的是最新版本</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-get -y install docker-ce docker-ce-cli</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210523233110302.png" alt="image-20210523233110302"></p>
-<h2 id="3、使用静态-IP-启动一个-docker-实例"><a href="#3、使用静态-IP-启动一个-docker-实例" class="headerlink" title="3、使用静态 IP 启动一个 docker 实例"></a>3、使用静态 IP 启动一个 docker 实例</h2><p>例:以none模式，使用–net=none启动一个容器，并且开启docker 特权模式。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker run -itd --net=none --privileged=true centos bashe5ca1cc49de1db462ebf405a5735a2dc1ee43f28b2887bd00559c2ae22b4b505</span></span><br><span class="line">[root@docker ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
+
+<p><strong>(2)安装固定版本的docker</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">step1:查找Docker-CE的版本</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-cache madison docker-ce</span></span><br><span class="line">amd64 Packages</span><br><span class="line"> docker-ce | 5:19.03.0~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 Packages</span><br><span class="line"> docker-ce | 5:18.09.9~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 Packages</span><br><span class="line"> docker-ce | 5:18.09.8~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable </span><br><span class="line">……</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt-cache madison docker-ce-cli</span></span><br><span class="line">docker-ce-cli | 5:19.03.1~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 Packages</span><br><span class="line">docker-ce-cli | 5:19.03.0~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 Packages</span><br><span class="line">docker-ce-cli | 5:18.09.9~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 Packages</span><br><span class="line">docker-ce-cli | 5:18.09.8~3-0~ubuntu-bionic | https://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable</span><br><span class="line">……</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">step2:安装指定版本的Docker-CE</span><br><span class="line"><span class="comment">#本次安装如下版本的docker-ce:</span></span><br><span class="line">docker-ce | 5:19.03.9~3-0~ubuntu-bionic</span><br><span class="line">docker-ce-cli | 5:19.03.9~3-0~ubuntu-bionic</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># apt install docker-ce=5:19.03.9~3-0~ubuntu-bionic docker-ce-cli=5:19.03.9~3-0~ubuntu-bionic</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、安装验证"><a href="#6、安装验证" class="headerlink" title="6、安装验证"></a>6、安装验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># docker version</span></span><br><span class="line">Client: Docker Engine - Community</span><br><span class="line"> Version:           19.03.9 <span class="comment">#</span></span><br><span class="line"> API version:       1.40</span><br><span class="line"> Go version:        go1.13.10</span><br><span class="line"> Git commit:        9d988398e7</span><br><span class="line"> Built:             Fri May 15 00:25:18 2020</span><br><span class="line"> OS/Arch:           linux/amd64</span><br><span class="line"> Experimental:      <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">Server: Docker Engine - Community</span><br><span class="line"> Engine:</span><br><span class="line">  Version:          19.03.9 <span class="comment">#</span></span><br><span class="line">  API version:      1.40 (minimum version 1.12)</span><br><span class="line">  Go version:       go1.13.10</span><br><span class="line">  Git commit:       9d988398e7</span><br><span class="line">  Built:            Fri May 15 00:23:50 2020</span><br><span class="line">  OS/Arch:          linux/amd64</span><br><span class="line">  Experimental:     <span class="literal">false</span></span><br><span class="line"> containerd:</span><br><span class="line">  Version:          1.4.3</span><br><span class="line">  GitCommit:        269548fa27e0089a8b8278fc4fc781d7f65a939b</span><br><span class="line"> runc:</span><br><span class="line">  Version:          1.0.0-rc92</span><br><span class="line">  GitCommit:        ff819c7e9184c13b7c2607fe6c30ae19403a7aff</span><br><span class="line"> docker-init:</span><br><span class="line">  Version:          0.18.0</span><br><span class="line">  GitCommit:        fec3683</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7、开启docker，并设置开机自启"><a href="#7、开启docker，并设置开机自启" class="headerlink" title="7、开启docker，并设置开机自启"></a>7、开启docker，并设置开机自启</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># systemctl enable --now docker</span></span><br><span class="line">Synchronizing state of docker.service with SysV service script with /lib/systemd/systemd-sysv-install.</span><br><span class="line">Executing: /lib/systemd/systemd-sysv-install <span class="built_in">enable</span> docker</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="8、配置阿里云-docker-镜像加速器"><a href="#8、配置阿里云-docker-镜像加速器" class="headerlink" title="8、配置阿里云 docker 镜像加速器"></a>8、配置阿里云 docker 镜像加速器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#直接执行如下代码即可：</span></span><br><span class="line">mkdir -p /etc/docker</span><br><span class="line">tee /etc/docker/daemon.json &lt;&lt;-<span class="string">&#x27;EOF&#x27;</span></span><br><span class="line">&#123;  	</span><br><span class="line">	<span class="string">&quot;registry-mirrors&quot;</span>: [<span class="string">&quot;https://kvuwuws2.mirror.aliyuncs.com&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line">EOF</span><br><span class="line">systemctl daemon-reload </span><br><span class="line">systemctl restart docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="9、实例：拉取一个nginx镜像运行起来并观看效果"><a href="#9、实例：拉取一个nginx镜像运行起来并观看效果" class="headerlink" title="9、实例：拉取一个nginx镜像运行起来并观看效果"></a>9、实例：拉取一个nginx镜像运行起来并观看效果</h2><p>到<code>hub.docker.com</code>网站，输入nginx，点击<code>Tag</code>，寻找相应版本的nginx镜像，找到后点击复制，直接粘贴在linux下即可拉取nginx镜像：</p>
+<p><a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a><br>本次安装nginx:1.16.1版本：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210221164414969.png" alt="image-20210221164414969"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210221164433271.png" alt="image-20210221164433271"></p>
+<p>docker pull nginx:1.16.1</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210221164616373.png" alt="image-20210221164616373"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># docker pull nginx:1.16.1 #这个是从官方下载镜像的（下载速度还是可以接受的，但有时候就很慢。。。。），后期可以采取方法加速从官方dockerhub下载慢的问题的。 </span></span><br><span class="line">1.16.1: Pulling from library/nginx</span><br><span class="line">54fec2fa59d0: Pull complete </span><br><span class="line">5546cfc92772: Pull complete </span><br><span class="line">50f62e3cdaf7: Pull complete </span><br><span class="line">Digest: sha256:d20aa6d1cae56fd17cd458f4807e0de462caf2336f0b70b5eeb69fcaaf30dd9c</span><br><span class="line">Status: Downloaded newer image <span class="keyword">for</span> nginx:1.16.1</span><br><span class="line">docker.io/library/nginx:1.16.1</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># </span></span><br><span class="line"></span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># docker images #查看下载好的nginx镜像</span></span><br><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">nginx               1.16.1              dfcfd8e9a5d3        10 months ago       127MB</span><br><span class="line"></span><br><span class="line">root@ubuntu1804-docker:~<span class="comment">#docker run -d -p 80:80 nginx:1.16.1 #-d代表后台，宿主机端口:容器端口 先在本地找，本地不存在的话，就去官网下载（docker.hub.com） </span></span><br><span class="line">5d5e1cb592166d07155813b237b49d832ee8f13c1d30c060d826da91205d704c</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># </span></span><br><span class="line"></span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># docker ps #查看正在运行的容器</span></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES</span><br><span class="line">5d5e1cb59216        nginx:1.16.1        <span class="string">&quot;nginx -g &#x27;daemon of…&quot;</span>   27 seconds ago      Up 25 seconds       0.0.0.0:80-&gt;80/tcp   elastic_bardeen</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># </span></span><br></pre></td></tr></table></figure>
+
+<p>此时在宿主机上访问这个地址，查看效果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528210221315.png" alt="image-20210528210221315"></p>
+<p>此时，如何知道这个是我们的容器呢？<br>可以通过进入刚才创建的容器，命令修改nginx index.html文件，来验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">root@ubuntu1804-docker:~<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES</span><br><span class="line">5d5e1cb59216        nginx:1.16.1        <span class="string">&quot;nginx -g &#x27;daemon of…&quot;</span>   3 minutes ago       Up 3 minutes        0.0.0.0:80-&gt;80/tcp   elastic_bardeen</span><br><span class="line">root@ubuntu1804-docker:~<span class="comment"># docker exec -it 5d5e1cb59216 bash #-i代表标准输入，t代表tty</span></span><br><span class="line">root@5d5e1cb59216:/<span class="comment"># </span></span><br><span class="line">root@5d5e1cb59216:/<span class="comment"># pwd</span></span><br><span class="line">/</span><br><span class="line">root@5d5e1cb59216:/<span class="comment"># cat /etc/issue #查看容器系统是debaian的</span></span><br><span class="line">Debian GNU/Linux 10 \n \l</span><br><span class="line"></span><br><span class="line">root@5d5e1cb59216:/<span class="comment"># apt update #更新一下软件源 （这个有点费时间，且后面这个操作不需要更新软件源的，此时直接ctrl c杀死刚才那个进程就好）</span></span><br><span class="line">root@5d5e1cb59216:/<span class="comment"># pwd</span></span><br><span class="line">/</span><br><span class="line">root@5d5e1cb59216:/<span class="comment"># cd /usr/share/nginx/html/</span></span><br><span class="line">root@5d5e1cb59216:/usr/share/nginx/html<span class="comment"># ls -l</span></span><br><span class="line">total 8</span><br><span class="line">-rw-r--r-- 1 root root 494 Aug 13  2019 50x.html</span><br><span class="line">-rw-r--r-- 1 root root 612 Aug 13  2019 index.html</span><br><span class="line">root@5d5e1cb59216:/usr/share/nginx/html<span class="comment"># cat index.html </span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: 35em;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">        font-family: Tahoma, Verdana, Arial, sans-serif;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href=<span class="string">&quot;http://nginx.org/&quot;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=<span class="string">&quot;http://nginx.com/&quot;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you <span class="keyword">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">root@5d5e1cb59216:/usr/share/nginx/html<span class="comment"># </span></span><br><span class="line">root@5d5e1cb59216:/usr/share/nginx/html<span class="comment"># echo &quot;Linux39&quot; &gt; index.html #修改nginx index.html文件</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>此时再次在宿主机上刷新网页观看效果（符合预期）：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528210341055.png" alt="image-20210528210341055"></p>
 <ul>
-<li>扩展结束，接着给容器配置表态 IP 地址</li>
+<li>此时，再对安装好docker环境的虚机做一个快照！</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMESe5ca1cc49de1   centos    <span class="string">&quot;bash&quot;</span>    12 minutes ago   Up 12 minutes             </span><br><span class="line">trusting_rosalind</span><br><span class="line">[root@docker ~]<span class="comment">#可以看到容器启动的 ID ,比如是e5ca1cc49de1</span></span><br></pre></td></tr></table></figure>
-
-<p>给此容器配置地址：<br>pipework语法:<code>pipework  网桥名 容器实例ID 分配给容器的IP/掩码@网关</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># pipework br0 e5ca1cc49de1 172.29.9.21/16@172.29.0.254 #注：容器的 DNS 地址，会直接使用物理机的 dns</span></span><br></pre></td></tr></table></figure>
-
-<p>注意用pipwork脚本配置ip后，不需要重启网络，容器ip马上就会生效的。</p>
-<ul>
-<li>测试 IP：#可以看到 docker 实例的 IP 已经可以使用</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203047053.png" alt="image-20210524203047053"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMESe5ca1cc49de1   centos    <span class="string">&quot;bash&quot;</span>    16 minutes ago   Up 16 minutes             trusting_rosalind[root@docker ~]<span class="comment"># docker inspect e5ca1cc49de1 #查看容器的详细情况</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203216307.png" alt="image-20210524203216307"></p>
-<ul>
-<li>进入入容器,测试网络：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@docker ~]<span class="comment"># docker ps</span></span><br><span class="line">[root@docker ~]<span class="comment"># docker exec -it e5ca1cc49de1 bash #进入容器</span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># yum install -y net-tools #安装ifconfig命令</span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># cat /etc/resolv.conf </span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># ifconfig</span></span><br><span class="line">[root@e5ca1cc49de1 /]<span class="comment"># route -n</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203338020.png" alt="image-20210524203338020"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210524203405904.png" alt="image-20210524203405904"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525221020105.png" alt="image-20210525221020105"></p>
-<p>到此，docker 实例配置静态 IP 成功。</p>
-<h2 id="小案例：-使用静态-IP-启动的-docker-实例运行，一个-web-服务器"><a href="#小案例：-使用静态-IP-启动的-docker-实例运行，一个-web-服务器" class="headerlink" title="小案例： 使用静态 IP 启动的 docker 实例运行，一个 web 服务器"></a>小案例： 使用静态 IP 启动的 docker 实例运行，一个 web 服务器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@c8f88d9bf76e /]<span class="comment"># yum install -y httpd</span></span><br><span class="line">[root@c8f88d9bf76e /]<span class="comment"># systemctl start httpd</span></span><br><span class="line">System has not been booted with systemd as init system (PID 1). Can<span class="string">&#x27;t operate.</span></span><br><span class="line"><span class="string">Failed to connect to bus: Host is down</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]#</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]# /usr/sbin/httpd -DFOREGROUND &amp;</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]# netstat -antup|grep 80</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e /]# cd /var/www/html/</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e html]# ls</span></span><br><span class="line"><span class="string">[root@c8f88d9bf76e html]# echo  Linux-k8s &gt; index.html</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525222257857.png" alt="image-20210525222257857"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210525223517947.png" alt="image-20210525223517947"></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>关于如何给docker配置静态ip，配置步骤总结如下：</p>
-<p>1、创建一个 br0 桥接设备</p>
-<p>2、下载 pipework 包并安装</p>
-<p>3、安装并运行 docker</p>
-<p>4、拉取一个 centos docker 镜像</p>
-<p>5、启动一个 docker 实例 注意加参数： –net=none –privileged=true</p>
-<p>6、使用 pipework 给 docker 实例配置 IP</p>
-<p>7、小案例：使用静态 IP 启动的 docker 实例运行，一个 web 服务器</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527145422000.png" alt="image-20210527145422000"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528210654552.png" alt="image-20210528210654552"></p>
+<p>实验到此结束！</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    以上就是关于如何在ubuntu1804上安装docker的方法了，感谢阅读。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210528210759113.png" alt="image-20210528210759113"></p>
 
                 
             </div>
@@ -638,7 +607,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/05/27/5-%E5%AE%9E%E6%88%98-docker%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-20210525/">https://www.onlyonexl.cn/2021/05/27/5-%E5%AE%9E%E6%88%98-docker%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-20210525/</a>
+                    <a href="https://www.onlyonexl.cn/2021/05/28/6-%E5%AE%9E%E6%88%98-ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85docker-(%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95)-20210528/">https://www.onlyonexl.cn/2021/05/28/6-%E5%AE%9E%E6%88%98-ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85docker-(%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95)-20210528/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -849,9 +818,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/05/28/6-%E5%AE%9E%E6%88%98-ubuntu%E4%B8%8A%E5%AE%89%E8%A3%85docker-(%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95)-20210528/">
                     <div class="card-image">
@@ -869,9 +839,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-05-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-05-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -884,6 +854,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -902,13 +873,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/">
+                <a href="/2021/05/27/5-%E5%AE%9E%E6%88%98-docker%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81ip-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-20210525/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525">
                         
-                        <span class="card-title">4-实战-pxe部署(从uefi启动)-(过程超详细-已成功测试)-20210527</span>
+                        <span class="card-title">5-实战-docker配置静态ip(已成功测试-过程超详细)-20210525</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -925,8 +896,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/PXE/" class="post-category">
-                                    PXE
+                            <a href="/categories/docker/" class="post-category">
+                                    docker
                                 </a>
                             
                             
@@ -936,8 +907,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/PXE/">
-                        <span class="chip bg-color">PXE</span>
+                    <a href="/tags/docker/">
+                        <span class="chip bg-color">docker</span>
                     </a>
                     
                 </div>
