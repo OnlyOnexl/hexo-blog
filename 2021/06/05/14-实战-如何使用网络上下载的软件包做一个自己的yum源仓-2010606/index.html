@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="13-实战-离线docker镜像包制作方法-20210605, Love">
+    <meta name="keywords" content="14-实战-如何使用网络上下载的软件包做一个自己的yum源仓-2010606, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>13-实战-离线docker镜像包制作方法-20210605 | Love</title>
+    <title>14-实战-如何使用网络上下载的软件包做一个自己的yum源仓-2010606 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">13-实战-离线docker镜像包制作方法-20210605</h1>
+                    <h1 class="description center-align post-title">14-实战-如何使用网络上下载的软件包做一个自己的yum源仓-2010606</h1>
                 </div>
             </div>
         </div>
@@ -477,62 +477,92 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战-离线docker镜像包制作方法-20210602"><a href="#实战-离线docker镜像包制作方法-20210602" class="headerlink" title="实战-离线docker镜像包制作方法-20210602"></a>实战-离线docker镜像包制作方法-20210602</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605162849227.png" alt="image-20210605162849227"></p>
-<h2 id="技巧-1：批量导出机器所有镜像制作docker镜像离线包"><a href="#技巧-1：批量导出机器所有镜像制作docker镜像离线包" class="headerlink" title="技巧 1：批量导出机器所有镜像制作docker镜像离线包"></a>技巧 1：批量导出机器所有镜像制作docker镜像离线包</h2><p>工作中，如果想把物理机上所有镜像导出，制作成 docker 镜像离线包，可以使用以下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]<span class="comment">#docker save `docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;` |gzip &gt; k8s-images-v1.20.4.tar.gz</span></span><br></pre></td></tr></table></figure>
+                <h2 id="实战-如何使用网络上下载的软件包做一个自己的yum源仓库？-离线rpm包制作yum源仓库-csdn-已成功测试-20210428"><a href="#实战-如何使用网络上下载的软件包做一个自己的yum源仓库？-离线rpm包制作yum源仓库-csdn-已成功测试-20210428" class="headerlink" title="实战-如何使用网络上下载的软件包做一个自己的yum源仓库？(离线rpm包制作yum源仓库)-csdn-已成功测试-20210428"></a>实战-如何使用网络上下载的软件包做一个自己的yum源仓库？(离线rpm包制作yum源仓库)-csdn-已成功测试-20210428</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428210427137.png" alt="image-20210428210427137"></p>
+<h2 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1台centos7.7 1908虚机；</span><br><span class="line">配置nat模式，可上外网，已配置好阿里yum源；</span><br></pre></td></tr></table></figure>
+
+<h2 id="一、安装createrepo"><a href="#一、安装createrepo" class="headerlink" title="一、安装createrepo"></a>一、安装createrepo</h2><p>createrepo 命令用于创建<strong>yum源（软件仓库）</strong>，即为存放于本地特定位置的众多rpm包建立索引，描述各包所需依赖信息，并形成<strong>元数据</strong>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#默认系统无安装creatrepo软件，因此需要yum进行安装：</span></span><br><span class="line">[root@hg ~]<span class="comment"># rpm -qa|grep createrepo</span></span><br><span class="line">[root@hg ~]<span class="comment"># yum install -y createrepo</span></span><br><span class="line">[root@hg ~]<span class="comment"># rpm -qa|grep createrepo #验证</span></span><br><span class="line">createrepo-0.9.9-28.el7.noarch</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="二、保存通过yum安装的相应rpm包？"><a href="#二、保存通过yum安装的相应rpm包？" class="headerlink" title="二、保存通过yum安装的相应rpm包？"></a>二、保存通过yum安装的相应rpm包？</h2><p>有如下几种方式：</p>
+<h3 id="（1）使用–downloadonly选项（推荐）只下载不安装yum包！"><a href="#（1）使用–downloadonly选项（推荐）只下载不安装yum包！" class="headerlink" title="（1）使用–downloadonly选项（推荐）只下载不安装yum包！"></a>（1）使用–downloadonly选项（推荐）只下载不安装yum包！</h3><p>注意，–downloadonly选项是有yum软件包提供的，默认是已经提供的。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428192240043.png" alt="image-20210428192240043"></p>
+<ul>
+<li>–downloadonly选项用法</li>
+</ul>
+<p>用法1：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install --downloadonly RPM_Name</span><br><span class="line"><span class="comment">#下载的文件位于/var/cache/yum/x86_64/7/目录下，视系统版本而定。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>用法2：（推荐）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install -y RPM_Name --downloadonly --downloaddir=保存文件目录名</span><br><span class="line"></span><br><span class="line"><span class="comment">#注意：</span></span><br><span class="line">这个--downloadonly选项代表只下载不安装相应的rpm包，包括依赖包；</span><br><span class="line">--downloaddir=保存文件目录名：会在当前目录下生成相应目录的；</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（1）用法1测试过程(测试成功)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># rpm -qa|grep httpd #未安装httpd软件</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428193154420.png" alt="image-20210428193154420"></p>
+<p>由于指定了–downloadonly选项，所以httpd软件没有被安装：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428193247728.png" alt="image-20210428193247728"></p>
+<p>下载的rpm包只是缓存到了/var/cache/yum/x86_64/7目录下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428193516998.png" alt="image-20210428193516998"></p>
+<p>（2）用法2测试过程(已成功测试)–==本次采用这种方式！（推荐）==</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># yum install --downloadonly httpd --downloaddir=httpd</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428193659302.png" alt="image-20210428193659302"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428193724077.png" alt="image-20210428193724077"></p>
+<h3 id="（2）使用yumdownloader命令-只下载rpm包不安装-–不推荐！"><a href="#（2）使用yumdownloader命令-只下载rpm包不安装-–不推荐！" class="headerlink" title="（2）使用yumdownloader命令(只下载rpm包不安装)–不推荐！"></a>（2）使用yumdownloader命令(只下载rpm包不安装)–不推荐！</h3><p>yum downloader命令依赖于 yum-utils，因此先需要通过yum安装 yum-utils软件包：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428194113707.png" alt="image-20210428194113707"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># yum install -y yum-utils</span></span><br></pre></td></tr></table></figure>
 
 
 
 <ul>
-<li>测试结果截图</li>
+<li>用法</li>
 </ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210604162754760.png" alt="image-20210604162754760"></p>
-<ul>
-<li>cut命令、sed命令测试过程</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master ~]<span class="comment">#docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># cut 参数 -f1 打印第 1 列， -d‘ ’ 以空格作为分隔符</span></span><br><span class="line"><span class="comment"># sed 命令参数 -n ：只打印匹配的行 ; sed 的编辑命令参数 p 打印匹配行，和-n 一起合用</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210604162100636.png" alt="image-20210604162100636"></p>
-<h2 id="技巧-2：如果想把整个集群中所有机器上的镜像，都打包成一个镜像，可以执行以下命令"><a href="#技巧-2：如果想把整个集群中所有机器上的镜像，都打包成一个镜像，可以执行以下命令" class="headerlink" title="技巧 2：如果想把整个集群中所有机器上的镜像，都打包成一个镜像，可以执行以下命令"></a>技巧 2：如果想把整个集群中所有机器上的镜像，都打包成一个镜像，可以执行以下命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">语法如下：</span><br><span class="line">docker save 镜像名 | gzip |ssh root@192.168.1.63 <span class="string">&#x27;cat | docker load&#x27;</span></span><br><span class="line"></span><br><span class="line">1、先将 node 节点上所有镜像远程导入到 master上：</span><br><span class="line">[root@xuegod64 ~]<span class="comment"># docker save `docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;` | </span></span><br><span class="line">gzip |ssh root@192.168.1.63 <span class="string">&#x27;cat | docker load&#x27;</span></span><br><span class="line"></span><br><span class="line">2、master 上拥有所有 docker 镜像后，再在 master 上，把镜像统一导出一下</span><br><span class="line">[root@xuegod63 ~]<span class="comment"># docker save `docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;` </span></span><br><span class="line">|gzip &gt; k8s-images-v1.20.4.tar.gz</span><br><span class="line"></span><br><span class="line">注：我就是这样，把集群中的所有镜像，打包成一个包的。方便后期使用</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#yum downloader RPM_Name</span></span><br><span class="line">下载的包位于当前目录下。但是，只下载指定的包，不会把该包依赖的包都下载下来的。</span><br></pre></td></tr></table></figure>
 
 
 
 <ul>
-<li>自己测试过程</li>
+<li>测试过程</li>
 </ul>
-<p>如下，是一个已经以<code>kubeadm</code>搭建好的k8s集群：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605160001546.png" alt="image-20210605160001546"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605160018985.png" alt="image-20210605160018985"></p>
-<p>master节点镜像：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605155452489.png" alt="image-20210605155452489"></p>
-<p>node1/node2节点镜像：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605155703226.png" alt="image-20210605155703226"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># yumdownloader httpd</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428194503631.png" alt="image-20210428194503631"></p>
+<h3 id="（3）yum开启缓存-相对于第一种方式感觉比较笨拙些"><a href="#（3）yum开启缓存-相对于第一种方式感觉比较笨拙些" class="headerlink" title="（3）yum开启缓存(相对于第一种方式感觉比较笨拙些)"></a>（3）yum开启缓存(相对于第一种方式感觉比较笨拙些)</h3><p>默认情况下，yum安装的rpm包都不会被保存到本地，但可通过设置keepcache参数使其在安装软件包的同时保存rpm包。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># vim /etc/yum.conf</span></span><br><span class="line">[main]</span><br><span class="line">cachedir=/var/cache/yum/<span class="variable">$basearch</span>/<span class="variable">$releasever</span></span><br><span class="line">keepcache=1			<span class="comment">#修改为1表示开启缓存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#centos8配置文件路径在/etc/dnf/dnf.conf</span></span><br><span class="line">cachedir=/var/cache/dnf/package</span><br><span class="line">keepcache=1</span><br><span class="line"></span><br><span class="line">注意：缓存好相关rpm包后可用如下命令将all rpm包拷贝到对应目录，进一步构建自己的yum源仓库：</span><br><span class="line">find ./ -name <span class="string">&quot;*.rpm&quot;</span> -<span class="built_in">exec</span> cp -r &#123;&#125; /opt/php72  \</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428195214073.png" alt="image-20210428195214073"></p>
 <ul>
-<li>现在，我就针对这个v1.20.0版本的k8s集群导出一个离线镜像包，并进行kubeadm离线方式部署k8s集群实验</li>
+<li>测试过程</li>
 </ul>
-<ul>
-<li>自己实际命令如下</li>
-</ul>
-<p>1、将node1的all镜像导入到master节点：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在node1上执行：</span></span><br><span class="line">[root@k8s-node1 ~]<span class="comment">#docker save `docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;` | gzip |ssh root@172.29.9.31 &#x27;cat | docker load&#x27;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># vim /etc/yum.conf </span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605160729460.png" alt="image-20210605160729460"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605160814437.png" alt="image-20210605160814437"></p>
-<p>2、将node2的all镜像导入到master节点：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在node2上执行：</span></span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#docker save `docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;` | gzip |ssh root@172.29.9.31 &#x27;cat | docker load&#x27;</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428203322964.png" alt="image-20210428203322964"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@hg ~]<span class="comment"># rpm -qa|grep httpd</span></span><br><span class="line">[root@hg ~]<span class="comment"># yum install httpd -y</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605161147763.png" alt="image-20210605161147763"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605161239391.png" alt="image-20210605161239391"></p>
-<p>3、master 上拥有所有 docker 镜像后，再在 master 上，把镜像统一导出一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment"># docker save `docker images | cut -f1 -d &#x27; &#x27; | sed -n &#x27;2,$p&#x27;` |gzip &gt; k8s-images-v1.20.0.tar.gz</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428203442897.png" alt="image-20210428203442897"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428203509430.png" alt="image-20210428203509430"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428203544935.png" alt="image-20210428203544935"></p>
+<h2 id="三、生成repodata文件"><a href="#三、生成repodata文件" class="headerlink" title="三、生成repodata文件"></a>三、生成repodata文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@hg httpd]<span class="comment"># createrepo ./</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605161605698.png" alt="image-20210605161605698"></p>
-<p>备注：查看当前k8s版本</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-node1 ~]<span class="comment">#kubeadm version</span></span><br><span class="line">[root@k8s-node1 ~]<span class="comment">#rpm -qa|grep kube</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428204841946.png" alt="image-20210428204841946"></p>
+<h2 id="四、编辑-repo配置文件"><a href="#四、编辑-repo配置文件" class="headerlink" title="四、编辑.repo配置文件"></a>四、编辑.repo配置文件</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cat &gt;&gt; /etc/yum.repos.d/httpd.repo &lt;&lt;<span class="string">EOF</span></span><br><span class="line"><span class="string">[httpd]</span></span><br><span class="line"><span class="string">name=httpd</span></span><br><span class="line"><span class="string">baseurl=file:///root/httpd</span></span><br><span class="line"><span class="string">enable=1</span></span><br><span class="line"><span class="string">gpgcheck=0</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605161503616.png" alt="image-20210605161503616"></p>
-<p>如此，可以制作离线kubeadm安装k8s集群了，good。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210605162811133.png" alt="image-20210605162811133"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428204507380.png" alt="image-20210428204507380"></p>
+<h2 id="五、修改完成后使用本地-yum-源快速安装"><a href="#五、修改完成后使用本地-yum-源快速安装" class="headerlink" title="五、修改完成后使用本地 yum 源快速安装"></a>五、修改完成后使用本地 yum 源快速安装</h2><p>这里为了测试，需要把阿里云源先注释掉：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@hg yum.repos.d]<span class="comment"># rpm -qa|grep httpd</span></span><br><span class="line"></span><br><span class="line">[root@hg ~]<span class="comment"># cd /etc/yum.repos.d/</span></span><br><span class="line">[root@hg yum.repos.d]<span class="comment"># ls</span></span><br><span class="line">backup  CentOS-Base.repo  httpd.repo</span><br><span class="line">[root@hg yum.repos.d]<span class="comment"># mv CentOS-Base.repo&#123;,.bak&#125;</span></span><br><span class="line">[root@hg yum.repos.d]<span class="comment"># yum install httpd -y</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428205527985.png" alt="image-20210428205527985"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428205545481.png" alt="image-20210428205545481"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428205603564.png" alt="image-20210428205603564"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    工作及it学习中，养成本地保留一份rpm相关包，是一个很好的习惯，可以防止因某些软件版本更新后，无法找到当时的相应版本软件包，从而影响一些服务大搭建。</p>
+<p>​    好了，今天就介绍到这里了，下期见。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428210405034.png" alt="image-20210428210405034"></p>
 
                 
             </div>
@@ -559,7 +589,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/06/05/13-%E5%AE%9E%E6%88%98-%E7%A6%BB%E7%BA%BFdocker%E9%95%9C%E5%83%8F%E5%8C%85%E5%88%B6%E4%BD%9C%E6%96%B9%E6%B3%95-20210605/">https://www.onlyonexl.cn/2021/06/05/13-%E5%AE%9E%E6%88%98-%E7%A6%BB%E7%BA%BFdocker%E9%95%9C%E5%83%8F%E5%8C%85%E5%88%B6%E4%BD%9C%E6%96%B9%E6%B3%95-20210605/</a>
+                    <a href="https://www.onlyonexl.cn/2021/06/05/14-%E5%AE%9E%E6%88%98-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BB%9C%E4%B8%8A%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%81%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84yum%E6%BA%90%E4%BB%93-2010606/">https://www.onlyonexl.cn/2021/06/05/14-%E5%AE%9E%E6%88%98-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BB%9C%E4%B8%8A%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%81%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84yum%E6%BA%90%E4%BB%93-2010606/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -770,10 +800,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/06/05/13-%E5%AE%9E%E6%88%98-%E7%A6%BB%E7%BA%BFdocker%E9%95%9C%E5%83%8F%E5%8C%85%E5%88%B6%E4%BD%9C%E6%96%B9%E6%B3%95-20210605/">
                     <div class="card-image">
@@ -791,9 +820,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-05
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-05
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -806,7 +835,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -825,13 +853,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/05/14-%E5%AE%9E%E6%88%98-%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BB%9C%E4%B8%8A%E4%B8%8B%E8%BD%BD%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E5%81%9A%E4%B8%80%E4%B8%AA%E8%87%AA%E5%B7%B1%E7%9A%84yum%E6%BA%90%E4%BB%93-2010606/">
+                <a href="/2021/06/05/12-%E9%81%BF%E5%9D%91%E5%AE%9E%E6%88%98-%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4(%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95)-20210605/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="14-实战-如何使用网络上下载的软件包做一个自己的yum源仓-2010606">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="12-避坑实战-快速部署一个kubernetes集群(超详细-已成功测试)-20210605">
                         
-                        <span class="card-title">14-实战-如何使用网络上下载的软件包做一个自己的yum源仓-2010606</span>
+                        <span class="card-title">12-避坑实战-快速部署一个kubernetes集群(超详细-已成功测试)-20210605</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -848,8 +876,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/docker/" class="post-category">
-                                    docker
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
                                 </a>
                             
                             
@@ -859,8 +887,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/docker/">
-                        <span class="chip bg-color">docker</span>
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
                     </a>
                     
                 </div>
