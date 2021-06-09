@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="16-技巧-如何删除k8s中的pod-20210608, Love">
+    <meta name="keywords" content="17-实战-k8s服务编排-通过命令方式创建资源对象-2021060, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>16-技巧-如何删除k8s中的pod-20210608 | Love</title>
+    <title>17-实战-k8s服务编排-通过命令方式创建资源对象-2021060 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">16-技巧-如何删除k8s中的pod-20210608</h1>
+                    <h1 class="description center-align post-title">17-实战-k8s服务编排-通过命令方式创建资源对象-2021060</h1>
                 </div>
             </div>
         </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-06-08
+                    2021-06-09
                 </div>
                 
 
@@ -477,48 +477,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="技巧-如何删除k8s中的pod-20210608"><a href="#技巧-如何删除k8s中的pod-20210608" class="headerlink" title="技巧-如何删除k8s中的pod-20210608"></a>技巧-如何删除k8s中的pod-20210608</h3><p>在k8s 里面如果直接删除pod, 是起不到作用的，<strong>因为删除的pod 还是被继续拉起来</strong>。</p>
-<p>看下面的例子，我们把 web-96d5df5c8-74vvp 这个pod 通过kubectl  delete pod 的方式删除掉。</p>
-<h3 id="1、先模拟错误的删除pod方式现象"><a href="#1、先模拟错误的删除pod方式现象" class="headerlink" title="1、先模拟错误的删除pod方式现象"></a>1、先模拟错误的删除pod方式现象</h3><ul>
-<li>查看目前pod情况：</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod -o wide</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608001313053.png" alt="image-20210608001313053"></p>
+                <h2 id="实战-k8s服务编排-通过命令方式创建资源对象-2021060"><a href="#实战-k8s服务编排-通过命令方式创建资源对象-2021060" class="headerlink" title="实战-k8s服务编排-通过命令方式创建资源对象-2021060"></a>实战-k8s服务编排-通过命令方式创建资源对象-2021060</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210609110801897.png" alt="image-20210609110801897"></p>
+<h2 id="例子1：使用Deployment部署Java应用"><a href="#例子1：使用Deployment部署Java应用" class="headerlink" title="例子1：使用Deployment部署Java应用"></a>例子1：使用Deployment部署Java应用</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210607234634394.png" alt="image-20210607234634394"></p>
 <ul>
-<li>删除pod web-96d5df5c8-74vvp</li>
+<li>实验环境：本次搭建好的一个k8s集群</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl delete pod web-96d5df5c8-74vvp</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608001452617.png" alt="image-20210608001452617"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210607234841784.png" alt="image-20210607234841784"></p>
 <ul>
-<li>删除后，再次查看pod情况</li>
+<li>查看k8s集群原来pod情况</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod -o wide</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608001552558.png" alt="image-20210608001552558"></p>
-<p><strong>但是又立马重启了一个新的同类型的pod。</strong><br><strong>是因为deployment 控制replicasSet, 当副本数跟实际的不相符的时候，rs 会自动再创建新的，直到跟模板上的一致</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get rs #查看副本数量</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608004317748.png" alt="image-20210608004317748"></p>
+<p><strong>1、使用Deployment控制器部署镜像</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl create deployment java-demo --image=lizhenliang/java-demo</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608001813615.png" alt="image-20210608001813615"></p>
-<h3 id="2、正确的删除pod方式"><a href="#2、正确的删除pod方式" class="headerlink" title="2、正确的删除pod方式"></a>2、正确的删除pod方式</h3><p>那么问题来了，要想删除pod 该怎么办呢？</p>
-<p>–&gt;<strong>其实通过删除deployment， 然后就会自动删除pod 的</strong>；</p>
-<ul>
-<li>查看当前的pod及deploy情况</li>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608004749291.png" alt="image-20210608004749291"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608004758845.png" alt="image-20210608004758845"></p>
+<p><strong>2、使用Service将Pod暴露出去：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl expose deployment java-demo --port=80 --target-port=8080 --type=NodePort</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod,svc</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">第一个--port是k8s集群内部访问端口，通过集群内部访问的ip, cluster ip；</span><br><span class="line">第二个--target--port是镜像里服务跑的端口号；</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608005728754.png" alt="image-20210608005728754"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608005741342.png" alt="image-20210608005741342"></p>
+<p><strong>3、访问应用并验证效果：</strong><br><a href="http://NodeIP:Port">http://NodeIP:Port</a> # 端口随机生成，通过get svc获取</p>
+<p><a target="_blank" rel="noopener" href="http://172.29.9.32:31573/">http://172.29.9.32:31573/</a></p>
+<p><a target="_blank" rel="noopener" href="http://172.29.9.33:31573/">http://172.29.9.33:31573/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608005858442.png" alt="image-20210608005858442"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608005928764.png" alt="image-20210608005928764"></p>
+<p>这个功能是可以用的，但是需要关联数据库，这里先不用管它的功能实现：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608010022956.png" alt="image-20210608010022956"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608010033221.png" alt="image-20210608010033221"></p>
+<h2 id="例子2：牛刀小试，快速部署一个网站"><a href="#例子2：牛刀小试，快速部署一个网站" class="headerlink" title="例子2：牛刀小试，快速部署一个网站"></a>例子2：牛刀小试，快速部署一个网站<font color=red></font></h2><ul>
+<li>实验环境：本次搭建好的一个k8s集群</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get deploy</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210607234841784.png" alt="image-20210607234841784"></p>
+<p><strong>1、使用Deployment控制器部署镜像：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl create deployment web --image=nginx</span></span><br><span class="line">deployment.apps/web created</span><br><span class="line">[root@k8s-master ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608002157970.png" alt="image-20210608002157970"></p>
-<ul>
-<li>这次直接删除deploy并查看现象</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl delete deploy web</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get deploy</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210602235418863.png" alt="image-20210602235418863"></p>
+<p>此时用<code>kubectl get pods</code>命令查看pod是否是运行的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pods</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get deploy</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608002328410.png" alt="image-20210608002328410"></p>
-<p>完美，符合预期。</p>
-<h3 id="3、结论"><a href="#3、结论" class="headerlink" title="3、结论"></a>3、结论</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在k8s 里面如果直接删除pod, 是起不到作用的，因为删除的pod 还是被继续拉起来。因此可直接通过删除deployment， 然后就会自动删除pod的。</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210602235820330.png" alt="image-20210602235820330"></p>
+<p><strong>2、使用Service将Pod暴露出去：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl expose deployment web --port=80 --target-port=80 --type=NodePort</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#备注</span></span><br><span class="line">第一个--port是k8s集群内部访问端口，通过集群内部访问的ip, cluster ip；</span><br><span class="line">第二个--target--port是镜像里服务跑的端口号；</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210608160642303.png" alt="image-20210608160642303"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210603000344978.png" alt="image-20210603000344978"></p>
+<p>用<code>kubectl get service</code>命令查看刚才创建的service：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get service</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get svc</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210603000525946.png" alt="image-20210603000525946"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210603001438115.png" alt="image-20210603001438115"></p>
+<p><strong>3、访问应用：</strong>==(实验现象符合预期，完美！)==<br><a href="http://NodeIP:Port">http://NodeIP:Port</a> # 端口随机生成，通过get svc获取</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意：此时你通过任意的nodeip:端口都可访问nginx应用；(masterip:端口是不行的)</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210603001235870.png" alt="image-20210603001235870"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210603001106927.png" alt="image-20210603001106927"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210603001115384.png" alt="image-20210603001115384"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210609110915926.png" alt="image-20210609110915926"></p>
 
                 
             </div>
@@ -545,7 +561,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/06/08/16-%E6%8A%80%E5%B7%A7-%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4k8s%E4%B8%AD%E7%9A%84pod-20210608/">https://www.onlyonexl.cn/2021/06/08/16-%E6%8A%80%E5%B7%A7-%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4k8s%E4%B8%AD%E7%9A%84pod-20210608/</a>
+                    <a href="https://www.onlyonexl.cn/2021/06/09/17-%E5%AE%9E%E6%88%98-k8s%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92-%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA%E8%B5%84%E6%BA%90%E5%AF%B9%E8%B1%A1-2021060/">https://www.onlyonexl.cn/2021/06/09/17-%E5%AE%9E%E6%88%98-k8s%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92-%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA%E8%B5%84%E6%BA%90%E5%AF%B9%E8%B1%A1-2021060/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -756,9 +772,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/06/09/17-%E5%AE%9E%E6%88%98-k8s%E6%9C%8D%E5%8A%A1%E7%BC%96%E6%8E%92-%E9%80%9A%E8%BF%87%E5%91%BD%E4%BB%A4%E6%96%B9%E5%BC%8F%E5%88%9B%E5%BB%BA%E8%B5%84%E6%BA%90%E5%AF%B9%E8%B1%A1-2021060/">
                     <div class="card-image">
@@ -776,9 +793,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-06-09
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-09
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -791,6 +808,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -809,13 +827,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/06/07/15-%E5%AE%9E%E6%88%98-kubeadm%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2%E4%B8%80%E4%B8%AAkubernetes%E9%9B%86%E7%BE%A4(%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E5%8C%85-%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95)-20210607/">
+                <a href="/2021/06/08/16-%E6%8A%80%E5%B7%A7-%E5%A6%82%E4%BD%95%E5%88%A0%E9%99%A4k8s%E4%B8%AD%E7%9A%84pod-20210608/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="15-实战-kubeadm快速部署一个kubernetes集群(离线安装包-超详细-已成功测试)-20210607">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="16-技巧-如何删除k8s中的pod-20210608">
                         
-                        <span class="card-title">15-实战-kubeadm快速部署一个kubernetes集群(离线安装包-超详细-已成功测试)-20210607</span>
+                        <span class="card-title">16-技巧-如何删除k8s中的pod-20210608</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -826,7 +844,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-06-08
                             </span>
                         <span class="publish-author">
                             
