@@ -1,0 +1,1457 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战30-k8s控制器的协调工作原理(很细节很经典)-20210911, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战30-k8s控制器的协调工作原理(很细节很经典)-20210911 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战30-k8s控制器的协调工作原理(很细节很经典)-20210911</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-09-11
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="经典实战：k8s控制器的协调工作原理-很细节-20210911"><a href="#经典实战：k8s控制器的协调工作原理-很细节-20210911" class="headerlink" title="==经典实战：k8s控制器的协调工作原理(很细节)-20210911=="></a>==经典实战：k8s控制器的协调工作原理(很细节)-20210911==</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911163548920.png" alt="image-20210911163548920"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>这个演示很经典：详细描述了deployment controller-replicaset controller-pod这一条线的联系。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909172844293-16312726001361.png" alt="image-20210909172844293"></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">	1、win10,vmwrokstation虚机；</span><br><span class="line">    2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">    	k8s version：v1.20 #附近版本都可以</span><br><span class="line">    	CONTAINER-RUNTIME：docker://20.10.7 #附近版本都可以</span><br></pre></td></tr></table></figure>
+
+<h2 id="基础知识"><a href="#基础知识" class="headerlink" title="基础知识"></a>基础知识</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909122210356.png" alt="image-20210909122210356"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909123748686.png" alt="image-20210909123748686"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909132217943.png" alt="image-20210909132217943"></p>
+<h2 id="0、演示：在k8s上快速部署一个高可用nginx服务"><a href="#0、演示：在k8s上快速部署一个高可用nginx服务" class="headerlink" title="0、演示：在k8s上快速部署一个高可用nginx服务"></a>0、演示：在k8s上快速部署一个高可用nginx服务</h2><p>​    大家熟知的软件Nginx，<strong>它本身是一个反向代理，你可以把它理解为默认会提供一些web服务</strong>，所以我就用nginx这个应用来给大家演示一下如何在k8s上快速部署一个高可用nginx服务，进而通过ngnix了解kubernetes一些更高级的功能。</p>
+<ul>
+<li>先定义一个nginx.yaml文件：</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">run:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">nginx</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>apply 下nginx.yaml</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k apply -f nginx.yaml</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911074341598.png" alt="image-20210911074341598"></p>
+<ul>
+<li>查看刚才创建的pod：现在，相当于ngnix这个服务已经起起来了了</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911150558751.png" alt="image-20210911150558751"></p>
+<ul>
+<li>访问nginx：</li>
+</ul>
+<p>我现在就可以访问这个nginx了：所以你可以看到，它已经给我一个反馈了，这是一个nginx的 server</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#k get po -owide</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#curl 10.244.169.191</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911150644952.png" alt="image-20210911150644952"></p>
+<p>​    对于任何的web应用，我们其实都需要高可用部署的，如果我只有一个实例，你可以看到，我现在就只有一个实例，那么这个实例如果出现问题的话，是不是就会导致我这个web服务不可用了，那么如何提高我应用的高可用呢？–&gt;<strong>冗余部署</strong>。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911150802564.png" alt="image-20210911150802564"></p>
+<ul>
+<li>冗余部署以保证服务高可用：</li>
+</ul>
+<p>所以，我要让我的应用可用性更高，该怎么办呢？我现在是一个pod，我要做3个pod，那么我去更新一下这个Nginx的deployment即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl scale deployment nginx --replicas=3</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911150941489.png" alt="image-20210911150941489"></p>
+<p>​    这样，我就有3个nginx的pod了，那么他们分别提供了3个ip，那么，对于任何我们做这种冗余部署的服务来说，我要提供一个服务出去，我能把这3个ip都给出去吗？这个时候就需要做一些讨论了。当你多实例部署的时候，你是把每个实例的ip都给出去吗?这是有问题的，因为你把这个ip给出去，你要依赖于客户端来做决定连哪一个，万一客户端它说盯着一个，它只把request发给一个ip，那你背后的3个实例，其实它的负载是不均等的。对吧，会出现当你这个请求很大的时候，会出现all request都连接到第一个request上去，第一个实例可能就没法响应了，但是其它的实例都是空闲的。</p>
+<ul>
+<li>通过service对象把服务暴露出去：</li>
+</ul>
+<p>​    所以为了保证我们应用的高可用，一般我们怎么样提供服务呢？上面要有一层负载均衡，那么kubernetss提供了一个对象，叫做service，我们这边来暴露一个service。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl expose deployment nginx --port=80 --target-port=80 --type=NodePort</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get svc</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911151242334.png" alt="image-20210911151242334"></p>
+<p>我刚才建了一个service，这里是个虚ip：service是为这个服务配负载均衡规则的。那么这个service会有一个cluster ip作为这个服务的虚ip，那么我访问这个虚ip，事实上它就会把我这个请求转到我后面这3个pod上面。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911151422155.png" alt="image-20210911151422155"></p>
+<p>​    那么我每次访问的时候，它连的那个backend pod其实已经做了负载均衡，这个要看我们负载均衡是怎么配的，有可能是轮训的方式(<strong>默认方式就是轮训</strong>)一个一个去访问，这样的话我的loader是 平均的。</p>
+<p>那我们再来看一下，高可用的保证：</p>
+<p>这边有3个pod:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911151458715.png" alt="image-20210911151458715"></p>
+<p>我现在只是给大家演示kubernetes部署一个高可用的实例对的方法是有多么的简单，待会儿我们会去看一些对象的细节。</p>
+<p>现在，这个情况下，我这个服务就具有了高可用的能力：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911151601255.png" alt="image-20210911151601255"></p>
+<ul>
+<li>测试服务高可用</li>
+</ul>
+<p>比如说，我把某个pod删除掉，现在其实说里面有一个pod其实已经出现故障了。但是我依然可以通过这个虚ip来访问服务器，可以看到用户的访问时不受影响的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl delete pod nginx-598b589c46-d7vx5</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911151819861.png" alt="image-20210911151819861"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911151830174.png" alt="image-20210911151830174"></p>
+<p>所以你说研发人员要不要用kubernetes，以前你要部署一个微服务到云上有多难，那现在你有了kubernetes后，几条命令的事儿。</p>
+<h2 id="1、演示：我们不鼓励pod被独立创建出来使用"><a href="#1、演示：我们不鼓励pod被独立创建出来使用" class="headerlink" title="1、演示：我们不鼓励pod被独立创建出来使用"></a>1、演示：我们不鼓励pod被独立创建出来使用</h2><p>我们不鼓励pod被独立创建出来使用，因为pod是短生命周期的,当 Pod 被删除后，就彻底消失了。</p>
+<p>这边我给大家演示下：先创建一个pod</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#创建pod yaml文件</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#vim testPod.yaml </span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx</span><br><span class="line">  labels:</span><br><span class="line">    app: nginx</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: nginx</span><br><span class="line">    image: nginx</span><br><span class="line">    ports:</span><br><span class="line">    - containerPort: 80</span><br><span class="line"></span><br><span class="line"><span class="comment">#apply下</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k apply -f testPod.yaml</span></span><br><span class="line">pod/nginx created</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">NAME    READY   STATUS              RESTARTS   AGE</span><br><span class="line">nginx   0/1     ContainerCreating   0          3s</span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">NAME    READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx   1/1     Running   0          21s</span><br><span class="line"></span><br><span class="line"><span class="comment">#我现在把这个pod给删除掉，那么这个pod就直接消失了</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">NAME    READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx   1/1     Running   0          2m18s</span><br><span class="line">[root@k8s-master ~]<span class="comment">#k delete pod nginx #删除pod</span></span><br><span class="line">pod <span class="string">&quot;nginx&quot;</span> deleted</span><br><span class="line">^C</span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">NAME    READY   STATUS        RESTARTS   AGE</span><br><span class="line">nginx   0/1     Terminating   0          2m35s</span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po #再次查看pod发现已经被彻底删除了</span></span><br><span class="line">No resources found <span class="keyword">in</span> default namespace.</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、演示：我们深入地去理解下这个deployment到底是怎么工作的？"><a href="#2、演示：我们深入地去理解下这个deployment到底是怎么工作的？" class="headerlink" title="2、演示：我们深入地去理解下这个deployment到底是怎么工作的？"></a>2、演示：我们深入地去理解下这个deployment到底是怎么工作的？</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先来看一下nginx deployment内容</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#cat nginx.yaml</span></span><br><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx</span><br><span class="line">  namespace: default</span><br><span class="line"></span><br><span class="line">spec:</span><br><span class="line">  replicas: 1</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      run: nginx</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        run: nginx</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - image: nginx</span><br><span class="line">        name: nginx</span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看当前pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">No resources found <span class="keyword">in</span> default namespace.</span><br><span class="line">[root@k8s-master ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#新建nginx deployment</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl create -f nginx.yaml</span></span><br><span class="line">deployment.apps/nginx created</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看当前pod，发现pod新建成功</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx-598b589c46-qwg4m   1/1     Running   0          5s</span><br><span class="line"></span><br><span class="line"><span class="comment">#此时，我们get deployment，我们能看到当前namespace，当前节点下有一个叫nginx的deployment</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get deploy</span></span><br><span class="line">NAME    READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">nginx   1/1     1            1           30s</span><br><span class="line"></span><br><span class="line"><span class="comment">#kubernetes提供了一种命令叫describe `kubectl describe deploy nginx`，让你知道这个对象发生过什么。 </span></span><br><span class="line"><span class="comment">#或者你可以通过`kubectl get deploy -oyaml`来查询这个deployment的详细信息</span></span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get deploy -oyaml |less #我们先来查详细的信息，我们来看一下刚才我们创建的那个deployment最终长什么样子。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们刚才定义的deployment的spec很简单，只定义了replicas的数量，定义了一个template.</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909154707029.png" alt="image-20210909154707029"></p>
+<p>你可以看到，kubernetes给我们添加了很多很多附加的属性。那么这些属性都是默认值。就是有些东西你不填的话，那么kubernetes就会帮你填上默认值。所以我们来理解下，deployment做了些什么。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910153724361.png" alt="image-20210910153724361"></p>
+<p>​    它加了一个最重要的部分叫做strategy，那么这个strategy叫做<code>type: RollingUpdate</code>的strategy。其实这个strategy就是kubernetes为deployment定义的默认升级策略，升级策略的类型是：滚动升级(RollingUpdate)</p>
+<p>​    如何滚动升级呢？<code>maxSurge: 25%</code>一次升级25%，<code>maxUnavailable: 25%</code>最多不可用25%。(也就是说如果他发现有25%的实例已经ready了，不能用了，那么它的这个升级就要停在那里)。这个目的是什么呢？就是说有时候我们升级版本的时候，新版本可能有bug，你可能跑起来以后，出问题了，跑着跑着它变的不能接收流量了，已经不能提供服务了。那么你不能继续升级了，继续升级整个业务就故障了。那通过这种方式就如果有25%的实例都不能提供服务了，那么它就会暂停升级。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910153912503.png" alt="image-20210910153912503"></p>
+<p>好，这是第一个部分。</p>
+<p>第二个部分，pod template也加了很多属性。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909163307705.png" alt="image-20210909163307705"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910154144997.png" alt="image-20210910154144997"></p>
+<p>刚才是spec部分，我们可以看到一个简单的spec被添加了很多另外的属性。</p>
+<p>之前讲过，任何对象都是有status，说status是controller干完活，然后controller填上去的，这是这个对象的真实状态。</p>
+<p>所以我们接下来看一下status这部分，可以看到，status里面有个conditions。conditions相当于是这个对象的状态的一些细节。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910154317528.png" alt="image-20210910154317528"></p>
+<p>在conditions里，你可以看到<code>ReplicaSet &quot;nginx-598b589c46&quot; has successfully progressed</code>log，</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910154355984.png" alt="image-20210910154355984"></p>
+<p>刚才我讲了，通过describe我们可以看到某个对象发生了什么事情。describe是kubernetes做troubleshoot分析问题的一个手段。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl describe deploy nginx</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到<code>Scaled up replica set nginx-598b589c46 to 1</code>这样一个event。是<code>deployment-controller</code>发起的这个message。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910154629107.png" alt="image-20210910154629107"></p>
+<p>昨天我讲过：我们来看一下<code>控制器的协同工作原理</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909165510734.png" alt="image-20210909165510734"></p>
+<p>​    kubernetes里面是哪个组件让整个集群动起来的呢？是controller-manager。那么controller-manager它是一堆控制器的集合，那么在这里面有一个叫做deployment-controller。deployment-controller是干什么的呢？<strong>deployment-controller就会去watch所有deployment的变化，然后一旦一个deployment被创建了，或者被更新了，它就要去做配置了</strong>。那么它做什么样的配置呢？相当于它去建了个replicaset，replicaset的名字叫<code>nginx-598b589c46</code>。我们来<code>k get rs</code>一下，发现这个replicaset被创建出来了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910154709398.png" alt="image-20210910154709398"></p>
+<p>那我们看一下，为什么deployment叫nginx，replicaset叫nginx+一长串数字，那么这一堆长传它代表的意义是啥？这个就跟我们的deployment有关了，我们再回去看一下这个deployment。通过这个session我希望能够让大家理解一下这个pod的创建过程，就已经很有价值了。<br><code>k get deploy nginx -oyaml|less</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909170452472.png" alt="image-20210909170452472"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910155146410.png" alt="image-20210910155146410"></p>
+<p>我刚才讲了，deployment有2份最重要的属性。这个template属性事实上就是告诉kubernetes说你按照这个模板帮我去建pod，这个整个template其实就是一个string，那么kubernetes的deployment-controller会把这整个template部分会去做一个哈希，它会算一个哈希值。</p>
+<p>那么这个哈希值，事实上它就会变成这个replicaset的名字。<code>k get rs</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910155242478.png" alt="image-20210910155242478"></p>
+<p>所以我们来看一下这个replicaset里面，其实有一个selector，叫做<code>pod-template-hash</code>,那么这个tenplate-hash就是刚才的那一个大的字符串的哈希值。你可以看到这个template里面也打了这个哈希值。这个哈希值是做什么用的。我们先放在这里，待会儿再说。    首先，它算了一下这个deployment里面这个template里面的哈希值，然后以这个哈希值为名字去创建了一个replicaset。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">k get rs</span><br><span class="line">k get replicaset nginx-598b589c46  -oyaml|less</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910155452085.png" alt="image-20210910155452085"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910155602415.png" alt="image-20210910155602415"></p>
+<p>那么repilcaset被创建出来以后，我们来看一下replicaset它本身的spec有哪些内容呢。它定义了副本数，它同样地把这个template放下来了。然后我们去看下status，里面有一些replicaset的信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">k get rs</span><br><span class="line">k get replicaset nginx-598b589c46  -oyaml|less</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910155743695.png" alt="image-20210910155743695"></p>
+<p>此时，我们看一下pod信息：<code>k get po</code>那么这个pod是谁建的呢？是replicaset-controller创建的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl describe replicaset nginx-598b589c46|less</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910160644487.png" alt="image-20210910160644487"></p>
+<p>我们再来看一下控制器的协同工作原理：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909172844293.png" alt="image-20210909172844293"></p>
+<p>​    我创建了一个deployment，然后deployment-controller监听到了我创建deployment这个事件，那么它就会读取这个deployment，对于deployment-controller来说，它的职责是什么呢？<strong>它要去解析这个deployment，把deployment里面的pod template部分读出来，并计算一下哈希，那么根据这个哈希去判断，你这个模板创建的副本集存不存在，如果不存在，那么我就要去创建一个replicaset</strong>，那么这个replicaset，它的副本数是多少呢？就是deployment里面那个副本集replicaset是几，它就复制过来了，那么它也会把那个template也复用过来。</p>
+<p>​    那么副本集这个对象被创建好了以后，那么在controller-managet里面会有个replicaset-controller，它的作用是什么呢？它会去watch apiserver，它会去看有个replicaset被创建了。那么它要去做的事儿是什么呢？replicaset它对应语义是什么呢？<strong>我要以一个固定的template去建多少个副本，要去看看pod存不存在。如果pod不存在，那么replicaset-controller就会去创建pod。</strong>那么它创建这个pod的原则就是：在后面加了一个uid(随机串)，那么这个随机串就保证了这个pod的名字是唯一的，那么这个pod就被创建出来。</p>
+<p>​    那么这个pod被创建出来以后，调度器就会看到，咦，有个新的pod被创建出来了，我要看那个pod有没有被调度过，如果没有被调度过，那么我就要去调度，并且把pod和node完成一个绑定。</p>
+<p>​    那绑定了以后，它一定是绑定到了某个节点上了，绑定到某个节点以后，那么这个节点上的kubelet也会去watch这个apiserver。前面我们讲过，所有的k8s组件都是去和apiserver通信的。组件和组件之间是不通信的。而且这个通信是长连接，是通过list-watch，我们要监听，而不是去轮训。所以大家都在监听。那么kubelet也在监听apiserver，它在监听什么呢？在监听有哪些pod被调度到我这个节点了，那么监听到pod被创建的事件后，它来看我本地这个pod起起来了吗？如果没起来的话，它就会去调用CRI/CNI/CSI的接口，去挂载这个volume，去起这个容器进程，去加载网络。那么这样的话，整个容器就起来了。</p>
+<p>​    template部分其实没有讲清楚：刚才讲了，这个哈希是用来干嘛的。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910191258141.png" alt="image-20210910191258141"></p>
+<p>先来看一下当前的deployment：<code>k get deploy</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910191346144.png" alt="image-20210910191346144"></p>
+<p>我先把这个deployment变成3个副本，先让这个应用变成高可用：<code>kubectl scale deployment nginx --replicas=3</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910191544560.png" alt="image-20210910191544560"></p>
+<p>我们可以看到，当我们去敲这一个scale命令的时候，其实就跟我去edtit这个deployment一样的，<code>kubectl edit deploy nginx</code>:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910191626770.png" alt="image-20210910191626770"></p>
+<p>我们再来看一下控制器的协同工作原理：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909172844293-16312726001361.png" alt="image-20210909172844293"></p>
+<p>​    </p>
+<p>​    我刚才做了一个动作，把deployment里面的replicaset由1改成3了，那么deployment controller就会去看，咦，当前这个deployment的template所对应的哈希的replicaset存不存在，因为我没有改template，所以template是没变的。所以那个哈希值也没变的，我只改了一个副本数。        如果已经存在了，deployment controller它就会去看 它里面的replicaset数和我deployment里面的数是不是一样的，如果不一样，那我replicaset就需要更新的。    那我要把它里面的数改为3，那这样的话，这个replicaset就更新了，那么这个replicaset更新的数据会被存到apiserver,那么apiserver是list-watch，是有event通知机制的，那么我replicaset controller只要监听了apiserver。那么apiserver里面发生的变化，它就会推送给replicaset controller，它就会知道，哎，这个replicaset里面的副本数由1改成3了，那么replicaset controllr看到这个事件变化后，咦，我这个replicaset对应的pod有几个，发现有1个，那说明少了2，那么它就要创建2个新的。那么这2个新的一样的要经过调度，要经过kubelet启动。那么最终我们看到结果就是3个pod。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910191702496.png" alt="image-20210910191702496"></p>
+<h2 id="3、演示：k8s的故障转移能力-failover"><a href="#3、演示：k8s的故障转移能力-failover" class="headerlink" title="3、演示：k8s的故障转移能力(failover)"></a>3、演示：k8s的故障转移能力(failover)</h2><p>​    在kubernetes集群里面，还有一种非常非常常见的场景，我们叫做<strong>故障转移(failover)<strong>。故障转移其实是一个特别常用特别重要的一个功能，那么在以前的云平台里面，故障转移其实是一个非常难做的功能。那么，我给大家演示一下，假设说在云平台里面，一个应用被调度到了不同的节点，很可能其中一个节点出现了硬件故障。假设说我3个副本调度到了不同的节点，那么其中有个节点出现了故障，比如说这个节点下线了，出现硬件故障了，网络不通了，那么这个时候，kubernetes会做一个事情，它会做什么呢？它会把这个节点上的所有pod做驱逐，因为这个节点已经坏了，意味着这个节点上的all应用都会出问题。那么kubernetes有</strong>node controller</strong>，也在controller-manager里面，它会做什么呢，它会去驱逐这个坏node上的all pod。那它的行为的结果，就相当于把这个pod删除掉：</p>
+<p>通过手动删除一个pod模拟一个节点故障来验证k8s failover能力：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910192358102.png" alt="image-20210910192358102"></p>
+<p>通过手动关机一台Node节点模拟一个节点故障来验证k8s failover能力：–&gt;==这个没能模拟出预期效果，很奇怪…………==</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910193134218.png" alt="image-20210910193134218"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910193212421.png" alt="image-20210910193212421"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910193326045.png" alt="image-20210910193326045"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910193343441.png" alt="image-20210910193343441"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910193705046.png" alt="image-20210910193705046"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910193839836.png" alt="image-20210910193839836"></p>
+<p>哦，shift，这个3个副本集已经被创建出来了，但是原来node2上的这个pod依然处于terminating状态。大意了……</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910194154657.png" alt="image-20210910194154657"></p>
+<p>那我现在把node开机起来：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910195013024.png" alt="image-20210910195013024"></p>
+<p>呵呵，很奇怪，删除的时候报没有这个容器，再次查看发现原来那个异常的容器就不见了：……</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910195136684.png" alt="image-20210910195136684"></p>
+<p>​    我刚才做了一个模拟操作，相当于我删掉了一个pod。你可以看到kubernetes立刻又补上了一个pod出来。所以，通过这种方式就完成了一个故障转移。看起来很简单，从原理上来看也是很简单的。</p>
+<p>​    其实这个时候replicaset没有发生变化的,deployment也没有发生变化。谁发生了变化了呢？是我的pod发生了变化了，我通过删除pod让pod数量减少了，那这个pod数量减少了以后，replicaset controller它会同时watch多个对象，<strong>replicaset controller它会watch replicaset对象，也会去watch pod对象</strong>，然后它发现pod消失了，pod消失了，replicaset controller一样也会被通知，那么它会去比较当前replicaset这个副本数要是多少，是3，现在正在运行的pod数是多少，因为我删了一个，变成2了，那对于replicaset controller来讲，那意味着用户期望的值和真实的值不一样了。所以，replicaset controller它要让用户期望值和真实值一样，它就要去创建一个新的副本，也就是一个新的pod，让两边一致。</p>
+<p>​    因为我现在只有一个节点，所以它就调回来了，那么假设说这是个真正的线上环境，你那个节点故障，被node controller去驱逐pod导致的，因为你那个node已经不ready了，它已经不通了，已经出问题了。那么新的pod，被创建出来了以后，调度器在去调度的时候，调度器这个时候已经知道，前面那个节点是坏的，那我就不能把这个新的实例调度到那个坏的node上去。它就会找一个健康的node去把它起起来，把它调度上去，上面的kubelet再把它起起来。这样是部署就实现了一个failover，实现了故障转移。</p>
+<p>​    因为从用户的感受来讲，咦，一个节点坏了，我什么都没做，这个pod的副本又在另外一个节点上起起来了，所以这个是谁去控制的呢？就是replicaset controller去控制的。</p>
+<p>​    所以你可以看，在kubernetes上面，以前很难做的，像这种扩展(scale up)，把replicaset 从1改成3，或者说这种故障转移(failover)，这种能力都是非常自然的功能，我们甚至偶读感知不到，我们做了什么，它就已经自然实现了。那么它背后产生的一个根源，或者工作原理是什么？因为有一个个的controller，然后这个controller就是一个个的loop，它会不停地去监控，说，咦，你的期望值和你当前的现实值是不是一致，如果不一致，那么我要去调整，我要把这个状态调整为和你期望的状态一致，这是kubernetes最核心最核心的功能之一，这也是它为什么这种控制器模式是这么强大，然后支持这么多的功能，这是他自带的一些功能。那么在一些其他平台上，我们要花大精力去搞，去构建这些功能。</p>
+<p>​    讲了3个功能，第一个是部署，第二个是scale up，第三个测试了一个failover的能力。那么还有一个非常重要的功能是我要去做版本升级。</p>
+<h2 id="4、演示：k8s的滚动升级策略"><a href="#4、演示：k8s的滚动升级策略" class="headerlink" title="4、演示：k8s的滚动升级策略"></a>4、演示：k8s的滚动升级策略</h2><p>我现在给搭建演示版本升级怎么做。</p>
+<p>刚才讲过，对于我任何新建的deployment，它会给一个默认的<code>RollingUpdate</code>strategy，这个strategy怎么理解，就相当于我每次去升级25%的实例，那如果我是三个的话，那25%基本上就是一个一个去做的。如果有一个不available，那么它就会停在那里，这是升级策略的一个理解。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl edit deploy nginx</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910195756561.png" alt="image-20210910195756561"></p>
+<p>那么下面的那个就是tenplate，刚才我讲了，这个template有什么作用？是kubernetes的 deployment controller会去算它的哈希：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910195856023-16312751367412.png" alt="image-20210910195856023"></p>
+<p>假设说我把这个temnplate里面的这个给换掉，事实上镜像<code>- image: nginx</code>和<code>- image: nginx:latest</code>本质上是一样的，因为镜像的默认tag就是latest。事实上，我本身这个镜像没有换，但是我换了这个子串，即修改了template下面的字符串内容，我相当于把这整个字符串改掉了，那么这样的话，它的哈希值一定为发生变化。所以，如果我现在做这个操作，它会发生什么？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl edit deploy nginx</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910200025916.png" alt="image-20210910200025916"></p>
+<p>你可以看到有个新的eplicaset被创建出来了，并且这个新的replicaset instance和老的replicaset instance这个数量一直在发生变化。你可以看到这个新的replicaset实例数量在一直增加，而old replicaset instance数量一直在不断地减少。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910200125563.png" alt="image-20210910200125563"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910200206161.png" alt="image-20210910200206161"></p>
+<p>我们再看一下新版本的数量有3个，老版本的已经变成0了。所以这个地方是怎么工作的呢？</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910200228072.png" alt="image-20210910200228072"></p>
+<p>我们再来看一下控制器的协同工作原理：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210909172844293-16312753832413.png" alt="image-20210909172844293"></p>
+<p>​    那么这个部分基本上行是deployment controller去做的，deployment controller会去算这个deployment里这个template模板的哈希值，如果我把那个镜像里面的那个tag从nginx改成了nginx:latest，这个字符串本身发生变化了，所以它的哈希发生了变化。那么哈希发生了变化，对于deployment controller来说，就意味着他认为用户要做一次升级。</p>
+<p>​    那么，用户要做一次升级，它的行为是什么呢？它就相当于我算了一个新的哈希，那么我要以新的哈希去建一个新的副本集，那么要逐渐地把这个新的副本集的数量往上调，把老版本的这个replicaset这个副本集的数量往下调。那么直到all的版本的pod版本都变成新的。那么中间有任何的pod出现问题，没有rady的话，它就会卡在那里，pasue住。</p>
+<p>​    所以，我们现在去看pod，这个pod全部变成新的了。都是1分半的时间建立出来的。所以这样的话，我就完成了一个版本升级。</p>
+<p>​    那么你可以想想，将来基于这个deployment去做滚动升级时有多简单，我有一个新的版本发布了，开发完代码，构建了一个新的镜像，那么这个新的镜像打了一个v2.0或者v1.1一个新的tag，我只需要把template里面原来的v1.0这个tag改成新的版本，那么它的哈希就发生了变化。哈希发生了变化以后，这个deployment的RollingUpdate strategy它就会生效，它就会按照既定策略去完成升级。所以通过这种方式，它就完成可了这种滚动升级。很炫酷，对吧。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#k get rs</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get deploy</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910202729471.png" alt="image-20210910202729471"></p>
+<p>​    那还有更炫酷的，还有很多东西。我再来给大家演示一下。</p>
+<p>​    今天的一个主要目的就是，让大家去了解一下这个对象的共性，了解对象的差异性，了解我们最核心的对象，其实最核心的对象就是deployment，replicaset和pod这条线。</p>
+<p>​    那么我们在做很多涉及讨论的时候，经常会把这个用例拿出来讨论，说我们应该怎样设计一个合理系统。想想deployment是怎么做的，那么我们有没有什么可以参考的，我们做设计经常会把一个模式搬到另一个模式去。</p>
+<h2 id="5、演示：k8s对象的ownerReferences属性"><a href="#5、演示：k8s对象的ownerReferences属性" class="headerlink" title="5、演示：k8s对象的ownerReferences属性"></a>5、演示：k8s对象的ownerReferences属性</h2><p>我还有一个重要的东西没讲：</p>
+<p>这样建出来的pod还有一个重要的属性就是：<code>ownerReferences</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#k get pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#k get pod nginx-5fc7bcd4d9-44x9b -oyaml|less</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910203014265.png" alt="image-20210910203014265"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910203144663.png" alt="image-20210910203144663"></p>
+<p>​    ownerReferences其实是metadata里面的一个属性：这个场景，我想给大家演示一个功能。那所谓的ownerReferences是什么呢？字面意思就是说：我一个owner，就相当于我这个对象是有主的。它并不是一个孤立存在的对象，它是有主人的，那这个主人是谁，所以这个里面就有个References，所以这里面就会写，References的对象是谁呢？–kind: ReplicaSet。name: nginx-5fc7bcd4d9，就是刚才那replicaset。</p>
+<p>我们再去看replicaset，一样的，我们去找下ownerReferences属性：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">k get rs</span><br><span class="line">k get rs nginx-5fc7bcd4d9 -oyaml|less</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910203437632.png" alt="image-20210910203437632"></p>
+<p>可以看到，replicaset它本身也有ownerReferences属性，那么它的owner是nginx这个deployment。</p>
+<p>那么这个东西又是用来干嘛的？这个东西是用来申明父子关系的。你一个对象是有owner，就意味着你这个对象不是独立存在的，我给大家演示一下：</p>
+<p>现在有3个pod，我把那个nginx deployment给删除掉：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl delete deploy nginx</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910203620972.png" alt="image-20210910203620972"></p>
+<p>再次查看pod，你会发现这些pod正在被删除，直到全部被删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#k get po</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210910203632966.png" alt="image-20210910203632966"></p>
+<p>​    这是为什么呢？我并没有删这些pod啊。这个是谁在起作用呢？就是刚才给大家展示的ownerReferences在起作用，那作为的ownerReferences就相当于在建对象的时候，如果这个对象它是有一个父对象，那么这个对象就会被controller，比如说replicaset建个pod，那么replicaset在建pod的时候就会把ownerReferences给填上，说这个pod的owner是我，那么这个replicaset是被deployment-controller建出来的，那么replicaset本身也会被填上一个owner是那个deployment。</p>
+<p>​    那么在kubernetes的controller-manager里面，有一个控制器叫做<strong>gc garbage collect(垃圾回收)<strong>，我们都知道gc怎么做，比如java的gc，golang的gc，大家都做这种垃圾回收的。那么一旦有了这种ownerReferences的话，就相当于这个对象的父子关系就有了，所以在kubernetes里面的gc它会做什么事情呢？它会去监控集群里面的all对象，然后它回去做什么呢？里面有2个组件，一个组件叫grafh builder，这个grafh builder就会去扫这些对象的ownerReferences，那么有了ownerReferences，所谓的grafh builder它就会去记录当前集群里面这个对象关系图，会知道刚才那个deployment和这个replicaset，和这些pod是有个从属关系的。那么，当我把主的对象也就是deployment给删除掉的时候，那么gc就会工作了，Gc就会扫，有个对象被删除了，那么有没有任何的ownerReferences指向他，好，刚才那个replicaset的ownerReferences是指向这个deployment对象的，那么gc就发现，这个owner已经不存在了，所以这个replicaset是</strong>孤儿对象</strong>，那么它就会删除掉这些replicaset。那replicaset被删除掉以后，gc又开始工作了，因为它又有更新事件过来了，它就又会去扫有哪些对象是指向这个replicaset的，然后就发现这3个pod是指向这个Replicaset的，那这些pod也变成孤儿了，那么gc也同时会对这些孤儿对象做删除操作，那么这些pod对象也就跟着消失了。</p>
+<p>​    <strong>所以ownerReferences是干嘛的呢？它是灌给gc的</strong>，那为什么要做gc这样的额操作呢？你想，你作为一个操作人员，你建了一个deployment，你其实不关心，我不可能说建了一个对象，然后你让我清的时候，我要去看看这个对象存不存在，那个对象存不存在，我才要去一个个地删除，就是为了提供统一的用户感受。建了一个deployment，你要清的时候，我不管建了多少个对象，我统一地给你清掉。那这个就是gc的一个作用。</p>
+<p>​    那基本上，今天这一部分，我觉得已经讲清楚了，就是通过deployment来理解一下不同的控制器如何协作，来完成一个业务流的。然后如何保证这个无状态应用的高可用的，如何保证它的扩缩容，如何保证它的故障转移，如何去做版本升级，滚动升级，那么基本上就是刚才我说讲的all内容了。</p>
+<p>​    因为有这种扩缩容的能力，failover的能力，现在我们回过头来再去看，我们再去看这12因子的指导意见，它是不是说我的这个系统的应用状态，我尽量要把这个应用构建成无状态的。那么无状态的意义就是说一个instance出现故障的时候，我可以把它随便替换掉，<strong>我不去kill你里面的状态，你只要坏了我就换一个，坏了我就换一个</strong>，那么通过这种方式，我们真正的故障转移才能工作，如果你每个应用都是有状态的，万一节点坏了，出现故障了，那你还是要花很高的成本去做替换的。所以这里面是我们去构建应用的一个指导原则：<strong>就是能不依赖某一状态就不依赖，尽量它是一个独立的应用，无状态的应用，这样我们才很好地能去做这个替换、扩缩容等等这些动作。</strong></p>
+<p>有人说：要删除子对象才比较合理。你子对象是删不掉的，因为删掉子对象后，你desire和actual就不匹配了，k8s就立马又给你补一个回来了。那么我们基本上就把这个协同工作原理给讲清楚了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这个k8s演示很经典，需要大家自己多消化一会儿，好了，今天就到这里，我们下期见！</p>
+<p>贴上我的女神，祝大家快乐每一天</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210911162331646.png" alt="image-20210911162331646"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2021/09/11/%E5%AE%9E%E6%88%9830-k8s%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E5%8D%8F%E8%B0%83%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86(%E5%BE%88%E7%BB%86%E8%8A%82%E5%BE%88%E7%BB%8F%E5%85%B8)-20210911/">https://www.onlyonexl.cn/2021/09/11/%E5%AE%9E%E6%88%9830-k8s%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E5%8D%8F%E8%B0%83%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86(%E5%BE%88%E7%BB%86%E8%8A%82%E5%BE%88%E7%BB%8F%E5%85%B8)-20210911/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/09/11/%E5%AE%9E%E6%88%9830-k8s%E6%8E%A7%E5%88%B6%E5%99%A8%E7%9A%84%E5%8D%8F%E8%B0%83%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86(%E5%BE%88%E7%BB%86%E8%8A%82%E5%BE%88%E7%BB%8F%E5%85%B8)-20210911/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="实战30-k8s控制器的协调工作原理(很细节很经典)-20210911">
+                        
+                        <span class="card-title">实战30-k8s控制器的协调工作原理(很细节很经典)-20210911</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/08/15/29%20%E5%AE%9E%E6%88%98-k8s%E4%B8%AD%E5%B0%86%E5%AE%B9%E5%99%A8%E5%BC%95%E6%93%8E%E7%94%B1docker%E5%88%87%E6%8D%A2%E4%B8%BAContainerd-20210815/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="29 实战-k8s中将容器引擎由docker切换为Containerd-20210815">
+                        
+                        <span class="card-title">29 实战-k8s中将容器引擎由docker切换为Containerd-20210815</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-08-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
