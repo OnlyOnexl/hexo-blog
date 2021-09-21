@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="34 实战：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921, Love">
+    <meta name="keywords" content="35 实战：NFS服务搭建(成功测试-博客输出)-20210921, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>34 实战：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921 | Love</title>
+    <title>35 实战：NFS服务搭建(成功测试-博客输出)-20210921 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">34 实战：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921</h1>
+                    <h1 class="description center-align post-title">35 实战：NFS服务搭建(成功测试-博客输出)-20210921</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/k8s/">
-                                <span class="chip bg-color">k8s</span>
+                            <a href="/tags/nfs/">
+                                <span class="chip bg-color">nfs</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/k8s/" class="post-category">
-                                k8s
+                            <a href="/categories/linux%E5%9F%BA%E7%A1%80%E8%BF%90%E7%BB%B4/" class="post-category">
+                                linux基础运维
                             </a>
                         
                     </div>
@@ -477,23 +477,17 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战10：节点存储卷hostPath实验演示-成功测试-博客输出-20210921"><a href="#实战10：节点存储卷hostPath实验演示-成功测试-博客输出-20210921" class="headerlink" title="实战10：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921"></a>实战10：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210921105436457.png" alt="image-20210921105436457"></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">	1、win10,vmwrokstation虚机；</span><br><span class="line">    2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">    	k8s version：v1.20 #附近版本都可以</span><br><span class="line">    	CONTAINER-RUNTIME：docker://20.10.7 #附近版本都可以</span><br></pre></td></tr></table></figure>
+                <h2 id="实战1-NFS服务搭建-成功测试-博客输出-20210921"><a href="#实战1-NFS服务搭建-成功测试-博客输出-20210921" class="headerlink" title="实战1-NFS服务搭建(成功测试-博客输出)-20210921"></a>实战1-NFS服务搭建(成功测试-博客输出)-20210921</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210921113820468.png" alt="image-20210921113820468"></p>
+<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1、在all节点安装次nfs-utils软件包"><a href="#1、在all节点安装次nfs-utils软件包" class="headerlink" title="1、在all节点安装次nfs-utils软件包"></a>1、在all节点安装次nfs-utils软件包</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install nfs-utils -y</span><br><span class="line"></span><br><span class="line"><span class="comment">#说明：每个节点上上都要安装nfs-utils包，因为在挂载nfs目录时，需要用到其中一个库，而这个库是由这个nfs-utils提供的；</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1-创建并修改pod-yaml"><a href="#1-创建并修改pod-yaml" class="headerlink" title="1.创建并修改pod yaml"></a>1.创建并修改pod yaml</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#vim hostpath.yaml #</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: my-pod2</span><br><span class="line"></span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: busybox</span><br><span class="line">    image: busybox</span><br><span class="line">    args:</span><br><span class="line">    - /bin/sh</span><br><span class="line">    - -c </span><br><span class="line">    - sleep 36000</span><br><span class="line"></span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: data</span><br><span class="line">      mountPath: /data </span><br><span class="line">    - name: data2</span><br><span class="line">      mountPath: /opt</span><br><span class="line"></span><br><span class="line">  volumes:</span><br><span class="line">  - name: data</span><br><span class="line">    hostPath:</span><br><span class="line">      path: /tmp <span class="comment">#宿主机目录 挂载点1</span></span><br><span class="line">      <span class="built_in">type</span>: Directory <span class="comment">#Directory或者File  </span></span><br><span class="line">  - name: data2 <span class="comment">#我这边再挂载一个宿主机目录,类型是hostPath的；</span></span><br><span class="line">    hostPath:</span><br><span class="line">      path: / <span class="comment">#挂载点2</span></span><br><span class="line">      <span class="built_in">type</span>: Directory</span><br></pre></td></tr></table></figure>
+<h2 id="2、在nfs-server上配置nfs服务"><a href="#2、在nfs-server上配置nfs服务" class="headerlink" title="2、在nfs server上配置nfs服务"></a>2、在nfs server上配置nfs服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1、</span><br><span class="line">这里选择node2作为nfs服务器：</span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#vim /etc/exports #添加如下内容</span></span><br><span class="line">/ifs/kubernetes *(rw,no_root_squash)</span><br><span class="line"></span><br><span class="line"><span class="comment">#说明</span></span><br><span class="line">/ifs/kubernetes *(rw,no_root_squash)</span><br><span class="line"><span class="comment">#挂载目录 访问来源地址：可以是一个ip，*代表任意ip，一般内网使用的话，这里是一个网段； </span></span><br><span class="line"><span class="comment">#no_root_squash代表使用root用户身份去操作；</span></span><br><span class="line"><span class="comment">#这里是可以配置多个共享目录的(再添加一行就好)；</span></span><br><span class="line"></span><br><span class="line">2、</span><br><span class="line">创建挂载目录及启动nfs服务</span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#mkdir -p /ifs/kubernetes</span></span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#systemctl start nfs</span></span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#systemctl enable nfs</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210702151917523.png" alt="image-20210702151917523"></p>
-<h2 id="2-apply并查看"><a href="#2-apply并查看" class="headerlink" title="2.apply并查看"></a>2.apply并查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl apply -f hostpath.yaml</span></span><br><span class="line">pod/my-pod2 created</span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME      READY   STATUS    RESTARTS   AGE</span><br><span class="line">bs3       1/1     Running   6          6d15h</span><br><span class="line">my-pod    2/2     Running   23         133m</span><br><span class="line">my-pod2   1/1     Running   0          43s</span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod -o wide</span></span><br><span class="line">NAME      READY   STATUS    RESTARTS   AGE     IP               NODE        NOMINATED NODE   READINESS GATES</span><br><span class="line">bs3       1/1     Running   6          6d15h   10.244.36.76     k8s-node1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">my-pod    2/2     Running   23         133m    10.244.169.181   k8s-node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">my-pod2   1/1     Running   0          67s     10.244.169.184   k8s-node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">[root@k8s-master ~]<span class="comment"># #该pod被创建在了node2上。</span></span><br></pre></td></tr></table></figure>
+<h2 id="3、在nfs-client挂载并进行测试"><a href="#3、在nfs-client挂载并进行测试" class="headerlink" title="3、在nfs client挂载并进行测试"></a>3、在nfs client挂载并进行测试</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在node1上测试(matser上测试方法相同)</span></span><br><span class="line">[root@k8s-node1 ~]<span class="comment">#mount -t nfs 172.29.9.33:/ifs/kubernetes /mnt/ #挂载目录</span></span><br><span class="line">[root@k8s-node1 ~]<span class="comment">#cd /mnt/</span></span><br><span class="line">[root@k8s-node1 mnt]<span class="comment">#ls</span></span><br><span class="line">[root@k8s-node1 mnt]<span class="comment">#touch 1.txt #创建测试文件</span></span><br><span class="line">[root@k8s-node1 mnt]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">再到nfs服务端，查看文件创建情况：</span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#cd /ifs/kubernetes/</span></span><br><span class="line">[root@k8s-node2 kubernetes]<span class="comment">#ls #符合预期效果</span></span><br><span class="line">1.txt</span><br><span class="line">[root@k8s-node2 kubernetes]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="3-验证效果"><a href="#3-验证效果" class="headerlink" title="3.验证效果"></a>3.验证效果</h2><h3 id="1-验证-挂载点1效果"><a href="#1-验证-挂载点1效果" class="headerlink" title="1.验证 挂载点1效果"></a>1.验证 挂载点1效果</h3><p>进入到刚才创建的容器的/data目录下创建一个文件，观察node2的/tmp目录下是否会出现刚才创建的文件（<strong>反之也可以测试一下</strong>）：=&gt;<strong>会出现，符合预期效果</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#master节点测试</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME      READY   STATUS             RESTARTS   AGE</span><br><span class="line">bs3       1/1     Running            6          6d15h</span><br><span class="line">my-pod    1/2     CrashLoopBackOff   25         148m</span><br><span class="line">my-pod2   1/1     Running            0          16m</span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl exec -it my-pod2 -- sh</span></span><br><span class="line">/ <span class="comment"># cd /data/</span></span><br><span class="line">/data <span class="comment"># ls</span></span><br><span class="line">vmware-root_5301-3854408134  vmware-root_5438-3091805268  vmware-root_5458-2864710535</span><br><span class="line">vmware-root_5367-4114393124  vmware-root_5439-4156469130  vmware-root_5471-3887505362</span><br><span class="line">vmware-root_5424-3125359197  vmware-root_5455-3854473666  vmware-root_5477-3879050870</span><br><span class="line">/data <span class="comment"># touch 1.txt</span></span><br><span class="line">/data <span class="comment"># ls</span></span><br><span class="line">1.txt                        vmware-root_5367-4114393124  vmware-root_5439-4156469130  vmware-root_5471-3887505362</span><br><span class="line">2.txt                        vmware-root_5424-3125359197  vmware-root_5455-3854473666  vmware-root_5477-3879050870</span><br><span class="line">vmware-root_5301-3854408134  vmware-root_5438-3091805268  vmware-root_5458-2864710535</span><br><span class="line">/data <span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#node2节点测试：</span></span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#ls /tmp/ #发现node2节点上出现了刚才创建的1.txt文件</span></span><br><span class="line">1.txt                        vmware-root_5424-3125359197  vmware-root_5455-3854473666  vmware-root_5477-3879050870</span><br><span class="line">vmware-root_5301-3854408134  vmware-root_5438-3091805268  vmware-root_5458-2864710535</span><br><span class="line">vmware-root_5367-4114393124  vmware-root_5439-4156469130  vmware-root_5471-3887505362</span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#touch /tmp/2.txt</span></span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+<h2 id="4、解除挂载方法"><a href="#4、解除挂载方法" class="headerlink" title="4、解除挂载方法"></a>4、解除挂载方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#umount /mnt</span></span><br><span class="line">[root@k8s-node1 ~]<span class="comment">#umount /mnt/</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="2-验证-挂载点2效果"><a href="#2-验证-挂载点2效果" class="headerlink" title="2.验证 挂载点2效果"></a>2.验证 挂载点2效果</h3><p>进入到刚才创建的容器的/opt目录下观察该目录下的文件信息及创建一个文件，看node2节点/目录下是否会出现相同的文件：=&gt;<strong>符合预期</strong>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#master节点执行</span></span><br><span class="line">/ <span class="comment"># cd /opt/</span></span><br><span class="line">/opt <span class="comment"># ls</span></span><br><span class="line">bin    dev    home   lib64  mnt    proc   run    srv    tmp    var</span><br><span class="line">boot   etc    lib    media  opt    root   sbin   sys    usr</span><br><span class="line">/opt <span class="comment"># touch aaaa</span></span><br><span class="line">/opt <span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#node2节点执行</span></span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#ls / #发现node2节点上/下出现了刚才创建的aaaa文件</span></span><br><span class="line">aaaa  bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var</span><br><span class="line">[root@k8s-node2 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是关于节点存储卷hostPath的一个实验演示，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210921105811341.png" alt="image-20210921105811341"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210921123522203.png" alt="image-20210921123522203"></p>
 
                 
             </div>
@@ -520,7 +514,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/09/21/34%20%E5%AE%9E%E6%88%98%EF%BC%9A%E8%8A%82%E7%82%B9%E5%AD%98%E5%82%A8%E5%8D%B7hostPath%E5%AE%9E%E9%AA%8C%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">https://www.onlyonexl.cn/2021/09/21/34%20%E5%AE%9E%E6%88%98%EF%BC%9A%E8%8A%82%E7%82%B9%E5%AD%98%E5%82%A8%E5%8D%B7hostPath%E5%AE%9E%E9%AA%8C%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/</a>
+                    <a href="https://www.onlyonexl.cn/2021/09/21/35%20%E5%AE%9E%E6%88%98%EF%BC%9ANFS%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">https://www.onlyonexl.cn/2021/09/21/35%20%E5%AE%9E%E6%88%98%EF%BC%9ANFS%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -558,8 +552,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/k8s/">
-                                    <span class="chip bg-color">k8s</span>
+                                <a href="/tags/nfs/">
+                                    <span class="chip bg-color">nfs</span>
                                 </a>
                             
                         </div>
@@ -731,9 +725,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/09/21/35%20%E5%AE%9E%E6%88%98%EF%BC%9ANFS%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">
                     <div class="card-image">
@@ -751,9 +746,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-09-21
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-21
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -766,6 +761,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -784,13 +780,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/21/33%20%E5%AE%9E%E6%88%98-%E4%B8%B4%E6%97%B6%E5%AD%98%E5%82%A8%E5%8D%B7emptyDir%E5%AE%9E%E9%AA%8C%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">
+                <a href="/2021/09/21/34%20%E5%AE%9E%E6%88%98%EF%BC%9A%E8%8A%82%E7%82%B9%E5%AD%98%E5%82%A8%E5%8D%B7hostPath%E5%AE%9E%E9%AA%8C%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="33 实战：临时存储卷emptyDir实验演示(成功测试-博客输出)-20210921">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="34 实战：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921">
                         
-                        <span class="card-title">33 实战：临时存储卷emptyDir实验演示(成功测试-博客输出)-20210921</span>
+                        <span class="card-title">34 实战：节点存储卷hostPath实验演示(成功测试-博客输出)-20210921</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
