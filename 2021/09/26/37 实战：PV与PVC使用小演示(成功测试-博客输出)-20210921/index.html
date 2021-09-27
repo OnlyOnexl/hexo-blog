@@ -682,7 +682,7 @@
 
 
 <p>现在我把app-demo-sc2给删除掉，再次观测后端存储是否存在归档现象？</p>
-<p>![image-20210629080650008](../../../../../../../../我的坚果云/01 IT/06 IT其它/正学习/03 晚上学习/20210428-阿良-CKA考试培训-1498元购买/10 第八章：Kubernetes 存储/第八章-K8s存储_md_pictures/image-20210629080650008.png)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210927085323056.png" alt="image-20210927085323056"></p>
 <p>删除操作：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl delete -f deployment-sc2.yaml</span></span><br></pre></td></tr></table></figure>
 
@@ -691,9 +691,9 @@
 <p>删除后查看现象：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pv,pvc #可以看到pod/pv/pvc均被删除</span></span><br></pre></td></tr></table></figure>
 
-<p>![image-20210629082107304](../../../../../../../../我的坚果云/01 IT/06 IT其它/正学习/03 晚上学习/20210428-阿良-CKA考试培训-1498元购买/10 第八章：Kubernetes 存储/第八章-K8s存储_md_pictures/image-20210629082107304.png)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210927085340354.png" alt="image-20210927085340354"></p>
 <p><strong>而后端存储侧则进行了归档操作，给你留了一条后路</strong>：(如果 想要彻底删除，手动删除后端存储就好了)</p>
-<p>![image-20210629082223247](../../../../../../../../我的坚果云/01 IT/06 IT其它/正学习/03 晚上学习/20210428-阿良-CKA考试培训-1498元购买/10 第八章：Kubernetes 存储/第八章-K8s存储_md_pictures/image-20210629082223247.png)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210927085350229.png" alt="image-20210927085350229"></p>
 <p>==注意：归档后的数据无法再关联起来，只能自己手动去处理了。==</p>
 <p><strong>实验现象符合预期</strong>，到此结束。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>好了，关于PV与PVC及动态供给实验就到这里了，我们下期见！</p>
