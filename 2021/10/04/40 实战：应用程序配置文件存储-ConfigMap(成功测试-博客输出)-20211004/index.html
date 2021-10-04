@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004, Love">
+    <meta name="keywords" content="实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004 | Love</title>
+    <title>实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/6.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004</h1>
+                    <h1 class="description center-align post-title">实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Git/" class="post-category">
-                                Git
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
                             </a>
                         
                     </div>
@@ -477,117 +477,67 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：使用Git之前需要做的最小配置-成功测试-博客输出-20210927"><a href="#实战：使用Git之前需要做的最小配置-成功测试-博客输出-20210927" class="headerlink" title="实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20210927"></a>实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20210927</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130538350.png" alt="image-20211004130538350"></p>
+                <h2 id="实战：应用程序配置文件存储-ConfigMap实验-成功测试-博客输出-20211004"><a href="#实战：应用程序配置文件存储-ConfigMap实验-成功测试-博客输出-20211004" class="headerlink" title="实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004"></a>实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004115405949.png" alt="image-20211004115405949"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git version 2.17.0</span><br><span class="line">windows10笔记本</span><br></pre></td></tr></table></figure>
-
-<h2 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h2><p>​    <strong>Git跟踪谁修改了项目</strong>，哪怕参与项目开发的人只有一个。为此，Git需要知道你的用户名和电子邮件地址。你必须提供用户名，<strong>但可以使用虚构的username和电子邮件地址</strong>。</p>
-<p>​    如果你忘记了这一步，<strong>在你首次提交时，Git将提示你提供这些信息</strong>。(<strong>也就是说，这个步骤是必须的</strong>)。</p>
-<p>​    一般在新的系统上，我们都需要先配置下自己的 Git 工作环境。配置工作只需一次，以后升级时还会沿用现在的配置。<br>​    第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，<strong>每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录</strong>。<br>​    git 运行的环境变量有点像.bashrc，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下两个的地方：<code>./.git/config 文件</code>，<code>~/.gitconfig 文件</code></p>
-<h2 id="2、命令"><a href="#2、命令" class="headerlink" title="2、命令"></a>2、命令</h2><ul>
-<li><p>形式</p>
-<p>  用户名：tom<br>  Email 地址：<a href="mailto:&#103;&#x6f;&#111;&#100;&#77;&#x6f;&#x72;&#x6e;&#x69;&#x6e;&#103;&#64;&#x61;&#x74;&#x67;&#x75;&#x69;&#103;&#117;&#46;&#99;&#111;&#109;">&#103;&#x6f;&#111;&#100;&#77;&#x6f;&#x72;&#x6e;&#x69;&#x6e;&#103;&#64;&#x61;&#x74;&#x67;&#x75;&#x69;&#103;&#117;&#46;&#99;&#111;&#109;</a> # <strong>邮箱名不存在都可以，只是为了区分开发人员而已；</strong></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文，我将带你实战演示应用程序配置文件存储-ConfigMap实验，帮你更深一步了解k8s中ConfigMap内容。</p>
+<p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002091450217.png" alt="image-20211002091450217"></p>
 </li>
-<li><p>作用：区分不同开发人员的身份</p>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092057988.png" alt="image-20211002092057988"></p>
 </li>
-<li><p>辨析：<strong>这里设置的签名和登录远程库(代码托管中心)的账号、密码没有任何关系。</strong> </p>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002141739664.png" alt="image-20211002141739664"></p>
 </li>
-<li><p>命令</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Git 全局设置(推荐)</span></span><br><span class="line">git config --global user.name  <span class="string">&quot;hg&quot;</span></span><br><span class="line">git config --global user.email  <span class="string">&quot;2675263825@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Git 项目级别设置</span></span><br><span class="line">git config user.name <span class="string">&quot;hg&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;2675263825@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>  （1）项目级别/仓库级别：仅在当前本地库范围内有效 </p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name <span class="string">&quot;tom_pro&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;goodMorning_pro@atguigu.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>  信息保存位置：./.git/config 文件</p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210312073821807.png" alt="image-20210312073821807"></p>
-<p>  （2）系统用户级别：~/.gitconfig 文件：<strong>用户目录下的配置文件只适用于该用户</strong>。</p>
-<p>  ​    当前项目.git 目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对<br>  当前项目有效。<strong>每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖</strong><br>  <strong>~/.gitconfig 中的同名变量</strong>。</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;tom_glb&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;goodMorning_glb@atguigu.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>  信息保存位置：~/.gitconfig 文件</p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210312074150516.png" alt="image-20210312074150516"></p>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
 </li>
-</ul>
-<h2 id="3、注意事项"><a href="#3、注意事项" class="headerlink" title="3、注意事项"></a>3、注意事项</h2><ul>
-<li><p>​    <strong>注意</strong>：实际工作中，只需要设置一个系统用户级别的签名就可以了，如果后续项目有另外需求的话，那么再设置下<code>项目级别签名</code>就可以了。</p>
-</li>
-<li><p>==注意：级别优先级==</p>
-<p>  <strong>就近原则</strong>：项目级别优先于系统用户级别，二者都有时采用项目级别的签名;</p>
-<p>  如果只有系统用户级别的签名，就以系统用户级别的签名为准;</p>
-<p>  二者都没有不允许。</p>
-</li>
-<li><p>注意</p>
-<p>  如何修改项目或者系统级别的签名呢？=&gt;<strong>直接重新执行命令就可以的，原来信息会被直接覆盖的</strong>。</p>
-</li>
-<li><p>注意：config的三个作用域</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line"><span class="comment">## 添加配置</span></span><br><span class="line">git config [--<span class="built_in">local</span> | --global | --system] user.name <span class="string">&#x27;Your name&#x27;</span></span><br><span class="line">git config [--<span class="built_in">local</span> | --global | --system] user.email <span class="string">&#x27;Your email&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查看配置</span></span><br><span class="line">git config --list [--<span class="built_in">local</span> | --global | --system]</span><br><span class="line"></span><br><span class="line"><span class="built_in">local</span>的在.git/config里面；global的在个人home目录下的.gitconfig里面；system应该在git安装目录的下</span><br><span class="line"></span><br><span class="line"><span class="comment">## 区别</span></span><br><span class="line">配置level逐渐上升，生效priority逐渐下降；</span><br><span class="line">1.local：区域为本仓库，只对某个仓库有效,切换到另外一个仓库失效</span><br><span class="line">2.global: 当前用户的所有仓库，工作当中最常用</span><br><span class="line">3.system: 本系统的所有用户，几乎不用</span><br><span class="line"></span><br><span class="line"><span class="comment">#总结：</span></span><br><span class="line">1、最小配置有：user.name、user.email两个</span><br><span class="line">2、有效范围常用的是：global</span><br><span class="line">3、`重复设置user.name、user.email后会自动覆盖之前的。`</span><br><span class="line">4、查看配置：git config -l或者git config --list</span><br><span class="line">5、范围：system、global、<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+</ol>
+<h2 id="基础知识介绍"><a href="#基础知识介绍" class="headerlink" title="基础知识介绍"></a>基础知识介绍</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004153809062.png" alt="image-20211004153809062"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004153826838.png" alt="image-20211004153826838"></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.21</span><br><span class="line">   CONTAINER-RUNTIME：docker://20.10.7</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210921075039868.png" alt="image-20210921075039868"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001082504732.png" alt="image-20211001082504732"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list --global == git config --global --list</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002143602812.png" alt="image-20211002143602812"></p>
+<h2 id="1、创建configmap-yaml-ConfigMap资源-并apply"><a href="#1、创建configmap-yaml-ConfigMap资源-并apply" class="headerlink" title="1、创建configmap.yaml(ConfigMap资源)并apply"></a>1、创建configmap.yaml(ConfigMap资源)并apply</h2><p>从官网搜索”configmap”拷贝代码并修改</p>
+<p>官方代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: ConfigMap</span><br><span class="line">metadata:</span><br><span class="line">  name: game-demo</span><br><span class="line">data:</span><br><span class="line">  <span class="comment"># property-like keys; each key maps to a simple value</span></span><br><span class="line">  player_initial_lives: <span class="string">&quot;3&quot;</span></span><br><span class="line">  ui_properties_file_name: <span class="string">&quot;user-interface.properties&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># file-like keys</span></span><br><span class="line">  game.properties: |</span><br><span class="line">    enemy.types=aliens,monsters</span><br><span class="line">    player.maximum-lives=5    </span><br><span class="line">  user-interface.properties: |</span><br><span class="line">    color.good=purple</span><br><span class="line">    color.bad=yellow</span><br><span class="line">    allow.textmode=<span class="literal">true</span>    </span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li>设置与清除</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001080558097.png" alt="image-20211001080558097"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --<span class="built_in">unset</span> --<span class="built_in">local</span> user.name </span><br><span class="line">$ git config --<span class="built_in">unset</span> --global user.name </span><br><span class="line">$ git config --<span class="built_in">unset</span> --system user.name</span><br></pre></td></tr></table></figure>
+<p>创建configmap.yaml并修改：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#vim configmap.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: ConfigMap</span><br><span class="line">metadata:</span><br><span class="line">  name: configmap-demo</span><br><span class="line">data:</span><br><span class="line">  <span class="comment">#一般情况下，这种单值(key:value)是以变量的方式导入到pod里面的；</span></span><br><span class="line">  player_initial_lives: <span class="string">&quot;3&quot;</span></span><br><span class="line">  ui_properties_file_name: <span class="string">&quot;user-interface.properties&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#多值是使用数据卷挂载的；</span></span><br><span class="line">  abc: |</span><br><span class="line">    enemy.types=aliens,monsters</span><br><span class="line">    player.maximum-lives=5</span><br><span class="line">  cde: |</span><br><span class="line">    color.good=purple</span><br><span class="line">    color.bad=yellow</span><br><span class="line">    allow.textmode=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
-<p>小实验：删除系统级用户签名测试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1、设置系统级用户签名</span><br><span class="line">git config --system user.name <span class="string">&quot;zxl&quot;</span></span><br><span class="line">git config --system user.email <span class="string">&quot;zxl@189.com&quot;</span></span><br><span class="line"></span><br><span class="line">2.查看系统级用户签名</span><br><span class="line">git config --list --system</span><br><span class="line"></span><br><span class="line">3.删除系统级用户签名</span><br><span class="line">git config --<span class="built_in">unset</span> --system user.name zxl</span><br><span class="line">git config --<span class="built_in">unset</span> --system user.email zxl@189.com</span><br><span class="line"></span><br><span class="line">4.查看效果</span><br><span class="line">git config --list --system</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001081617596.png" alt="image-20211001081617596"></p>
-<h2 id="4、课后实践：请动⼿⽐⼀⽐，local-和-global-的优先级及创建第一个仓库并配置local用户信息"><a href="#4、课后实践：请动⼿⽐⼀⽐，local-和-global-的优先级及创建第一个仓库并配置local用户信息" class="headerlink" title="4、课后实践：请动⼿⽐⼀⽐，local 和 global 的优先级及创建第一个仓库并配置local用户信息"></a>4、课后实践：请动⼿⽐⼀⽐，local 和 global 的优先级及创建第一个仓库并配置local用户信息</h2><ul>
-<li>老师课件</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001081733893.png" alt="image-20211001081733893"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">课后实践</span><br><span class="line">请动⼿⽐⼀⽐，<span class="built_in">local</span> 和 global 的优先级。</span><br><span class="line">1. 在 Git 命令⾏⽅式下，⽤ init 创建⼀个 Git 仓库。</span><br><span class="line"> $ git init your_first_git_repo_name</span><br><span class="line">2. <span class="built_in">cd</span> 到 repo 中。</span><br><span class="line"> $ <span class="built_in">cd</span> your_first_git_repo_name</span><br><span class="line">3. 配置 global 和 <span class="built_in">local</span> 两个级别的 user.name 和 user.email。</span><br><span class="line"> $ git config --<span class="built_in">local</span> user.name <span class="string">&#x27;your_local_name&#x27;</span></span><br><span class="line"> $ git config --<span class="built_in">local</span> user.email <span class="string">&#x27;your_local_email@.&#x27;</span></span><br><span class="line"> $ git config --global user.name <span class="string">&#x27;your_global_name&#x27;</span></span><br><span class="line"> $ git config --global user.name <span class="string">&#x27;your_global_eamil@.&#x27;</span>  </span><br><span class="line">4. 创建空的 commit</span><br><span class="line"> $ git commit --allow-empty -m ‘Initial’</span><br><span class="line">5. ⽤ <span class="built_in">log</span> 看 commit 信息，Author 的 name 和 email 是什么？</span><br><span class="line"> $ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210630070229837.png" alt="image-20210630070229837"></p>
+<p>apply下configmap.yaml并查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl apply -f configmap.yaml</span></span><br><span class="line">configmap/configmap-demo created</span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get configmaps</span></span><br><span class="line">NAME               DATA   AGE</span><br><span class="line">configmap-demo        4      47s</span><br><span class="line">kube-root-ca.crt   1      27d</span><br><span class="line">[root@k8s-master ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li>自己动手测试过程：创建第一个仓库并配置local用户信息</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004074622444.png" alt="image-20211004074622444"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">建 Git 仓库</span><br><span class="line">两种⽅式：</span><br><span class="line">1. ⽤ Git 之前已经有项⽬代码</span><br><span class="line">$ <span class="built_in">cd</span> 项⽬代码所在的⽂件夹</span><br><span class="line">$ git init </span><br><span class="line"></span><br><span class="line">2. ⽤ Git 之前还没有项⽬代码</span><br><span class="line">$ <span class="built_in">cd</span> 某个⽂件夹</span><br><span class="line">$ git init your_project <span class="comment">#会在当前路径下创建和项⽬名称同名的⽂件夹</span></span><br><span class="line">$ <span class="built_in">cd</span> your_project</span><br></pre></td></tr></table></figure>
+<p><strong>现在重点是pod在创建时，如何引用 存储在K8s Etcd中的数据？</strong><br>Pod使用configmap数据有两种方式：<br>• 变量注入<br>• 数据卷挂载</p>
+<h2 id="2、创建pod-configmap-yaml-pod资源-并apply"><a href="#2、创建pod-configmap-yaml-pod资源-并apply" class="headerlink" title="2、创建pod-configmap.yaml(pod资源)并apply"></a>2、创建pod-configmap.yaml(pod资源)并apply</h2><p>再次从官方拷贝pod部分代码并修改：官方代码如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: configmap-demo-pod</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">    - name: demo</span><br><span class="line">      image: alpine</span><br><span class="line">      <span class="built_in">command</span>: [<span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;3600&quot;</span>]</span><br><span class="line">      env:</span><br><span class="line">        <span class="comment"># Define the environment variable</span></span><br><span class="line">        - name: PLAYER_INITIAL_LIVES <span class="comment"># Notice that the case is different here</span></span><br><span class="line">                                     <span class="comment"># from the key name in the ConfigMap.</span></span><br><span class="line">          valueFrom:</span><br><span class="line">            configMapKeyRef:</span><br><span class="line">              name: game-demo           <span class="comment"># The ConfigMap this value comes from.</span></span><br><span class="line">              key: player_initial_lives <span class="comment"># The key to fetch.</span></span><br><span class="line">        - name: UI_PROPERTIES_FILE_NAME</span><br><span class="line">          valueFrom:</span><br><span class="line">            configMapKeyRef:</span><br><span class="line">              name: game-demo</span><br><span class="line">              key: ui_properties_file_name</span><br><span class="line">      volumeMounts:</span><br><span class="line">      - name: config</span><br><span class="line">        mountPath: <span class="string">&quot;/config&quot;</span></span><br><span class="line">        readOnly: <span class="literal">true</span></span><br><span class="line">  volumes:</span><br><span class="line">    <span class="comment"># You set volumes at the Pod level, then mount them into containers inside that Pod</span></span><br><span class="line">    - name: config</span><br><span class="line">      configMap:</span><br><span class="line">        <span class="comment"># Provide the name of the ConfigMap you want to mount.</span></span><br><span class="line">        name: game-demo</span><br><span class="line">        <span class="comment"># An array of keys from the ConfigMap to create as files</span></span><br><span class="line">        items:</span><br><span class="line">        - key: <span class="string">&quot;game.properties&quot;</span></span><br><span class="line">          path: <span class="string">&quot;game.properties&quot;</span></span><br><span class="line">        - key: <span class="string">&quot;user-interface.properties&quot;</span></span><br><span class="line">          path: <span class="string">&quot;user-interface.properties&quot;</span></span><br></pre></td></tr></table></figure>
 
 
 
-<p>开始测试：</p>
-<p>本次自己的git工作目录路径为：<br>winodws路径：<code>D:\git_repository</code><br>git bash下路径为：<code>/d/git_repository</code></p>
-<p>进入到git工作目录：本次这个测试范例为：<code>用git之前还没有项目代码</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git init git_learning</span><br><span class="line">$ <span class="built_in">cd</span> git_learning/</span><br><span class="line">$ ls -al <span class="comment">#这个.git是git的核心内容，我们下次来讲解！</span></span><br></pre></td></tr></table></figure>
+<p>经过修改后代码如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#vim pod-configmap.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: configmap-demo-pod <span class="comment">#修改pod名称</span></span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">    - name: demo</span><br><span class="line">      image: busybox <span class="comment">#修改点</span></span><br><span class="line">      <span class="built_in">command</span>: [<span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;24h&quot;</span>] <span class="comment">#修改点</span></span><br><span class="line">      env:</span><br><span class="line">        - name: ABC <span class="comment">#这个name无所谓，它是对应configmap中的key；一般定义的与configmap中的key保持一致，方便显性地知道这个变量是干什么的。</span></span><br><span class="line">          valueFrom: <span class="comment">#固定语法</span></span><br><span class="line">            configMapKeyRef:</span><br><span class="line">              name: configmap-demo <span class="comment">#注意，这里的name指的是要从哪个configmap里读取数据；</span></span><br><span class="line">              key: player_initial_lives</span><br><span class="line">        - name: CDE</span><br><span class="line">          valueFrom:</span><br><span class="line">            configMapKeyRef:</span><br><span class="line">              name: configmap-demo</span><br><span class="line">              key: ui_properties_file_name</span><br><span class="line">      volumeMounts:</span><br><span class="line">      - name: config</span><br><span class="line">        mountPath: <span class="string">&quot;/config&quot;</span> <span class="comment">#挂载应用程序文件路径</span></span><br><span class="line">        readOnly: <span class="literal">true</span></span><br><span class="line">  volumes:</span><br><span class="line">    - name: config</span><br><span class="line">      configMap:</span><br><span class="line">        name: configmap-demo <span class="comment">#注意，这里的name指的是要从哪个configmap里读取数据；</span></span><br><span class="line">        items:</span><br><span class="line">        - key: <span class="string">&quot;abc&quot;</span> <span class="comment">#这个key无所谓，它是对应configmap中的key；一般定义的与configmap中的key保持一致，方便显性地知道这个变量是干什么的。</span></span><br><span class="line">          path: <span class="string">&quot;game.properties&quot;</span> <span class="comment">#这个指的是挂载文件名称</span></span><br><span class="line">        - key: <span class="string">&quot;cde&quot;</span></span><br><span class="line">          path: <span class="string">&quot;user-interface.properties&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004075129755.png" alt="image-20211004075129755"></p>
-<p>首先我们来查看下当前配置的global配置参数是什么？</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global --list</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210630070259308.png" alt="image-20210630070259308"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210630070309972.png" alt="image-20210630070309972"></p>
+<p>apply下pod-configmap.yaml：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl apply -f pod-configmap.yaml</span></span><br><span class="line">pod/configmap-demo-pod created</span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                                      READY   STATUS    RESTARTS   AGE</span><br><span class="line">configmap-demo-pod                        1/1     Running   0          3s</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004080102776.png" alt="image-20211004080102776"></p>
-<p>我们现在要测试的是：当我们给刚才新建的项目仓库配置了local参数后，这个和global哪个优先生效？</p>
-<p>当然我们已经知道，肯定是local的优先级高于global优先级，我们接下来观察下实验效果。</p>
-<p>我们来配置下local参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --<span class="built_in">local</span> user.name <span class="string">&quot;xyy&quot;</span></span><br><span class="line">$ git config --<span class="built_in">local</span> user.email <span class="string">&quot;xyy@189.cn&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004080759798.png" alt="image-20211004080759798"></p>
-<p>查看刚才配置的local内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --<span class="built_in">local</span> --list</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004080745953.png" alt="image-20211004080745953"></p>
-<p>此时，我们需要往我们的第一个仓库添加第一个文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;i love you,xyy!&quot;</span> &gt; readme.md</span><br><span class="line">$ cat readme.md</span><br><span class="line"></span><br><span class="line">$ git add readme.md</span><br><span class="line">$ git status</span><br><span class="line">$ git commit -m<span class="string">&quot;Add readme.md&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3、验证效果"><a href="#3、验证效果" class="headerlink" title="3、验证效果"></a>3、验证效果</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进到这个pod查看变量以验证效果：</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl exec -it configmap-demo-pod -- sh</span></span><br><span class="line">/ <span class="comment"># echo $ABC</span></span><br><span class="line">3</span><br><span class="line">/ <span class="comment"># echo $CDE</span></span><br><span class="line">user-interface.properties</span><br><span class="line"></span><br><span class="line">~ <span class="comment"># cd /config/</span></span><br><span class="line">/config <span class="comment"># ls -al</span></span><br><span class="line">total 0</span><br><span class="line">drwxrwxrwx    3 root     root           115 Oct  4 07:19 .</span><br><span class="line">drwxr-xr-x    1 root     root            43 Oct  4 07:19 ..</span><br><span class="line">drwxr-xr-x    2 root     root            62 Oct  4 07:19 ..2021_10_04_07_19_14.509512083</span><br><span class="line">lrwxrwxrwx    1 root     root            31 Oct  4 07:19 ..data -&gt; ..2021_10_04_07_19_14.509512083</span><br><span class="line">lrwxrwxrwx    1 root     root            22 Oct  4 07:19 game.properties -&gt; ..data/game.properties</span><br><span class="line">lrwxrwxrwx    1 root     root            32 Oct  4 07:19 user-interface.properties -&gt; ..data/user-interface.properties</span><br><span class="line">/config <span class="comment"># cat game.properties</span></span><br><span class="line">enemy.types=aliens,monsters</span><br><span class="line">player.maximum-lives=5</span><br><span class="line">/config <span class="comment"># cat user-interface.properties</span></span><br><span class="line">color.good=purple</span><br><span class="line">color.bad=yellow</span><br><span class="line">allow.textmode=<span class="literal">true</span></span><br><span class="line">/config <span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004081751420.png" alt="image-20211004081751420"></p>
-<p>⽤ log 看 commit 信息，Author 的 name 和 email 是什么？=&gt;是local配置的信息，因此可以验证local的优先级高于global优先级！</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004081816498.png" alt="image-20211004081816498"></p>
-<p>实验结束！</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是关于如何在使用git之前需要做的最小配置了，接下来，我将带领大家去深入使用git。</p>
-<p>最后，贴上我的女神photo，感谢大家阅读，see you later！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210927075039715.png" alt="image-20210927075039715"></p>
+<p>实验到此结束。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于k8s中应用程序配置文件存储-ConfigMap实验就到这里了，感谢大家阅读，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004152512165.png" alt="image-20211004152512165"></p>
 
                 
             </div>
@@ -614,7 +564,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/10/04/38%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210927/">https://www.onlyonexl.cn/2021/10/04/38%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210927/</a>
+                    <a href="https://www.onlyonexl.cn/2021/10/04/40%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8-ConfigMap(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/">https://www.onlyonexl.cn/2021/10/04/40%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8-ConfigMap(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -652,8 +602,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
                                 </a>
                             
                         </div>
@@ -829,13 +779,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/10/04/40%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%AD%98%E5%82%A8-ConfigMap(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/">
+                <a href="/2021/10/04/39%20%E5%AE%9E%E6%88%98-%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2-StatefulSet%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E6%8E%A7%E5%88%B6%E5%99%A8(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/6.jpg" class="responsive-img" alt="实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004">
                         
-                        <span class="card-title">实战：应用程序配置文件存储-ConfigMap实验(成功测试-博客输出)-20211004</span>
+                        <span class="card-title">实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -878,13 +828,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/26/37%20%E5%AE%9E%E6%88%98%EF%BC%9APV%E4%B8%8EPVC%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">
+                <a href="/2021/10/04/38%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210927/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="37 实战：PV与PVC使用小演示(成功测试-博客输出)-20210921">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004">
                         
-                        <span class="card-title">37 实战：PV与PVC使用小演示(成功测试-博客输出)-20210921</span>
+                        <span class="card-title">38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -895,14 +845,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
@@ -912,8 +862,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
