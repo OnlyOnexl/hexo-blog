@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004, Love">
+    <meta name="keywords" content="实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004 | Love</title>
+    <title>实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004</h1>
+                    <h1 class="description center-align post-title">实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Git/">
-                                <span class="chip bg-color">Git</span>
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Git/" class="post-category">
-                                Git
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
                             </a>
                         
                     </div>
@@ -477,117 +477,104 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：使用Git之前需要做的最小配置-成功测试-博客输出-20210927"><a href="#实战：使用Git之前需要做的最小配置-成功测试-博客输出-20210927" class="headerlink" title="实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20210927"></a>实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20210927</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130538350.png" alt="image-20211004130538350"></p>
+                <h2 id="实战：有状态应用部署-StatefulSet工作负载控制器-成功测试-博客输出-20211004"><a href="#实战：有状态应用部署-StatefulSet工作负载控制器-成功测试-博客输出-20211004" class="headerlink" title="实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004"></a>实战：有状态应用部署-StatefulSet工作负载控制器(成功测试-博客输出)-20211004</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004115638483.png" alt="image-20211004115638483"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git version 2.17.0</span><br><span class="line">windows10笔记本</span><br></pre></td></tr></table></figure>
-
-<h2 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h2><p>​    <strong>Git跟踪谁修改了项目</strong>，哪怕参与项目开发的人只有一个。为此，Git需要知道你的用户名和电子邮件地址。你必须提供用户名，<strong>但可以使用虚构的username和电子邮件地址</strong>。</p>
-<p>​    如果你忘记了这一步，<strong>在你首次提交时，Git将提示你提供这些信息</strong>。(<strong>也就是说，这个步骤是必须的</strong>)。</p>
-<p>​    一般在新的系统上，我们都需要先配置下自己的 Git 工作环境。配置工作只需一次，以后升级时还会沿用现在的配置。<br>​    第一个要配置的是你个人的用户名称和电子邮件地址。这两条配置很重要，<strong>每次 Git 提交时都会引用这两条信息，说明是谁提交了更新，所以会随更新内容一起被永久纳入历史记录</strong>。<br>​    git 运行的环境变量有点像.bashrc，决定了 Git 在各个环节的具体工作方式和行为。这些变量可以存放在以下两个的地方：<code>./.git/config 文件</code>，<code>~/.gitconfig 文件</code></p>
-<h2 id="2、命令"><a href="#2、命令" class="headerlink" title="2、命令"></a>2、命令</h2><ul>
-<li><p>形式</p>
-<p>  用户名：tom<br>  Email 地址：<a href="mailto:&#103;&#x6f;&#111;&#100;&#77;&#x6f;&#x72;&#x6e;&#x69;&#x6e;&#103;&#64;&#x61;&#x74;&#x67;&#x75;&#x69;&#103;&#117;&#46;&#99;&#111;&#109;">&#103;&#x6f;&#111;&#100;&#77;&#x6f;&#x72;&#x6e;&#x69;&#x6e;&#103;&#64;&#x61;&#x74;&#x67;&#x75;&#x69;&#103;&#117;&#46;&#99;&#111;&#109;</a> # <strong>邮箱名不存在都可以，只是为了区分开发人员而已；</strong></p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文，我将带你实战演示k8s中关于pv与pvc存储类实验，帮你更深一步了解k8s中存储部分内容。</p>
+<p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002091450217.png" alt="image-20211002091450217"></p>
 </li>
-<li><p>作用：区分不同开发人员的身份</p>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092057988.png" alt="image-20211002092057988"></p>
 </li>
-<li><p>辨析：<strong>这里设置的签名和登录远程库(代码托管中心)的账号、密码没有任何关系。</strong> </p>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002141739664.png" alt="image-20211002141739664"></p>
 </li>
-<li><p>命令</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Git 全局设置(推荐)</span></span><br><span class="line">git config --global user.name  <span class="string">&quot;hg&quot;</span></span><br><span class="line">git config --global user.email  <span class="string">&quot;2675263825@qq.com&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Git 项目级别设置</span></span><br><span class="line">git config user.name <span class="string">&quot;hg&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;2675263825@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>  （1）项目级别/仓库级别：仅在当前本地库范围内有效 </p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name <span class="string">&quot;tom_pro&quot;</span></span><br><span class="line">git config user.email <span class="string">&quot;goodMorning_pro@atguigu.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>  信息保存位置：./.git/config 文件</p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210312073821807.png" alt="image-20210312073821807"></p>
-<p>  （2）系统用户级别：~/.gitconfig 文件：<strong>用户目录下的配置文件只适用于该用户</strong>。</p>
-<p>  ​    当前项目.git 目录中的配置文件（也就是工作目录中的 .git/config 文件）：这里的配置仅仅针对<br>  当前项目有效。<strong>每一个级别的配置都会覆盖上层的相同配置，所以 .git/config 里的配置会覆盖</strong><br>  <strong>~/.gitconfig 中的同名变量</strong>。</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&quot;tom_glb&quot;</span></span><br><span class="line">git config --global user.email <span class="string">&quot;goodMorning_glb@atguigu.com&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>  信息保存位置：~/.gitconfig 文件</p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210312074150516.png" alt="image-20210312074150516"></p>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
 </li>
-</ul>
-<h2 id="3、注意事项"><a href="#3、注意事项" class="headerlink" title="3、注意事项"></a>3、注意事项</h2><ul>
-<li><p>​    <strong>注意</strong>：实际工作中，只需要设置一个系统用户级别的签名就可以了，如果后续项目有另外需求的话，那么再设置下<code>项目级别签名</code>就可以了。</p>
-</li>
-<li><p>==注意：级别优先级==</p>
-<p>  <strong>就近原则</strong>：项目级别优先于系统用户级别，二者都有时采用项目级别的签名;</p>
-<p>  如果只有系统用户级别的签名，就以系统用户级别的签名为准;</p>
-<p>  二者都没有不允许。</p>
-</li>
-<li><p>注意</p>
-<p>  如何修改项目或者系统级别的签名呢？=&gt;<strong>直接重新执行命令就可以的，原来信息会被直接覆盖的</strong>。</p>
-</li>
-<li><p>注意：config的三个作用域</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">注意：</span><br><span class="line"><span class="comment">## 添加配置</span></span><br><span class="line">git config [--<span class="built_in">local</span> | --global | --system] user.name <span class="string">&#x27;Your name&#x27;</span></span><br><span class="line">git config [--<span class="built_in">local</span> | --global | --system] user.email <span class="string">&#x27;Your email&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 查看配置</span></span><br><span class="line">git config --list [--<span class="built_in">local</span> | --global | --system]</span><br><span class="line"></span><br><span class="line"><span class="built_in">local</span>的在.git/config里面；global的在个人home目录下的.gitconfig里面；system应该在git安装目录的下</span><br><span class="line"></span><br><span class="line"><span class="comment">## 区别</span></span><br><span class="line">配置level逐渐上升，生效priority逐渐下降；</span><br><span class="line">1.local：区域为本仓库，只对某个仓库有效,切换到另外一个仓库失效</span><br><span class="line">2.global: 当前用户的所有仓库，工作当中最常用</span><br><span class="line">3.system: 本系统的所有用户，几乎不用</span><br><span class="line"></span><br><span class="line"><span class="comment">#总结：</span></span><br><span class="line">1、最小配置有：user.name、user.email两个</span><br><span class="line">2、有效范围常用的是：global</span><br><span class="line">3、`重复设置user.name、user.email后会自动覆盖之前的。`</span><br><span class="line">4、查看配置：git config -l或者git config --list</span><br><span class="line">5、范围：system、global、<span class="built_in">local</span></span><br></pre></td></tr></table></figure>
+</ol>
+<h2 id="基础知识介绍"><a href="#基础知识介绍" class="headerlink" title="基础知识介绍"></a>基础知识介绍</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130759214.png" alt="image-20211004130759214"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130816941.png" alt="image-20211004130816941"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130831195.png" alt="image-20211004130831195"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130845052.png" alt="image-20211004130845052"></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.21</span><br><span class="line">   CONTAINER-RUNTIME：docker://20.10.7</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210921075039868.png" alt="image-20210921075039868"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001082504732.png" alt="image-20211001082504732"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --list --global == git config --global --list</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002143602812.png" alt="image-20211002143602812"></p>
+<h2 id="特别注意：这里要预先配置好nfs存储类服务！"><a href="#特别注意：这里要预先配置好nfs存储类服务！" class="headerlink" title="特别注意：这里要预先配置好nfs存储类服务！"></a>特别注意：这里要预先配置好nfs存储类服务！</h2><p>具体如何配置nfs存储类，请看我的另一篇博客文章：</p>
+<p><a href="https://www.onlyonexl.cn/2021/09/21/36%20%E5%AE%9E%E6%88%98%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8%E5%8D%B7NFS%E5%AE%9E%E9%AA%8C%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">https://www.onlyonexl.cn/2021/09/21/36%20%E5%AE%9E%E6%88%98%EF%BC%9A%E7%BD%91%E7%BB%9C%E5%AD%98%E5%82%A8%E5%8D%B7NFS%E5%AE%9E%E9%AA%8C%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004130241197.png" alt="image-20211004130241197"></p>
+<h2 id="1、复制官方示例代码并修改"><a href="#1、复制官方示例代码并修改" class="headerlink" title="1、复制官方示例代码并修改"></a>1、复制官方示例代码并修改</h2><p>参考文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/</a></p>
+<p>官方代码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx</span><br><span class="line">  labels:</span><br><span class="line">    app: nginx</span><br><span class="line">spec:</span><br><span class="line">  ports:</span><br><span class="line">  - port: 80</span><br><span class="line">    name: web</span><br><span class="line">  clusterIP: None</span><br><span class="line">  selector:</span><br><span class="line">    app: nginx</span><br><span class="line">---</span><br><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: StatefulSet</span><br><span class="line">metadata:</span><br><span class="line">  name: web</span><br><span class="line">spec:</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: nginx <span class="comment"># has to match .spec.template.metadata.labels</span></span><br><span class="line">  serviceName: <span class="string">&quot;nginx&quot;</span></span><br><span class="line">  replicas: 3 <span class="comment"># by default is 1</span></span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: nginx <span class="comment"># has to match .spec.selector.matchLabels</span></span><br><span class="line">    spec:</span><br><span class="line">      terminationGracePeriodSeconds: 10</span><br><span class="line">      containers:</span><br><span class="line">      - name: nginx</span><br><span class="line">        image: k8s.gcr.io/nginx-slim:0.8</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 80</span><br><span class="line">          name: web</span><br><span class="line">        volumeMounts:</span><br><span class="line">        - name: www</span><br><span class="line">          mountPath: /usr/share/nginx/html</span><br><span class="line">  volumeClaimTemplates:</span><br><span class="line">  - metadata:</span><br><span class="line">      name: www</span><br><span class="line">    spec:</span><br><span class="line">      accessModes: [ <span class="string">&quot;ReadWriteOnce&quot;</span> ]</span><br><span class="line">      storageClassName: <span class="string">&quot;my-storage-class&quot;</span></span><br><span class="line">      resources:</span><br><span class="line">        requests:</span><br><span class="line">          storage: 1Gi</span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li>设置与清除</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001080558097.png" alt="image-20211001080558097"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --<span class="built_in">unset</span> --<span class="built_in">local</span> user.name </span><br><span class="line">$ git config --<span class="built_in">unset</span> --global user.name </span><br><span class="line">$ git config --<span class="built_in">unset</span> --system user.name</span><br></pre></td></tr></table></figure>
+<p>创建statful.yaml:(修改后的代码)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@k8s-master</span> <span class="string">~</span>]<span class="comment">#vim stateful.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">sts-nginx</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">clusterIP:</span> <span class="string">None</span> <span class="comment">#注意这里</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">StatefulSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">sts-web</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span> <span class="comment"># has to match .spec.template.metadata.labels</span></span><br><span class="line">  <span class="attr">serviceName:</span> <span class="string">&quot;sts-nginx&quot;</span> <span class="comment">#注意这里</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">3</span> <span class="comment"># by default is 1</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span> <span class="comment"># has to match .spec.selector.matchLabels</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">terminationGracePeriodSeconds:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">www</span></span><br><span class="line">          <span class="attr">mountPath:</span> <span class="string">/usr/share/nginx/html</span></span><br><span class="line">  <span class="attr">volumeClaimTemplates:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">name:</span> <span class="string">www</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">accessModes:</span> [ <span class="string">&quot;ReadWriteOnce&quot;</span> ] <span class="comment">#为每个pod创建一个独立的pv</span></span><br><span class="line">      <span class="attr">storageClassName:</span> <span class="string">&quot;managed-nfs-storage&quot;</span></span><br><span class="line">      <span class="attr">resources:</span></span><br><span class="line">        <span class="attr">requests:</span></span><br><span class="line">          <span class="attr">storage:</span> <span class="string">1Gi</span></span><br></pre></td></tr></table></figure>
 
-<p>小实验：删除系统级用户签名测试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">1、设置系统级用户签名</span><br><span class="line">git config --system user.name <span class="string">&quot;zxl&quot;</span></span><br><span class="line">git config --system user.email <span class="string">&quot;zxl@189.com&quot;</span></span><br><span class="line"></span><br><span class="line">2.查看系统级用户签名</span><br><span class="line">git config --list --system</span><br><span class="line"></span><br><span class="line">3.删除系统级用户签名</span><br><span class="line">git config --<span class="built_in">unset</span> --system user.name zxl</span><br><span class="line">git config --<span class="built_in">unset</span> --system user.email zxl@189.com</span><br><span class="line"></span><br><span class="line">4.查看效果</span><br><span class="line">git config --list --system</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210703100827037.png" alt="image-20210703100827037"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210703100838708.png" alt="image-20210703100838708"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210703100847093.png" alt="image-20210703100847093"></p>
+<h2 id="2、apply下并查看"><a href="#2、apply下并查看" class="headerlink" title="2、apply下并查看"></a>2、apply下并查看</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment"># kubectl apply -f stateful.yaml</span></span><br><span class="line">service/sts-nginx created</span><br><span class="line">statefulset.apps/sts-web created</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001081617596.png" alt="image-20211001081617596"></p>
-<h2 id="4、课后实践：请动⼿⽐⼀⽐，local-和-global-的优先级及创建第一个仓库并配置local用户信息"><a href="#4、课后实践：请动⼿⽐⼀⽐，local-和-global-的优先级及创建第一个仓库并配置local用户信息" class="headerlink" title="4、课后实践：请动⼿⽐⼀⽐，local 和 global 的优先级及创建第一个仓库并配置local用户信息"></a>4、课后实践：请动⼿⽐⼀⽐，local 和 global 的优先级及创建第一个仓库并配置local用户信息</h2><ul>
-<li>老师课件</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211001081733893.png" alt="image-20211001081733893"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">课后实践</span><br><span class="line">请动⼿⽐⼀⽐，<span class="built_in">local</span> 和 global 的优先级。</span><br><span class="line">1. 在 Git 命令⾏⽅式下，⽤ init 创建⼀个 Git 仓库。</span><br><span class="line"> $ git init your_first_git_repo_name</span><br><span class="line">2. <span class="built_in">cd</span> 到 repo 中。</span><br><span class="line"> $ <span class="built_in">cd</span> your_first_git_repo_name</span><br><span class="line">3. 配置 global 和 <span class="built_in">local</span> 两个级别的 user.name 和 user.email。</span><br><span class="line"> $ git config --<span class="built_in">local</span> user.name <span class="string">&#x27;your_local_name&#x27;</span></span><br><span class="line"> $ git config --<span class="built_in">local</span> user.email <span class="string">&#x27;your_local_email@.&#x27;</span></span><br><span class="line"> $ git config --global user.name <span class="string">&#x27;your_global_name&#x27;</span></span><br><span class="line"> $ git config --global user.name <span class="string">&#x27;your_global_eamil@.&#x27;</span>  </span><br><span class="line">4. 创建空的 commit</span><br><span class="line"> $ git commit --allow-empty -m ‘Initial’</span><br><span class="line">5. ⽤ <span class="built_in">log</span> 看 commit 信息，Author 的 name 和 email 是什么？</span><br><span class="line"> $ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210629150247514.png" alt="image-20210629150247514"></p>
+<p>查看pv,pvc情况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pv,pvc</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210629150422768.png" alt="image-20210629150422768"></p>
+<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><h3 id="1-sts编号与pvc之间的对应关系；sts编号标记启动顺序；sts编号-主机名；"><a href="#1-sts编号与pvc之间的对应关系；sts编号标记启动顺序；sts编号-主机名；" class="headerlink" title="1.sts编号与pvc之间的对应关系；sts编号标记启动顺序；sts编号-主机名；"></a>1.sts编号与pvc之间的对应关系；sts编号标记启动顺序；sts编号-主机名；</h3><p>查看pv,pvc情况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pv,pvc</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210629150422768.png" alt="image-20210629150422768"></p>
+<h3 id="2-验证下本次pod是否是共享存储？-gt-每个pod都有自己唯一的存储。"><a href="#2-验证下本次pod是否是共享存储？-gt-每个pod都有自己唯一的存储。" class="headerlink" title="2.验证下本次pod是否是共享存储？=&gt;每个pod都有自己唯一的存储。"></a>2.验证下本次pod是否是共享存储？=&gt;每个pod都有自己唯一的存储。</h3><p>进到sts-web-0 pod里，写入一个web0文件，到后端存储观察次测试文件会出现在哪个目录下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004111417906.png" alt="image-20211004111417906"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004111502530.png" alt="image-20211004111502530"></p>
+<p>再在sts-web-1后端存储目录里创建测试文件web1.html,再到其他2个后端存储目录观察是否会出现在其目录下？=&gt;不会。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004111605708.png" alt="image-20211004111605708"></p>
+<p>再到sts-web1 pod网站更目录下观察是否存在web1.html？=&gt;存在</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004111643856.png" alt="image-20211004111643856"></p>
+<p>注意一下 pod的主机名：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004111714858.png" alt="image-20211004111714858"></p>
+<p>测试结束。</p>
+<h3 id="3-sts编号与网络身份验证"><a href="#3-sts编号与网络身份验证" class="headerlink" title="3.sts编号与网络身份验证"></a>3.sts编号与网络身份验证</h3><p>创建busybox测试镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl run dns-test --image=busybox:1.28.4 -- sleep 24h</span></span><br><span class="line">pod/dns-test created</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004112126207.png" alt="image-20211004112126207"></p>
+<p>删除当前所有pod，清空测试环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl delete -f .</span></span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl create deployment web --image=nginx #起一个nginx pod</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#kubectl expose deployment web --port=80 --target-port=80 --type=NodePort</span></span><br></pre></td></tr></table></figure>
 
 
 
-<ul>
-<li>自己动手测试过程：创建第一个仓库并配置local用户信息</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004074622444.png" alt="image-20211004074622444"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">建 Git 仓库</span><br><span class="line">两种⽅式：</span><br><span class="line">1. ⽤ Git 之前已经有项⽬代码</span><br><span class="line">$ <span class="built_in">cd</span> 项⽬代码所在的⽂件夹</span><br><span class="line">$ git init </span><br><span class="line"></span><br><span class="line">2. ⽤ Git 之前还没有项⽬代码</span><br><span class="line">$ <span class="built_in">cd</span> 某个⽂件夹</span><br><span class="line">$ git init your_project <span class="comment">#会在当前路径下创建和项⽬名称同名的⽂件夹</span></span><br><span class="line">$ <span class="built_in">cd</span> your_project</span><br></pre></td></tr></table></figure>
+<p>查看下当前的pod的label是不一样的，符合实验需要：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod --show-labels</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004112157440.png" alt="image-20211004112157440"></p>
+<p>再把web 这个应用扩容到3个副本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl scale deployment web --replicas=3</span></span><br><span class="line">deployment.apps/web scaled</span><br></pre></td></tr></table></figure>
 
 
 
-<p>开始测试：</p>
-<p>本次自己的git工作目录路径为：<br>winodws路径：<code>D:\git_repository</code><br>git bash下路径为：<code>/d/git_repository</code></p>
-<p>进入到git工作目录：本次这个测试范例为：<code>用git之前还没有项目代码</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git init git_learning</span><br><span class="line">$ <span class="built_in">cd</span> git_learning/</span><br><span class="line">$ ls -al <span class="comment">#这个.git是git的核心内容，我们下次来讲解！</span></span><br></pre></td></tr></table></figure>
+<p>再把stateful.yaml给apply起来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl apply -f stateful.yaml</span></span><br><span class="line">service/sts-nginx created</span><br><span class="line">statefulset.apps/sts-web created</span><br><span class="line">[root@k8s-master ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004075129755.png" alt="image-20211004075129755"></p>
-<p>首先我们来查看下当前配置的global配置参数是什么？</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global --list</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004080102776.png" alt="image-20211004080102776"></p>
-<p>我们现在要测试的是：当我们给刚才新建的项目仓库配置了local参数后，这个和global哪个优先生效？</p>
-<p>当然我们已经知道，肯定是local的优先级高于global优先级，我们接下来观察下实验效果。</p>
-<p>我们来配置下local参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --<span class="built_in">local</span> user.name <span class="string">&quot;xyy&quot;</span></span><br><span class="line">$ git config --<span class="built_in">local</span> user.email <span class="string">&quot;xyy@189.cn&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004080759798.png" alt="image-20211004080759798"></p>
-<p>查看刚才配置的local内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --<span class="built_in">local</span> --list</span><br></pre></td></tr></table></figure>
+<p>现在相当于有2个应用：1个web，一个sts-web，各有3个副本。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#kubectl get pod --show-labels</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004080745953.png" alt="image-20211004080745953"></p>
-<p>此时，我们需要往我们的第一个仓库添加第一个文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;i love you,xyy!&quot;</span> &gt; readme.md</span><br><span class="line">$ cat readme.md</span><br><span class="line"></span><br><span class="line">$ git add readme.md</span><br><span class="line">$ git status</span><br><span class="line">$ git commit -m<span class="string">&quot;Add readme.md&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004081751420.png" alt="image-20211004081751420"></p>
-<p>⽤ log 看 commit 信息，Author 的 name 和 email 是什么？=&gt;是local配置的信息，因此可以验证local的优先级高于global优先级！</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004081816498.png" alt="image-20211004081816498"></p>
-<p>实验结束！</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>以上就是关于如何在使用git之前需要做的最小配置了，接下来，我将带领大家去深入使用git。</p>
-<p>最后，贴上我的女神photo，感谢大家阅读，see you later！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210927075039715.png" alt="image-20210927075039715"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004112220349.png" alt="image-20211004112220349"></p>
+<p>我们现在来看下这2个应用之间的差异化在哪里？</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004112242064.png" alt="image-20211004112242064"></p>
+<p>现在进到dns-test测试容器里，用nslookup命令进行测试：==得出结论如下==</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004112308786.png" alt="image-20211004112308786"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004112329148.png" alt="image-20211004112329148"></p>
+<p>实验到此结束。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于有状态应用部署-StatefulSet工作负载控制器实验就到这里了，感谢大家阅读，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004102016838.png" alt="image-20211004102016838"></p>
 
                 
             </div>
@@ -614,7 +601,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/10/04/38%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210927/">https://www.onlyonexl.cn/2021/10/04/38%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210927/</a>
+                    <a href="https://www.onlyonexl.cn/2021/10/04/39%20%E5%AE%9E%E6%88%98-%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2-StatefulSet%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E6%8E%A7%E5%88%B6%E5%99%A8(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/">https://www.onlyonexl.cn/2021/10/04/39%20%E5%AE%9E%E6%88%98-%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2-StatefulSet%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E6%8E%A7%E5%88%B6%E5%99%A8(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -652,8 +639,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Git/">
-                                    <span class="chip bg-color">Git</span>
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
                                 </a>
                             
                         </div>
@@ -825,9 +812,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/04/39%20%E5%AE%9E%E6%88%98-%E6%9C%89%E7%8A%B6%E6%80%81%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2-StatefulSet%E5%B7%A5%E4%BD%9C%E8%B4%9F%E8%BD%BD%E6%8E%A7%E5%88%B6%E5%99%A8(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211004/">
                     <div class="card-image">
@@ -845,9 +833,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-04
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-04
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -860,6 +848,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -878,13 +867,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/09/26/37%20%E5%AE%9E%E6%88%98%EF%BC%9APV%E4%B8%8EPVC%E4%BD%BF%E7%94%A8%E5%B0%8F%E6%BC%94%E7%A4%BA(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210921/">
+                <a href="/2021/10/04/38%20%E5%AE%9E%E6%88%98%EF%BC%9A%E4%BD%BF%E7%94%A8Git%E4%B9%8B%E5%89%8D%E9%9C%80%E8%A6%81%E5%81%9A%E7%9A%84%E6%9C%80%E5%B0%8F%E9%85%8D%E7%BD%AE(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20210927/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="37 实战：PV与PVC使用小演示(成功测试-博客输出)-20210921">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004">
                         
-                        <span class="card-title">37 实战：PV与PVC使用小演示(成功测试-博客输出)-20210921</span>
+                        <span class="card-title">38 实战：使用Git之前需要做的最小配置(成功测试-博客输出)-20211004</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -895,14 +884,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-09-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-04
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
                                 </a>
                             
                             
@@ -912,8 +901,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
                     </a>
                     
                 </div>
