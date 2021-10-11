@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实战：通过gitlog查看版本演变历史-20211010, Love">
+    <meta name="keywords" content="实战：通过图形界面工具gitk来查看版本历史-20211011, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实战：通过gitlog查看版本演变历史-20211010 | Love</title>
+    <title>实战：通过图形界面工具gitk来查看版本历史-20211011 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实战：通过gitlog查看版本演变历史-20211010</h1>
+                    <h1 class="description center-align post-title">实战：通过图形界面工具gitk来查看版本历史-20211011</h1>
                 </div>
             </div>
         </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-10
+                    2021-10-11
                 </div>
                 
 
@@ -477,9 +477,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：通过gitlog查看版本演变历史-20211010"><a href="#实战：通过gitlog查看版本演变历史-20211010" class="headerlink" title="实战：通过gitlog查看版本演变历史-20211010"></a>实战：通过gitlog查看版本演变历史-20211010</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211010080041860.png" alt="image-20211010080041860"></p>
+                <h2 id="实战：通过图形界面工具gitk来查看版本历史-20211011"><a href="#实战：通过图形界面工具gitk来查看版本历史-20211011" class="headerlink" title="实战：通过图形界面工具gitk来查看版本历史-20211011"></a>实战：通过图形界面工具gitk来查看版本历史-20211011</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073550735.png" alt="image-20211011073550735"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文，我将带你实战演示通过gitlog查看版本演变历史实验。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文，我将带你实战演示通过图形界面工具gitk来查看版本历史实验。</p>
 <p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
@@ -497,78 +497,50 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a><code>实验环境</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
 
-<h2 id="1、查看当前分支git版本信息：git-log命令-什么参数都不带"><a href="#1、查看当前分支git版本信息：git-log命令-什么参数都不带" class="headerlink" title="1、查看当前分支git版本信息：git log命令(什么参数都不带)"></a>1、查看当前分支git版本信息：<code>git log</code>命令(什么参数都不带)</h2><ul>
-<li>常规命令：什么参数都不带</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h2 id="1、使用gitk命令打开git图形化界面"><a href="#1、使用gitk命令打开git图形化界面" class="headerlink" title="1、使用gitk命令打开git图形化界面"></a>1、使用gitk命令打开git图形化界面</h2><p><code>gitk</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072120644.png" alt="image-20211011072120644"></p>
+<p>首先来认识下gitk界面的一些功能：</p>
+<h3 id="1-Patch和Tree的区别"><a href="#1-Patch和Tree的区别" class="headerlink" title="1.Patch和Tree的区别"></a>1.Patch和Tree的区别</h3><p>Patch这里会显示新增的文件，点击文件后，只显示新增文件内容，前面有+号标识：</p>
+<p>Tree这里会显示该当前仓库目录级别，点击文件后，会显示该文件的all信息；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072350025.png" alt="image-20211011072350025"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072427724.png" alt="image-20211011072427724"></p>
+<h3 id="2-Author和Commiter的区别"><a href="#2-Author和Commiter的区别" class="headerlink" title="2.Author和Commiter的区别"></a>2.Author和Commiter的区别</h3><p>有这么个情况：在别的分支有一个非常好的commiter，你特别想把它拿过来来作为自己分支的一次commit，git考虑到为了保护版权，你本次提交你就是此次提交的committer，但原来作者是会保留的，因此就存在了Author和Committer这2种身份类型了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072929891.png" alt="image-20211011072929891"></p>
+<h3 id="3-Parent，Child，Branches的功能"><a href="#3-Parent，Child，Branches的功能" class="headerlink" title="3.Parent，Child，Branches的功能"></a>3.Parent，Child，Branches的功能</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073319274.png" alt="image-20211011073319274"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073425226.png" alt="image-20211011073425226"></p>
+<h2 id="2、可以定制gitk"><a href="#2、可以定制gitk" class="headerlink" title="2、可以定制gitk"></a>2、可以定制gitk</h2><p>点击<code>View-New view</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011070012520.png" alt="image-20211011070012520"></p>
+<p>勾选All refs：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071337699.png" alt="image-20211011071337699"></p>
+<p>查看效果：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071457032.png" alt="image-20211011071457032"></p>
+<h2 id="3、gitk图形化的功能还有很多：可以加标签"><a href="#3、gitk图形化的功能还有很多：可以加标签" class="headerlink" title="3、gitk图形化的功能还有很多：可以加标签"></a>3、gitk图形化的功能还有很多：可以加标签</h2><p>点击一个版本，右键选择<code>create tag</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071820409.png" alt="image-20211011071820409"></p>
+<p>填写Tag name和Tag message：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071927778.png" alt="image-20211011071927778"></p>
+<p>查看效果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072040439.png" alt="image-20211011072040439"></p>
+<h2 id="4、gitk-后面可以跟上文件的路径，-这样能看单个文件的修改历史的具体内容。非常有用。"><a href="#4、gitk-后面可以跟上文件的路径，-这样能看单个文件的修改历史的具体内容。非常有用。" class="headerlink" title="4、gitk 后面可以跟上文件的路径， 这样能看单个文件的修改历史的具体内容。非常有用。"></a>4、gitk 后面可以跟上文件的路径， 这样能看单个文件的修改历史的具体内容。非常有用。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitk index.html</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009082911309.png" alt="image-20211009082911309"></p>
-<h2 id="2、简洁查看git版本命令：–oneline参数git-log-oneline"><a href="#2、简洁查看git版本命令：–oneline参数git-log-oneline" class="headerlink" title="2、简洁查看git版本命令：–oneline参数git log --oneline"></a>2、简洁查看git版本命令：–oneline参数<code>git log --oneline</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009083043943.png" alt="image-20211009083043943"></p>
-<h2 id="3、查看最近3个git版本的版本信息-并以简洁形式输出：git-log-n3-oneline"><a href="#3、查看最近3个git版本的版本信息-并以简洁形式输出：git-log-n3-oneline" class="headerlink" title="3、查看最近3个git版本的版本信息,并以简洁形式输出：git log -n3 --oneline"></a>3、查看最近3个git版本的版本信息,并以简洁形式输出：<code>git log -n3 --oneline</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> -n3 --oneline</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009083239440.png" alt="image-20211009083239440"></p>
-<h2 id="4、查看本地分支有哪些？-git-branch-v"><a href="#4、查看本地分支有哪些？-git-branch-v" class="headerlink" title="4、查看本地分支有哪些？:git branch -v"></a>4、查看本地分支有哪些？:<code>git branch -v</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -v</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009083423231.png" alt="image-20211009083423231"></p>
-<h2 id="5、这里创建一个分支来演示git-log命令功能"><a href="#5、这里创建一个分支来演示git-log命令功能" class="headerlink" title="5、这里创建一个分支来演示git log命令功能"></a>5、这里创建一个分支来演示git log命令功能</h2><ul>
-<li>基于以前一个版本来创建一个分支</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout -b temp c3d346c381b8ae684b2f09a</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009084739713.png" alt="image-20211009084739713"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012054222051.png" alt="image-20211012054222051"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012054210146.png" alt="image-20211012054210146"></p>
+<h2 id="5、建议大家使用一些第三方的工具：-gitkarken、sourcetree、tower"><a href="#5、建议大家使用一些第三方的工具：-gitkarken、sourcetree、tower" class="headerlink" title="5、建议大家使用一些第三方的工具： gitkarken、sourcetree、tower"></a>5、建议大家使用一些第三方的工具： <code>gitkarken、sourcetree、tower</code></h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055401621.png" alt="image-20211012055401621"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055623855.png" alt="image-20211012055623855"></p>
 <ul>
-<li>这里修改下文件并提交</li>
+<li>gitKraken</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">echo</span> 1314 &gt;&gt; readme.md</span><br><span class="line">$ git commit -am<span class="string">&quot;Add test&quot;</span> <span class="comment">#注意，工作里一般可使用这个命令一次性将工作区的内容直接提交到git仓库</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009085009575.png" alt="image-20211009085009575"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055658452.png" alt="image-20211012055658452"></p>
 <ul>
-<li>现在再看下当前有多少分支呢？</li>
+<li>SourceTree</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -av</span><br><span class="line">$ git branch -v</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009085227235.png" alt="image-20211009085227235"></p>
-<ul>
-<li><p>如果你通过<code>git branch -v</code>看分支看不够，那么你还可以通过git log来查看分支信息</p>
-</li>
-<li><p>默认git log不带任何参数看的是当前分支的all版本信息</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009085515477.png" alt="image-20211009085515477"></p>
-<ul>
-<li>查看all分支的提交版本信息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --all</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009085657915.png" alt="image-20211009085657915"></p>
-<ul>
-<li>上面这个<code>git log --all</code>命令并没有展示出父子关系，让人看起来很累，因此可通过如下命令来查看其父子关系(演进历史关系)</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --all graph</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009090204165.png" alt="image-20211009090204165"></p>
-<ul>
-<li>再次使用git log命令</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --oneline</span><br><span class="line">$ git <span class="built_in">log</span> --oneline --all</span><br><span class="line">	$ git <span class="built_in">log</span> --oneline temp <span class="comment">#只查看temp分支的版本信息</span></span><br><span class="line">	$ git <span class="built_in">log</span> --oneline --all temp <span class="comment">#注意，这里如果加上--all 再加上temp，这个最终也会显示全部分支的版本信息的</span></span><br><span class="line">$ git <span class="built_in">log</span> --oneline --all -n4</span><br><span class="line">$ git <span class="built_in">log</span> --oneline --all -n4 --graph</span><br><span class="line"></span><br><span class="line"><span class="comment">#备注：</span></span><br><span class="line">--all查看all分支版本信息</span><br><span class="line">-n4查看最近几次提交的版本信息，注意：这里指的是拿出all分支的最近4个版本信息；</span><br><span class="line">--graph以图形化方式查看版本信息(可看出其父子关系)</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009090650610.png" alt="image-20211009090650610"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009091912995.png" alt="image-20211009091912995"></p>
-<h2 id="6、查看git-log其它使用方法：git-help-w"><a href="#6、查看git-log其它使用方法：git-help-w" class="headerlink" title="6、查看git log其它使用方法：git help --w"></a>6、查看git log其它使用方法：<code>git help --w</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">help</span> --web <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009092240827.png" alt="image-20211009092240827"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009092259385.png" alt="image-20211009092259385"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211009092336766.png" alt="image-20211009092336766"></p>
-<h2 id="命令总结"><a href="#命令总结" class="headerlink" title="命令总结"></a>命令总结</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> <span class="comment">#查看当前分支all的git版本信息</span></span><br><span class="line">git <span class="built_in">log</span> --oneline <span class="comment">#以简洁方式查看当前分支all的git版本信息</span></span><br><span class="line">git <span class="built_in">log</span> -n3 --oneline <span class="comment">#以简洁方式查看，当前分支all的git版本信息中最新3个提交的版本信息</span></span><br><span class="line"></span><br><span class="line">git <span class="built_in">log</span> --all <span class="comment">#查看all分支的git版本信息</span></span><br><span class="line">git <span class="built_in">log</span> --all graph <span class="comment">#查看all分支的git版本信息并以图形化方式输出(可以看出其父子关系)</span></span><br><span class="line">git <span class="built_in">log</span> --oneline --all -n4 --graph <span class="comment">#查看all分支中最新提交的4个git版本信息，并以简洁方式和图形化方式输出(可以看出其父子关系)</span></span><br><span class="line">git <span class="built_in">log</span> --oneline temp <span class="comment">#只查看temp分支的版本信息</span></span><br><span class="line">git <span class="built_in">log</span> --oneline --all temp <span class="comment">#注意，这里如果加上--all 再加上temp，这个最终也会显示全部分支的版本信息的</span></span><br><span class="line">git <span class="built_in">help</span> --web <span class="built_in">log</span> <span class="comment">#在浏览器中查看git log其它使用方法</span></span><br><span class="line"></span><br><span class="line">git branch -v <span class="comment">#查看本地分支有哪些</span></span><br><span class="line">git checkout -b temp c3d346c381b8ae684b2f09a <span class="comment">#创建一个分支 (后面字符串是其他commit log中的id)</span></span><br><span class="line">git commit -am<span class="string">&quot;Add test&quot;</span> <span class="comment">#注意，工作里一般可使用这个命令一次性将工作区的内容直接提交到git仓库,工作中经常使用</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于通过gitlog查看版本演变历史实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211010080006522.png" alt="image-20211010080006522"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012063128189.png" alt="image-20211012063128189"></p>
+<h2 id="6、gitk里面中文乱码问题苏老师有解决方案吗？"><a href="#6、gitk里面中文乱码问题苏老师有解决方案吗？" class="headerlink" title="6、gitk里面中文乱码问题苏老师有解决方案吗？"></a>6、gitk里面中文乱码问题苏老师有解决方案吗？</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055539229.png" alt="image-20211012055539229"></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000000578037">https://segmentfault.com/a/1190000000578037</a></p>
+<h2 id="7、提示：currently-has-approximately-1472-loose-objects"><a href="#7、提示：currently-has-approximately-1472-loose-objects" class="headerlink" title="7、提示：currently has approximately 1472 loose objects"></a>7、提示：currently has approximately 1472 loose objects</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012063357511.png" alt="image-20211012063357511"></p>
+<p><a target="_blank" rel="noopener" href="https://git-scm.com/book/en/v2/Git-Internals-Packfiles">https://git-scm.com/book/en/v2/Git-Internals-Packfiles</a></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于通过图形界面工具gitk来查看版本历史实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073842686.png" alt="image-20211011073842686"></p>
 
                 
             </div>
@@ -595,7 +567,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/10/10/48%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87gitlog%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4-%E8%8B%8F%E7%8E%B2)-20211010/">https://www.onlyonexl.cn/2021/10/10/48%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87gitlog%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4-%E8%8B%8F%E7%8E%B2)-20211010/</a>
+                    <a href="https://www.onlyonexl.cn/2021/10/11/49%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7gitk%E6%9D%A5%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2-20211011/">https://www.onlyonexl.cn/2021/10/11/49%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7gitk%E6%9D%A5%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2-20211011/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -806,9 +778,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/11/49%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7gitk%E6%9D%A5%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2-20211011/">
                     <div class="card-image">
@@ -826,9 +799,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -841,6 +814,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -859,13 +833,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/09/47%20%E5%AE%9E%E6%88%98%EF%BC%9AKubernetes%E7%BD%91%E7%BB%9Cingress%E5%AE%9E%E9%AA%8C(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211006/">
+                <a href="/2021/10/10/48%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87gitlog%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4-%E8%8B%8F%E7%8E%B2)-20211010/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="实战-Kubernetes网络ingress实验(成功测试-博客输出)-20211009">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="实战：通过gitlog查看版本演变历史-20211010">
                         
-                        <span class="card-title">实战-Kubernetes网络ingress实验(成功测试-博客输出)-20211009</span>
+                        <span class="card-title">实战：通过gitlog查看版本演变历史-20211010</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -876,14 +850,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-10
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/git/" class="post-category">
+                                    git
                                 </a>
                             
                             
@@ -893,8 +867,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
                 </div>
