@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实战：通过图形界面工具gitk来查看版本历史-20211011, Love">
+    <meta name="keywords" content="Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实战：通过图形界面工具gitk来查看版本历史-20211011 | Love</title>
+    <title>Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -315,7 +315,7 @@
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实战：通过图形界面工具gitk来查看版本历史-20211011</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -429,25 +429,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/git/">
-                                <span class="chip bg-color">git</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/git/" class="post-category">
-                                git
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -456,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-11
+                    2021-10-13
                 </div>
                 
 
@@ -477,9 +464,9 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：通过图形界面工具gitk来查看版本历史-20211011"><a href="#实战：通过图形界面工具gitk来查看版本历史-20211011" class="headerlink" title="实战：通过图形界面工具gitk来查看版本历史-20211011"></a>实战：通过图形界面工具gitk来查看版本历史-20211011</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073550735.png" alt="image-20211011073550735"></p>
+                <h2 id="实战：探密-git目录-成功测试-博客输出-20211013"><a href="#实战：探密-git目录-成功测试-博客输出-20211013" class="headerlink" title="实战：探密.git目录(成功测试-博客输出)-20211013"></a>实战：探密.git目录(成功测试-博客输出)-20211013</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211013071058459.png" alt="image-20211013071058459"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文，我将带你实战演示通过图形界面工具gitk来查看版本历史实验。</p>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>本文，我将带你实战演示探密.git目录实验。</p>
 <p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
@@ -497,50 +484,61 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a><code>实验环境</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
 
-<h2 id="1、使用gitk命令打开git图形化界面"><a href="#1、使用gitk命令打开git图形化界面" class="headerlink" title="1、使用gitk命令打开git图形化界面"></a>1、使用gitk命令打开git图形化界面</h2><p><code>gitk</code></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072120644.png" alt="image-20211011072120644"></p>
-<p>首先来认识下gitk界面的一些功能：</p>
-<h3 id="1-Patch和Tree的区别"><a href="#1-Patch和Tree的区别" class="headerlink" title="1.Patch和Tree的区别"></a>1.Patch和Tree的区别</h3><p>Patch这里会显示新增的文件，点击文件后，只显示新增文件内容，前面有+号标识：</p>
-<p>Tree这里会显示该当前仓库目录级别，点击文件后，会显示该文件的all信息；</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072350025.png" alt="image-20211011072350025"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072427724.png" alt="image-20211011072427724"></p>
-<h3 id="2-Author和Commiter的区别"><a href="#2-Author和Commiter的区别" class="headerlink" title="2.Author和Commiter的区别"></a>2.Author和Commiter的区别</h3><p>有这么个情况：在别的分支有一个非常好的commiter，你特别想把它拿过来来作为自己分支的一次commit，git考虑到为了保护版权，你本次提交你就是此次提交的committer，但原来作者是会保留的，因此就存在了Author和Committer这2种身份类型了。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072929891.png" alt="image-20211011072929891"></p>
-<h3 id="3-Parent，Child，Branches的功能"><a href="#3-Parent，Child，Branches的功能" class="headerlink" title="3.Parent，Child，Branches的功能"></a>3.Parent，Child，Branches的功能</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073319274.png" alt="image-20211011073319274"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073425226.png" alt="image-20211011073425226"></p>
-<h2 id="2、可以定制gitk"><a href="#2、可以定制gitk" class="headerlink" title="2、可以定制gitk"></a>2、可以定制gitk</h2><p>点击<code>View-New view</code>：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011070012520.png" alt="image-20211011070012520"></p>
-<p>勾选All refs：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071337699.png" alt="image-20211011071337699"></p>
-<p>查看效果：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071457032.png" alt="image-20211011071457032"></p>
-<h2 id="3、gitk图形化的功能还有很多：可以加标签"><a href="#3、gitk图形化的功能还有很多：可以加标签" class="headerlink" title="3、gitk图形化的功能还有很多：可以加标签"></a>3、gitk图形化的功能还有很多：可以加标签</h2><p>点击一个版本，右键选择<code>create tag</code>：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071820409.png" alt="image-20211011071820409"></p>
-<p>填写Tag name和Tag message：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011071927778.png" alt="image-20211011071927778"></p>
-<p>查看效果：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011072040439.png" alt="image-20211011072040439"></p>
-<h2 id="4、gitk-后面可以跟上文件的路径，-这样能看单个文件的修改历史的具体内容。非常有用。"><a href="#4、gitk-后面可以跟上文件的路径，-这样能看单个文件的修改历史的具体内容。非常有用。" class="headerlink" title="4、gitk 后面可以跟上文件的路径， 这样能看单个文件的修改历史的具体内容。非常有用。"></a>4、gitk 后面可以跟上文件的路径， 这样能看单个文件的修改历史的具体内容。非常有用。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gitk index.html</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012054222051.png" alt="image-20211012054222051"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012054210146.png" alt="image-20211012054210146"></p>
-<h2 id="5、建议大家使用一些第三方的工具：-gitkarken、sourcetree、tower"><a href="#5、建议大家使用一些第三方的工具：-gitkarken、sourcetree、tower" class="headerlink" title="5、建议大家使用一些第三方的工具： gitkarken、sourcetree、tower"></a>5、建议大家使用一些第三方的工具： <code>gitkarken、sourcetree、tower</code></h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055401621.png" alt="image-20211012055401621"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055623855.png" alt="image-20211012055623855"></p>
+
+<p>当前实验环境：一个本地git仓库 </p>
+<p>.git：裸仓库 git最核心的目录</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012070310543.png" alt="image-20211012070310543"></p>
+<h2 id="1、HEAD文件信息：指出当前所处的分支，是一个引用。"><a href="#1、HEAD文件信息：指出当前所处的分支，是一个引用。" class="headerlink" title="1、HEAD文件信息：指出当前所处的分支，是一个引用。"></a>1、HEAD文件信息：指出当前所处的分支，是一个引用。</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> .git/</span><br><span class="line">$ cat HEAD	<span class="comment">#查看HEAD文件信息</span></span><br><span class="line">$ git branch -av <span class="comment">#查看当前分支</span></span><br><span class="line">$ git checkout master</span><br><span class="line">$ <span class="built_in">cd</span> ../</span><br><span class="line">$ git checkout master <span class="comment">#切换到master分支</span></span><br><span class="line">$ cat .git/HEAD</span><br><span class="line">$ git branch -av</span><br></pre></td></tr></table></figure>
+
+<p>通过切换分支操作来观察.git/HEAD文件的信息变化：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012070538345.png" alt="image-20211012070538345"></p>
+<h2 id="2、config文件信息：存放当前仓库的一些配置信息"><a href="#2、config文件信息：存放当前仓库的一些配置信息" class="headerlink" title="2、config文件信息：存放当前仓库的一些配置信息"></a>2、config文件信息：存放当前仓库的一些配置信息</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012072320181.png" alt="image-20211012072320181"></p>
 <ul>
-<li>gitKraken</li>
+<li>可以看出，之前配置签名的时候，其信息是被保存到.git/config里面去的：</li>
 </ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055658452.png" alt="image-20211012055658452"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --<span class="built_in">local</span> user.name  <span class="string">&quot;hg&quot;</span></span><br><span class="line">git config --<span class="built_in">local</span> user.email  <span class="string">&quot;2675263825@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
 <ul>
-<li>SourceTree</li>
+<li>这里进行一个小测试：通过命令行反复配置来观察config文件内容的变化=》符合预期效果！</li>
 </ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012063128189.png" alt="image-20211012063128189"></p>
-<h2 id="6、gitk里面中文乱码问题苏老师有解决方案吗？"><a href="#6、gitk里面中文乱码问题苏老师有解决方案吗？" class="headerlink" title="6、gitk里面中文乱码问题苏老师有解决方案吗？"></a>6、gitk里面中文乱码问题苏老师有解决方案吗？</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012055539229.png" alt="image-20211012055539229"></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000000578037">https://segmentfault.com/a/1190000000578037</a></p>
-<h2 id="7、提示：currently-has-approximately-1472-loose-objects"><a href="#7、提示：currently-has-approximately-1472-loose-objects" class="headerlink" title="7、提示：currently has approximately 1472 loose objects"></a>7、提示：currently has approximately 1472 loose objects</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012063357511.png" alt="image-20211012063357511"></p>
-<p><a target="_blank" rel="noopener" href="https://git-scm.com/book/en/v2/Git-Internals-Packfiles">https://git-scm.com/book/en/v2/Git-Internals-Packfiles</a></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于通过图形界面工具gitk来查看版本历史实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211011073842686.png" alt="image-20211011073842686"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ cat config</span><br><span class="line">$ git config --<span class="built_in">local</span> user.name</span><br><span class="line">$ git config --<span class="built_in">local</span> user.name <span class="string">&quot;xyy-iloveyou&quot;</span></span><br><span class="line">$ git config --<span class="built_in">local</span> user.name</span><br><span class="line">$ cat config</span><br><span class="line">$ git config --<span class="built_in">local</span> user.name <span class="string">&quot;xyy&quot;</span></span><br><span class="line">$ git config --<span class="built_in">local</span> user.name</span><br><span class="line">$ cat config</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012073309830.png" alt="image-20211012073309830"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012073344085.png" alt="image-20211012073344085"></p>
+<h2 id="3、refs目录信息"><a href="#3、refs目录信息" class="headerlink" title="3、refs目录信息"></a>3、refs目录信息</h2><p>1、来到heads目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ cat master</span><br><span class="line">$ git cat-file -t f2b8f7e580b2bd <span class="comment">#注意这个命令</span></span><br><span class="line">$ git branch -av</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012074216096.png" alt="image-20211012074216096"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012074406333.png" alt="image-20211012074406333"></p>
+<p>2、来到tags目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ cat js01</span><br><span class="line">$ git cat-file -t cccf4ef2 <span class="comment">#-t：类型</span></span><br><span class="line">$ git cat-file -p cccf4ef2 <span class="comment">#-p：内容</span></span><br><span class="line">$ git cat-file -t f99906da3e</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012075101586.png" alt="image-20211012075101586"></p>
+<h2 id="4、来看一个很重要的概念：object"><a href="#4、来看一个很重要的概念：object" class="headerlink" title="4、来看一个很重要的概念：object"></a>4、来看一个很重要的概念：object</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211012075645178.png" alt="image-20211012075645178"></p>
+<p>我们进到e8目录下进行测试：</p>
+<p>它是这样处理的，把这2个字符和里面的这一串凭拼接起来，我们看一下这个对象是什么东西？</p>
+<p><code>$ git cat-file -t e87d0f44918e22fa948418c58a45fa8f078dc7a0</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211013065644373.png" alt="image-20211013065644373"></p>
+<p>它是一棵树。</p>
+<p>我们已经知道，目前git它有tree，commit这2种对象类型了。</p>
+<p>我们再来看下这棵树的内容是什么？</p>
+<p><code>$ git cat-file -p e87d0f44918e22fa948418c58a45fa8f078dc7a0</code></p>
+<p>可以看到，它说这棵树里面有个文件叫做style.css。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211013065628693.png" alt="image-20211013065628693"></p>
+<p>这里又有个文件类型，它叫做**blob(blob它是文件对象)**。</p>
+<p>我们再来确定下这个blob对象它的类型和内容：=》<strong>符合预期效果，它的类型的确是blob，文件内容是style.css的内容</strong>；</p>
+<p><code>$ git cat-file -t b72e61c8b</code></p>
+<p><code>$ git cat-file -p b72e61c8b</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211013065937395.png" alt="image-20211013065937395"></p>
+<p><strong>git最核心的对象也就这3类</strong>：<br>commit<br>tree<br>blob(文件对象)</p>
+<p><strong>我们git有个很神奇的地方，只要任何文件的文件内容相同，那么在git眼里它就是唯一的一个blob</strong>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于探密.git目录实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004102128716.png" alt="image-20211004102128716"></p>
 
                 
             </div>
@@ -567,7 +565,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/10/11/49%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7gitk%E6%9D%A5%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2-20211011/">https://www.onlyonexl.cn/2021/10/11/49%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7gitk%E6%9D%A5%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2-20211011/</a>
+                    <a href="https://www.onlyonexl.cn/2021/10/13/50%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%8E%A2%E5%AF%86.git%E7%9B%AE%E5%BD%95(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211013/">https://www.onlyonexl.cn/2021/10/13/50%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%8E%A2%E5%AF%86.git%E7%9B%AE%E5%BD%95(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211013/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -604,11 +602,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/git/">
-                                    <span class="chip bg-color">git</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -778,9 +772,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/10/13/50%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%8E%A2%E5%AF%86.git%E7%9B%AE%E5%BD%95(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211013/">
                     <div class="card-image">
@@ -798,9 +793,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -809,6 +804,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -819,13 +815,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/10/48%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87gitlog%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4-%E8%8B%8F%E7%8E%B2)-20211010/">
+                <a href="/2021/10/11/49%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E5%B7%A5%E5%85%B7gitk%E6%9D%A5%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E5%8E%86%E5%8F%B2-20211011/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="实战：通过gitlog查看版本演变历史-20211010">
+                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="实战：通过图形界面工具gitk来查看版本历史-20211011">
                         
-                        <span class="card-title">实战：通过gitlog查看版本演变历史-20211010</span>
+                        <span class="card-title">实战：通过图形界面工具gitk来查看版本历史-20211011</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -836,7 +832,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-11
                             </span>
                         <span class="publish-author">
                             
