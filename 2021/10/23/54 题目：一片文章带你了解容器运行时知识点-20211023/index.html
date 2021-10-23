@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实战：数一数git仓库中tree的个数-20211023, Love">
+    <meta name="keywords" content="题目：一片文章带你了解容器运行时知识点-20211023, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实战：数一数git仓库中tree的个数-20211023 | Love</title>
+    <title>题目：一片文章带你了解容器运行时知识点-20211023 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实战：数一数git仓库中tree的个数-20211023</h1>
+                    <h1 class="description center-align post-title">题目：一片文章带你了解容器运行时知识点-20211023</h1>
                 </div>
             </div>
         </div>
@@ -477,59 +477,78 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：数一数git仓库中tree的个数-20211023"><a href="#实战：数一数git仓库中tree的个数-20211023" class="headerlink" title="实战：数一数git仓库中tree的个数-20211023"></a>实战：数一数git仓库中tree的个数-20211023</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211023101325326.png" alt="image-20211023101325326"></p>
+                <h2 id="题目：一片文章带你了解容器运行时知识点-20211023"><a href="#题目：一片文章带你了解容器运行时知识点-20211023" class="headerlink" title="题目：一片文章带你了解容器运行时知识点-20211023"></a>题目：一片文章带你了解容器运行时知识点-20211023</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211023204510817.png" alt="image-20211023204510817"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
+<h2 id="1、容器运行时"><a href="#1、容器运行时" class="headerlink" title="1、容器运行时"></a>1、容器运行时</h2><h3 id="1-Docker的发展历程"><a href="#1-Docker的发展历程" class="headerlink" title="1.Docker的发展历程"></a>1.Docker的发展历程</h3><p><strong>从 Docker 1.11 版本开始，Docker 容器运行就不是简单通过 Docker Daemon 来启动了，而是通过集成 containerd、runc 等多个组件来完成的。</strong>虽然 <strong>Docker Daemon 守护进程</strong>模块在不停的重构，但是基本功能和定位没有太大的变化，一直都是 CS 架构，<strong>守护进程负责和 Docker Client 端交互，并管理 Docker 镜像和容器</strong>。<strong>现在的架构中组件 containerd 就会负责集群节点上容器的生命周期管理，并向上为 Docker Daemon 提供 gRPC 接口</strong>。(<strong><u>说明：docker daemon(守护进程)：相当就是一个代理了；</u></strong>)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022081254481.png" alt="image-20211022081254481"></p>
+<p>当我们要创建一个容器的时候，现在 Docker Daemon 并不能直接帮我们创建了，而是请求 containerd 来创建一个容器，containerd 收到请求后，也并不会直接去操作容器，而是创建一个叫做 containerd-shim 的进程，让这个进程去操作容器，我们指定容器进程是需要一个父进程来做状态收集、维持 stdin 等 fd 打开等工作的，假如这个父进程就是 containerd，那如果 containerd 挂掉的话，整个宿主机上所有的容器都得退出了，而引入 containerd-shim 这个垫片就可以来规避这个问题了。</p>
+<blockquote>
+<p>containerd-shim：可以翻译成垫片或者中间件。<br>Containerd-shim可以认为是托管我们容器父进程的一个工具；<br>每一个容器起起来之后，都会有一个conatinerd-shim存在；<br>containerd-shim主要是来控制你的容器的；</p>
+</blockquote>
+<p>然后创建容器需要做一些 namespaces 和 cgroups 的配置，以及挂载 root 文件系统等操作，这些操作其实已经有了标准的规范，那就是 <strong>OCI（开放容器标准</strong>），<code>runc</code> 就是它的一个参考实现（Docker 被逼无耐将 <code>libcontainer</code> 捐献出来改名为 <code>runc</code> 的），这个标准其实就是一个文档，<strong>主要规定了容器镜像的结构、以及容器需要接收哪些操作指令</strong>，比如 create、start、stop、delete 等这些命令。<code>runc</code> 就可以按照这个 OCI 文档来创建一个符合规范的容器，既然是标准肯定就有其他 OCI 实现，比如 <strong>Kata、gVisor</strong> 这些容器运行时都是符合 OCI 标准的。**<u>(说明：runc就是一个二进制命令；)</u>**</p>
+<p><strong>所以真正启动容器是通过 <code>containerd-shim</code> 去调用 <code>runc</code> 来启动容器的，<code>runc</code> 启动完容器后本身会直接退出，<code>containerd-shim</code> 则会成为容器进程的父进程, 负责收集容器进程的状态, 上报给 containerd, 并在容器中 pid 为 1 的进程退出后接管容器中的子进程进行清理, 确保不会出现僵尸进程。</strong></p>
+<p>而 Docker 将容器操作都迁移到 <code>containerd</code> 中去是因为当前做 Swarm，想要进军 PaaS 市场，做了这个架构切分，让 Docker Daemon 专门去负责上层的封装编排，当然后面的结果我们知道 Swarm 在 Kubernetes 面前是惨败，然后 Docker 公司就把 <code>containerd</code> 项目捐献给了 CNCF 基金会，这个也是现在的 Docker 架构。</p>
+<h3 id="2-CRI"><a href="#2-CRI" class="headerlink" title="2.CRI"></a>2.CRI</h3><p>我们知道 Kubernetes 提供了一个 CRI 的<strong>容器运行时接口</strong>，那么这个 CRI 到底是什么呢？这个其实也和 Docker 的发展密切相关的。<u><strong>(说明：所谓接口，就是它定义了一个行为，你只要按我的行为来实现了，那么我就能支持你；)</strong></u></p>
+<p>在 Kubernetes 早期的时候，当时 Docker 实在是太火了，Kubernetes 当然会先选择支持 Docker，<strong>而且是通过硬编码的方式直接调用 Docker API</strong>，后面随着 Docker 的不断发展以及 Google 的主导，出现了更多容器运行时，Kubernetes 为了支持更多更精简的容器运行时，Google 就和红帽主导推出了 CRI 标准，用于将 Kubernetes 平台和特定的容器运行时（当然主要是为了干掉 Docker）解耦。</p>
+<p><code>CRI</code>（Container Runtime Interface 容器运行时接口）<strong>本质上就是 Kubernetes 定义的一组与容器运行时进行交互的接口</strong>，<strong>所以只要实现了这套接口的容器运行时都可以对接到 Kubernetes 平台上来</strong>。不过 Kubernetes 推出 CRI 这套标准的时候还没有现在的统治地位，所以有一些容器运行时可能不会自身就去实现 CRI 接口，<strong>于是就有了 <code>shim（垫片）</code>， 一个 shim 的职责就是作为适配器将各种容器运行时本身的接口适配到 Kubernetes 的 CRI 接口上，其中 <code>dockershim</code> 就是 Kubernetes 对接 Docker 到 CRI 接口上的一个垫片实现。</strong></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022085403945.png" alt="image-20211022085403945"></p>
+<p>Kubelet 通过 <strong>gRPC 框架</strong>与容器运行时或 shim 进行通信，其中 kubelet 作为客户端，CRI shim（也可能是容器运行时本身）作为服务器。</p>
+<p>CRI 定义的 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/kubernetes/blob/release-1.5/pkg/kubelet/api/v1alpha1/runtime/api.proto">API</a> 主要包括两个 gRPC 服务，<code>ImageService</code> 和 <code>RuntimeService</code>，<code>ImageService</code> 服务主要是拉取镜像、查看和删除镜像等操作，<code>RuntimeService</code> 则是用来管理 Pod 和容器的生命周期，以及与容器交互的调用（exec/attach/port-forward）等操作，可以通过 kubelet 中的标志 <code>--container-runtime-endpoint</code> 和 <code>--image-service-endpoint</code> 来配置这两个服务的套接字。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022085826348.png" alt="image-20211022085826348"></p>
+<p>不过这里同样也有一个例外，那就是 Docker，由于 Docker 当时的江湖地位很高，<strong>Kubernetes 是直接内置了 <code>dockershim</code> 在 kubelet 中的</strong>，所以如果你使用的是 Docker 这种容器运行时的话是不需要单独去安装配置适配器之类的，当然这个举动似乎也麻痹了 Docker 公司。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022090007767.png" alt="image-20211022090007767"></p>
+<p>现在如果我们使用的是 Docker 的话，当我们在 Kubernetes 中创建一个 Pod 的时候，首先就是 kubelet 通过 CRI 接口调用 <code>dockershim</code>，请求创建一个容器，kubelet 可以视作一个简单的 CRI Client, 而 dockershim 就是接收请求的 Server，<strong>不过他们都是在 kubelet 内置的</strong>。</p>
+<p><code>dockershim</code> 收到请求后, 转化成 Docker Daemon 能识别的请求, 发到 Docker Daemon 上请求创建一个容器，请求到了 Docker Daemon 后续就是 Docker 创建容器的流程了，去调用 <code>containerd</code>，然后创建 <code>containerd-shim</code> 进程，通过该进程去调用 <code>runc</code> 去真正创建容器。</p>
+<p>其实我们仔细观察也不难发现<strong>使用 Docker 的话其实是调用链比较长的</strong>，<strong>真正容器相关的操作其实 containerd 就完全足够了</strong>，Docker 太过于复杂笨重了，当然 Docker 深受欢迎的很大一个原因就是提供了很多对用户操作比较友好的功能，但是对于 Kubernetes 来说压根不需要这些功能，<strong>因为都是通过接口去操作容器的</strong>，所以自然也就可以将容器运行时切换到 containerd 来。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022090315979.png" alt="image-20211022090315979"></p>
+<p>切换到 containerd 可以消除掉中间环节，操作体验也和以前一样，但是由于直接用容器运行时调度容器，所以它们对 Docker 来说是不可见的。 因此，你以前用来检查这些容器的 Docker 工具就不能使用了。</p>
+<p>你不能再使用 <code>docker ps</code> 或 <code>docker inspect</code> 命令来获取容器信息。由于不能列出容器，因此也不能获取日志、停止容器，甚至不能通过 <code>docker exec</code> 在容器中执行命令。</p>
+<p>当然我们仍然可以下载镜像，或者用 <code>docker build</code> 命令构建镜像，但用 Docker 构建、下载的镜像，对于容器运行时和 Kubernetes，均不可见。<strong>为了在 Kubernetes 中使用，需要把镜像推送到镜像仓库中去。</strong></p>
+<p>从上图可以看出在 containerd 1.0 中，对 CRI 的适配是通过一个单独的 <code>CRI-Containerd</code> 进程来完成的，这是因为最开始 containerd 还会去适配其他的系统（比如 swarm），所以没有直接实现 CRI，所以这个对接工作就交给 <code>CRI-Containerd</code> 这个 shim 了。</p>
+<p>然后到了 containerd 1.1 版本后就去掉了 <code>CRI-Containerd</code> 这个 shim，直接把适配逻辑作为插件的方式集成到了 containerd 主进程中，现在这样的调用就更加简洁了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022090537642.png" alt="image-20211022090537642"></p>
+<p>与此同时 Kubernetes 社区也做了一个专门用于 Kubernetes 的 CRI 运行时 <a target="_blank" rel="noopener" href="https://cri-o.io/">CRI-O</a>，直接兼容 CRI 和 OCI 规范。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211022090618362.png" alt="image-20211022090618362"></p>
+<p>这个方案和 containerd 的方案显然比默认的 dockershim 简洁很多，不过由于大部分用户都比较习惯使用 Docker，所以大家还是更喜欢使用 <code>dockershim</code> 方案。</p>
+<blockquote>
+<p>说明：据说，cri-o的性能没有containerd好，并且containerd是已经在生产里经受住了考验，至少目前不推荐使用cri-o，建议使用containerd；</p>
+</blockquote>
+<p>但是随着 CRI 方案的发展，以及其他容器运行时对 CRI 的支持越来越完善，Kubernetes 社区在2020年7月份就开始着手移除 dockershim 方案了：<a target="_blank" rel="noopener" href="https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/2221-remove-dockershim%EF%BC%8C%E7%8E%B0%E5%9C%A8%E7%9A%84%E7%A7%BB%E9%99%A4%E8%AE%A1%E5%88%92%E6%98%AF%E5%9C%A8">https://github.com/kubernetes/enhancements/tree/master/keps/sig-node/2221-remove-dockershim，现在的移除计划是在</a> 1.20 版本中将 kubelet 中内置的 dockershim 代码分离，将内置的 dockershim 标记为<code>维护模式</code>，当然这个时候仍然还可以使用 dockershim，目标是在 1.23/1.24 版本发布没有 dockershim 的版本（代码还在，但是要默认支持开箱即用的 docker 需要自己构建 kubelet，会在某个宽限期过后从 kubelet 中删除内置的 dockershim 代码）。</p>
+<p>那么这是否就意味这 Kubernetes 不再支持 Docker 了呢？当然不是的，这只是废弃了内置的 <code>dockershim</code> 功能而已，Docker 和其他容器运行时将一视同仁，不会单独对待内置支持，如果我们还想直接使用 Docker 这种容器运行时应该怎么办呢？<strong>可以将 dockershim 的功能单独提取出来独立维护一个 <code>cri-dockerd</code> 即可，就类似于 containerd 1.0 版本中提供的 <code>CRI-Containerd</code>，当然还有一种办法就是 Docker 官方社区将 CRI 接口内置到 Dockerd 中去实现。</strong></p>
+<p>但是我们也清楚 <strong>Dockerd 也是去直接调用的 Containerd，而 containerd 1.1 版本后就内置实现了 CRI</strong>，所以 Docker 也没必要再去单独实现 CRI 了，当 Kubernetes 不再内置支持开箱即用的 Docker 的以后，最好的方式当然也就是直接使用 Containerd 这种容器运行时，而且该容器运行时也已经经过了生产环境实践的，接下来我们就来学习下 Containerd 的使用。</p>
+<h2 id="2、k8s将弃用docker！"><a href="#2、k8s将弃用docker！" class="headerlink" title="2、k8s将弃用docker！"></a>2、k8s将弃用docker！</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210815141240395-16309059862401.png" alt="image-20210815141240395"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">在Kubernetes平台中，为了解决与容器运行时（例如Docker）集成问题，在早期社区推出了CRI（Container Runtime Interface，容</span><br><span class="line">器运行时接口），以支持更多的容器运行时。 当我们使用Docker作为容器运行时之后，架构是这样的，如图所示：</span><br><span class="line"></span><br><span class="line">Kubernetes 计划弃用就是kubelet中dockershim。即 Kubernetes kubelet 实现中的组件之一，它能够与 Docker Engine 进行通信。</span><br></pre></td></tr></table></figure>
 
-<h2 id="1、提出问题"><a href="#1、提出问题" class="headerlink" title="1、提出问题"></a>1、提出问题</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211023090525820.png" alt="image-20211023090525820"></p>
-<h2 id="2、开始演示"><a href="#2、开始演示" class="headerlink" title="2、开始演示"></a>2、开始演示</h2><p>先创建一个doc目录并观察：=&gt;<strong>发现我们仅仅只新建的空目录，git竟然不鸟我们。</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository</span><br><span class="line">$ git init watch_git_objects</span><br><span class="line">Initialized empty Git repository <span class="keyword">in</span> D:/git_repository/watch_git_objects/.git/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository</span><br><span class="line">$ <span class="built_in">cd</span> watch_git_objects/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ mkdir doc <span class="comment">#发现我们仅仅只新建的空目录，git竟然不鸟我们</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ ls -al</span><br><span class="line">total 8</span><br><span class="line">drwxr-xr-x 1 hg 197121 0 10月 23 09:08 ./</span><br><span class="line">drwxr-xr-x 1 hg 197121 0 10月 23 09:07 ../</span><br><span class="line">drwxr-xr-x 1 hg 197121 0 10月 23 09:07 .git/</span><br><span class="line">drwxr-xr-x 1 hg 197121 0 10月 23 09:08 doc/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">nothing to commit (create/copy files and use <span class="string">&quot;git add&quot;</span> to track)</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210815141714025-16309059862423.png" alt="image-20210815141714025"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">为什么这么做？</span><br><span class="line">• Docker内部调用链比较复杂，多层封装和调用，导致性能降低、提升故障率、不易排查</span><br><span class="line">• Docker还会在宿主机创建网络规则、存储卷，也带来了安全隐患</span><br></pre></td></tr></table></figure>
 
 
 
-<p>再创建文件readme并观察：=&gt;<strong>在空目录下创建了文件后，git就理我了哈哈</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ <span class="built_in">cd</span> doc/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects/doc (master)</span><br><span class="line">$ <span class="built_in">echo</span> <span class="string">&quot;hello world&quot;</span> &gt; readme <span class="comment">#在空目录下创建了文件后，git就理我了哈哈</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects/doc (master)</span><br><span class="line">$ <span class="built_in">cd</span> ..</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        doc/</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">&quot;git add&quot;</span> to track)</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210815141821339-16309059862412.png" alt="image-20210815141821339"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">如何应对？</span><br><span class="line">在未来的 Kubernetes 版本彻底放弃 Docker 支持之前，引入受支持的容器运行时。</span><br><span class="line">除了docker之外，CRI还支持很多容器运行时，例如：</span><br><span class="line">• containerd：containerd与Docker相兼容，相比Docker轻量很多，目前较为成熟</span><br><span class="line">• cri-o，podman：都是红帽（RedHat）项目，目前红帽主推podman</span><br></pre></td></tr></table></figure>
 
 
 
-<p>此时，先不急着把刚才创建的doc目录加进暂存区，我们先到.git目录去看一下：=&gt;<strong>发现里面是空的。</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ find .git/objects  -<span class="built_in">type</span> f</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ ls .git/objects/</span><br><span class="line">info/  pack/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>此时，我们再把刚才的doc目录加进暂存区，此时再观看下.git/objects目录下是否会出现相应的blob对象？=&gt;<strong>会出现，说明一旦有文件被添加到暂存区/被git管控，那么就会在objects目录下生成相应的对象；</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git add doc/ <span class="comment">#添加到暂存区</span></span><br><span class="line">warning: LF will be replaced by CRLF <span class="keyword">in</span> doc/readme.</span><br><span class="line">The file will have its original line endings <span class="keyword">in</span> your working directory.</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   doc/readme</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ find .git/objects  -<span class="built_in">type</span> f <span class="comment">#刚才把doc目录添加到暂存区后，git就在objects目录下产生了blob对象，说明一旦有文件被添加到暂存区/被git管控，那么就会在objects目录下生成相应的对象；</span></span><br><span class="line">.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ ls .git/objects/</span><br><span class="line">3b/  info/  pack/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -t 3b18e512dba79 <span class="comment">#查看类型</span></span><br><span class="line">blob</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -p 3b18e512dba79 <span class="comment">#查看对象内容</span></span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>此时 ，我们将暂存区的内容提交到仓库，我们不妨预测下看objects目录下究竟有多少个commit对象？tree对象？blob对象？</p>
-<p>=&gt; 1个commit对象，2个tree对象，1个blob对象。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line"></span><br><span class="line">        new file:   doc/readme</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">fatal: your current branch <span class="string">&#x27;master&#x27;</span> does not have any commits yet</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git commit -m<span class="string">&quot;Add readme&quot;</span></span><br><span class="line">[master (root-commit) 9271005] Add readme</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 doc/readme</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ find .git/objects  -<span class="built_in">type</span> f <span class="comment">#这里发现有4个对象。</span></span><br><span class="line">.git/objects/2c/5264370f2630da80ee38f412213d59657af6e8 <span class="comment">#tree</span></span><br><span class="line">.git/objects/3b/18e512dba79e4c8300dd08aeb37f8e728b8dad <span class="comment">#blob</span></span><br><span class="line">.git/objects/92/71005a66a1aa763046ef144545840560468585 <span class="comment">#commit</span></span><br><span class="line">.git/objects/f5/5a12e98ffd80349f3499cc52a06b8afb93ec90 <span class="comment">#tree</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -t 2c5264370f2</span><br><span class="line">tree</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -p 2c5264370f2</span><br><span class="line">100644 blob 3b18e512dba79e4c8300dd08aeb37f8e728b8dad    readme</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -p 3b18e512d</span><br><span class="line">hello world</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -t 9271005a</span><br><span class="line">commit</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -p 9271005a</span><br><span class="line">tree f55a12e98ffd80349f3499cc52a06b8afb93ec90</span><br><span class="line">author hg &lt;2675263825@qq.com&gt; 1634952802 +0800</span><br><span class="line">committer hg &lt;2675263825@qq.com&gt; 1634952802 +0800</span><br><span class="line"></span><br><span class="line">Add readme</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -t f55a12e98ffd8</span><br><span class="line">tree</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br><span class="line">$ git cat-file -p f55a12e98ffd8</span><br><span class="line">040000 tree 2c5264370f2630da80ee38f412213d59657af6e8    doc</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/watch_git_objects (master)</span><br></pre></td></tr></table></figure>
-
-
-
-<p>因此可用如下一张图来表示3者对象之间的关系：因此答案是：<strong>1个commit对象，2个tree对象，1个blob对象。</strong></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211023090525820.png" alt="image-20211023090525820"></p>
-<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">01. 在git仓库里，我们仅仅只新建的空目录，通过git status查看发现git是不会管控这个空目录的，只有创建了文件后，git status查看才会发现git对这个目录/文件进行了纳管；</span><br><span class="line"></span><br><span class="line">02.	在工作区创建的文件，只要没被提交到暂存区(也就是没被git管控)，那么objects目录下是不会产生相应对象的；</span><br><span class="line"></span><br><span class="line">03.只要文件被添加到暂存区或者提交到仓库，那么git就会在objects目录下生成相应的对象的；</span><br><span class="line"></span><br><span class="line">04.关于objects目录下有多少个commit、tree、blob对象，可以看文中的那一张图片。</span><br></pre></td></tr></table></figure>
-
-<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
-<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
-<ol>
-<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002091450217.png" alt="image-20211002091450217"></p>
-</li>
-<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092057988.png" alt="image-20211002092057988"></p>
-</li>
-<li><p>个人微信公众号：云原生架构师实战</p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002141739664.png" alt="image-20211002141739664"></p>
-</li>
-<li><p>个人csdn</p>
-<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
-</li>
-</ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于数一数tree的个数小练习就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<blockquote>
+<p>QA：k8s不支持docker了</p>
+<p>其实，现在docker已经在走标准的runc接口了。docker本身的问题：它有一个非常厚重的docker daemon,它本身的稳定性不是很好，所以现在既然它已经走了标准协议了，那么k8s所谓的不支持docker，其实，它可以通过，更轻量级，性能更好，更稳定的容器运行时，例如containerd来替换docker，即docker本身已经在k8s这里已经没有存在的必要了。</p>
+</blockquote>
+<blockquote>
+<p>docker太重了，问题很多，切到containerd以后性能和稳定性都有提升；<br>k8s的价值就是在不影响业务的情况下，基础架构能升级了；</p>
+<p>使用docker，是Kubelet先通过dockershim调用docker,再通过docker调用containerd去运行镜像。使用Containerd，是由kubelet直接通过CRI调用containerd去运行镜像，相比docker，减少调用链，资源占用会也减少；相应的性能就提升了</p>
+</blockquote>
+<h2 id="3、总结"><a href="#3、总结" class="headerlink" title="3、总结"></a>3、总结</h2><p>容器运行时是k8s底层的一个基础；</p>
+<p>注意：<code>关于容器运行时的一些概念很容易混淆，需要理清一点！</code></p>
+<blockquote>
+<p>docker、docker daemon(守护进程)、containerd、containerd-shim(可以翻译成垫片或者中间件。)、runc(oci规范的一个实现)</p>
+<p>libcontainer：Docker 被逼无耐将 libcontainer 捐献出来改名为 runc 的；</p>
+<p>OCI、CRI–规范；</p>
+<p>cri-docker-shim</p>
+<p>符合CRI的容器运行时如下：<br>containerd：containerd与Docker相兼容，相比Docker轻量很多，目前较为成熟；部分大厂已经在向containerd这方面切了；<br>cri-o，podman：都是红帽（RedHat）项目，目前红帽主推podman；<br>kata；<br>gVisor；</p>
+</blockquote>
+<p>好了，今天就先到这里，晚安，宝哈哈！</p>
 <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004102128716.png" alt="image-20211004102128716"></p>
 
                 
@@ -557,7 +576,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/10/23/53%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%95%B0%E4%B8%80%E6%95%B0git%E4%BB%93%E5%BA%93%E4%B8%ADtree%E7%9A%84%E4%B8%AA%E6%95%B0-20211023/">https://www.onlyonexl.cn/2021/10/23/53%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%95%B0%E4%B8%80%E6%95%B0git%E4%BB%93%E5%BA%93%E4%B8%ADtree%E7%9A%84%E4%B8%AA%E6%95%B0-20211023/</a>
+                    <a href="https://www.onlyonexl.cn/2021/10/23/54%20%E9%A2%98%E7%9B%AE%EF%BC%9A%E4%B8%80%E7%89%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9F%A5%E8%AF%86%E7%82%B9-20211023/">https://www.onlyonexl.cn/2021/10/23/54%20%E9%A2%98%E7%9B%AE%EF%BC%9A%E4%B8%80%E7%89%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9F%A5%E8%AF%86%E7%82%B9-20211023/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -768,10 +787,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/10/23/53%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%95%B0%E4%B8%80%E6%95%B0git%E4%BB%93%E5%BA%93%E4%B8%ADtree%E7%9A%84%E4%B8%AA%E6%95%B0-20211023/">
                     <div class="card-image">
@@ -789,9 +807,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-23
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-23
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -804,7 +822,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -823,13 +840,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/23/54%20%E9%A2%98%E7%9B%AE%EF%BC%9A%E4%B8%80%E7%89%87%E6%96%87%E7%AB%A0%E5%B8%A6%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%AE%B9%E5%99%A8%E8%BF%90%E8%A1%8C%E6%97%B6%E7%9F%A5%E8%AF%86%E7%82%B9-20211023/">
+                <a href="/2021/10/21/51%20%E5%AE%9E%E6%88%98%EF%BC%9Akubectl%E4%BD%BF%E7%94%A8%E7%9A%84%E8%BF%9E%E6%8E%A5k8s%E8%AE%A4%E8%AF%81%E6%96%87%E4%BB%B6%E6%B5%8B%E8%AF%95%E5%AE%9E%E9%AA%8C/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="题目：一片文章带你了解容器运行时知识点-20211023">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="实战：kubectl使用的连接k8s认证文件测试实验-20211021">
                         
-                        <span class="card-title">题目：一片文章带你了解容器运行时知识点-20211023</span>
+                        <span class="card-title">实战：kubectl使用的连接k8s认证文件测试实验-20211021</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -840,7 +857,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-23
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-21
                             </span>
                         <span class="publish-author">
                             
