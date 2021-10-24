@@ -1,0 +1,1377 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：centos7上containerd的安装-20211023, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：centos7上containerd的安装-20211023 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：centos7上containerd的安装-20211023</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/containerd/">
+                                <span class="chip bg-color">containerd</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/containerd/" class="post-category">
+                                containerd
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-24
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：centos7上containerd的安装-20211023"><a href="#实战：centos7上containerd的安装-20211023" class="headerlink" title="实战：centos7上containerd的安装-20211023"></a>实战：centos7上containerd的安装-20211023</h2><p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211024095913710.png" alt="image-20211024095913710"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10笔记本</span><br><span class="line">2、1台centos7.6虚机(vmwrokstation虚机)</span><br><span class="line">	cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1pfn6G9GOnpTG7AE1NIDF_Q">https://pan.baidu.com/s/1pfn6G9GOnpTG7AE1NIDF_Q</a><br>提取码：h34l<br>–来自百度网盘超级会员V6的分享</p>
+<p>cri-containerd-cni-1.5.5-linux-amd64.tar.gz</p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211024101029713.png" alt="image-20211024101029713"></p>
+<h2 id="文章来源"><a href="#文章来源" class="headerlink" title="文章来源"></a>文章来源</h2><p>阳明：Kubernetes 进阶训练营(第3期)</p>
+<ul>
+<li>文档资源</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.qikqiak.com/k3s/runtime/usage/">https://www.qikqiak.com/k3s/runtime/usage/</a></p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211024100227445.png" alt="image-20211024100227445"></p>
+<ul>
+<li>视频资源</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://youdianzhishi.com/web/course/1030/2121">https://youdianzhishi.com/web/course/1030/2121</a></p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211024100344161.png" alt="image-20211024100344161"></p>
+<h2 id="1、安装libseccomp依赖包"><a href="#1、安装libseccomp依赖包" class="headerlink" title="1、安装libseccomp依赖包"></a>1、安装libseccomp依赖包</h2><p>这里我使用的系统是 <code>CentOS 7.6</code>，首先需要安装 <code>libseccomp</code> 依赖：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先查看系统有没有libseccomp软件包，没的话就安装，一般需要安装</span></span><br><span class="line">[root@containerd ~]<span class="comment">#rpm -qa |grep libseccomp</span></span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#我们先来看一下libseccomp依赖版属于哪个软件包</span></span><br><span class="line">[root@containerd ~]<span class="comment">#yum search libseccomp</span></span><br><span class="line">Loaded plugins: fastestmirror</span><br><span class="line">Repodata is over 2 weeks old. Install yum-cron? Or run: yum makecache fast</span><br><span class="line">Determining fastest mirrors</span><br><span class="line"> * base: mirrors.aliyun.com</span><br><span class="line"> * extras: mirrors.aliyun.com</span><br><span class="line"> * updates: mirrors.aliyun.com</span><br><span class="line">================================================= N/S matched: libseccomp ==================================================</span><br><span class="line">libseccomp-devel.i686 : Development files used to build applications with libseccomp support</span><br><span class="line">libseccomp-devel.x86_64 : Development files used to build applications with libseccomp support</span><br><span class="line">libseccomp.i686 : Enhanced seccomp library</span><br><span class="line">libseccomp.x86_64 : Enhanced seccomp library</span><br><span class="line"></span><br><span class="line">  Name and summary matches only, use <span class="string">&quot;search all&quot;</span> <span class="keyword">for</span> everything.</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#yum安装libseccomp依赖包</span></span><br><span class="line">[root@containerd ~]<span class="comment">#yum install libseccomp -y</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#验证是否安装</span></span><br><span class="line">[root@containerd ~]<span class="comment">#rpm -qa |grep libseccomp</span></span><br><span class="line">libseccomp-2.3.1-4.el7.x86_64</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、下载containerd软件包并解压"><a href="#2、下载containerd软件包并解压" class="headerlink" title="2、下载containerd软件包并解压"></a>2、下载containerd软件包并解压</h2><p>由于 containerd 需要调用 runc，所以我们也需要先安装 runc，不过 containerd 提供了一个包含相关依赖的压缩包 <code>cri-containerd-cni-$&#123;VERSION&#125;.$&#123;OS&#125;-$&#123;ARCH&#125;.tar.gz</code>，可以直接使用这个包来进行安装。首先从 <a target="_blank" rel="noopener" href="https://github.com/containerd/containerd/releases">release 页面</a>下载最新版本的压缩包，当前为 1.5.5 版本（<strong>注意：最新的1.5.7版本在CentOS7下面执行 runc 会报错：<a target="_blank" rel="noopener" href="https://github.com/containerd/containerd/issues/6091">https://github.com/containerd/containerd/issues/6091</a></strong>）：</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/containerd/containerd">https://github.com/containerd/containerd</a></p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023214944253.png" alt="image-20211023214944253"></p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023215412736.png" alt="image-20211023215412736"></p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023215719548.png" alt="image-20211023215719548"></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#wget https://github.com/containerd/containerd/releases/download/v1.5.5/cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br><span class="line"># 如果有限制，也可以替换成下面的 URL 加速下载</span><br><span class="line">wget https://download.fastgit.org/containerd/containerd/releases/download/v1.5.5/cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>加速下载还是挺快的：</p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023215908345.png" alt="image-20211023215908345"></p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023220014398.png" alt="image-20211023220014398"></p>
+<p>可以通过 tar 的 <code>-t</code> 选项直接看到压缩包中包含哪些文件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#tar -tf cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br><span class="line">etc/</span><br><span class="line">etc/crictl.yaml</span><br><span class="line">etc/cni/</span><br><span class="line">etc/cni/net.d/</span><br><span class="line">etc/cni/net.d/10-containerd-net.conflist</span><br><span class="line">etc/systemd/</span><br><span class="line">etc/systemd/system/</span><br><span class="line">etc/systemd/system/containerd.service</span><br><span class="line">usr/</span><br><span class="line">usr/local/</span><br><span class="line">usr/local/sbin/</span><br><span class="line">usr/local/sbin/runc</span><br><span class="line">usr/local/bin/</span><br><span class="line">usr/local/bin/containerd-shim-runc-v1</span><br><span class="line">usr/local/bin/critest</span><br><span class="line">usr/local/bin/ctr</span><br><span class="line">usr/local/bin/containerd-shim</span><br><span class="line">usr/local/bin/crictl</span><br><span class="line">usr/local/bin/containerd</span><br><span class="line">usr/local/bin/ctd-decoder</span><br><span class="line">usr/local/bin/containerd-stress</span><br><span class="line">usr/local/bin/containerd-shim-runc-v2</span><br><span class="line">opt/</span><br><span class="line">opt/cni/</span><br><span class="line">opt/cni/bin/</span><br><span class="line">opt/cni/bin/firewall</span><br><span class="line">opt/cni/bin/macvlan</span><br><span class="line">opt/cni/bin/vrf</span><br><span class="line">opt/cni/bin/ipvlan</span><br><span class="line">opt/cni/bin/dhcp</span><br><span class="line">opt/cni/bin/flannel</span><br><span class="line">opt/cni/bin/bandwidth</span><br><span class="line">opt/cni/bin/portmap</span><br><span class="line">opt/cni/bin/ptp</span><br><span class="line">opt/cni/bin/host-local</span><br><span class="line">opt/cni/bin/sbr</span><br><span class="line">opt/cni/bin/loopback</span><br><span class="line">opt/cni/bin/static</span><br><span class="line">opt/cni/bin/host-device</span><br><span class="line">opt/cni/bin/tuning</span><br><span class="line">opt/cni/bin/bridge</span><br><span class="line">opt/cni/bin/vlan</span><br><span class="line">opt/containerd/</span><br><span class="line">opt/containerd/cluster/</span><br><span class="line">opt/containerd/cluster/gce/</span><br><span class="line">opt/containerd/cluster/gce/env</span><br><span class="line">opt/containerd/cluster/gce/configure.sh</span><br><span class="line">opt/containerd/cluster/gce/cloud-init/</span><br><span class="line">opt/containerd/cluster/gce/cloud-init/master.yaml</span><br><span class="line">opt/containerd/cluster/gce/cloud-init/node.yaml</span><br><span class="line">opt/containerd/cluster/gce/cni.template</span><br><span class="line">opt/containerd/cluster/version</span><br><span class="line">[root@containerd ~]#</span><br></pre></td></tr></table></figure>
+
+
+
+<p>直接将压缩包解压到系统的各个目录中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#tar -C / -xzf cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br></pre></td></tr></table></figure>
+
+
+
+<p>当然要记得将 <code>/usr/local/bin</code> 和 <code>/usr/local/sbin</code> 追加到 <code>~/.bashrc</code> 文件的 <code>PATH</code> 环境变量中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#vim ~/.bashrc</span><br><span class="line">export PATH=$PATH:/usr/local/bin:/usr/local/sbin #添加这行</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023220408426.png" alt="image-20211023220408426"></p>
+<p>然后执行下面的命令使其立即生效：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#source ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：centos7默认的PAH就已经包含了 <code>/usr/local/bin</code> 和 <code>/usr/local/sbin</code> 路径，但老师这里还是手动添加了这2个路径，我这里就继续添加下吧。</p>
+</blockquote>
+<h2 id="3、生成containerd-的默认配置文件config-toml"><a href="#3、生成containerd-的默认配置文件config-toml" class="headerlink" title="3、生成containerd 的默认配置文件config.toml"></a>3、生成containerd 的默认配置文件config.toml</h2><p>containerd 的默认配置文件为 <code>/etc/containerd/config.toml</code>，我们可以通过如下所示的命令生成一个默认的配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#mkdir -p /etc/containerd</span><br><span class="line">[root@containerd ~]#containerd config default &gt; /etc/containerd/config.toml</span><br></pre></td></tr></table></figure>
+
+
+
+<p>由于上面我们下载的 containerd 压缩包中包含一个 <code>etc/systemd/system/containerd.service</code> 的文件，这样我们就可以通过 systemd 来配置 containerd 作为守护进程运行了，内容如下所示：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#ll /etc/systemd/system/containerd.service</span><br><span class="line">-rw-r--r-- 1 1001 116 1270 Jul 30 01:12 /etc/systemd/system/containerd.service</span><br><span class="line">[root@containerd ~]#cat !$</span><br><span class="line">cat /etc/systemd/system/containerd.service</span><br><span class="line"># Copyright The containerd Authors.</span><br><span class="line">#</span><br><span class="line"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line"># you may not use this file except in compliance with the License.</span><br><span class="line"># You may obtain a copy of the License at</span><br><span class="line">#</span><br><span class="line">#     http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line">#</span><br><span class="line"># Unless required by applicable law or agreed to in writing, software</span><br><span class="line"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"># See the License for the specific language governing permissions and</span><br><span class="line"># limitations under the License.</span><br><span class="line"></span><br><span class="line">[Unit]</span><br><span class="line">Description=containerd container runtime</span><br><span class="line">Documentation=https://containerd.io</span><br><span class="line">After=network.target local-fs.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStartPre=-/sbin/modprobe overlay</span><br><span class="line">ExecStart=/usr/local/bin/containerd</span><br><span class="line"></span><br><span class="line">Type=notify</span><br><span class="line">Delegate=yes</span><br><span class="line">KillMode=process</span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=5</span><br><span class="line"># Having non-zero Limit*s causes performance problems due to accounting overhead</span><br><span class="line"># in the kernel. We recommend using cgroups to do container-local accounting.</span><br><span class="line">LimitNPROC=infinity</span><br><span class="line">LimitCORE=infinity</span><br><span class="line">LimitNOFILE=infinity</span><br><span class="line"># Comment TasksMax if your systemd version does not supports it.</span><br><span class="line"># Only systemd 226 and above support this version.</span><br><span class="line">TasksMax=infinity</span><br><span class="line">OOMScoreAdjust=-999</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">[root@containerd ~]#</span><br></pre></td></tr></table></figure>
+
+<p>这里有两个重要的参数：</p>
+<ul>
+<li><code>Delegate</code>: 这个选项允许 containerd 以及运行时自己管理自己创建容器的 cgroups。如果不设置这个选项，systemd 就会将进程移到自己的 cgroups 中，从而导致 containerd 无法正确获取容器的资源使用情况。</li>
+<li><code>KillMode</code>: 这个选项用来处理 containerd 进程被杀死的方式。<strong>默认情况下，systemd 会在进程的 cgroup 中查找并杀死 containerd 的所有子进程。</strong>KillMode 字段可以设置的值如下。<ul>
+<li><code>control-group</code>（默认值）：当前控制组里面的所有子进程，都会被杀掉</li>
+<li><code>process</code>：只杀主进程</li>
+<li><code>mixed</code>：主进程将收到 SIGTERM 信号，子进程收到 SIGKILL 信号</li>
+<li><code>none</code>：没有进程会被杀掉，只是执行服务的 stop 命令</li>
+</ul>
+</li>
+</ul>
+<p><strong>我们需要将 KillMode 的值设置为 process，这样可以确保升级或重启 containerd 时不杀死现有的容器</strong>。</p>
+<blockquote>
+<p>注意：这里自己对这个KillMode参数的说明比较模糊，后期注意下。</p>
+</blockquote>
+<h2 id="4、启动containerd服务"><a href="#4、启动containerd服务" class="headerlink" title="4、启动containerd服务"></a>4、启动containerd服务</h2><p>现在我们就可以启动 containerd 了，直接执行下面的命令即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#systemctl enable containerd --now</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、验证"><a href="#5、验证" class="headerlink" title="5、验证"></a>5、验证</h2><p>启动完成后就可以使用 containerd 的本地 CLI 工具 <code>ctr</code> 了，比如查看版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ctr version</span></span><br><span class="line"><span class="string">&#x27;Client:</span></span><br><span class="line"><span class="string">  Version:  v1.5.5</span></span><br><span class="line"><span class="string">  Revision: 72cec4be58a9eb6b2910f5d10f1c01ca47d231c0</span></span><br><span class="line"><span class="string">  Go version: go1.16.6</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">Server:</span></span><br><span class="line"><span class="string">  Version:  v1.5.5</span></span><br><span class="line"><span class="string">  Revision: 72cec4be58a9eb6b2910f5d10f1c01ca47d231c0</span></span><br><span class="line"><span class="string">  UUID: 7c7b7b9c-b32c-432a-bb28-502aa1962a0d</span></span><br><span class="line"><span class="string">[root@containerd ~]#&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="6、配置镜像加速器地址"><a href="#6、配置镜像加速器地址" class="headerlink" title="6、配置镜像加速器地址"></a>6、配置镜像加速器地址</h2><p>我们首先来查看下上面默认生成的配置文件 <code>/etc/containerd/config.toml</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#cat /etc/containerd/config.toml</span><br><span class="line">disabled_plugins = []</span><br><span class="line">imports = []</span><br><span class="line">oom_score = 0</span><br><span class="line">plugin_dir = &quot;&quot;</span><br><span class="line">required_plugins = []</span><br><span class="line">root = &quot;/var/lib/containerd&quot;</span><br><span class="line">state = &quot;/run/containerd&quot;</span><br><span class="line">version = 2</span><br><span class="line"></span><br><span class="line">[cgroup]</span><br><span class="line">  path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">[debug]</span><br><span class="line">  address = &quot;&quot;</span><br><span class="line">  format = &quot;&quot;</span><br><span class="line">  gid = 0</span><br><span class="line">  level = &quot;&quot;</span><br><span class="line">  uid = 0</span><br><span class="line"></span><br><span class="line">[grpc]</span><br><span class="line">  address = &quot;/run/containerd/containerd.sock&quot;</span><br><span class="line">  gid = 0</span><br><span class="line">  max_recv_message_size = 16777216</span><br><span class="line">  max_send_message_size = 16777216</span><br><span class="line">  tcp_address = &quot;&quot;</span><br><span class="line">  tcp_tls_cert = &quot;&quot;</span><br><span class="line">  tcp_tls_key = &quot;&quot;</span><br><span class="line">  uid = 0</span><br><span class="line"></span><br><span class="line">[metrics]</span><br><span class="line">  address = &quot;&quot;</span><br><span class="line">  grpc_histogram = false</span><br><span class="line"></span><br><span class="line">[plugins]</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.gc.v1.scheduler&quot;]</span><br><span class="line">    deletion_threshold = 0</span><br><span class="line">    mutation_threshold = 100</span><br><span class="line">    pause_threshold = 0.02</span><br><span class="line">    schedule_delay = &quot;0s&quot;</span><br><span class="line">    startup_delay = &quot;100ms&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.grpc.v1.cri&quot;]</span><br><span class="line">    disable_apparmor = false</span><br><span class="line">    disable_cgroup = false</span><br><span class="line">    disable_hugetlb_controller = true</span><br><span class="line">    disable_proc_mount = false</span><br><span class="line">    disable_tcp_service = true</span><br><span class="line">    enable_selinux = false</span><br><span class="line">    enable_tls_streaming = false</span><br><span class="line">    ignore_image_defined_volumes = false</span><br><span class="line">    max_concurrent_downloads = 3</span><br><span class="line">    max_container_log_line_size = 16384</span><br><span class="line">    netns_mounts_under_state_dir = false</span><br><span class="line">    restrict_oom_score_adj = false</span><br><span class="line">    sandbox_image = &quot;k8s.gcr.io/pause:3.5&quot;</span><br><span class="line">    selinux_category_range = 1024</span><br><span class="line">    stats_collect_period = 10</span><br><span class="line">    stream_idle_timeout = &quot;4h0m0s&quot;</span><br><span class="line">    stream_server_address = &quot;127.0.0.1&quot;</span><br><span class="line">    stream_server_port = &quot;0&quot;</span><br><span class="line">    systemd_cgroup = false</span><br><span class="line">    tolerate_missing_hugetlb_controller = true</span><br><span class="line">    unset_seccomp_profile = &quot;&quot;</span><br><span class="line"></span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.cni]</span><br><span class="line">      bin_dir = &quot;/opt/cni/bin&quot;</span><br><span class="line">      conf_dir = &quot;/etc/cni/net.d&quot;</span><br><span class="line">      conf_template = &quot;&quot;</span><br><span class="line">      max_conf_num = 1</span><br><span class="line"></span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd]</span><br><span class="line">      default_runtime_name = &quot;runc&quot;</span><br><span class="line">      disable_snapshot_annotations = true</span><br><span class="line">      discard_unpacked_layers = false</span><br><span class="line">      no_pivot = false</span><br><span class="line">      snapshotter = &quot;overlayfs&quot;</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.default_runtime]</span><br><span class="line">        base_runtime_spec = &quot;&quot;</span><br><span class="line">        container_annotations = []</span><br><span class="line">        pod_annotations = []</span><br><span class="line">        privileged_without_host_devices = false</span><br><span class="line">        runtime_engine = &quot;&quot;</span><br><span class="line">        runtime_root = &quot;&quot;</span><br><span class="line">        runtime_type = &quot;&quot;</span><br><span class="line"></span><br><span class="line">        [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.default_runtime.options]</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.runtimes]</span><br><span class="line"></span><br><span class="line">        [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.runtimes.runc]</span><br><span class="line">          base_runtime_spec = &quot;&quot;</span><br><span class="line">          container_annotations = []</span><br><span class="line">          pod_annotations = []</span><br><span class="line">          privileged_without_host_devices = false</span><br><span class="line">          runtime_engine = &quot;&quot;</span><br><span class="line">          runtime_root = &quot;&quot;</span><br><span class="line">          runtime_type = &quot;io.containerd.runc.v2&quot;</span><br><span class="line"></span><br><span class="line">          [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.runtimes.runc.options]</span><br><span class="line">            BinaryName = &quot;&quot;</span><br><span class="line">            CriuImagePath = &quot;&quot;</span><br><span class="line">            CriuPath = &quot;&quot;</span><br><span class="line">            CriuWorkPath = &quot;&quot;</span><br><span class="line">            IoGid = 0</span><br><span class="line">            IoUid = 0</span><br><span class="line">            NoNewKeyring = false</span><br><span class="line">            NoPivotRoot = false</span><br><span class="line">            Root = &quot;&quot;</span><br><span class="line">            ShimCgroup = &quot;&quot;</span><br><span class="line">            SystemdCgroup = false</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.untrusted_workload_runtime]</span><br><span class="line">        base_runtime_spec = &quot;&quot;</span><br><span class="line">        container_annotations = []</span><br><span class="line">        pod_annotations = []</span><br><span class="line">        privileged_without_host_devices = false</span><br><span class="line">        runtime_engine = &quot;&quot;</span><br><span class="line">        runtime_root = &quot;&quot;</span><br><span class="line">        runtime_type = &quot;&quot;</span><br><span class="line"></span><br><span class="line">        [plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.untrusted_workload_runtime.options]</span><br><span class="line"></span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.image_decryption]</span><br><span class="line">      key_model = &quot;node&quot;</span><br><span class="line"></span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry]</span><br><span class="line">      config_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.auths]</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.configs]</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.headers]</span><br><span class="line"></span><br><span class="line">      [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors]</span><br><span class="line"></span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.x509_key_pair_streaming]</span><br><span class="line">      tls_cert_file = &quot;&quot;</span><br><span class="line">      tls_key_file = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.internal.v1.opt&quot;]</span><br><span class="line">    path = &quot;/opt/containerd&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.internal.v1.restart&quot;]</span><br><span class="line">    interval = &quot;10s&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.metadata.v1.bolt&quot;]</span><br><span class="line">    content_sharing_policy = &quot;shared&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.monitor.v1.cgroups&quot;]</span><br><span class="line">    no_prometheus = false</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.runtime.v1.linux&quot;]</span><br><span class="line">    no_shim = false</span><br><span class="line">    runtime = &quot;runc&quot;</span><br><span class="line">    runtime_root = &quot;&quot;</span><br><span class="line">    shim = &quot;containerd-shim&quot;</span><br><span class="line">    shim_debug = false</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.runtime.v2.task&quot;]</span><br><span class="line">    platforms = [&quot;linux/amd64&quot;]</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.service.v1.diff-service&quot;]</span><br><span class="line">    default = [&quot;walking&quot;]</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.snapshotter.v1.aufs&quot;]</span><br><span class="line">    root_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.snapshotter.v1.btrfs&quot;]</span><br><span class="line">    root_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.snapshotter.v1.devmapper&quot;]</span><br><span class="line">    async_remove = false</span><br><span class="line">    base_image_size = &quot;&quot;</span><br><span class="line">    pool_name = &quot;&quot;</span><br><span class="line">    root_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.snapshotter.v1.native&quot;]</span><br><span class="line">    root_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.snapshotter.v1.overlayfs&quot;]</span><br><span class="line">    root_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">  [plugins.&quot;io.containerd.snapshotter.v1.zfs&quot;]</span><br><span class="line">    root_path = &quot;&quot;</span><br><span class="line"></span><br><span class="line">[proxy_plugins]</span><br><span class="line"></span><br><span class="line">[stream_processors]</span><br><span class="line"></span><br><span class="line">  [stream_processors.&quot;io.containerd.ocicrypt.decoder.v1.tar&quot;]</span><br><span class="line">    accepts = [&quot;application/vnd.oci.image.layer.v1.tar+encrypted&quot;]</span><br><span class="line">    args = [&quot;--decryption-keys-path&quot;, &quot;/etc/containerd/ocicrypt/keys&quot;]</span><br><span class="line">    env = [&quot;OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf&quot;]</span><br><span class="line">    path = &quot;ctd-decoder&quot;</span><br><span class="line">    returns = &quot;application/vnd.oci.image.layer.v1.tar&quot;</span><br><span class="line"></span><br><span class="line">  [stream_processors.&quot;io.containerd.ocicrypt.decoder.v1.tar.gzip&quot;]</span><br><span class="line">    accepts = [&quot;application/vnd.oci.image.layer.v1.tar+gzip+encrypted&quot;]</span><br><span class="line">    args = [&quot;--decryption-keys-path&quot;, &quot;/etc/containerd/ocicrypt/keys&quot;]</span><br><span class="line">    env = [&quot;OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf&quot;]</span><br><span class="line">    path = &quot;ctd-decoder&quot;</span><br><span class="line">    returns = &quot;application/vnd.oci.image.layer.v1.tar+gzip&quot;</span><br><span class="line"></span><br><span class="line">[timeouts]</span><br><span class="line">  &quot;io.containerd.timeout.shim.cleanup&quot; = &quot;5s&quot;</span><br><span class="line">  &quot;io.containerd.timeout.shim.load&quot; = &quot;5s&quot;</span><br><span class="line">  &quot;io.containerd.timeout.shim.shutdown&quot; = &quot;3s&quot;</span><br><span class="line">  &quot;io.containerd.timeout.task.state&quot; = &quot;2s&quot;</span><br><span class="line"></span><br><span class="line">[ttrpc]</span><br><span class="line">  address = &quot;&quot;</span><br><span class="line">  gid = 0</span><br><span class="line">  uid = 0</span><br><span class="line">[root@containerd ~]#</span><br></pre></td></tr></table></figure>
+
+
+
+<p>这个配置文件比较复杂，我们可以将重点放在其中的 <code>plugins</code> 配置上面，仔细观察我们可以发现每一个顶级配置块的命名都是 <code>plugins.&quot;io.containerd.xxx.vx.xxx&quot;</code> 这种形式，每一个顶级配置块都表示一个插件，其中 <code>io.containerd.xxx.vx</code> 表示插件的类型，<code>vx</code> 后面的 <code>xxx</code> 表示插件的 ID，我们可以通过 <code>ctr</code> 查看插件列表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#ctr plugin ls</span><br><span class="line">TYPE                            ID                       PLATFORMS      STATUS</span><br><span class="line">io.containerd.content.v1        content                  -              ok</span><br><span class="line">io.containerd.snapshotter.v1    aufs                     linux/amd64    skip</span><br><span class="line">io.containerd.snapshotter.v1    btrfs                    linux/amd64    skip</span><br><span class="line">io.containerd.snapshotter.v1    devmapper                linux/amd64    error</span><br><span class="line">io.containerd.snapshotter.v1    native                   linux/amd64    ok</span><br><span class="line">io.containerd.snapshotter.v1    overlayfs                linux/amd64    ok</span><br><span class="line">io.containerd.snapshotter.v1    zfs                      linux/amd64    skip</span><br><span class="line">io.containerd.metadata.v1       bolt                     -              ok</span><br><span class="line">io.containerd.differ.v1         walking                  linux/amd64    ok</span><br><span class="line">io.containerd.gc.v1             scheduler                -              ok</span><br><span class="line">io.containerd.service.v1        introspection-service    -              ok</span><br><span class="line">io.containerd.service.v1        containers-service       -              ok</span><br><span class="line">io.containerd.service.v1        content-service          -              ok</span><br><span class="line">io.containerd.service.v1        diff-service             -              ok</span><br><span class="line">io.containerd.service.v1        images-service           -              ok</span><br><span class="line">io.containerd.service.v1        leases-service           -              ok</span><br><span class="line">io.containerd.service.v1        namespaces-service       -              ok</span><br><span class="line">io.containerd.service.v1        snapshots-service        -              ok</span><br><span class="line">io.containerd.runtime.v1        linux                    linux/amd64    ok</span><br><span class="line">io.containerd.runtime.v2        task                     linux/amd64    ok</span><br><span class="line">io.containerd.monitor.v1        cgroups                  linux/amd64    ok</span><br><span class="line">io.containerd.service.v1        tasks-service            -              ok</span><br><span class="line">io.containerd.internal.v1       restart                  -              ok</span><br><span class="line">io.containerd.grpc.v1           containers               -              ok</span><br><span class="line">io.containerd.grpc.v1           content                  -              ok</span><br><span class="line">io.containerd.grpc.v1           diff                     -              ok</span><br><span class="line">io.containerd.grpc.v1           events                   -              ok</span><br><span class="line">io.containerd.grpc.v1           healthcheck              -              ok</span><br><span class="line">io.containerd.grpc.v1           images                   -              ok</span><br><span class="line">io.containerd.grpc.v1           leases                   -              ok</span><br><span class="line">io.containerd.grpc.v1           namespaces               -              ok</span><br><span class="line">io.containerd.internal.v1       opt                      -              ok</span><br><span class="line">io.containerd.grpc.v1           snapshots                -              ok</span><br><span class="line">io.containerd.grpc.v1           tasks                    -              ok</span><br><span class="line">io.containerd.grpc.v1           version                  -              ok</span><br><span class="line">io.containerd.grpc.v1           cri                      linux/amd64    ok</span><br><span class="line">[root@containerd ~]#</span><br></pre></td></tr></table></figure>
+
+
+
+<p>顶级配置块下面的子配置块表示该插件的各种配置，比如 cri 插件下面就分为 containerd、cni 和 registry 的配置，而 containerd 下面又可以配置各种 runtime，还可以配置默认的 runtime。比如现在我们要为镜像配置一个加速器，那么就需要在 cri 配置块下面的 <code>registry</code> 配置块下面进行配置 <code>registry.mirrors</code>：</p>
+<blockquote>
+<p><strong><u>(注意缩进)</u></strong></p>
+</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#vim /etc/containerd/config.toml</span><br><span class="line">[plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry]</span><br><span class="line">  [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors]</span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors.&quot;docker.io&quot;]</span><br><span class="line">      endpoint = [&quot;https://kvuwuws2.mirror.aliyuncs.com&quot;]</span><br><span class="line">    [plugins.&quot;io.containerd.grpc.v1.cri&quot;.registry.mirrors.&quot;k8s.gcr.io&quot;]</span><br><span class="line">      endpoint = [&quot;https://registry.aliyuncs.com/k8sxio&quot;]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>registry.mirrors.&quot;xxx&quot;</code>: 表示需要配置 mirror 的镜像仓库，例如 <code>registry.mirrors.&quot;docker.io&quot;</code> 表示配置 docker.io 的 mirror。</li>
+<li><code>endpoint</code>: 表示提供 mirror 的镜像加速服务，比如我们可以注册一个阿里云的镜像服务来作为 docker.io 的 mirror。</li>
+</ul>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211023221755078.png" alt="image-20211023221755078"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#配置完成后记得重启下containerd</span></span><br><span class="line">[root@containerd ~]<span class="comment">#systemctl restart containerd</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>另外在默认配置中还有两个关于存储的配置路径：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root = &quot;/var/lib/containerd&quot;</span><br><span class="line">state = &quot;/run/containerd&quot;</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>root</code> 是用来保存持久化数据，<strong>包括 Snapshots, Content, Metadata 以及各种插件的数据</strong>，每一个插件都有自己单独的目录，Containerd 本身不存储任何数据，它的所有功能都来自于已加载的插件。</p>
+<p>而另外的 <code>state</code> 是用来保存运行时的临时数据的，包括 sockets、pid、挂载点、运行时状态以及不需要持久化的插件数据。</p>
+<p>到此，关于containerd安装结束！</p>
+<h2 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h2><ul>
+<li>注意：libseccomp-devel.x86_64和libseccomp.x86_64 2个软件包有什么区别？</li>
+</ul>
+<blockquote>
+<p>01.老师亲自实战安装的是libseccomp-devel.x86_64软件，但文档上提供的是libseccomp.x86_64软件，2者实验都是没问题的；<br>02.自己最后建议按文档上的来吧，自己也是按文档上的来吧，也就是说使用yum install -y libseccomp.x86_64即可！</p>
+<p>[root@containerd ~]#yum search libseccomp<br>Loaded plugins: fastestmirror<br>Loading mirror speeds from cached hostfile</p>
+<ul>
+<li>base: mirrors.aliyun.com</li>
+<li>extras: mirrors.aliyun.com</li>
+<li>updates: mirrors.aliyun.com<br>======================================================================== N/S matched: libseccomp ========================================================================<br>libseccomp-devel.i686 : Development files used to build applications with libseccomp support<br>libseccomp-devel.x86_64 : Development files used to build applications with libseccomp support<br>libseccomp.i686 : Enhanced seccomp library<br>libseccomp.x86_64 : Enhanced seccomp library</li>
+</ul>
+<p>  Name and summary matches only, use “search all” for everything.<br>[root@containerd ~]#</p>
+</blockquote>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211002091450217.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211002092057988.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211002141739664.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211002092344616.png" alt="image-20211002092344616"></p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于centos7上containerd的安装实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="%E5%AE%9E%E6%88%98-centos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023_md_pictures/image-20211024095950724.png" alt="image-20211024095950724"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2021/10/24/55%20%E5%AE%9E%E6%88%98%EF%BC%9Acentos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023/">https://www.onlyonexl.cn/2021/10/24/55%20%E5%AE%9E%E6%88%98%EF%BC%9Acentos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/containerd/">
+                                    <span class="chip bg-color">containerd</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/10/24/55%20%E5%AE%9E%E6%88%98%EF%BC%9Acentos7%E4%B8%8Acontainerd%E7%9A%84%E5%AE%89%E8%A3%85-20211023/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="实战：centos7上containerd的安装-20211023">
+                        
+                        <span class="card-title">实战：centos7上containerd的安装-20211023</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/containerd/" class="post-category">
+                                    containerd
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/containerd/">
+                        <span class="chip bg-color">containerd</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/23/53%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%95%B0%E4%B8%80%E6%95%B0git%E4%BB%93%E5%BA%93%E4%B8%ADtree%E7%9A%84%E4%B8%AA%E6%95%B0-20211023/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="实战：数一数git仓库中tree的个数-20211023">
+                        
+                        <span class="card-title">实战：数一数git仓库中tree的个数-20211023</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
