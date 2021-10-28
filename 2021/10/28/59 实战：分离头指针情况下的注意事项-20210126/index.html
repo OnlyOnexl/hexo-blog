@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="理论：Kubernetes简介-20211026, Love">
+    <meta name="keywords" content="实战：分离头指针情况下的注意事项-20210126, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>理论：Kubernetes简介-20211026 | Love</title>
+    <title>实战：分离头指针情况下的注意事项-20210126 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/1.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">理论：Kubernetes简介-20211026</h1>
+                    <h1 class="description center-align post-title">实战：分离头指针情况下的注意事项-20210126</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/k8s/">
-                                <span class="chip bg-color">k8s</span>
+                            <a href="/tags/git/">
+                                <span class="chip bg-color">git</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/k8s/" class="post-category">
-                                k8s
+                            <a href="/categories/git/" class="post-category">
+                                git
                             </a>
                         
                     </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-10-26
+                    2021-10-28
                 </div>
                 
 
@@ -477,113 +477,60 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="理论：Kubernetes简介-20211026"><a href="#理论：Kubernetes简介-20211026" class="headerlink" title="理论：Kubernetes简介-20211026"></a>理论：Kubernetes简介-20211026</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211004115405949.png" alt="image-20211004115405949"></p>
+                <h2 id="实战：分离头指针情况下的注意事项-20210128"><a href="#实战：分离头指针情况下的注意事项-20210128" class="headerlink" title="实战：分离头指针情况下的注意事项-20210128"></a>实战：分离头指针情况下的注意事项-20210128</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026150228734.png" alt="image-20211026150228734"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="1、k8s简介"><a href="#1、k8s简介" class="headerlink" title="1、k8s简介"></a>1、k8s简介</h2><p><a target="_blank" rel="noopener" href="https://kubernetes.io/">Kubernetes（简称 K8S）</a> 的出现是容器化技术发展的必然结果，<strong>容器化</strong>是<strong>应用程序级别的虚拟化</strong>，运行单个内核上有多个独立的用户空间实例，这些实例就是容器；<strong>容器</strong>提供了将<strong>应用程序的代码、运行时、系统工具、系统库和配置</strong>打包到一个实例中的标准方法，而且容器是共享一个内核的；由于容器技术的兴起，导致大量的<strong>容器应用</strong>出现，所以就出现了一些用来支持应用程序容器化部署和组织的<strong>容器编排</strong>技术，一些流行的开源容器编排工具有 Docker Swarm、Kubernetes 等，但是在发展过程中 Kubernetes 现在已经成为了容器编排领域事实上的一个标准了。</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="测试实验"><a href="#测试实验" class="headerlink" title="测试实验"></a>测试实验</h2><p>首先，我们来模拟下”分离头指针”状态的情况。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~/Desktop</span><br><span class="line">$ <span class="built_in">cd</span> /d/git_repository/git_learning/</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看当前的分支是master</span></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ git branch -av</span><br><span class="line">* master f2b8f7e Move readme.md readme</span><br><span class="line">  temp   30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#git log查看已经提交的commit信息</span></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit f2b8f7e580b2bda12cbb8560e1bb244ed493ba7f (HEAD -&gt; master)</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-07 16:24:04 +0800</span><br><span class="line"></span><br><span class="line">    Move readme.md readme</span><br><span class="line"></span><br><span class="line">commit f217538eba49b694e5bcdb32810b6b56c73ad693</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 08:07:10 +0800</span><br><span class="line"></span><br><span class="line">    Add refering project</span><br><span class="line"></span><br><span class="line">commit f99906da3e1494de3a7a48b8d75cbdd78363f425 (tag: js01)</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 07:36:32 +0800</span><br><span class="line"></span><br><span class="line">    Add js</span><br><span class="line"></span><br><span class="line">commit c3d346c381b8ae684b2f09af9b3dd87c50628ed5</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 07:28:29 +0800</span><br><span class="line"></span><br><span class="line">    Add style.css</span><br><span class="line"></span><br><span class="line">commit 7f633c8fb14972aa1fb64665d954ccad8581b3eb</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 07:12:54 +0800</span><br><span class="line"></span><br><span class="line">    Add index + git logo</span><br><span class="line"></span><br><span class="line">commit 6d72184e894e61aab57ea5adcb861076cadb8cee</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-04 08:13:30 +0800</span><br><span class="line"></span><br><span class="line">    Add readme.md</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>本来打算用checkout命令来切换分支时，结果后面直接跟上了commit id，结果一下子报了好多log信息，这可怎么怎么办？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ git checkout c3d346c381b8ae68</span><br><span class="line">Note: checking out <span class="string">&#x27;c3d346c381b8ae68&#x27;</span>.</span><br><span class="line"></span><br><span class="line">You are <span class="keyword">in</span> <span class="string">&#x27;detached HEAD&#x27;</span> state. You can look around, make experimental</span><br><span class="line">changes and commit them, and you can discard any commits you make <span class="keyword">in</span> this</span><br><span class="line">state without impacting any branches by performing another checkout.</span><br><span class="line"></span><br><span class="line">If you want to create a new branch to retain commits you create, you may</span><br><span class="line"><span class="keyword">do</span> so (now or later) by using -b with the checkout <span class="built_in">command</span> again. Example:</span><br><span class="line"></span><br><span class="line">  git checkout -b &lt;new-branch-name&gt;</span><br><span class="line"></span><br><span class="line">HEAD is now at c3d346c Add style.css</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((c3d346c...))  </span><br></pre></td></tr></table></figure>
+
+
+
+<p>“分离头指针”通过官方解释可以看出，其实一把双刃剑。</p>
+<p><strong>优点</strong>：在”分离头指针”状态下所做的任何commit信息，只要通过git checkout切换到其他分支下，那么之前所做的任何信息均不会被保存在git里面，而是会当做垃圾清理掉，不用我们干预，很方便的，可用于临时测试。</p>
+<p><strong>缺点</strong>：如果我们处于”分离头指针”状态,当时做了一些测试并进行了commit，但此时需要切换到其他分支做一些修复bug操作，但切换分支后，原来在”分离头指针”状态下所做的任何信息均会被丢弃，这样自己再想利用之前的数据就再也找不回来了，除非在切换后其他分支后，通过git弹出的log信息马上新创建一个分支，这样，处于”分离头指针”状态下的数据又可以找回来了。</p>
+<p>接下来做一下测试实验：</p>
+<p>编辑styles/style.css文件信息：(将这里的颜色修改为green)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((c3d346c...))</span><br><span class="line">$ ls -al</span><br><span class="line">total 17</span><br><span class="line">drwxr-xr-x 1 hg 197121    0 10月 25 06:33 ./</span><br><span class="line">drwxr-xr-x 1 hg 197121    0 10月 23 09:07 ../</span><br><span class="line">drwxr-xr-x 1 hg 197121    0 10月 25 06:33 .git/</span><br><span class="line">drwxr-xr-x 1 hg 197121    0 11月 25  2018 images/</span><br><span class="line">-rw-r--r-- 1 hg 197121 1352 10月 25 06:33 index.html</span><br><span class="line">-rw-r--r-- 1 hg 197121   17 10月 25 06:33 readme.md</span><br><span class="line">drwxr-xr-x 1 hg 197121    0 10月 25 06:33 styles/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((c3d346c...))</span><br><span class="line">$ vim styles/style.css</span><br><span class="line">  1 body&#123;</span><br><span class="line">  2   background-color: green; <span class="comment">#将这里的颜色修改为green</span></span><br><span class="line">  3   font-family: <span class="string">&#x27;Monaco&#x27;</span>, sans-serif;</span><br><span class="line">  4   color: white;</span><br><span class="line">  5 &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提交到仓库:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((c3d346c...))</span><br><span class="line">$ gs</span><br><span class="line">HEAD detached at c3d346c</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   styles/style.css</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((c3d346c...))</span><br><span class="line">$ git commit -am<span class="string">&quot;Modify color to green&quot;</span></span><br><span class="line">[detached HEAD 56a49b4] Modify color to green</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((56a49b4...))</span><br><span class="line">$ gs</span><br><span class="line">HEAD detached from c3d346c</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((56a49b4...))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>通过git log发现HEAD并没有指向任何的分支信息：(<strong>正常情况情况下这里会指向分支名的，这就是所谓的”分离头指针”</strong>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((56a49b4...))</span><br><span class="line">$ git <span class="built_in">log</span></span><br><span class="line">commit 56a49b45b17f2490933a59ca04c11e01b7a377ba (HEAD)</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-25 06:56:08 +0800</span><br><span class="line"></span><br><span class="line">    Modify color to green</span><br><span class="line"></span><br><span class="line">commit c3d346c381b8ae684b2f09af9b3dd87c50628ed5</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 07:28:29 +0800</span><br><span class="line"></span><br><span class="line">    Add style.css</span><br><span class="line"></span><br><span class="line">commit 7f633c8fb14972aa1fb64665d954ccad8581b3eb</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 07:12:54 +0800</span><br><span class="line"></span><br><span class="line">    Add index + git logo</span><br><span class="line"></span><br><span class="line">commit 6d72184e894e61aab57ea5adcb861076cadb8cee</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-04 08:13:30 +0800</span><br><span class="line"></span><br><span class="line">    Add readme.md</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((56a49b4...))</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+
+
+
+<p>此时，我们需要修复下master分支下的一个bug，需要立马切换到master分支：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((56a49b4...))</span><br><span class="line">$ git branch -av</span><br><span class="line">* (HEAD detached from c3d346c) 56a49b4 Modify color to green</span><br><span class="line">  master                       f2b8f7e Move readme.md readme</span><br><span class="line">  temp                         30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning ((56a49b4...))</span><br><span class="line">$ git checkout master</span><br><span class="line">Warning: you are leaving 1 commit behind, not connected to</span><br><span class="line">any of your branches:</span><br><span class="line"></span><br><span class="line">  56a49b4 Modify color to green</span><br><span class="line"></span><br><span class="line">If you want to keep it by creating a new branch, this may be a good time</span><br><span class="line">to <span class="keyword">do</span> so with:</span><br><span class="line"></span><br><span class="line"> git branch &lt;new-branch-name&gt; 56a49b4</span><br><span class="line"></span><br><span class="line">Switched to branch <span class="string">&#x27;master&#x27;</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ git branch -av</span><br><span class="line">* master f2b8f7e Move readme.md readme</span><br><span class="line">  temp   30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在切换分支的时候，弹出一些log信息提示我们刚从一个分离头指针切换到了master分支，如果不对其绑定一个分支，那么在其状态下所做的任何修改均会被丢弃的。</p>
+<p>我们可以通过gitk图形化命令验证是否存在刚才在”分离头指针”下提交的那个分支信息存在。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211025070719939.png" alt="image-20211025070719939"></p>
+<p>经验证是没存在的。</p>
+<p>此时，我们根据之前弹出的log信息马上创建一个分支，再通过gitk查看现象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ git branch fix_css 56a49b4</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ git branch -av</span><br><span class="line">  fix_css 56a49b4 Modify color to green</span><br><span class="line">* master  f2b8f7e Move readme.md readme</span><br><span class="line">  temp    30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/git_repository/git_learning (master)</span><br><span class="line">$ gitk</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211025071001313.png" alt="image-20211025071001313"></p>
+<p>可以发现，绑定分支后，处于”分离头指针”下的cmommit信息已经被找回来了。</p>
+<p>到此，实验结束！</p>
 <blockquote>
-<p>Nanmespace+Cgroup+rootfs=&gt;容器</p>
+<p>总结：</p>
+<p>git checkout commitId：会出现分离头指针的情况，这种情况下比较危险，因为这个时候你提交的代码没有和分支对应起来，当切换到其他分支的时候(比如master分支)，容易丢失代码；</p>
+<p>但是分离头指针也有它的应用场景，就是在自己做尝试或者测试的时候可以分离头指针，当尝试完毕没有用的时候可以随时丢弃，但是如果觉得尝试有用，那么可以新建一个分支，使用 git branch &lt;新分支的名称&gt; commitId</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://kubernetes.io/">Kubernetes</a> 是 Google 团队发起的一个开源项目，它的目标是管理跨多个主机的容器，<strong>用于自动部署、扩展和管理容器化</strong>的应用程序，主要实现语言为 Go 语言，他的理论基础来源与 Google 内部的 Borg 项目，所以 Kubernetes 项目的理论基础就比其他开源项目要“先进”很多，因为 <strong>Borg 系统一直依赖就被称为 Google 公司内部最强大的“私密武器”</strong>。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026185329048.png" alt="image-20211026185329048"></p>
-<h2 id="2、k8s架构"><a href="#2、k8s架构" class="headerlink" title="2、k8s架构"></a>2、k8s架构</h2><p>Kubernetes 项目依托着 Borg 项目的理论优势，确定了一个如下图所示的全局架构图：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026185346381.png" alt="image-20211026185346381"></p>
-<p>从上面我们可以看出 Kubernetes 由 Master 和 Node 两种节点组成，这两种角色分别对应着控制节点和工作节点（可以理解为老板和员工）。</p>
-<p>其中 Master 节点由<strong>三个独立的组件</strong>组成，它们分别是<strong>负责整个集群通信的 API 服务的 <code>kube-apiserver</code><strong>、</strong>负责容器调度的 <code>kube-scheduler</code></strong> 以及<strong>负责维护集群状态的 <code>kube-controller-manager</code></strong> 组件。<strong>整个集群的数据都是通过 kube-apiserver 保存到 etcd 数据库中的，而其他所有组件的通信也都是通过 kube-apiserver 和 etcd 数据库进行通信的，都不会直接和 etcd 进行通信。</strong></p>
-<p>工作节点上最核心的组件就是 <code>kubelet</code>，当然还有底层的容器运行时，比如 Docker，其中 <strong>kubelet 就是主要来实现和底层的容器运行时进行通信的</strong>，这个通信的过程也被 Kubernetes 抽象成了一个 <code>CRI</code>（Container Runtime Interface）的远程调用接口，这个接口里面定义了容器运行时的所有标准操作，比如创建容器、删除容器等等。所以对于 Kubernetes 来说他根本不关心你部署的到底是什么容器运行时，只要你这个容器运行时可以实现 CRI 接口就可以被 Kubernetes 来管理。</p>
-<p><strong>kubelet 的另外一个重要功能就是调用网络插件（<code>CNI</code>）和存储插件（<code>CSI</code>）为容器配置网络和存储功能</strong>，同样的 kubelet 也是把这两个重要功能通过接口暴露给外部了，所以如果我们想要实现自己的网络插件，只需要使用 CNI 就可以很方便的对接到 Kubernetes 集群当中去。</p>
-<p>可能下面的架构图看上去更清晰一些：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026185356834.png" alt="image-20211026185356834"></p>
-<h2 id="3、k8s组件"><a href="#3、k8s组件" class="headerlink" title="3、k8s组件"></a>3、k8s组件</h2><p>上面我介绍了 Kubernetes 集群的整体架构，下面我们再来更加详细的了解下这些组件的功能。</p>
-<h3 id="hammer-kube-apiserver"><a href="#hammer-kube-apiserver" class="headerlink" title=":hammer:kube-apiserver"></a>:hammer:kube-apiserver</h3><p>API Server 提供了资源对象的唯一操作入口，其它所有组件都必须通过它提供的 API 来操作资源数据。<strong>只有 API Server 会与 etcd 进行通信，其它模块都必须通过 API Server 访问集群状态</strong>。API Server 作为 Kubernetes 系统的入口，<strong>封装了核心对象的增删改查操作</strong>。API Server 以 RESTFul 接口方式提供给外部客户端和内部组件调用，API Server 再对相关的资源数据（<code>全量查询 + 变化监听</code>）进行操作，以达到实时完成相关的业务功能。以 API Server 为 Kubernetes 入口的设计主要有以下好处：</p>
-<ul>
-<li>保证了集群状态访问的安全</li>
-<li><strong>API Server 隔离了集群状态访问和后端存储实现，这样 API Server 状态访问的方式不会因为后端存储技术 Etcd 的改变而改变，让后端存储方式选择更加灵活，方便了整个架构的扩展</strong>。 (<strong><u>我本人对这里不是很懂……</u></strong>)</li>
-</ul>
-<h3 id="hammer-kube-controller-manager"><a href="#hammer-kube-controller-manager" class="headerlink" title=":hammer:kube-controller-manager"></a>:hammer:kube-controller-manager</h3><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026191440693.png" alt="image-20211026191440693" style="zoom: 200%;" />
-
-<p><strong>Controller Manager 用于实现 Kubernetes 集群故障检测和恢复的自动化工作</strong>。<strong>主要负责执行各种控制器</strong>：</p>
-<ul>
-<li><strong>Replication Controller</strong>：主要是定期关联 <strong>Replication Controller (RC)</strong> 和 Pod，以保证集群中一个 RC (一种资源对象) 所关联的 Pod 副本数始终保持为与预设值一致。</li>
-<li><strong>Node Controller</strong>：<strong>Kubelet 在启动时会通过 API Server 注册自身的节点信息，并定时向 API Server 汇报状态信息。</strong>API Server 在接收到信息后将信息更新到 Etcd 中。Node Controller 通过 API Server 实时获取 Node 的相关信息，实现管理和监控集群中的各个 Node 节点的相关控制功能。</li>
-<li><strong>ResourceQuota Controller</strong>：资源配额管理控制器用于确保指定的资源对象在任何时候都不会超量占用系统上物理资源。</li>
-<li><strong>Namespace Controller</strong>：用户通过 API Server 可以创建新的 Namespace 并保存在 Etcd 中，Namespace Controller 定时通过 API Server 读取这些 Namespace 信息来操作 Namespace。<strong>比如：Namespace 被 API 标记为优雅删除，则将该 Namespace 状态设置为 Terminating 并保存到 Etcd 中。同时 Namespace Controller 删除该 Namespace 下的 ServiceAccount、Deployment、Pod 等资源对象。</strong></li>
-<li><strong>Service Account Controller</strong>：服务账号控制器主要在命名空间内管理 ServiceAccount，以保证名为 default 的 ServiceAccount 在每个命名空间中存在。</li>
-<li><strong>Token Controller</strong>：令牌控制器作为 Controller Manager 的一部分，主要用作：<strong>监听 serviceAccount 的创建和删除动作以及监听 secret 的添加、删除动作。</strong></li>
-<li><strong>Service Controller</strong>：服务控制器主要用作监听 Service 的变化。比如：创建的是一个 LoadBalancer 类型的 Service，Service Controller 则要确保外部的云平台上对该 Service 对应的 LoadBalancer 实例被创建、删除以及相应的路由转发表被更新。</li>
-<li><strong>Endpoint Controller</strong>：<strong>Endpoints 表示了一个 Service 对应的所有 Pod 副本的访问地址</strong>，而 Endpoints Controller 是负责生成和维护所有 Endpoints 对象的控制器。Endpoint Controller 负责监听 Service 和对应的 Pod 副本的变化。定期关联 Service 和 Pod (关联信息由 Endpoint 对象维护)，以保证 Service 到 Pod 的映射总是最新的。</li>
-</ul>
-<h3 id="hammer-kube-scheduler"><a href="#hammer-kube-scheduler" class="headerlink" title=":hammer:kube-scheduler"></a>:hammer:kube-scheduler</h3><p>Scheduler 是负责整个集群的资源调度的，主要的职责如下所示：</p>
-<ul>
-<li>主要用于收集和分析当前 Kubernetes 集群中所有 Node 节点的资源 (包括内存、CPU 等) 负载情况，然后依据资源占用情况分发新建的 Pod 到 Kubernetes 集群中可用的节点</li>
-<li><strong>实时监测 Kubernetes 集群中未分发和已分发的所有运行的 Pod</strong></li>
-<li>实时监测 Node 节点信息，由于会频繁查找 Node 节点，所以 <strong>Scheduler 同时会缓存一份最新的信息在本地</strong></li>
-<li><strong>在分发 Pod 到指定的 Node 节点后，会把 Pod 相关的 Binding 信息写回 API Server，以方便其它组件使用</strong></li>
-</ul>
-<h3 id="hammer-kubelet"><a href="#hammer-kubelet" class="headerlink" title=":hammer:kubelet"></a>:hammer:kubelet</h3><p>kubelet 是负责容器真正运行的核心组件，主要的职责如下所示：</p>
-<ul>
-<li>负责 Node 节点上 Pod 的创建、修改、监控、删除等全生命周期的管理</li>
-<li>定时上报本地 Node 的状态信息给 API Server</li>
-<li>kubelet 是 Master 和 Node 之间的桥梁，<strong>接收 API Server 分配给它的任务并执行</strong></li>
-<li>kubelet 通过 API Server 间接与 Etcd 集群交互来读取集群配置信息</li>
-<li>kubelet 在 Node 上做的主要工作具体如下：<ol>
-<li>设置容器的环境变量、给容器绑定 Volume、给容器绑定 Port、根据指定的 Pod 运行一个单一容器、给指定的 Pod 创建 Network 容器</li>
-<li>同步 Pod 的状态</li>
-<li>在容器中运行命令、杀死容器、删除 Pod 的所有容器</li>
-</ol>
-</li>
-</ul>
-<h3 id="hammer-kube-proxy"><a href="#hammer-kube-proxy" class="headerlink" title=":hammer:kube-proxy"></a>:hammer:kube-proxy</h3><p><strong>kube-proxy 是为了解决外部网络能够访问集群中容器提供的应用服务而设计的，Proxy 运行在每个Node 上。</strong></p>
-<p>每创建一个 Service，kube-proxy 就会从 API Server 获取 Services 和 Endpoints 的配置信息，然后根据其配置信息在 Node 上启动一个 Proxy 的进程并监听相应的服务端口。</p>
-<p>当接收到外部请求时，kube-proxy 会根据 Load Balancer 将请求分发到后端正确的容器处理。</p>
-<p><strong>kube-proxy 不但解决了同一宿主机相同服务端口冲突的问题，还提供了 Service 转发服务端口对外提供服务的能力。</strong></p>
-<p>kube-proxy 后端使用<code>随机、轮循</code>等负载均衡算法进行调度。</p>
-<h3 id="hammer-kubectl"><a href="#hammer-kubectl" class="headerlink" title=":hammer:kubectl"></a>:hammer:kubectl</h3><p>Kubectl 是 Kubernetes 的集群管理命令行客户端工具集。通过 Kubectl 命令对 API Server 进行操作，API Server 响应并返回对应的命令结果，从而达到对 Kubernetes 集群的管理。</p>
-<h2 id="4、k8s核心资源对象"><a href="#4、k8s核心资源对象" class="headerlink" title="4、k8s核心资源对象"></a>4、k8s核心资源对象</h2><p>上面我们都是在架构层面了解 Kubernetes，但是似乎没有发现关于容器的说明，Kubernetes 作为容器编排引擎，那么他是怎么去对容器进行编排的呢？在 Kubernetes 集群中抽象了很多集群内部的资源对象，我们可以通过这些资源对象去操作容器的编排工作。</p>
-<h3 id="hammer-Pod"><a href="#hammer-Pod" class="headerlink" title=":hammer:Pod"></a>:hammer:Pod</h3><p>Pod 是一组紧密关联的<code>容器集合</code>，<strong>它们共享 PID、IPC、Network 和 UTS namespace</strong>，是Kubernetes 调度的<code>基本单位</code>。<strong>Pod 的设计理念是支持多个容器在一个 Pod 中共享网络和文件系统，可以通过进程间通信和文件共享这种简单高效的方式组合完成服务</strong>。<strong>我们知道容器本质上就是进程，那么 Pod 实际上就是进程组了，只是这一组进程是作为一个整体来进行调度的。</strong></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026192903226.png" alt="image-20211026192903226"></p>
-<p>在 Kubernetes 中，<strong>所有资源对象都使用资源清单（yaml或json）来定义</strong>，比如我们可以定义一个简单的 nginx 服务，它包含一个镜像为 nginx 的容器：(nginx-pod.yaml)</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span> <span class="comment">#注意，这里的spec就相当于是一个清单，规范，细则。</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>定义了这样一个资源清单文件后，我们就可以利用上面我们提到的 Kubectl 工具将这个 Pod 创建到 Kubernetes 集群中：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f nginx-pod.yaml</span><br></pre></td></tr></table></figure>
-
-
-
-<p>Pod 在 Kubernetes 集群中被创建的基本流程如下所示：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026194052866.png" alt="image-20211026194052866"></p>
-<ul>
-<li>用户通过 REST API 创建一个 Pod</li>
-<li>apiserver 将其写入 etcd</li>
-<li>scheduluer 检测到未绑定 Node 的 Pod，开始调度并更新 Pod 的 Node 绑定</li>
-<li>kubelet 检测到有新的 Pod 调度过来，通过 container runtime 运行该 Pod</li>
-<li><strong>kubelet 通过 container runtime 取到 Pod 状态</strong>，并更新到 apiserver 中</li>
-</ul>
-<h3 id="hammer-Label"><a href="#hammer-Label" class="headerlink" title=":hammer:Label"></a>:hammer:Label</h3><p>Label 标签在 Kubernetes 资源对象中使用很多，也是非常重要的一个属性，Label 是识别 Kubernetes 对象的标签，以 <code>key/value</code> 的方式附加到对象上（<strong>key最长不能超过63字节，value 可以为空，也可以是不超过253字节的字符串</strong>）上面我们定义的 Nginx 的 Pod 就添加了一个 <code>app=nginx</code> 的 Label 标签。Label 不提供唯一性，并且实际上经常是很多对象（如Pods）都使用相同的 Label 来标志具体的应用。Label 定义好后其他对象可以使用 <code>Label Selector</code> 来选择一组相同 Label 的对象（比如 Service 用 Label 来选择一组 Pod）。Label Selector 支持以下几种方式：</p>
-<ul>
-<li>等式，如 <code>app=nginx</code> 和 <code>env!=production</code></li>
-<li>集合，如 <code>env in (production, qa)</code></li>
-<li>多个 Label（它们之间是<code>AND</code>关系），如<code>app=nginx,env=test</code></li>
-</ul>
-<h3 id="hammer-Namespace"><a href="#hammer-Namespace" class="headerlink" title=":hammer:Namespace"></a>:hammer:Namespace</h3><p>Namespace（命名空间）是对一组资源和对象的抽象集合，比如可以用来将系统内部的对象划分为不同的项目组或用户组。常见的 Pods、Services、Deployments 等都是属于某一个 Namespace 的（默认是default），比如上面我们的 Nginx Pod 没有指定 namespace，则默认就在 default 命名空间下面，<strong>而 Node, PersistentVolumes 等资源则不属于任何 Namespace，是全局的</strong>。</p>
-<blockquote>
-<p>注意它并不是 Linux Namespace，二者没有任何关系，它只是 Kubernetes 划分不同工作空间的一个逻辑单位。</p>
-</blockquote>
-<h3 id="hammer-Deployment"><a href="#hammer-Deployment" class="headerlink" title=":hammer:Deployment"></a>:hammer:Deployment</h3><p>我们说了 Pod 是 Kubernetes 集群中的最基本的调度单元，但是如果想要创建同一个容器的多份拷贝，需要一个一个分别创建出来么，那么能否将 Pods 划到一个逻辑组里面呢？<strong>Deployment 就是来管理 Pod 的资源对象</strong>。</p>
-<p>Deployment 确保任意时间都有指定数量的 Pod“副本”在运行。如果为某个 Pod 创建了 Deployment 并且指定3个副本，它会创建3个 Pod，并且持续监控它们。如果某个 Pod 不响应，那么 Deployment 会替换它，始终保持总数为3。</p>
-<p>如果之前不响应的 Pod 恢复了，现在就有4个 Pod 了，那么 Deployment 会将其中一个终止保持总数为3。如果在运行中将副本总数改为5，Deployment 会立刻启动2个新 Pod，保证总数为5。<strong>持回滚和滚动升级。</strong></p>
-<p>当创建 Deployment 时，需要指定两个东西：</p>
-<ul>
-<li><strong>Pod 模板</strong>：用来创建 Pod 副本的模板</li>
-<li><strong>Label 标签</strong>：Deployment 需要监控的 Pod 的标签。</li>
-</ul>
-<p>现在已经创建了 Pod 的一些副本，那么这些副本上如何进行负载呢？如何把这些 Pod 暴露出去呢？这个时候我们就需要用到 Service 这种资源对象了。</p>
-<h3 id="hammer-Service"><a href="#hammer-Service" class="headerlink" title=":hammer:Service"></a>:hammer:Service</h3><p>Service 是应用服务的抽象，通过 Labels 为应用提供<code>负载均衡和服务发现</code>。<strong>匹配 Labels 的 Pod IP 和端口列表组成 Endpoints，由 kube-proxy 负责将服务 IP 负载均衡到这些 Endpoints 上。</strong></p>
-<p>每个 Service 都会自动分配一个 cluster IP（仅在集群内部可访问的虚拟地址）和 <strong>DNS 名</strong>，其他容器可以通过该地址或 DNS 来访问服务，而不需要了解后端容器的运行。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026202252258.png" alt="image-20211026202252258"></p>
-<p>了解了上面的几个基本概念后，我们就完全可以把我们的容器服务迁移到 Kubernetes 集群上了。当然我们还得先搭建好我们的 Kubernetes 集群环境。</p>
-<h2 id="需要注意的地方"><a href="#需要注意的地方" class="headerlink" title="需要注意的地方"></a>需要注意的地方</h2><h3 id="question-问题：其实，通过potman也可以去管理我们的集群，但是实际上我们是不会这么做的。不太懂这个意思……"><a href="#question-问题：其实，通过potman也可以去管理我们的集群，但是实际上我们是不会这么做的。不太懂这个意思……" class="headerlink" title=":question:问题：其实，通过potman也可以去管理我们的集群，但是实际上我们是不会这么做的。不太懂这个意思……"></a>:question:问题：其实，通过potman也可以去管理我们的集群，但是实际上我们是不会这么做的。不太懂这个意思……</h3><h3 id="exclamation-注意：资源其实可以认为是一个yaml文件！"><a href="#exclamation-注意：资源其实可以认为是一个yaml文件！" class="headerlink" title=":exclamation:注意：资源其实可以认为是一个yaml文件！"></a>:exclamation:注意：资源其实可以认为是一个yaml文件！</h3><h3 id="exclamation-注意：​yaml比json更加简洁高效！"><a href="#exclamation-注意：​yaml比json更加简洁高效！" class="headerlink" title=":exclamation:注意：​yaml比json更加简洁高效！"></a>:exclamation:注意：​yaml比json更加简洁高效！</h3><h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
 <li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
@@ -600,8 +547,15 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于Kubernetes简介就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026204851491.png" alt="image-20211026204851491"></p>
+<h2 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h2><h3 id="heart-好问题-待解决-：分离头指针-git-会在什么时候回收呢？"><a href="#heart-好问题-待解决-：分离头指针-git-会在什么时候回收呢？" class="headerlink" title=":heart:好问题(待解决)：分离头指针 git 会在什么时候回收呢？"></a>:heart:好问题(待解决)：分离头指针 git 会在什么时候回收呢？</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026152311881.png" alt="image-20211026152311881"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026152553634.png" alt="image-20211026152553634"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026152638856.png" alt="image-20211026152638856"></p>
+<h3 id="heart-问题-已解决-：分离头指针在企业或日常使用中-到底有哪些具体的适用地点呢"><a href="#heart-问题-已解决-：分离头指针在企业或日常使用中-到底有哪些具体的适用地点呢" class="headerlink" title=":heart:问题(已解决)：分离头指针在企业或日常使用中, 到底有哪些具体的适用地点呢?"></a>:heart:问题(已解决)：分离头指针在企业或日常使用中, 到底有哪些具体的适用地点呢?</h3><blockquote>
+<p>作者回复: 如果临时想基于某个commit做变更，试试新方案是否可行，就可以采用分离头指针的方式。测试后发现新方案不成熟，直接reset回其他分支即可。省却了建、删分支的麻烦了。</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026151530915.png" alt="image-20211026151530915"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于分离头指针情况下的注意事项实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211026151253796.png" alt="image-20211026151253796"></p>
 
                 
             </div>
@@ -628,7 +582,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/10/26/58%20%E7%90%86%E8%AE%BA%EF%BC%9AKubernetes%E7%AE%80%E4%BB%8B/">https://www.onlyonexl.cn/2021/10/26/58%20%E7%90%86%E8%AE%BA%EF%BC%9AKubernetes%E7%AE%80%E4%BB%8B/</a>
+                    <a href="https://www.onlyonexl.cn/2021/10/28/59%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-20210126/">https://www.onlyonexl.cn/2021/10/28/59%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-20210126/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -666,8 +620,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/k8s/">
-                                    <span class="chip bg-color">k8s</span>
+                                <a href="/tags/git/">
+                                    <span class="chip bg-color">git</span>
                                 </a>
                             
                         </div>
@@ -839,17 +793,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/10/28/60%20%E5%AE%9E%E6%88%98%EF%BC%9A%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%90%86%E8%A7%A3HEAD%E5%92%8Cbranch-20211026/">
+                <a href="/2021/10/28/59%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%88%86%E7%A6%BB%E5%A4%B4%E6%8C%87%E9%92%88%E6%83%85%E5%86%B5%E4%B8%8B%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9-20210126/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="实战：进一步理解HEAD和branch-20211028">
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="实战：分离头指针情况下的注意事项-20210126">
                         
-                        <span class="card-title">实战：进一步理解HEAD和branch-20211028</span>
+                        <span class="card-title">实战：分离头指针情况下的注意事项-20210126</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -859,9 +814,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -874,6 +829,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -892,13 +848,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/10/25/57%20%E5%AE%9E%E6%88%98%EF%BC%9AContainerd%E9%AB%98%E7%BA%A7%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7nerdctl%E5%AE%89%E8%A3%85%E5%8F%8A%E4%BD%BF%E7%94%A8-20211025/">
+                <a href="/2021/10/28/60%20%E5%AE%9E%E6%88%98%EF%BC%9A%E8%BF%9B%E4%B8%80%E6%AD%A5%E7%90%86%E8%A7%A3HEAD%E5%92%8Cbranch-20211026/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="实战：Containerd高级命令行工具nerdctl安装及使用-20211025">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="实战：进一步理解HEAD和branch-20211028">
                         
-                        <span class="card-title">实战：Containerd高级命令行工具nerdctl安装及使用-20211025</span>
+                        <span class="card-title">实战：进一步理解HEAD和branch-20211028</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -909,14 +865,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-28
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/containerd/" class="post-category">
-                                    containerd
+                            <a href="/categories/git/" class="post-category">
+                                    git
                                 </a>
                             
                             
@@ -926,8 +882,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/containerd/">
-                        <span class="chip bg-color">containerd</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
                 </div>
