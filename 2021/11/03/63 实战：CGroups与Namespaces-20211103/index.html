@@ -1,0 +1,1458 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：CGroups与Namespaces-20211103, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：CGroups与Namespaces-20211103 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：CGroups与Namespaces-20211103</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-11-03
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：CGroups与Namespaces-20211103"><a href="#实战：CGroups与Namespaces-20211103" class="headerlink" title="实战：CGroups与Namespaces-20211103"></a>实战：CGroups与Namespaces-20211103</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211028105335512.png" alt="image-20211028105335512"></p>
+<p>本节我们来一起了解下容器背后的两个核心技术：CGroups 和 Namespace。</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="1、CGroups概述"><a href="#1、CGroups概述" class="headerlink" title="1、CGroups概述"></a>1、CGroups概述</h2><blockquote>
+<p>2007年，谷歌把这个cgroup给开发出来了，并且把这个技术给集成到了linux内核里面去了；</p>
+</blockquote>
+<p><code>CGroups</code> 全称为 <code>Linux Control Group</code>，其作用是<strong>限制一组进程</strong>使用的资源（CPU、内存等）上限，<code>CGroups</code> 也是 Containerd 容器技术的核心实现原理之一(<strong>不仅仅是containerd，是目前基本all容器的核心技术</strong>)，首先我们需要先了解几个 <code>CGroups</code> 的基本概念：</p>
+<ul>
+<li>Task: 在 cgroup 中，task 可以理解为一个进程，但这里的进程和一般意义上的操作系统进程不太一样，**实际上是进程 ID 和线程 ID 列表(不是一个真正物理上的进程)**。</li>
+<li><strong>CGroup: 即控制组</strong>，一个控制组就是一组按照某种标准(cpu或者内存)划分的 Tasks，可以理解为<strong>资源限制是以进程组为单位实现的</strong>，一个进程加入到某个控制组后，就会受到相应配置的资源限制。</li>
+<li><strong>Hierarchy</strong>: cgroup 的层级组织关系，<strong>cgroup 以树形层级组织</strong>，每个 cgroup 子节点默认继承其父 cgroup 节点的配置属性，这样每个 Hierarchy 在初始化会有 root cgroup。</li>
+<li><strong>Subsystem</strong>: 即子系统，子系统表示具体的资源配置，如CPU使用，内存占用等，<strong>Subsystem附加到Hierarchy上后可用</strong>。</li>
+</ul>
+<p><code>CGroups</code> 支持的子系统包含以下几类，即为每种可以控制的资源定义了一个子系统:</p>
+<ul>
+<li><code>cpuset</code>: 为 cgroup 中的进程分配单独的 CPU 节点，<strong>即可以绑定到特定的 CPU</strong></li>
+<li><code>cpu</code>: 限制 cgroup 中进程的 CPU 使用份额</li>
+<li><code>cpuacct</code>: 统计 cgroup 中进程的 CPU 使用情况</li>
+<li><code>memory</code>: 限制 cgroup 中进程的内存使用,并能报告内存使用情况</li>
+<li><code>devices</code>: 控制 cgroup 中进程能访问哪些文件设备(设备文件的创建、读写)</li>
+<li><code>freezer</code>: 挂起或恢复 cgroup 中的 task</li>
+<li><code>net_cls</code>: 可以标记 cgroups 中进程的网络数据包，然后可以使用 tc 模块(traffic contro)对数据包进行控制</li>
+<li><code>blkio</code>: 限制 cgroup 中进程的块设备 IO</li>
+<li><code>perf_event</code>: 监控 cgroup 中进程的 perf 时间，可用于性能调优</li>
+<li><code>hugetlb</code>: hugetlb 的资源控制功能</li>
+<li><code>pids</code>: 限制 cgroup 中可以创建的进程数</li>
+<li><code>net_prio</code>: 允许管理员动态的通过各种应用程序设置网络传输的优先级</li>
+</ul>
+<p>通过上面的各个子系统，可以看出使用 <code>CGroups</code> 可以控制的资源有: CPU、内存、网络、IO、文件设备等。<code>CGroups</code> 具有以下几个特点：　　　　　　　</p>
+<ul>
+<li>CGroups 的 API 以一个<strong>伪文件系统（/sys/fs/cgroup/）</strong>的实现方式，用户的程序可以通过文件系统实现 CGroups 的组件管理</li>
+<li>CGroups 的组件管理操作单元可以细粒度到线程级别，用户可以创建和销毁 CGroups，从而实现资源载分配和再利用</li>
+<li>所有资源管理的功能都以子系统（cpu、cpuset 这些）的方式实现，<strong>接口统一子任务创建之初与其父任务处于同一个 CGroups 的控制组</strong></li>
+</ul>
+<p>我们可以通过查看 <code>/proc/cgroups</code> 文件来查找当前系统支持的 <code>CGroups</code> 子系统:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#cat /proc/cgroups</span></span><br><span class="line"><span class="comment">#subsys_name    hierarchy       num_cgroups     enabled</span></span><br><span class="line">cpuset  5       4       1</span><br><span class="line">cpu     6       58      1</span><br><span class="line">cpuacct 6       58      1</span><br><span class="line">memory  3       58      1</span><br><span class="line">devices 9       58      1</span><br><span class="line">freezer 2       4       1</span><br><span class="line">net_cls 4       4       1</span><br><span class="line">blkio   7       58      1</span><br><span class="line">perf_event      11      4       1</span><br><span class="line">hugetlb 10      4       1</span><br><span class="line">pids    8       58      1</span><br><span class="line">net_prio        4       4       1</span><br></pre></td></tr></table></figure>
+
+
+
+<p>在使用 <code>CGroups</code> 时需要先挂载，我们可以使用 <code>df -h | grep cgroup</code> 命令进行查看:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#df -h|grep cgroup</span></span><br><span class="line">tmpfs                    910M     0  910M   0% /sys/fs/cgroup</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以看到被挂载到了 <code>/sys/fs/cgroup</code>，cgroup 其实是一种文件系统类型，所有的操作都是通过文件来完成的，我们可以使用 <code>mount --type cgroup</code>命令查看当前系统挂载了哪些 cgroup：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#mount --type cgroup</span></span><br><span class="line">cgroup on /sys/fs/cgroup/systemd <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)</span><br><span class="line">cgroup on /sys/fs/cgroup/freezer <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,freezer)</span><br><span class="line">cgroup on /sys/fs/cgroup/memory <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,memory)</span><br><span class="line">cgroup on /sys/fs/cgroup/net_cls,net_prio <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,net_prio,net_cls)</span><br><span class="line">cgroup on /sys/fs/cgroup/cpuset <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)</span><br><span class="line">cgroup on /sys/fs/cgroup/cpu,cpuacct <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct,cpu)</span><br><span class="line">cgroup on /sys/fs/cgroup/blkio <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,blkio)</span><br><span class="line">cgroup on /sys/fs/cgroup/pids <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,pids)</span><br><span class="line">cgroup on /sys/fs/cgroup/devices <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,devices)</span><br><span class="line">cgroup on /sys/fs/cgroup/hugetlb <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)</span><br><span class="line">cgroup on /sys/fs/cgroup/perf_event <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><code>/sys/fs/cgroup</code> 目录下的每个子目录就对应着一个子系统，cgroup 是以目录形式组织的，<code>/</code> 是 cgroup 的根目录，但是这个根目录可以被挂载到任意目录，例如 CGroups 的 memory 子系统的挂载点是 <code>/sys/fs/cgroup/memory</code>，那么 <code>/sys/fs/cgroup/memory/</code> 对应 memory 子系统的根目录，我们可以列出该目录下面的文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ll /sys/fs/cgroup/memory/</span></span><br><span class="line">total 0</span><br><span class="line">drwxr-xr-x  2 root root 0 Oct 25 16:21 buildkit</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 cgroup.clone_children</span><br><span class="line">--w--w--w-  1 root root 0 Oct 23 13:52 cgroup.event_control</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 cgroup.procs</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 cgroup.sane_behavior</span><br><span class="line">drwxr-xr-x  3 root root 0 Oct 25 16:25 default</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.failcnt</span><br><span class="line">--w-------  1 root root 0 Oct 23 13:52 memory.force_empty</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.kmem.failcnt</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.kmem.limit_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.kmem.max_usage_in_bytes</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.kmem.slabinfo</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.kmem.tcp.failcnt</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.kmem.tcp.limit_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.kmem.tcp.max_usage_in_bytes</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.kmem.tcp.usage_in_bytes</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.kmem.usage_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.limit_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.max_usage_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.memsw.failcnt</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.memsw.limit_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.memsw.max_usage_in_bytes</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.memsw.usage_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.move_charge_at_immigrate</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.numa_stat</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.oom_control</span><br><span class="line">----------  1 root root 0 Oct 23 13:52 memory.pressure_level</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.soft_limit_in_bytes</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.stat</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.swappiness</span><br><span class="line">-r--r--r--  1 root root 0 Oct 23 13:52 memory.usage_in_bytes</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 memory.use_hierarchy</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 notify_on_release</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 release_agent</span><br><span class="line">drwxr-xr-x 54 root root 0 Oct 25 16:25 system.slice</span><br><span class="line">-rw-r--r--  1 root root 0 Oct 23 13:52 tasks</span><br><span class="line">drwxr-xr-x  2 root root 0 Oct 23 17:48 user.slice</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>上面包含 <code>kubepods.slice</code>、<code>system.slice</code>、<code>user.slice</code> 等目录，这些目录下可能还会有子目录，相当于一颗有层级关系的树来进行组织：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">├── kubepods.slice</span><br><span class="line">├── system.slice</span><br><span class="line">└── user.slice</span><br></pre></td></tr></table></figure>
+
+
+
+<p>例如我在节点上使用 systemd 管理了一个 Prometheus 的应用，我们可以使用 <code>systemctl status prometheus</code> 命令查看 Prometheus 进程所在的 cgroup 为 <code>/system.slice/prometheus.service</code>: (<strong>也可以用sshd服务演示</strong>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ systemctl status prometheus</span><br><span class="line">● prometheus.service - prometheus service</span><br><span class="line">   Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; vendor preset: disabled)</span><br><span class="line">   Active: active (running) since Thu 2021-10-21 10:10:12 CST; 1h 40min ago</span><br><span class="line">     Docs: https://prometheus.io</span><br><span class="line"> Main PID: 1065 (prometheus)</span><br><span class="line">    Tasks: 10</span><br><span class="line">   Memory: 167.4M</span><br><span class="line">   CGroup: /system.slice/prometheus.service</span><br><span class="line">           └─1065 /root/p8strain/prometheus-2.30.2.linux-amd64/prometheus --config.file=/root/p8strain/prometheu...</span><br></pre></td></tr></table></figure>
+
+<p>上面显示的 CGroup 只是一个相对的路径，实际的文件系统目录是在对应的子系统下面，比如 <code>/sys/fs/cgroup/cpu/system.slice/prometheus.service</code>、<code>/sys/fs/cgroup/memory/system.slice/prometheus.service</code> 目录：</p>
+<p><img src="https://bxdc-static.oss-cn-beijing.aliyuncs.com/images/20211021115442.png" alt="prometheus cgroup"></p>
+<p>:pushpin: 这其实可以理解为 cpu 和 memory 子系统被附加到了 <code>/system.slice/prometheus.service</code> 这个 cgroup 上。</p>
+<p>注意理解下下面这段话：</p>
+<blockquote>
+<p>如果 linux 系统使用 systemd 初始化系统，初始化进程会生成一个 root cgroup，每个 <code>systemd unit</code> 都将会被分配一个cgroup，同样可以配置容器运行时如 containerd 选择使用 cgroupfs 或 systemd 作为 cgroup 驱动，containerd 默认使用的是 cgroupfs，但对于使用了 systemd 的 linux 发行版来说就同时存在两个 cgroup 管理器，对于该服务器上启动的容器使用的是cgroupfs，而对于其他 systemd 管理的进程使用的是 systemd，这样在服务器资源负载高的情况下可能会变的不稳定。<code>因此对于使用了 systemd 的 linux 系统，推荐将容器运行时的 cgroup 驱动使用 systemd。</code></p>
+</blockquote>
+<h2 id="2、-heart-实战：CGroup-测试"><a href="#2、-heart-实战：CGroup-测试" class="headerlink" title="2、:heart:实战：CGroup 测试"></a>2、:heart:实战：CGroup 测试</h2><p>接下来我们来尝试手动设置下 cgroup，以 CPU 这个子系统为例进行说明，首先我们在 <code>/sys/fs/cgroup/cpu</code> 目录下面创建一个名为 <code>ydzs.test</code> 的目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#mkdir -p /sys/fs/cgroup/cpu/ydzs.test</span></span><br><span class="line">[root@containerd ~]<span class="comment">#ls /sys/fs/cgroup/cpu/ydzs.test</span></span><br><span class="line">cgroup.clone_children  cgroup.procs  cpuacct.usage         cpu.cfs_period_us  cpu.rt_period_us   cpu.shares  notify_on_release</span><br><span class="line">cgroup.event_control   cpuacct.stat  cpuacct.usage_percpu  cpu.cfs_quota_us   cpu.rt_runtime_us  cpu.stat    tasks</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到目录创建完成后，下面就会已经自动创建 cgroup 的相关文件。</p>
+<p>这里我们重点关注 <code>cpu.cfs_period_us</code> 和 <code>cpu.cfs_quota_us</code> 这两个文件，前面一个是用来配置 CPU 时间周期长度的，默认为 <code>100000us</code>，后者用来设置在此时间周期长度内所能使用的 CPU 时间数，默认值为-1，表示不受时间限制。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#cat /sys/fs/cgroup/cpu/ydzs.test/cpu.cfs_period_us</span></span><br><span class="line">100000</span><br><span class="line">[root@containerd ~]<span class="comment">#cat /sys/fs/cgroup/cpu/ydzs.test/cpu.cfs_quota_us</span></span><br><span class="line">-1</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>现在我们写一个简单的 Python 脚本来消耗 CPU：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#vim cgroup.py</span></span><br><span class="line"><span class="comment"># cgroup.py</span></span><br><span class="line"><span class="keyword">while</span> True:</span><br><span class="line">    pass</span><br></pre></td></tr></table></figure>
+
+<p>直接执行这个死循环脚本即可：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#python cgroup.py  &amp;</span><br><span class="line">[1] 32416</span><br></pre></td></tr></table></figure>
+
+<p>使用 top 命令可以看到进程号32416的 CPU 使用率达到了 100%</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211028154304139.png" alt="image-20211028154304139"></p>
+<p>现在我们将这个进程ID写入到 <code>/sys/fs/cgroup/cpu/ydzs.test/tasks</code> 文件下面去，然后设置 <code>/sys/fs/cgroup/cpu/ydzs.test/cpu.cfs_quota_us</code> 为 <code>10000us</code>，因为 <code>cpu.cfs_period_us</code> 默认值为 <code>100000us</code>，所以这表示我们要限制 CPU 使用率为10%：​​</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#echo 32416 &gt; /sys/fs/cgroup/cpu/ydzs.test/tasks</span></span><br><span class="line">[root@containerd ~]<span class="comment">#echo 10000 &gt; /sys/fs/cgroup/cpu/ydzs.test/cpu.cfs_quota_us</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>设置完过后上面我们的测试进程 CPU 就会被限制在 10% 左右了，再次使用 top 命令查看该进程可以验证。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211028154432762.png" alt="image-20211028154432762"></p>
+<p>记得最后杀死上面那个进程。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]#kill 32416</span><br></pre></td></tr></table></figure>
+
+
+
+<p>如果要限制内存等其他资源的话，同样去对应的子系统下面设置资源，并将进程 ID 加入 tasks 中即可。</p>
+<p>如果要删除这个 cgroup，直接删除文件夹是不行的，需要使用 <code>libcgroup</code> 工具：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211025210205786.png" alt="image-20211025210205786"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#yum install libcgroup libcgroup-tools</span></span><br><span class="line">[root@containerd cpu]<span class="comment">#cgdelete cpu:ydzs.test</span></span><br><span class="line">[root@containerd cpu]<span class="comment">#ls /sys/fs/cgroup/cpu/ydzs.test</span></span><br><span class="line">ls: cannot access /sys/fs/cgroup/cpu/ydzs.test: No such file or directory</span><br><span class="line">[root@containerd cpu]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、-heart-实战：在容器中使用CGroups"><a href="#3、-heart-实战：在容器中使用CGroups" class="headerlink" title="3、:heart:实战：在容器中使用CGroups"></a>3、:heart:实战：在容器中使用CGroups</h2><p>上面我们测试了一个普通应用如何配置 cgroup，接下来我们在 Containerd 的容器中来使用 cgroup，比如使用 nerdctl 启动一个 nginx 容器，并限制其使用内存为50M:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211025210634190.png" alt="image-20211025210634190"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#nerdctl run -d -m 50m --name nginx nginx:alpine</span></span><br><span class="line">3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef</span><br><span class="line">[root@containerd ~]<span class="comment">#nerdctl ps</span></span><br><span class="line">CONTAINER ID    IMAGE                             COMMAND                   CREATED          STATUS    PORTS    NAMES</span><br><span class="line">3543aa8676e8    docker.io/library/nginx:alpine    <span class="string">&quot;/docker-entrypoint.…&quot;</span>    5 seconds ago    Up                 nginx</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>在使用 <code>nerdctl run</code> 启动容器的时候可以使用 <code>-m</code> 或 <code>--memory</code> 参数来限制内存，启动完成后该容器的 cgroup 会出现在 名为 <code>default</code> 的目录下面，比如查看内存子系统的目录：<br>例如：我们可以看下这个default目录<br>这个目录就是以后容器所做资源限制的地方：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ll /sys/fs/cgroup/memory/default/3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef/</span></span><br><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 cgroup.clone_children</span><br><span class="line">--w--w--w- 1 root root 0 Nov  3 11:08 cgroup.event_control</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 cgroup.procs</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.failcnt</span><br><span class="line">--w------- 1 root root 0 Nov  3 11:08 memory.force_empty</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.failcnt</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.limit_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.max_usage_in_bytes</span><br><span class="line">…………</span><br></pre></td></tr></table></figure>
+
+
+
+<p>上面我们启动的 nginx 容器 ID 的目录会出现在 <code>/sys/fs/cgroup/memory/default/</code> 下面，该文件夹下面有很多和内存相关的 cgroup 配置文件，要进行相关的配置就需要在该目录下对应的文件中去操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ll /sys/fs/cgroup/memory/default/3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef/</span></span><br><span class="line">total 0</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 cgroup.clone_children</span><br><span class="line">--w--w--w- 1 root root 0 Nov  3 11:08 cgroup.event_control</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 cgroup.procs</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.failcnt</span><br><span class="line">--w------- 1 root root 0 Nov  3 11:08 memory.force_empty</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.failcnt</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.limit_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.max_usage_in_bytes</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.slabinfo</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.tcp.failcnt</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.tcp.limit_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.tcp.max_usage_in_bytes</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.tcp.usage_in_bytes</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.kmem.usage_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.limit_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.max_usage_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.memsw.failcnt</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.memsw.limit_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.memsw.max_usage_in_bytes</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.memsw.usage_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.move_charge_at_immigrate</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.numa_stat</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.oom_control</span><br><span class="line">---------- 1 root root 0 Nov  3 11:08 memory.pressure_level</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.soft_limit_in_bytes</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.stat</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.swappiness</span><br><span class="line">-r--r--r-- 1 root root 0 Nov  3 11:08 memory.usage_in_bytes</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 memory.use_hierarchy</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 notify_on_release</span><br><span class="line">-rw-r--r-- 1 root root 0 Nov  3 11:08 tasks</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们这里需要关心的是 <code>memory.limit_in_bytes</code> 文件，该文件就是用来设置内存大小的，正常应该是 50M 的内存限制：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#cat  /sys/fs/cgroup/memory/default/3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef/memory.limit_in_bytes</span></span><br><span class="line">52428800</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>同样我们的 nginx 容器进程 ID 也会出现在上面的 <code>tasks</code> 文件中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#cat  /sys/fs/cgroup/memory/default/3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef/tasks</span></span><br><span class="line">27172</span><br><span class="line">27266</span><br><span class="line">27267</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们可以通过如下命令过滤该进程号，可以看出第一行的 2686 就是 nginx 进程在主机上的进程 ID，下面几个是这个进程下的线程：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ps -ef|grep 27172</span></span><br><span class="line">root      27172  27145  0 11:08 ?        00:00:00 nginx: master process nginx -g daemon off;</span><br><span class="line">101       27266  27172  0 11:08 ?        00:00:00 nginx: worker process</span><br><span class="line">101       27267  27172  0 11:08 ?        00:00:00 nginx: worker process</span><br><span class="line">root      27306  26980  0 11:27 pts/1    00:00:00 grep --color=auto 27172</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们删除这个容器后，<code>/sys/fs/cgroup/memory/default/</code> 目录下的容器 ID 文件夹也会自动删除。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#nerdctl ps</span></span><br><span class="line">CONTAINER ID    IMAGE                             COMMAND                   CREATED           STATUS    PORTS    NAMES</span><br><span class="line">3543aa8676e8    docker.io/library/nginx:alpine    <span class="string">&quot;/docker-entrypoint.…&quot;</span>    20 minutes ago    Up                 nginx</span><br><span class="line">[root@containerd ~]<span class="comment">#nerdctl rm -f nginx</span></span><br><span class="line">nginx</span><br><span class="line">[root@containerd ~]<span class="comment">#ll /sys/fs/cgroup/memory/default/3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef</span></span><br><span class="line">ls: cannot access /sys/fs/cgroup/memory/default/3543aa8676e823726209bc24a78f14d7afbd09d13b06be3f80939c7cb84324ef: No such file or directory</span><br><span class="line">[root@containerd ~]<span class="comment">#nerdctl ps</span></span><br><span class="line">CONTAINER ID    IMAGE    COMMAND    CREATED    STATUS    PORTS    NAMES</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>实验结束。</p>
+<h2 id="4、-heart-实战：Namespaces测试"><a href="#4、-heart-实战：Namespaces测试" class="headerlink" title="4、:heart:实战：Namespaces测试"></a>4、:heart:实战：Namespaces测试</h2><p><code>namespace</code> 也称命名空间，<strong>是 Linux 为我们提供的用于隔离进程树、网络接口、挂载点以及进程间通信等资源的方法</strong>。在日常使用个人 PC 时，我们并没有运行多个完全分离的服务器的需求，但是如果我们在服务器上启动了多个服务，这些服务其实会相互影响的，每一个服务都能看到其他服务的进程，也可以访问宿主机器上的任意文件，一旦服务器上的某一个服务被入侵，那么入侵者就能够访问当前机器上的所有服务和文件，这是我们不愿意看到的，<strong>我们更希望运行在同一台机器上的不同服务能做到完全隔离，就像运行在多台不同的机器上一样</strong>。而我们这里的容器其实就通过 Linux 的 Namespaces 技术来实现的对不同的容器进行隔离。</p>
+<p>linux 共有6(7)种命名空间:</p>
+<ul>
+<li><code>ipc namespace</code>: 管理对 IPC 资源（进程间通信（信号量、消息队列和共享内存）的访问</li>
+<li><code>net namespace</code>: 网络设备、网络栈、端口等隔离</li>
+<li><code>mnt namespace</code>: 文件系统挂载点隔离</li>
+<li><code>pid namespace</code>: 用于进程隔离</li>
+<li><code>user namespace</code>: 用户和用户组隔离（3.8以后的内核才支持）</li>
+<li><code>uts namespace</code>: 主机和域名隔离</li>
+<li><code>cgroup namespace</code>：<strong>用于 cgroup 根目录隔离（4.6以后版本的内核才支持）</strong></li>
+</ul>
+<p>我们可以通过 <code>lsns</code> 命令查看当前系统已经创建的命名空间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#lsns</span></span><br><span class="line">        NS TYPE  NPROCS PID USER COMMAND</span><br><span class="line">4026531836 pid      109   1 root /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">4026531837 user     109   1 root /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">4026531838 uts      109   1 root /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">4026531839 ipc      109   1 root /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">4026531840 mnt      108   1 root /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">4026531856 mnt        1  18 root kdevtmpfs</span><br><span class="line">4026531956 net      109   1 root /usr/lib/systemd/systemd --switched-root --system --deserialize 22</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>要查看一个进程所属的命名空间信息，可以到 <code>/proc/&lt;pid&gt;/ns</code> 目录下查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ps -ef|grep ssh</span></span><br><span class="line">root       6587      1  0 05:05 ?        00:00:00 /usr/sbin/sshd -D</span><br><span class="line">root      26963   6587  0 11:04 ?        00:00:00 sshd: root@pts/1</span><br><span class="line">root      26965   6587  0 11:04 ?        00:00:00 sshd: root@notty</span><br><span class="line">root      26967  26965  0 11:04 ?        00:00:00 /usr/libexec/openssh/sftp-server</span><br><span class="line">root      27527  26980  0 14:03 pts/1    00:00:00 grep --color=auto ssh</span><br><span class="line">[root@containerd ~]<span class="comment">#ll /proc/6587/ns/*</span></span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/ipc -&gt; ipc:[4026531839]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/mnt -&gt; mnt:[4026531840]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/net -&gt; net:[4026531956]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/pid -&gt; pid:[4026531836]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/user -&gt; user:[4026531837]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/uts -&gt; uts:[4026531838]</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211103140345630.png" alt="image-20211103140345630"></p>
+<p>这些 namespace 都是链接文件, 格式为 <code>namespaceType:[inode number]</code>，<code>inode number</code> 用来标识一个 namespace，<strong>可以理解为 namespace id，如果两个进程的某个命名空间的链接文件指向同一个，那么其相关资源在同一个命名空间中，也就没有隔离了。</strong></p>
+<p>比如同样针对上面运行的 nginx 容器，我们查看其命名空间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#nerdctl run -d -p 80:80 --name nginx nginx:alpine</span></span><br><span class="line">e4e500fed73578233fa73d76468df21a476a39dd9d81be0fa1696cc633b651a8</span><br><span class="line">[root@containerd ~]<span class="comment">#lsns |grep nginx</span></span><br><span class="line">4026532503 mnt        3 27582 root nginx: master process nginx -g daemon off</span><br><span class="line">4026532504 uts        3 27582 root nginx: master process nginx -g daemon off</span><br><span class="line">4026532505 ipc        3 27582 root nginx: master process nginx -g daemon off</span><br><span class="line">4026532506 pid        3 27582 root nginx: master process nginx -g daemon off</span><br><span class="line">4026532508 net        3 27582 root nginx: master process nginx -g daemon off</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看出 nginx 容器启动后，已经为该容器自动创建了单独的 <code>mtn</code>、<code>uts</code>、<code>ipc</code>、<code>pid</code>、<code>net</code> 命名空间，也就是这个容器在这些方面是独立隔离的，其他容器想要和该容器共享某一个命名空间，那么就需要指向同一个命名空间。</p>
+<p>只有用户是没被隔离开的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#ps -ef|grep nginx</span></span><br><span class="line">root      27582  27551  0 14:09 ?        00:00:00 nginx: master process nginx -g daemon off;</span><br><span class="line">101       27696  27582  0 14:09 ?        00:00:00 nginx: worker process</span><br><span class="line">101       27697  27582  0 14:09 ?        00:00:00 nginx: worker process</span><br><span class="line">root      27721  26980  0 14:11 pts/1    00:00:00 grep --color=auto nginx</span><br><span class="line">[root@containerd ~]<span class="comment">#ps -ef|grep ssh</span></span><br><span class="line">root       6587      1  0 05:05 ?        00:00:00 /usr/sbin/sshd -D</span><br><span class="line">root      26963   6587  0 11:04 ?        00:00:00 sshd: root@pts/1</span><br><span class="line">root      26965   6587  0 11:04 ?        00:00:00 sshd: root@notty</span><br><span class="line">root      26967  26965  0 11:04 ?        00:00:00 /usr/libexec/openssh/sftp-server</span><br><span class="line">root      27723  26980  0 14:11 pts/1    00:00:00 grep --color=auto ssh</span><br><span class="line">[root@containerd ~]<span class="comment">#ll  /proc/27582/ns/*</span></span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:09 /proc/27582/ns/ipc -&gt; ipc:[4026532505]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:09 /proc/27582/ns/mnt -&gt; mnt:[4026532503]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:09 /proc/27582/ns/net -&gt; net:[4026532508]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:09 /proc/27582/ns/pid -&gt; pid:[4026532506]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:09 /proc/27582/ns/user -&gt; user:[4026531837]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:09 /proc/27582/ns/uts -&gt; uts:[4026532504]</span><br><span class="line">[root@containerd ~]<span class="comment">#ll  /proc/6587/ns/*</span></span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/ipc -&gt; ipc:[4026531839]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/mnt -&gt; mnt:[4026531840]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/net -&gt; net:[4026531956]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/pid -&gt; pid:[4026531836]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/user -&gt; user:[4026531837]</span><br><span class="line">lrwxrwxrwx 1 root root 0 Nov  3 14:01 /proc/6587/ns/uts -&gt; uts:[4026531838]</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211103141210952.png" alt="image-20211103141210952"></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/">https://kubernetes.io/zh/docs/setup/production-environment/container-runtimes/</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.infoq.cn/article/docker-resource-management-cgroups/">https://www.infoq.cn/article/docker-resource-management-cgroups/</a></li>
+</ul>
+<h2 id="需要注意的问题"><a href="#需要注意的问题" class="headerlink" title="需要注意的问题"></a>需要注意的问题</h2><h3 id="1-注意：kubepods-slice目录"><a href="#1-注意：kubepods-slice目录" class="headerlink" title="1.注意：kubepods.slice目录"></a>1.注意：kubepods.slice目录</h3><p>/sys/fs/cgroup/kubepods.slice</p>
+<p>注意，这个kubepods.slice，我们会后面和大家说，它呢，就是k8s当中那个pods，每个pods它创建完成后，它的cgroups控制话，其实都是把他放在这个子目录下面去的，如果你要限制内存的话。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211025200755925.png" alt="image-20211025200755925"></p>
+<blockquote>
+<p><strong>Hierarchy</strong>: cgroup 的层级组织关系，<strong>cgroup 以树形层级组织</strong>，每个 cgroup 子节点默认继承其父 cgroup 节点的配置属性，这样每个 Hierarchy 在初始化会有 root cgroup。</p>
+</blockquote>
+<h3 id="2-问题：cgroup和cgroup-v2差别大吗？"><a href="#2-问题：cgroup和cgroup-v2差别大吗？" class="headerlink" title="2.问题：cgroup和cgroup v2差别大吗？"></a>2.问题：cgroup和cgroup v2差别大吗？</h3><blockquote>
+<p>其实是因为cgroup v1版本增加了一些功能，特别特别多，后期，cgroup v1版本就特变难维护了。然后，就相当于重新做了一个cgroup v2版本，也不能说差别大，只能说cgroup v2功能更强大，它可以去做cgroup的隔离。</p>
+</blockquote>
+<h3 id="3-注意：容器的本质是宿主机上的一个进程。"><a href="#3-注意：容器的本质是宿主机上的一个进程。" class="headerlink" title="3.注意：容器的本质是宿主机上的一个进程。"></a>3.注意：容器的本质是宿主机上的一个进程。</h3><h3 id="4-注意：宿主机上的容器都是共享宿主机的内核的。"><a href="#4-注意：宿主机上的容器都是共享宿主机的内核的。" class="headerlink" title="4.注意：宿主机上的容器都是共享宿主机的内核的。"></a>4.注意：宿主机上的容器都是共享宿主机的内核的。</h3><h3 id="5-命令总结"><a href="#5-命令总结" class="headerlink" title="5.命令总结"></a>5.命令总结</h3><ul>
+<li>查看当前系统支持的CGroups子系统</li>
+</ul>
+<p>我们可以通过查看 <code>/proc/cgroups</code> 文件来查找当前系统支持的 <code>CGroups</code> 子系统:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#cat /proc/cgroups</span></span><br><span class="line"><span class="comment">#subsys_name    hierarchy       num_cgroups     enabled</span></span><br><span class="line">cpuset  5       4       1</span><br><span class="line">cpu     6       58      1</span><br><span class="line">cpuacct 6       58      1</span><br><span class="line">memory  3       58      1</span><br><span class="line">devices 9       58      1</span><br><span class="line">freezer 2       4       1</span><br><span class="line">net_cls 4       4       1</span><br><span class="line">blkio   7       58      1</span><br><span class="line">perf_event      11      4       1</span><br><span class="line">hugetlb 10      4       1</span><br><span class="line">pids    8       58      1</span><br><span class="line">net_prio        4       4       1</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>在使用 <code>CGroups</code> 时需要先挂载，我们可以使用 <code>df -h | grep cgroup</code> 命令进行查看:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#df -h|grep cgroup</span></span><br><span class="line">tmpfs                    910M     0  910M   0% /sys/fs/cgroup</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>我们可以使用 <code>mount --type cgroup</code>命令查看当前系统挂载了哪些 cgroup：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#mount --type cgroup</span></span><br><span class="line">cgroup on /sys/fs/cgroup/systemd <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)</span><br><span class="line">cgroup on /sys/fs/cgroup/freezer <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,freezer)</span><br><span class="line">cgroup on /sys/fs/cgroup/memory <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,memory)</span><br><span class="line">cgroup on /sys/fs/cgroup/net_cls,net_prio <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,net_prio,net_cls)</span><br><span class="line">cgroup on /sys/fs/cgroup/cpuset <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)</span><br><span class="line">cgroup on /sys/fs/cgroup/cpu,cpuacct <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct,cpu)</span><br><span class="line">cgroup on /sys/fs/cgroup/blkio <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,blkio)</span><br><span class="line">cgroup on /sys/fs/cgroup/pids <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,pids)</span><br><span class="line">cgroup on /sys/fs/cgroup/devices <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,devices)</span><br><span class="line">cgroup on /sys/fs/cgroup/hugetlb <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)</span><br><span class="line">cgroup on /sys/fs/cgroup/perf_event <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>注意：cat /proc/cgroup命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">[root@containerd ~]<span class="comment">#cat /proc/cgroups</span></span><br><span class="line"><span class="comment">#subsys_name    hierarchy       num_cgroups     enabled</span></span><br><span class="line">cpuset  5       4       1</span><br><span class="line">cpu     6       58      1</span><br><span class="line">cpuacct 6       58      1</span><br><span class="line">memory  3       58      1</span><br><span class="line">devices 9       58      1</span><br><span class="line">freezer 2       4       1</span><br><span class="line">net_cls 4       4       1</span><br><span class="line">blkio   7       58      1</span><br><span class="line">perf_event      11      4       1</span><br><span class="line">hugetlb 10      4       1</span><br><span class="line">pids    8       58      1</span><br><span class="line">net_prio        4       4       1</span><br><span class="line"></span><br><span class="line">[root@containerd ~]<span class="comment">#nerdctl ps -a</span></span><br><span class="line">CONTAINER ID    IMAGE                             COMMAND                   CREATED        STATUS    PORTS                 NAMES</span><br><span class="line">a4afb3adda0d    docker.io/library/nginx:alpine    <span class="string">&quot;/docker-entrypoint.…&quot;</span>    9 hours ago    Up        0.0.0.0:80-&gt;80/tcp    nginx</span><br><span class="line"></span><br><span class="line">[root@containerd ~]<span class="comment">#nerdctl rm -f nginx #删除这个nginx容器后，立马可看到相应的cgroup 子系统下层级关系都减少了。</span></span><br><span class="line">nginx</span><br><span class="line">[root@containerd ~]<span class="comment">#cat /proc/cgroups</span></span><br><span class="line"><span class="comment">#subsys_name    hierarchy       num_cgroups     enabled</span></span><br><span class="line">cpuset  5       3       1</span><br><span class="line">cpu     6       57      1</span><br><span class="line">cpuacct 6       57      1</span><br><span class="line">memory  3       57      1</span><br><span class="line">devices 9       57      1</span><br><span class="line">freezer 2       3       1</span><br><span class="line">net_cls 4       3       1</span><br><span class="line">blkio   7       57      1</span><br><span class="line">perf_event      11      3       1</span><br><span class="line">hugetlb 10      3       1</span><br><span class="line">pids    8       57      1</span><br><span class="line">net_prio        4       3       1</span><br><span class="line">[root@containerd ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002091450217.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092057988.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002141739664.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
+</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    好了，关于CGroups与Namespaces实验就到这里了，感谢大家阅读，最后贴上我的美圆photo一张，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211103143937344.png" alt="image-20211103143937344"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2021/11/03/63%20%E5%AE%9E%E6%88%98%EF%BC%9ACGroups%E4%B8%8ENamespaces-20211103/">https://www.onlyonexl.cn/2021/11/03/63%20%E5%AE%9E%E6%88%98%EF%BC%9ACGroups%E4%B8%8ENamespaces-20211103/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/11/03/63%20%E5%AE%9E%E6%88%98%EF%BC%9ACGroups%E4%B8%8ENamespaces-20211103/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="实战：CGroups与Namespaces-20211103">
+                        
+                        <span class="card-title">实战：CGroups与Namespaces-20211103</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/11/02/62%20%E5%AE%9E%E6%88%98%EF%BC%9Akubeadm%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4(containerd)-20211102/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="实战：kubeadm方式搭建k8s集群(containerd)-20211102">
+                        
+                        <span class="card-title">实战：kubeadm方式搭建k8s集群(containerd)-20211102</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
