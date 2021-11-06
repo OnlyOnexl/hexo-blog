@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img, Love">
+    <meta name="keywords" content="Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img | Love</title>
+    <title>Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img</h1>
+                    <h1 class="description center-align post-title"></h1>
                 </div>
             </div>
         </div>
@@ -429,25 +429,12 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                    <div class="article-tag">
-                        
-                            <a href="/tags/k8s/">
-                                <span class="chip bg-color">k8s</span>
-                            </a>
-                        
-                    </div>
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
                     
                 </div>
                 <div class="col s5 right-align">
-                    
-                    <div class="post-cate">
-                        <i class="fas fa-bookmark fa-fw icon-category"></i>
-                        
-                            <a href="/categories/k8s/" class="post-category">
-                                k8s
-                            </a>
-                        
-                    </div>
                     
                 </div>
             </div>
@@ -456,7 +443,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-04
+                    2021-11-06
                 </div>
                 
 
@@ -477,78 +464,138 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="https-bucket-hg-oss-cn-shanghai-aliyuncs-com-img"><a href="#https-bucket-hg-oss-cn-shanghai-aliyuncs-com-img" class="headerlink" title="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img"></a><a target="_blank" rel="noopener" href="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img">https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img</a></h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211104211139681.png" alt="image-20211104211139681"></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd v1.5.5</span><br></pre></td></tr></table></figure>
-
-<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="Kubernetes-最基本的调度单元：pod"><a href="#Kubernetes-最基本的调度单元：pod" class="headerlink" title="Kubernetes 最基本的调度单元：pod"></a>Kubernetes 最基本的调度单元：pod</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211104105702412.png" alt="image-20211104105702412"></p>
-<p>前面的课程中我们了解了 Kubernetes 的基本架构，以及如何使用资源清单在集群中部署一个应用。我们也了解到了 <strong>Pod 是 Kubernetes 集群中最基本的调度单元，我们平时在集群中部署的应用都是以 Pod 为单位的</strong>，而并不是我们熟知的容器，这样设计的目的是什么呢？为何不直接使用容器呢？</p>
-<h2 id="1、为什么需要-Pod"><a href="#1、为什么需要-Pod" class="headerlink" title="1、为什么需要 Pod"></a>1、为什么需要 Pod</h2><p>假设 Kubernetes 中调度的基本单元就是容器，对于一个非常简单的应用可以直接被调度直接使用，没有什么问题，但是往往还有很多应用程序是由多个进程组成的，有的同学可能会说把这些进程都打包到一个容器中去不就可以了吗？理论上是可以实现的，但是不要忘记了<code>容器运行时管理的进程是 pid=1 的主进程，其他进程死掉了就会成为僵尸进程，没办法进行管理了</code>，这种方式本身也不是容器推荐的运行方式，<code>一个容器最好只干一件事情</code>，所以在真实的环境中不会使用这种方式。</p>
-<p>那么我们就把这个应用的进程进行拆分，拆分成一个一个的容器总可以了吧？但是不要忘记一个问题，拆分成一个一个的容器后，是不是就有可能出现一个应用下面的某个进程容器被调度到了不同的节点上呀？<code>往往我们应用内部的进程与进程间通信（通过 IPC 或者共享本地文件之类）都是要求在本地进行的</code>，也就是需要在同一个节点上运行。</p>
-<p>所以我们需要一个更高级别的结构来将这些容器绑定在一起，并将他们作为一个基本的调度单元进行管理，这样就可以保证这些容器始终在同一个节点上面，这也就是 Pod 设计的初衷。</p>
-<h2 id="2、Pod-原理"><a href="#2、Pod-原理" class="headerlink" title="2、Pod 原理"></a>2、Pod 原理</h2><p>在一个 Pod 下面运行几个关系非常密切的容器进程，这样一来这些进程本身又可以收到容器的管控，又具有几乎一致的运行环境，也就完美解决了上面提到的问题。</p>
-<p>其实 Pod 也只是一个逻辑概念，真正起作用的还是 Linux 容器的 Namespace 和 Cgroup 这两个最基本的概念，<strong>Pod 被创建出来其实是一组共享了一些资源的容器而已。首先 Pod 里面的所有容器，都是共享的同一个 Network Namespace，但是涉及到文件系统的时候，默认情况下 Pod 里面的容器之间的文件系统是完全隔离的，但是我们可以通过声明来共享同一个 Volume。</strong></p>
-<p>我们可以指定新创建的容器和一个已经存在的容器共享一个 Network Namespace，在运行容器（docker 容器）的时候只需要指定 <code>--net=container:目标容器名</code> 这个参数就可以了，<code>但是这种模式有一个明显的问题那就是容器的启动有先后顺序问题</code>，那么 Pod 是怎么来处理这个问题的呢？<strong>那就是加入一个中间容器（没有什么架构是加一个中间件解决不了的？），这个容器叫做 Infra 容器，而且这个容器在 Pod 中永远都是第一个被创建的容器，这样是不是其他容器都加入到这个 Infra 容器就可以了，这样就完全实现了 Pod 中的所有容器都和 Infra 容器共享同一个 Network Namespace 了</strong>，如下图所示：</p>
-<blockquote>
-<p>注意：<br>每个pod一个ip；<br>一个pod至少有2个容器：一个infra容器，一个业务容器；</p>
-</blockquote>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211104110057554.png" alt="image-20211104110057554"></p>
-<p><strong>所以当我们部署完成 Kubernetes 集群的时候，首先需要保证在所有节点上可以拉取到默认的 Infra 镜像，默认情况下 Infra 镜像地址为 <code>k8s.gcr.io/pause:3.5</code>，这个容器占用的资源非常少，但是这个镜像默认是需要科学上网的，所以很多时候我们在部署应用的时候一直处于 <code>Pending</code> 状态或者报 <code>sandbox image</code> 相关的错误信息，大部分是因为所有 Pod 最先启动的容器镜像都拉不下来，肯定启动不了，启动不了其他容器肯定也就不能启动了：</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubelet --help |grep infra</span></span><br><span class="line">      --pod-infra-container-image string                         Specified image will not be pruned by the image garbage collector. When container-runtime is <span class="built_in">set</span> to <span class="string">&#x27;docker&#x27;</span>, all containers <span class="keyword">in</span> each pod will use the network/ipc namespaces from this image. Other CRI implementations have their own configuration to <span class="built_in">set</span> this image. (default <span class="string">&quot;k8s.gcr.io/pause:3.5&quot;</span>)</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>从上面图中我们可以看出普通的容器加入到了 Infra 容器的 Network Namespace 中，所以这个 Pod 下面的所有容器就是共享同一个 Network Namespace 了，<strong>普通容器不会创建自己的网卡，配置自己的 IP，而是和 Infra 容器共享 IP、端口范围等，而且容器之间的进程可以通过 lo 网卡设备进行通信：</strong></p>
+                <h2 id="实战：如何利用-Github-搭建自己的免费图床-20211106"><a href="#实战：如何利用-Github-搭建自己的免费图床-20211106" class="headerlink" title="实战：如何利用 Github 搭建自己的免费图床-20211106"></a>实战：如何利用 Github 搭建自己的免费图床-20211106</h2><p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106143157.png" alt="image-20211106143156630"></p>
+<h2 id="文档版本"><a href="#文档版本" class="headerlink" title="文档版本"></a>文档版本</h2><p>2021年11月6日14:38:37更新：创建文档；</p>
+<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/353775844">https://zhuanlan.zhihu.com/p/353775844</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106104922434.png" alt="image-20211106104922434"></p>
+<h2 id="1、前言"><a href="#1、前言" class="headerlink" title="1、前言"></a>1、前言</h2><h3 id="0-什么是图床"><a href="#0-什么是图床" class="headerlink" title="0.什么是图床"></a>0.什么是图床</h3><p>对于写博客的朋友们来讲，图床这个东西一定不会陌生，而且在一定程度上也给大家造成过一定困扰。</p>
+<p>对于不清楚这个东西的朋友，我就在这儿大概说一下图床是个啥东西。所谓图床，其实可以就相当于我们手机上的相册，不过他是在线的，而且是对大家开放的，大家都可以访问查看，但是编辑删除这些功能仅限于拥有者，就相当于用百度云分享的公开照片，你可以查看，也可以下载下来编辑，但是拥有权还是属于分享者。</p>
+<p>那你可能会疑惑，那这个东西和写博客的我们有啥关系呢？</p>
+<p>你想想，我们写博客，是不是有很多图片需要插入，我们这些博客要保留在本地的时候你可以预览到图片，但一旦你要把它发布到网上，这时候问题来了！发现图片上传失败，那是因为你本地的图片都是存在本地的，平台不会自动给你上传，那这个时候就凸显出图床的重要性了。当然了，如果你是直接在平台进行编辑，那着一点就不用担心了，基本平台都会自动给你上传到它自己的服务器。<br>有了图床，我们在本地写好博客之后，就能够任意复制到其他平台，不用担心图片丢失问题了。</p>
+<p>今天的文章就是给大家分享一个搭建免费图床的教程，既是方便自己后续的复习，也希望对大家也有所帮助。</p>
+<h3 id="1-个人需要搭建自己图床的需求"><a href="#1-个人需要搭建自己图床的需求" class="headerlink" title="1.个人需要搭建自己图床的需求"></a>1.个人需要搭建自己图床的需求</h3><p>个人使用过all的云笔记之后，还是喜欢用typora写md，方便书写，方便编辑，其他md均不喜欢；</p>
+<p>但typora自己又没有图床，只能借助第三方图床；</p>
+<p>Typora+坚果云可以搭建自己的云笔记，但是在如果把typora的图片设置在本地的话，一直在坚果云中来回切换目录的话，就非常难受了，很容易打乱自己的思维；且构建笔记体系比较麻烦；另外，自己在云端分享/阅读都很不舒服；</p>
+<h3 id="2-个人搭建的图床必须具备的特性"><a href="#2-个人搭建的图床必须具备的特性" class="headerlink" title="2.个人搭建的图床必须具备的特性"></a>2.个人搭建的图床必须具备的特性</h3><p>存储的图片数据必须要安全存储；</p>
+<p>访问速度要快；</p>
+<p>尽可能是免费的，如果是收费，希望便宜些；</p>
+<p>可以批量导出图片数据等……</p>
+<h3 id="3-PicGo可以使用的图床"><a href="#3-PicGo可以使用的图床" class="headerlink" title="3.PicGo可以使用的图床"></a>3.PicGo可以使用的图床</h3><p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106094850012.png" alt="image-20211106094850012"></p>
+<p>感觉比较靠谱的图床：</p>
+<p>阿里云OSS、腾讯云COS、七牛图床、GitGyb图床……</p>
+<h3 id="4-github作为自己图床的优点"><a href="#4-github作为自己图床的优点" class="headerlink" title="4.github作为自己图床的优点"></a>4.github作为自己图床的优点</h3><p>每一个it人都会具备一个github账号，因此用其做为自己的图床那是再好不过了；</p>
+<p>虽然gitbub又是打开会比较慢，但是用了cdn加速后，效果是非常ok的，高级，另外，自己也买了1年的vpn，因此打开gitbub网址还是非常快的；</p>
+<p>使用gitbub作为图床可以进一步熟悉gitbub和git，一举二得，good；</p>
+<h2 id="2、准备工作"><a href="#2、准备工作" class="headerlink" title="2、准备工作"></a>2、准备工作</h2><p>那么在正式开始之前，你需要提前准备以下东西：<br>一个 Github 账号</p>
+<p>好了，就这么简单，只要你有一个 Github 账号就够了，你就能拥有一个免费的图床了，如果你还没有，那赶紧去 <a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://github.com/cunyu1943">注册</a> 一个账号吧。</p>
+<h2 id="3、搭建过程"><a href="#3、搭建过程" class="headerlink" title="3、搭建过程"></a>3、搭建过程</h2><h3 id="1-登录github并创建仓库"><a href="#1-登录github并创建仓库" class="headerlink" title="1.登录github并创建仓库"></a>1.登录github并创建仓库</h3><p>登录你的 Github并创建一个新的仓库：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110141951.png" alt="image-20211106110141951"></p>
+<h3 id="2-填写仓库信息"><a href="#2-填写仓库信息" class="headerlink" title="2.填写仓库信息"></a>2.填写仓库信息</h3><p>填写仓库相关信息，一般只需要选一个合适的仓库名，然后确保仓库为 <code>public</code> 其他的保持默认就好；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110329674.png" alt="image-20211106110329674"></p>
+<p>自己本次填写信息：typora-img</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110610754.png" alt="image-20211106110610754"></p>
+<h3 id="3-查看创建好的仓库"><a href="#3-查看创建好的仓库" class="headerlink" title="3.查看创建好的仓库"></a>3.查看创建好的仓库</h3><p>一般创建成功之后，会出现如下界面，至此，我们的图床算是创建好了，接下来就是如何上传图片了；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110713398.png" alt="image-20211106110713398"></p>
+<h3 id="4-上传图片-配置-PicGo"><a href="#4-上传图片-配置-PicGo" class="headerlink" title="4. 上传图片(配置 PicGo )"></a>4. 上传图片(配置 PicGo )</h3><p>通过上面的步骤，我们的图床时搭建好了，但是通过传统的方法向 Github 上传图片太麻烦了，这里我们推荐使用一个开源图床工具 <a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://molunerfinn.com/PicGo/">PicGo</a> 来作为我们的图片上传工具；</p>
+<p>PicGo 的安装就不说了，去他的 <a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://molunerfinn.com/PicGo/">官网</a> 下载对应版本进行安装即可，我们主要讲讲如何用它来上传图片。安装后，打开软件其主页面如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110814299.png" alt="image-20211106110814299"></p>
+<p>接下来就是配置 PicGo 的过程了。</p>
+<ol>
+<li>首先，我们先要去 Github 创建一个 token；</li>
+</ol>
+<p>依次打开 <code>Settings -&gt; Developer settings -&gt; Personal access tokens</code>，最后点击 <code>generate new token</code>；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110928793.png" alt="image-20211106110928793"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106110942284.png" alt="image-20211106110942284"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106111144856.png" alt="image-20211106111144856"></p>
+<p>2.填写及勾选相关信息，然后点击 <code>Genetate token</code> 即可；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106111231530.png" alt="image-20211106111231530"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106111304759.png" alt="image-20211106111304759"></p>
 <ul>
-<li>也就是容器之间是可以直接使用 <code>localhost</code> 进行通信的；</li>
-<li>看到的网络设备信息都是和 Infra 容器完全一样的；</li>
-<li>也就意味着同一个 Pod 下面的容器运行的多个进程不能绑定相同的端口；</li>
-<li>而且 <strong>Pod 的生命周期只跟 Infra 容器一致，而与容器 A 和 B 无关。</strong></li>
+<li>这里注意下：</li>
 </ul>
-<p>对于文件系统 Kubernetes 是怎么实现让一个 Pod 中的容器共享的呢？<code>默认情况下容器的文件系统是互相隔离的，要实现共享只需要在 Pod 的顶层声明一个 Volume，然后在需要共享这个 Volume 的容器中声明挂载即可。</code></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211104185341050.png" alt="image-20211104185341050"></p>
-<p>比如下面的示例：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: counter</span><br><span class="line">spec:</span><br><span class="line">  volumes:</span><br><span class="line">  - name: varlog</span><br><span class="line">    hostPath:</span><br><span class="line">      path: /var/<span class="built_in">log</span>/counter</span><br><span class="line">  containers:</span><br><span class="line">  - name: count</span><br><span class="line">    image: busybox</span><br><span class="line">    args:</span><br><span class="line">    - /bin/sh</span><br><span class="line">    - -c</span><br><span class="line">    - &gt;</span><br><span class="line">      i=0;</span><br><span class="line">      <span class="keyword">while</span> <span class="literal">true</span>;</span><br><span class="line">      <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$i</span>: <span class="subst">$(date)</span>&quot;</span> &gt;&gt; /var/<span class="built_in">log</span>/1.log;</span><br><span class="line">        i=$((i+<span class="number">1</span>));</span><br><span class="line">        sleep 1;</span><br><span class="line">      <span class="keyword">done</span></span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: varlog</span><br><span class="line">      mountPath: /var/<span class="built_in">log</span></span><br><span class="line">  - name: count-log</span><br><span class="line">    image: busybox</span><br><span class="line">    args: [/bin/sh, -c, <span class="string">&#x27;tail -n+1 -f /opt/log/1.log&#x27;</span>]</span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: varlog</span><br><span class="line">      mountPath: /opt/<span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<p>默认这个token有效期为30天，我们为了稳定性起见，可以直接改为<code>no expiration</code>。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106111342551.png" alt="image-20211106111342551"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106111426423.png" alt="image-20211106111426423"></p>
+<p>3.<code>token</code> 生成，注意它只会显示一次，所以你最好把它复制下来到你的备忘录存好，方便下次使用，否则下次有需要重新新建；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106111546113.png" alt="image-20211106111546113"></p>
+<p>4.配置 PicGo，依次打开 图床设置 -&gt; Github 图床；</p>
+<p>填写相关信息，最后点击 <code>确定</code>即可，要将其作为默认图床的话，点击设为默认图床；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106112005543.png" alt="image-20211106112005543"></p>
+<p>自己本次的配置：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106114755209.png" alt="image-20211106114755209"></p>
+<p>6.上传图片，通过上传区上传即可（Ctrl V 或者将图片拖拽都可以），也可以通过快捷键的方式上传（默认上传键为 <code>Ctrl + Shift + P</code>）；</p>
+<p>首先这里我没有打开科学上网，观察下图片上传速度和在线查看md文件时图片的显示速度；</p>
+<p>这里通过typora里配置了picgo，进行测试下效果：</p>
+<p>查看typora配置的参数：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106112443020.png" alt="image-20211106112443020"></p>
+<p>测试上传：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106112502202.png" alt="image-20211106112502202"></p>
+<p>发现上传还是稍微会慢一些的：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106112516121.png" alt="image-20211106112516121"></p>
+<p>我们直接在typora中粘贴图片后再进行上传图片并观看效果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106122153158.png" alt="image-20211106122153158"></p>
+<p>发现了一个问题，上传是上传成功了，但是图片在文章里根本加载不出来，很奇怪哎。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106122239528.png" alt="image-20211106122239528"></p>
+<p>我们尝试用这个链接去下载图片发现链接打不开：</p>
+<p>这是由于giybub是国外网址，又是打不开，因此需要我们加速一下就好了。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106122336926.png" alt="image-20211106122336926"></p>
+<h3 id="5-加速访问"><a href="#5-加速访问" class="headerlink" title="5. 加速访问"></a>5. 加速访问</h3><p>大家可能会发现，我们上传到 Github 的图片有时候访问太慢了，有时候甚至直接加载不出来！那该咋办呢？<br>这时候我们就可以用 <a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://www.jsdelivr.com/">jsDelivr</a> 进行免费加速，而设置的方法也很简单，只需要在我们 PicGo 图床配置中添加如下自定义域名即可；<br><a target="_blank" rel="noopener" href="https://www.jsdelivr.com/?docs=gh">https://cdn.jsdelivr.net/gh/</a>用户名/仓库名</p>
+<p><a target="_blank" rel="noopener" href="https://www.jsdelivr.com/?docs=gh">https://www.jsdelivr.com/?docs=gh</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106113500597.png" alt="image-20211106113500597"></p>
+<p>比如我的就是:<a target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img">https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img</a></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106113344879.png" alt="image-20211106113344879"></p>
+<p>现在我们再次测试下效果：</p>
+<p>测试粘贴到typora里图片的上传速度、打开md文档时图片的显示速度：</p>
+<p>此时本地windows无科学上网：</p>
+<p>=&gt;进测试：上传 可能会耗时3-4s，但在其他终端打开md文档，里面图片的展示时间几乎是0ms，效果很不错；</p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106122314943.png" alt="image-20211106122314943"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106120145659.png" alt="image-20211106120145659"></p>
+<p>到此，如何利用 Github 搭建自己的免费图床实验就结束了，以后我可以很方边利用<code>坚果云+typoa+gitbub图床</code>来进一步维护自己的it笔记了；</p>
+<h3 id="6-图床推荐"><a href="#6-图床推荐" class="headerlink" title="6. 图床推荐"></a>6. 图床推荐</h3><p>除开用 Github 搭建的方式之后，我们也可以用 Gitee 进行搭建，搭建方式和本文大致相同。此外，我也推荐几个免费的图床给大家，大家可以根据自己的喜好进行选择；</p>
+<ol>
+<li><a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://imgchr.com/">路过图床</a></li>
+<li><a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://sm.ms/">SM.MS</a></li>
+<li><a href="https://link.zhihu.com/?target=https://links.jianshu.com/go?to=https://imgur.com/">Imgur</a></li>
+</ol>
+<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><p>至此，我们的搭建免费图床的教程就到此结束了，总结一下主要有如下几部分：</p>
+<ol>
+<li>准备一个 Github 账号；</li>
+<li>搭建图床仓库；</li>
+<li>上传图片设置；</li>
+<li>加速访问；</li>
+<li>免费图床推荐；</li>
+</ol>
+<h2 id="当前配置信息汇总"><a href="#当前配置信息汇总" class="headerlink" title="当前配置信息汇总"></a>当前配置信息汇总</h2><h3 id="1-typora的picgo配置选项"><a href="#1-typora的picgo配置选项" class="headerlink" title="1.typora的picgo配置选项"></a>1.typora的picgo配置选项</h3><p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106120549162.png" alt="image-20211106120549162"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106120604298.png" alt="image-20211106120604298"></p>
+<h3 id="2-PicGo配置"><a href="#2-PicGo配置" class="headerlink" title="2.PicGo配置"></a>2.PicGo配置</h3><p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106120655681.png" alt="image-20211106120655681"></p>
+<h3 id="3-Github配置"><a href="#3-Github配置" class="headerlink" title="3.Github配置"></a>3.Github配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/OnlyOnexl/typora-img</span><br><span class="line"></span><br><span class="line">typora-img</span><br><span class="line">typora-imgs</span><br><span class="line">typora图床</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<blockquote>
-<p>注意：<br>注意容器里args的yaml写法；</p>
-</blockquote>
-<p>示例中我们在 <strong>Pod 的顶层</strong>声明了一个名为 varlog 的 <code>Volume</code>，而这个 <code>Volume</code> 的类型是 <code>hostPath</code>，也就意味这个宿主机的 <code>/var/log/counter</code> 目录将被这个 Pod 共享，共享给谁呢？<strong>在需要用到这个数据目录的容器上声明挂载即可</strong>，也就是通过 <code>volumeMounts</code> 声明挂载的部分，这样我们这个 Pod 就实现了共享容器的 <code>/var/log</code> 目录，而且数据被持久化到了宿主机目录上。</p>
-<p>这个方式也是 Kubernetes 中一个非常重要的设计模式：<code>sidecar 模式</code>的常用方式。典型的场景就是<strong>容器日志收集</strong>，比如上面我们的这个应用，其中应用的日志是被输出到容器的 /var/log 目录上的，这个时候我们可以把 Pod 声明的 Volume 挂载到容器的 /var/log 目录上，然后在这个 Pod 里面同时运行一个 <strong>sidecar 容器</strong>，他也声明挂载相同的 Volume 到自己容器的 /var/log （或其他）目录上，**<font color=blue>这样我们这个 sidecar 容器就只需要从 /var/log 目录下面不断消费日志发送到 Elasticsearch 中存储起来就完成了最基本的应用日志的基本收集工作了。</font>**</p>
-<p>除了这个应用场景之外使用更多的还是利用 <strong>Pod 中的所有容器共享同一个 Network Namespace 这个特性</strong>，这样我们就可以把 Pod 网络相关的配置和管理也可以交给一个 sidecar 容器来完成，完全不需要去干涉用户容器，这个特性在现在非常火热的 Service Mesh（服务网格）中应用非常广泛，典型的应用就是 <a target="_blank" rel="noopener" href="https://istio.io/">Istio</a>，不过也不用着急，后面也会和大家一起探讨的。</p>
-<h2 id="3、如何划分-Pod"><a href="#3、如何划分-Pod" class="headerlink" title="3、如何划分 Pod"></a>3、如何划分 Pod</h2><p>上面我们介绍了 Pod 的实现原理，了解到了应该把关系紧密的容器划分到同一个 Pod 中运行，<strong>那么怎么来区分“关系紧密”呢？</strong>举一个简单的示例，比如我们的 Wordpress 应用，<strong>是一个典型的前端服务器和后端数据服务的应用</strong>，那么你认为应该使用一个 Pod 还是两个 Pod 呢？</p>
-<p>如果在同一个 Pod 中同时运行服务器程序和后端的数据库服务这两个容器，理论上肯定是可行的，但是不推荐这样使用，我们知道一个 Pod 中的所有容器都是同一个整体进行调度的，但是对于我们这个应用 Wordpress 和 MySQL 数据库一定需要运行在一起吗？当然不需要，我们甚至可以将 MySQL 部署到集群之外对吧？<strong>所以 Wordpress 和 MySQL 即使不运行在同一个节点上也是可行的，只要能够访问到即可。</strong></p>
-<p><img src="https://www.qikqiak.com/k3s/assets/img/basic/pod-wordpress-demo1.png" alt="pod wordpress demo1"></p>
-<p>但是如果你非要强行部署到同一个 Pod 中呢？从某个角度来说是错误的，比如现在我们的应用访问量非常大，一个 Pod 已经满足不了我们的需求了，怎么办呢？扩容对吧，但是扩容的目标也是 Pod，并不是容器，比如我们再添加一个 Pod，这个时候我们就有两个 Wordpress 的应用和两个 MySQL 数据库了，而且这两个 Pod 之间的数据是互相独立的，<strong>因为 MySQL 数据库并不是简单的增加副本就可以共享数据了</strong>，所以这个时候就得分开部署了，采用第二种方案，这个时候我们只需要单独扩容 Wordpress 的这个 Pod，后端的 MySQL 数据库并不会受到扩容的影响。</p>
-<p><img src="https://www.qikqiak.com/k3s/assets/img/basic/pod-wordpress-demo2.png" alt="pod wordpress demo2"></p>
-<p><strong>将多个容器部署到同一个 Pod 中的最主要参考就是应用可能由一个主进程和一个或多个的辅助进程组成</strong>，比如上面我们的日志收集的 Pod，需要其他的 sidecar 容器来支持日志的采集。所以当我们判断是否需要在 Pod 中使用多个容器的时候，我们可以按照如下的几个方式来判断：</p>
-<ul>
-<li>这些容器是否一定需要一起运行，是否可以运行在不同的节点上</li>
-<li>这些容器是一个整体还是独立的组件</li>
-<li>这些容器一起进行扩缩容会影响应用吗</li>
-</ul>
-<p>基本上我们能够回答上面的几个问题就能够判断是否需要在 Pod 中运行多个容器了。</p>
-<blockquote>
-<p>Pod的设计：<br>其实在我们理解 Pod 的时候，有一个比较好的类比的方式就是把 Pod 看成我们之前的 “虚拟机”，而容器就是虚拟机中运行的一个用户程序，这样就可以很好的来理解 Pod 的设计。</p>
-</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/image-20211106121037979.png" alt="image-20211106121037979"></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="1-禁止上传私密信息"><a href="#1-禁止上传私密信息" class="headerlink" title="1.禁止上传私密信息"></a>1.禁止上传私密信息</h3><p>使用github作为自己的云笔记图床时，切记图片上不能包含一些隐私信息：例如密码等信息；</p>
+<h3 id="2-上传同名文件时会报错"><a href="#2-上传同名文件时会报错" class="headerlink" title="2.上传同名文件时会报错"></a>2.上传同名文件时会报错</h3><h3 id="3-即使后期gitbub倒闭或者cdn加速失效时，也可以批量把文件给下载下来"><a href="#3-即使后期gitbub倒闭或者cdn加速失效时，也可以批量把文件给下载下来" class="headerlink" title="3.即使后期gitbub倒闭或者cdn加速失效时，也可以批量把文件给下载下来"></a>3.即使后期gitbub倒闭或者cdn加速失效时，也可以批量把文件给下载下来</h3><p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106143529.png" alt="image-20211106143529240"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:OnlyOnexl/typora-img.git</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106143623.png" alt="image-20211106143623666"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106143739.png" alt="image-20211106143739715"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106143757.png" alt="image-20211106143757585"></p>
 <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
 <li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002091450217.png" alt="image-20211002091450217"></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106144206.png" alt="image-20211002091450217"></p>
 </li>
 <li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092057988.png" alt="image-20211002092057988"></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106144213.png" alt="image-20211002092057988"></p>
 </li>
 <li><p>个人微信公众号：云原生架构师实战</p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002141739664.png" alt="image-20211002141739664"></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106144224.png" alt="image-20211002141739664"></p>
 </li>
 <li><p>个人csdn</p>
 <p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
-<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092344616.png" alt="image-20211002092344616"></p>
+<p> <img src="https://cdn.jsdelivr.net/gh/OnlyOnexl/typora-img/typora-imgs/20211106144230.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于pod原理就到这里了，感谢大家阅读，最后祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于如何利用 Github 搭建自己的免费图床实验就到这里了，感谢大家阅读，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
 
                 
             </div>
@@ -575,7 +622,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/11/04/65%20Pod%E5%8E%9F%E7%90%86-20211104/">https://www.onlyonexl.cn/2021/11/04/65%20Pod%E5%8E%9F%E7%90%86-20211104/</a>
+                    <a href="https://www.onlyonexl.cn/2021/11/06/66%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A-20211106/">https://www.onlyonexl.cn/2021/11/06/66%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A-20211106/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -612,11 +659,7 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            
-                                <a href="/tags/k8s/">
-                                    <span class="chip bg-color">k8s</span>
-                                </a>
-                            
+                            <span class="chip bg-color">无标签</span>
                         </div>
                     
                 </div>
@@ -786,9 +829,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/06/66%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8Github%E6%90%AD%E5%BB%BA%E8%87%AA%E5%B7%B1%E7%9A%84%E5%85%8D%E8%B4%B9%E5%9B%BE%E5%BA%8A-20211106/">
                     <div class="card-image">
@@ -806,9 +850,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-06
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-06
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -817,6 +861,7 @@
                         </span>
                     </div>
                 </div>
+
                 
             </div>
         </div>
@@ -827,13 +872,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/03/63%20%E5%AE%9E%E6%88%98%EF%BC%9ACGroups%E4%B8%8ENamespaces-20211103/">
+                <a href="/2021/11/04/65%20Pod%E5%8E%9F%E7%90%86-20211104/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="实战：CGroups与Namespaces-20211103">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img">
                         
-                        <span class="card-title">实战：CGroups与Namespaces-20211103</span>
+                        <span class="card-title">https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -844,7 +889,7 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-04
                             </span>
                         <span class="publish-author">
                             
