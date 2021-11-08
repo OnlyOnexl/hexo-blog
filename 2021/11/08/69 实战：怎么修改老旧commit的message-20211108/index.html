@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实战3：如何修改vscode作为git默认的编辑器(成功测试-博客输出)-20211108, Love">
+    <meta name="keywords" content="实战：怎么修改老旧commit的message-20211108, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实战3：如何修改vscode作为git默认的编辑器(成功测试-博客输出)-20211108 | Love</title>
+    <title>实战：怎么修改老旧commit的message-20211108 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实战3：如何修改vscode作为git默认的编辑器(成功测试-博客输出)-20211108</h1>
+                    <h1 class="description center-align post-title">实战：怎么修改老旧commit的message-20211108</h1>
                 </div>
             </div>
         </div>
@@ -477,31 +477,60 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：如何修改vscode作为git默认的编辑器-20211108"><a href="#实战：如何修改vscode作为git默认的编辑器-20211108" class="headerlink" title="实战：如何修改vscode作为git默认的编辑器-20211108"></a>实战：如何修改vscode作为git默认的编辑器-20211108</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108105806871.png" alt="image-20211108105806871"></p>
+                <h2 id="实战：怎么修改老旧commit的message-20211108"><a href="#实战：怎么修改老旧commit的message-20211108" class="headerlink" title="实战：怎么修改老旧commit的message-20211108"></a>实战：怎么修改老旧commit的message-20211108</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108070122654.png" alt="image-20211108070122654"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="文档来源"><a href="#文档来源" class="headerlink" title="文档来源"></a>文档来源</h2><blockquote>
+<p>课程：《玩转Git三剑客》-苏玲-极客时间-20210918购买-69元</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108111542874.png" alt="image-20211108111542874"></p>
 <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
 
-<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1、问题：如何修改vscode作为git默认的编辑器？"><a href="#1、问题：如何修改vscode作为git默认的编辑器？" class="headerlink" title="1、问题：如何修改vscode作为git默认的编辑器？"></a>1、问题：如何修改vscode作为git默认的编辑器？</h2><h2 id="2、配置方法"><a href="#2、配置方法" class="headerlink" title="2、配置方法"></a>2、配置方法</h2><h3 id="1-查看当前环境"><a href="#1-查看当前环境" class="headerlink" title="1.查看当前环境"></a>1.查看当前环境</h3><p>（1）查看当前git环境</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ <span class="built_in">cd</span> <span class="comment">#来到git家目录下</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ <span class="built_in">pwd</span></span><br><span class="line">/c/Users/hg</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ cat .gitconfig <span class="comment">#查看当前git家目录的全局gitconfig配置文件内容</span></span><br><span class="line">[user]</span><br><span class="line">        name = hg</span><br><span class="line">        email = 2675263825@qq.com</span><br><span class="line">[filter <span class="string">&quot;lfs&quot;</span>]</span><br><span class="line">        clean = git-lfs clean -- %f</span><br><span class="line">        smudge = git-lfs smudge -- %f</span><br><span class="line">        process = git-lfs filter-process</span><br><span class="line">        required = <span class="literal">true</span></span><br><span class="line">[<span class="built_in">log</span>]</span><br><span class="line">        date = iso8601</span><br><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">        lg = <span class="built_in">log</span> --color --graph --pretty=format:<span class="string">&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27;</span> --abbrev-commit</span><br><span class="line">[core]</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ git config --global --list <span class="comment">#或者可以用命令查看，相同的效果</span></span><br><span class="line">user.name=hg</span><br><span class="line">user.email=2675263825@qq.com</span><br><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=<span class="literal">true</span></span><br><span class="line">log.date=iso8601</span><br><span class="line">alias.lg=<span class="built_in">log</span> --color --graph --pretty=format:<span class="string">&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27;</span> --abbrev-commit</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br></pre></td></tr></table></figure>
+<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1、查看当前测试环境"><a href="#1、查看当前测试环境" class="headerlink" title="1、查看当前测试环境"></a>1、查看当前测试环境</h2><p>现在要对最近第二个提交的commit的message信息打算修改，该如何做呢？</p>
+<p>查看当前测试环境：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~/Desktop</span><br><span class="line">$ <span class="built_in">cd</span> /d/github_repo/git_repository/git_learning/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span> -n3 <span class="comment">#查看当前分支提交的commit信息</span></span><br><span class="line">commit accedd4cad0edf250c8c2fa262e3c9d89cd9ab7c (HEAD -&gt; master)</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-07 16:24:04 +0800</span><br><span class="line"></span><br><span class="line">    Move  filename readme.md readme</span><br><span class="line"></span><br><span class="line">commit f217538eba49b694e5bcdb32810b6b56c73ad693</span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 08:07:10 +0800</span><br><span class="line"></span><br><span class="line">    Add refering project <span class="comment">#打算修改这个commit的message信息</span></span><br><span class="line"></span><br><span class="line">commit f99906da3e1494de3a7a48b8d75cbdd78363f425 (tag: js01) <span class="comment">#注意，如果要修改上面commit的mesage信息的话，这个commit就是base了；</span></span><br><span class="line">Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">Date:   2021-10-05 07:36:32 +0800</span><br><span class="line"></span><br><span class="line">    Add js</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、修改方法"><a href="#2、修改方法" class="headerlink" title="2、修改方法"></a>2、修改方法</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git rebase -i f99906da3e1494de3a7a48</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108064804962.png" alt="image-20211108064804962"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108064951950.png" alt="image-20211108064951950"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108065035463.png" alt="image-20211108065035463"></p>
+<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上述修改完成后，这里就会弹出如下log信息，表示修改历史commit的message信息修改成功</span></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">[detached HEAD 1996711] Add a refering project !</span><br><span class="line"> Date: Tue Oct 5 08:07:10 2021 +0800</span><br><span class="line"> 2 files changed, 19 insertions(+), 1 deletion(-)</span><br><span class="line">Successfully rebased and updated refs/heads/master. <span class="comment">#这里还提示master分支的refes/heads还被更新了</span></span><br><span class="line"><span class="comment">#注意：我们这个变基操作是离不开detached HEAD(分离头指针)的；</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git branch -av</span><br><span class="line">* master 5e9cb78 Move  filename readme.md readme</span><br><span class="line">  temp   30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span> -n3 --graph</span><br><span class="line">* commit 5e9cb78bc301711a19301f62bbe1ef813f5d0880 (HEAD -&gt; master) <span class="comment">#注意：查看当前分支，变基之后，commit id信息会改变，但是其内容不会变(即：tree里面的blob对象不会变)；</span></span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-07 16:24:04 +0800</span><br><span class="line">|</span><br><span class="line">|     Move  filename readme.md readme</span><br><span class="line">|</span><br><span class="line">* commit 1996711887d1eebfe824ed396d9d8f17cb230623</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-05 08:07:10 +0800</span><br><span class="line">|</span><br><span class="line">|     Add a refering project ! <span class="comment">#这里可以看到，符合预期效果，某一历史commit的mesage信息已被修改</span></span><br><span class="line">|</span><br><span class="line">* commit f99906da3e1494de3a7a48b8d75cbdd78363f425 (tag: js01)</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-05 07:36:32 +0800</span><br><span class="line">|</span><br><span class="line">|     Add js</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/github_repo/git_repository/git_learning (master)</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意：</p>
+<p><code>上一节修改最近一次commit的message和本次修改历史版本中任意一次commit的message都只针对在本地仓库</code>，如果有推送到远程仓库了的话，这个是不能轻易改的，否则会出问题，会影响其它同事的；</p>
+</blockquote>
+<p>到此，实验结束。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="问题：为什么-rebase-i-git-会分离头指针，git-这么设计的目的是什么呢？-已解决"><a href="#问题：为什么-rebase-i-git-会分离头指针，git-这么设计的目的是什么呢？-已解决" class="headerlink" title="问题：为什么 rebase -i git 会分离头指针，git 这么设计的目的是什么呢？(已解决)"></a>问题：为什么 rebase -i git 会分离头指针，git 这么设计的目的是什么呢？(已解决)</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108095852057.png" alt="image-20211108095852057"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">作者回复: </span><br><span class="line">git rebase工作的过程中，就是用了分离头指针。rebase意味着基于新base的commit来变更部分commits。它处理的时候，把HEAD指向base的commit，此时如果该commit没有对应branch，就处于分离头指针的状态，然后重新一个一个生成新的commit，当rebase创建完最后一个commit后，结束分离头状态，Git让变完基的分支名指向HEAD。</span><br></pre></td></tr></table></figure>
+
+<h3 id="问题：那如果要更改的是第一次提交，他的父节点是谁呢？-已解决"><a href="#问题：那如果要更改的是第一次提交，他的父节点是谁呢？-已解决" class="headerlink" title="问题：那如果要更改的是第一次提交，他的父节点是谁呢？(已解决)"></a>问题：那如果要更改的是第一次提交，他的父节点是谁呢？(已解决)</h3><p><img src="C:/Users/hg/AppData/Roaming/Typora/typora-user-images/image-20211108100139181.png" alt="image-20211108100139181"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">作者回复: 搜索工具可以根据 “how to rebase the oldest commit” 可以搜到 how <span class="keyword">do</span> i git rebase the first commit，</span><br><span class="line">https://stackoverflow.com/questions/22992543/how-do-i-git-rebase-the-first-commit</span><br><span class="line"></span><br><span class="line">里面告诉我们执行 “git rebase -i --root” 即可</span><br></pre></td></tr></table></figure>
+
+<h3 id="注意：我修改乐first-commit的message，咋second-commit-third-commit-fourth-commit的commit-hash都变了呢-（已解决）"><a href="#注意：我修改乐first-commit的message，咋second-commit-third-commit-fourth-commit的commit-hash都变了呢-（已解决）" class="headerlink" title="注意：我修改乐first_commit的message，咋second_commit, third_commit, fourth_commit的commit hash都变了呢?（已解决）"></a>注意：我修改乐first_commit的message，咋second_commit, third_commit, fourth_commit的commit hash都变了呢?（已解决）</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108100807202.png" alt="image-20211108100807202"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作者回复: 很好的发现！ 那是因为 message 也是commit的属性，是确定commit的<span class="built_in">hash</span>值的一个因子。其次，second_commit 有个 parent 的属性，parent的内容发生了变化，因此，second_commit 的<span class="built_in">hash</span>也变了。</span><br><span class="line"></span><br><span class="line">以此类推，后面的commit也发生了变化。</span><br></pre></td></tr></table></figure>
 
 
 
-<p>（2）确保自己笔记本上安装了vscode软件，并且在git里面运行code是可以打开vscode软件的</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ code</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108105341035.png" alt="image-20211108105341035"></p>
-<h3 id="2-开始配置"><a href="#2-开始配置" class="headerlink" title="2.开始配置"></a>2.开始配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ git config --global core.editor <span class="string">&quot;code --wait&quot;</span> <span class="comment">#直接配置这1条命令就好</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="3、验证"><a href="#3、验证" class="headerlink" title="3、验证"></a>3、验证</h2><p>查看全局配置文件信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ cat .gitconfig</span><br><span class="line">[user]</span><br><span class="line">        name = hg</span><br><span class="line">        email = 2675263825@qq.com</span><br><span class="line">[filter <span class="string">&quot;lfs&quot;</span>]</span><br><span class="line">        clean = git-lfs clean -- %f</span><br><span class="line">        smudge = git-lfs smudge -- %f</span><br><span class="line">        process = git-lfs filter-process</span><br><span class="line">        required = <span class="literal">true</span></span><br><span class="line">[<span class="built_in">log</span>]</span><br><span class="line">        date = iso8601</span><br><span class="line">[<span class="built_in">alias</span>]</span><br><span class="line">        lg = <span class="built_in">log</span> --color --graph --pretty=format:<span class="string">&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27;</span> --abbrev-commit</span><br><span class="line">[core]</span><br><span class="line">[core]</span><br><span class="line">        editor = code --<span class="built_in">wait</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ git config --global --list</span><br><span class="line">user.name=hg</span><br><span class="line">user.email=2675263825@qq.com</span><br><span class="line">filter.lfs.clean=git-lfs clean -- %f</span><br><span class="line">filter.lfs.smudge=git-lfs smudge -- %f</span><br><span class="line">filter.lfs.process=git-lfs filter-process</span><br><span class="line">filter.lfs.required=<span class="literal">true</span></span><br><span class="line">log.date=iso8601</span><br><span class="line">alias.lg=<span class="built_in">log</span> --color --graph --pretty=format:<span class="string">&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27;</span> --abbrev-commit</span><br><span class="line">core.editor=code --<span class="built_in">wait</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108102721575.png" alt="image-20211108102721575"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">commit的信息：包括作者、描述、内容、父节点信息等，通过变基修改描述会产生连锁反应，涉及到的commit的描述都会变化，所以，在自己的开发分支上可以随意玩，公共分支不可以。</span><br></pre></td></tr></table></figure>
 
 
 
-<p>运行命令测试是否符合预期效果：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 ~</span><br><span class="line">$ git config --global -e <span class="comment">#在命令行这里直接运行这个命令就可以直接打开~/.gitconfig文件了，可以看到本次就是默认使用vscode来编辑文件了，如果你的vscode启用了vim编辑器的话，正常编辑就好了。要关闭的话直接退出就好了。</span></span><br><span class="line">hint: Waiting <span class="keyword">for</span> your editor to close the file...</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108111334019.png" alt="image-20211108111334019"></p>
+<h3 id="问题：如何识别父级commit？（已解决）"><a href="#问题：如何识别父级commit？（已解决）" class="headerlink" title="问题：如何识别父级commit？（已解决）"></a>问题：如何识别父级commit？（已解决）</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108101417226.png" alt="image-20211108101417226"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">作者回复: 这个版本树如果是自己创建的，我们肯定事先知道哪个commit先建，哪个commit后建，由此知道哪个是parent。这是一种方法。</span><br><span class="line"></span><br><span class="line">其他用git命令的方式也很多。</span><br><span class="line"></span><br><span class="line">比如： git show —pretty=format:%P HEAD</span><br><span class="line">这个命令可以返回HEAD指针的父commit。</span><br><span class="line"></span><br><span class="line">再比如：gitk 打开的界面上直接显示Parent</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108105806871.png" alt="image-20211108105806871"></p>
-<p>good，实验到此结束。</p>
+<h3 id="问题：变基rebase的应用场景？（已解决）"><a href="#问题：变基rebase的应用场景？（已解决）" class="headerlink" title="问题：变基rebase的应用场景？（已解决）"></a>问题：变基rebase的应用场景？（已解决）</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108102021890.png" alt="image-20211108102021890"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">作者回复: 其实，rebase就是在改变之前的变更，比如你发现commit的message写得不规范，或者应该合成一个commit的却拆成了几个，又或者一个commit里面一个文件写错了，等等</span><br><span class="line"></span><br><span class="line">可能你新建了5个commit，创建时间早的2个需要修改，后3个commit里面的文件不用变动。用rebase命令是可以达到你要的效果的。只是，那3个在你眼里不用改动的commit，由于其父commit发生变化了，所以它们的commit id 也会发生变化。</span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108111143626.png" alt="image-20211108111143626"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">对于团队中公用的分支，例如发布分支等，禁用 rebase，因为这样会破坏历史的 commit 信息的，将来要溯源、基于构建历史拉取补丁分支等就会带来极大不便</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
@@ -519,8 +548,8 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于如何修改vscode作为git默认的编辑器实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108110411871.png" alt="image-20211108110411871"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于怎么修改老旧commit的message实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210922123505950.png" alt="image-20210922123505950"></p>
 
                 
             </div>
@@ -547,7 +576,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/11/08/68%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9vscode%E4%BD%9C%E4%B8%BAgit%E9%BB%98%E8%AE%A4%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-20211108/">https://www.onlyonexl.cn/2021/11/08/68%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9vscode%E4%BD%9C%E4%B8%BAgit%E9%BB%98%E8%AE%A4%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-20211108/</a>
+                    <a href="https://www.onlyonexl.cn/2021/11/08/69%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%80%8E%E4%B9%88%E4%BF%AE%E6%94%B9%E8%80%81%E6%97%A7commit%E7%9A%84message-20211108/">https://www.onlyonexl.cn/2021/11/08/69%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%80%8E%E4%B9%88%E4%BF%AE%E6%94%B9%E8%80%81%E6%97%A7commit%E7%9A%84message-20211108/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -758,9 +787,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/08/69%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%80%8E%E4%B9%88%E4%BF%AE%E6%94%B9%E8%80%81%E6%97%A7commit%E7%9A%84message-20211108/">
                     <div class="card-image">
@@ -778,9 +808,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-08
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-08
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -793,6 +823,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -811,13 +842,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/07/67%20Pod%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">
+                <a href="/2021/11/08/68%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%A6%82%E4%BD%95%E4%BF%AE%E6%94%B9vscode%E4%BD%9C%E4%B8%BAgit%E9%BB%98%E8%AE%A4%E7%9A%84%E7%BC%96%E8%BE%91%E5%99%A8-20211108/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Pod生命周期">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="实战3：如何修改vscode作为git默认的编辑器(成功测试-博客输出)-20211108">
                         
-                        <span class="card-title">Pod生命周期</span>
+                        <span class="card-title">实战3：如何修改vscode作为git默认的编辑器(成功测试-博客输出)-20211108</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -828,18 +859,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-07
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-08
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
-                                </a>
-                            
-                            <a href="/categories/k8s/Pod/" class="post-category">
-                                    Pod
+                            <a href="/categories/git/" class="post-category">
+                                    git
                                 </a>
                             
                             
@@ -849,12 +876,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
-                    </a>
-                    
-                    <a href="/tags/Pod/">
-                        <span class="chip bg-color">Pod</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
                 </div>
