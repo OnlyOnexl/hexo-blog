@@ -1,0 +1,1434 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="71 Pod使用进阶, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>71 Pod使用进阶 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">71 Pod使用进阶</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-10-09
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Pod使用进阶"><a href="#Pod使用进阶" class="headerlink" title="Pod使用进阶"></a>Pod使用进阶</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108144447899.png" alt="image-20211108144447899"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><p>深入理解 Pod 对象</p>
+<h2 id="1、Pod-资源配置"><a href="#1、Pod-资源配置" class="headerlink" title="1、Pod 资源配置"></a>1、Pod 资源配置</h2><p>实际上上面几个步骤就是影响一个 Pod 生命周期的大的部分，<strong>但是还有一些细节也会在 Pod 的启动过程进行设置</strong>，比如在容器启动之前还会为当前的容器设置分配的 CPU、内存等资源，<strong>我们知道我们可以通过 CGroup 来对容器的资源进行限制</strong>，同样的，<strong>在 Pod 中我们也可以直接配置某个容器的使用的 CPU 或者内存的上限</strong>。那么 Pod 是如何来使用和控制这些资源的分配的呢？</p>
+<p>首先对于 CPU，<strong>我们知道计算机里 CPU 的资源是按<code>“时间片”</code>的方式来进行分配的</strong>，<strong>系统里的每一个操作都需要 CPU 的处理，所以，哪个任务要是申请的 CPU 时间片越多，那么它得到的 CPU 资源就越多</strong>，这个很容器理解。</p>
+<p>然后还需要了解下 CGroup 里面对于 CPU 资源的单位换算：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 CPU =  1000 millicpu（1 Core = 1000m）</span><br><span class="line">0.5 CPU = 500 millicpu （0.5 Core = 500m）</span><br></pre></td></tr></table></figure>
+
+<p>这里的 <code>m</code> 就是毫、毫核的意思，<strong>Kubernetes 集群中的每一个节点可以通过操作系统的命令来确认本节点的 CPU 内核数量，然后将这个数量乘以1000，得到的就是节点总 CPU 总毫数。</strong>比如一个节点有四核，那么该节点的 CPU 总毫量为 4000m，如果你要使用0.5 core，则你要求的是 4000*0.5 = 2000m。在 Pod 里面我们可以通过下面的两个参数来限制和请求 CPU 资源：</p>
+<ul>
+<li><code>spec.containers[].resources.limits.cpu</code>：CPU 上限值，<strong>可以短暂超过，容器也不会被停止</strong></li>
+<li><code>spec.containers[].resources.requests.cpu</code>：CPU请求值，<strong>Kubernetes 调度算法里的依据值</strong>，可以超过</li>
+</ul>
+<p>这里需要明白的是，<strong>如果 <code>resources.requests.cpu</code> 设置的值大于集群里每个节点的最大 CPU 核心数，那么这个 Pod 将无法调度，因为没有节点能满足它</strong>。</p>
+<blockquote>
+<p>到这里应该明白了，**<code>requests</code> 是用于集群调度使用的资源，而 <code>limits</code> 才是真正的用于资源限制的配置<strong>，</strong>如果你需要保证的你应用优先级很高，也就是资源吃紧的情况下最后再杀掉你的 Pod，那么你就把你的 requests 和 limits 的值设置成一致，在后面应用的 <code>Qos</code> 中会具体讲解。**</p>
+</blockquote>
+<hr>
+<p>==:heart:实验测试：pod资源限制（测试成功）==</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">实验日期：2021年11月8日15:05:46</span><br></pre></td></tr></table></figure>
+
+<p>比如，现在我们定义一个 Pod，给容器的配置如下的资源:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># pod-resource-demo1.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">resource-demo1</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">resource-demo1</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">resources:</span> <span class="comment">#这个是给调度器使用的；</span></span><br><span class="line">      <span class="attr">requests:</span></span><br><span class="line">        <span class="attr">memory:</span> <span class="string">50Mi</span></span><br><span class="line">        <span class="attr">cpu:</span> <span class="string">50m</span></span><br><span class="line">      <span class="attr">limits:</span></span><br><span class="line">        <span class="attr">memory:</span> <span class="string">100Mi</span></span><br><span class="line">        <span class="attr">cpu:</span> <span class="string">100m</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，CPU 我们给的是 50m，也就是 <code>0.05core</code>，这 <code>0.05core</code> 也就是占了 1 CPU 里的 5% 的资源时间。而限制资源是给的是 100m，<strong>但是需要注意的是 CPU 资源是可压缩资源，也就是容器达到了这个设定的上限后，容器性能会下降，但是不会终止或退出</strong>。</p>
+<p>比如我们直接创建上面这个 Pod：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f resource-demo1.yaml</span></span><br><span class="line">pod/resource-demo1 created</span><br></pre></td></tr></table></figure>
+
+
+
+<p>创建完成后，我们可以看到 Pod 被调度到 node2 这个节点上：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -owide</span></span><br><span class="line">NAME             READY   STATUS    RESTARTS   AGE   IP           NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">resource-demo1   1/1     Running   0          42s   10.244.2.9   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后我们到 node2 节点上去查看 Pod 里面启动的 <code>resource-demo1</code> 这个容器：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment">#crictl ps #查看当前节点pod信息</span></span><br><span class="line">CONTAINER           IMAGE               CREATED             STATE               NAME                   ATTEMPT             POD ID</span><br><span class="line">bcbbf88a9ac29       87a94228f133e       3 minutes ago       Running             resource-demo1         0                   0f2511f4b7567</span><br></pre></td></tr></table></figure>
+
+<p>我们可以去查看下主容器的信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ crictl inspect bcbbf88a9ac29 <span class="comment">#我淦，这个crictl命令也可以直接来看容器的详细信息的……</span></span><br><span class="line">  <span class="string">&quot;status&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;id&quot;</span>: <span class="string">&quot;bcbbf88a9ac29d84700525b4c898171889510b372b45a77f1c9757fdef3793a2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;metadata&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;attempt&quot;</span>: 0,</span><br><span class="line">      <span class="string">&quot;name&quot;</span>: <span class="string">&quot;resource-demo1&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="string">&quot;state&quot;</span>: <span class="string">&quot;CONTAINER_RUNNING&quot;</span>,</span><br><span class="line">    <span class="string">&quot;createdAt&quot;</span>: <span class="string">&quot;2021-11-07T16:46:37.069325484+08:00&quot;</span>,</span><br><span class="line">    <span class="string">&quot;startedAt&quot;</span>: <span class="string">&quot;2021-11-07T16:46:37.412557847+08:00&quot;</span>,</span><br><span class="line">    <span class="string">&quot;finishedAt&quot;</span>: <span class="string">&quot;0001-01-01T00:00:00Z&quot;</span>,</span><br><span class="line">    <span class="string">&quot;exitCode&quot;</span>: 0,</span><br><span class="line">    <span class="string">&quot;image&quot;</span>: &#123;</span><br><span class="line">      <span class="string">&quot;annotations&quot;</span>: &#123;&#125;,</span><br><span class="line">      <span class="string">&quot;image&quot;</span>: <span class="string">&quot;docker.io/library/nginx:latest&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">......</span><br><span class="line">      <span class="string">&quot;linux&quot;</span>: &#123;</span><br><span class="line">        <span class="string">&quot;resources&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;devices&quot;</span>: [</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="string">&quot;allow&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">              <span class="string">&quot;access&quot;</span>: <span class="string">&quot;rwm&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">          ],</span><br><span class="line">          <span class="string">&quot;memory&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;limit&quot;</span>: 104857600 <span class="comment">#注意</span></span><br><span class="line">          &#125;,</span><br><span class="line">          <span class="string">&quot;cpu&quot;</span>: &#123;</span><br><span class="line">            <span class="string">&quot;shares&quot;</span>: 51,</span><br><span class="line">            <span class="string">&quot;quota&quot;</span>: 10000, <span class="comment">#注意</span></span><br><span class="line">            <span class="string">&quot;period&quot;</span>: 100000</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="string">&quot;cgroupsPath&quot;</span>: <span class="string">&quot;kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice:cri-containerd:bcbbf88a9ac29d84700525b4c898171889510b372b45a77f1c9757fdef3793a2&quot;</span>,</span><br><span class="line"></span><br><span class="line">     ......</span><br></pre></td></tr></table></figure>
+
+<p>实际上我们就可以看到这个容器的一些资源情况，<strong>Pod 上的资源配置最终也还是通过底层的容器运行时去控制 CGroup 来实现的</strong>，我们可以进入如下目录查看 CGroup 的配置，该目录就是 CGroup 父级目录，<strong>而 CGroup 是通过文件系统来进行资源限制的</strong>，所以我们上面限制容器的资源就可以在该目录下面反映出来：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211107171358662.png" alt="image-20211107171358662"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment">#cd /sys/fs/cgroup/cpu/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice/</span></span><br><span class="line">[root@node2 kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice]<span class="comment">#ls</span></span><br><span class="line">cgroup.clone_children  cpuacct.usage         cpu.rt_period_us   cri-containerd-0f2511f4b75676145584aa6379a933d65d0e531a500e6697a1998bfb1b0b7d9d.scope</span><br><span class="line">cgroup.event_control   cpuacct.usage_percpu  cpu.rt_runtime_us  cri-containerd-bcbbf88a9ac29d84700525b4c898171889510b372b45a77f1c9757fdef3793a2.scope</span><br><span class="line">cgroup.procs           cpu.cfs_period_us     cpu.shares         notify_on_release</span><br><span class="line">cpuacct.stat           cpu.cfs_quota_us      cpu.stat           tasks</span><br><span class="line">[root@node2 kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice]<span class="comment">#cat cpu.cfs_quota_us</span></span><br><span class="line">10000 <span class="comment">#1/10的比例；</span></span><br><span class="line">[root@node2 kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice]<span class="comment">#cat cpu.cfs_period_us</span></span><br><span class="line">100000</span><br><span class="line">[root@node2 kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>注意这里的比值计算：</p>
+<p>1.yaml文件里给的spec.containers.resources.requests.cpu=50m(50毫核=0.05c，即1c里面的0.05c，0.05/1的比值，5/100=1/20的比值)</p>
+<p>2.而cgroups里面的比值为：10000/100000=1/10的比值</p>
+<p>这里自己比较有些模糊…………</p>
+</blockquote>
+<p>其中 <code>cpu.cfs_quota_us</code> 就是 CPU 的限制值，如果要查看具体的容器的内存资源，我们也可以进入到容器目录下面去查看即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@node2 ~]<span class="comment">#cat /sys/fs/cgroup/memory/kubepods.slice/kubepods-burstable.slice/kubepods-burstable-pod7e80487d_24d7_44af_bf38_c43b6dfe4045.slice/memory.limit_in_bytes #limits</span></span><br><span class="line">104857600</span><br><span class="line">[root@node2 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>注意：单位换算问题</li>
+</ul>
+<blockquote>
+<p>最后我们了解下内存这块的资源控制，内存的单位换算比较简单：</p>
+<p><code>1 MiB = 1024 KiB</code>，内存这块在 Kubernetes 里一般用的是<code>Mi</code>单位，当然你也可以使用<code>Ki、Gi</code>甚至<code>Pi</code>，看具体的业务需求和资源容量。</p>
+<p>单位换算：</p>
+<p>这里注意的是<code>MiB ≠ MB</code>，MB 是十进制单位，MiB 是二进制，平时我们以为 MB 等于 1024KB，其实<code>1MB=1000KB</code>，<code>1MiB</code>才等于<code>1024KiB</code>。中间带字母 i 的是国际电工协会（IEC）定的，走1024乘积；KB、MB、GB 是国际单位制，走1000乘积。</p>
+</blockquote>
+<p>这里要注意的是，<strong>内存是不可压缩性资源，如果容器使用内存资源到达了上限，那么会<code>OOM</code>，造成内存溢出，容器就会终止和退出</strong>。我们也可以通过上面的方式去通过查看 CGroup 文件的值来验证资源限制。</p>
+<h2 id="2、静态-Pod（static-pod）"><a href="#2、静态-Pod（static-pod）" class="headerlink" title="2、静态 Pod（static pod）"></a>2、静态 Pod（static pod）</h2><p>在 Kubernetes 集群中除了我们经常使用到的普通的 Pod 外，还有一种特殊的 Pod，叫做<strong>Static Pod</strong>，也就是我们说的<strong>静态 Pod</strong>，静态 Pod 有什么特殊的地方呢？</p>
+<p><code>静态 Pod 直接由节点上的 kubelet 进程来管理，不通过 master 节点上的 apiserver</code>。无法与我们常用的控制器 Deployment 或者 DaemonSet 进行关联，它由 kubelet 进程自己来监控，<strong>当 pod 崩溃时会重启该 pod，kubelet 也无法对他们进行健康检查</strong>。**<font color=red>静态 pod 始终绑定在某一个 kubelet 上，并且始终运行在同一个节点上</font><strong>。</strong><font color=blue>kubelet 会自动为每一个静态 pod 在 Kubernetes 的 apiserver 上创建一个镜像 Pod，因此我们可以在 apiserver 中查询到该 pod，但是不能通过 apiserver 进行控制（例如不能删除）</font>**。</p>
+<p>创建静态 Pod 有两种方式：<code>配置文件</code>和 <code>HTTP</code> 两种方式</p>
+<h3 id="方法1：通过配置文件创建静态Pods"><a href="#方法1：通过配置文件创建静态Pods" class="headerlink" title="方法1：通过配置文件创建静态Pods"></a>方法1：通过配置文件创建静态Pods</h3><p>配置文件就是放在特定目录下的标准的 JSON 或 YAML 格式的 pod 定义文件。<strong>用 <code>kubelet --pod-manifest-path=&lt;the directory&gt;</code>来启动 kubelet 进程</strong>，kubelet 定期的去扫描这个目录，根据这个目录下出现或消失的 YAML/JSON 文件来创建或删除静态 pod。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubelet --help|grep manifest</span></span><br><span class="line">manifest can be provided to the Kubelet.</span><br><span class="line">(underspec<span class="string">&#x27;d currently) to submit a new manifest.</span></span><br><span class="line"><span class="string">      --manifest-url string                                      URL for accessing additional Pod specifications to run (DEPRECATED: This parameter should be set via the config file specified by the Kubelet&#x27;</span>s --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ <span class="keyword">for</span> more information.)</span><br><span class="line">      --manifest-url-header colonSeparatedMultimapStringString   Comma-separated list of HTTP headers to use when accessing the url provided to --manifest-url. Multiple headers with the same name will be added <span class="keyword">in</span> the same order provided. This flag can be repeatedly invoked. For example: --manifest-url-header <span class="string">&#x27;a:hello,b:again,c:world&#x27;</span> --manifest-url-header <span class="string">&#x27;b:beautiful&#x27;</span> (DEPRECATED: This parameter should be <span class="built_in">set</span> via the config file specified by the Kubelet<span class="string">&#x27;s --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ for more information.)</span></span><br><span class="line"><span class="string">      --pod-manifest-path string                                 Path to the directory containing static pod files to run, or the path to a single static pod file. Files starting with dots will be ignored. (DEPRECATED: This parameter should be set via the config file specified by the Kubelet&#x27;</span>s --config flag. See https://kubernetes.io/docs/tasks/administer-cluster/kubelet-config-file/ <span class="keyword">for</span> more information.)</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>比如我们在 node1 这个节点上用静态 pod 的方式来启动一个 nginx 的服务，配置文件路径为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#cat /var/lib/kubelet/config.yaml</span></span><br><span class="line">......</span><br><span class="line">staticPodPath: /etc/kubernetes/manifests  <span class="comment"># 和命令行的 pod-manifest-path 参数一致</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>打开这个文件我们可以看到其中有一个属性为 <code>staticPodPath</code> 的配置，其实和命令行的 <code>--pod-manifest-path</code> 配置是一致的，所以如果我们通过 kubeadm 的方式来安装的集群环境，对应的 kubelet 已经配置了我们的静态 Pod 文件的路径，默认地址为 <code>/etc/kubernetes/manifests</code>，所以我们只需要在该目录下面创建一个标准的 Pod 的 JSON 或者 YAML 文件即可，如果你的 kubelet 启动参数中没有配置上面的<code>--pod-manifest-path</code> 参数的话，<strong>那么添加上这个参数然后重启 kubelet 即可</strong>：</p>
+<p>这边创建一个静态pod用于测试实验：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">➜</span>  <span class="string">~</span> <span class="string">cat</span> <span class="string">&lt;&lt;EOF</span> <span class="string">&gt;/etc/kubernetes/manifests/static-web.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">static-web</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">static</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">      <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">web</span> <span class="comment">#我淦，这个容器端口也是可以指定name的,因为一个容器可以有不同的端口来提供不同的服务；</span></span><br><span class="line">          <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#注意</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl explain pod.spec.containers.ports</span></span><br><span class="line">……</span><br><span class="line">   name &lt;string&gt;</span><br><span class="line">     If specified, this must be an IANA_SVC_NAME and unique within the pod. Each</span><br><span class="line">     named port <span class="keyword">in</span> a pod must have a unique name. Name <span class="keyword">for</span> the port that can be</span><br><span class="line">     referred to by services.</span><br><span class="line">……</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="方法2：通过-HTTP-创建静态-Pods"><a href="#方法2：通过-HTTP-创建静态-Pods" class="headerlink" title="方法2：通过 HTTP 创建静态 Pods"></a>方法2：通过 HTTP 创建静态 Pods</h3><p>kubelet 周期地从 <code>–manifest-url=</code> 参数指定的地址下载文件，并且把它翻译成 JSON/YAML 格式的 pod 定义。此后的操作方式与<code>–pod-manifest-path=</code> 相同，kubelet 会不时地重新下载该文件，当文件变化时对应地终止或启动静态 pod。</p>
+<p>kubelet 启动时，由 <code>--pod-manifest-path=</code> 或 <code>--manifest-url=</code> 参数指定的目录下定义的所有 pod 都会自动创建，例如，我们示例中的 <code>static-web</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ nerdctl -n k8s.io ps</span><br><span class="line">CONTAINER ID    IMAGE                                              COMMAND                   CREATED           STATUS    PORTS    NAMES</span><br><span class="line">6add7aa53969    docker.io/library/nginx:latest                     <span class="string">&quot;/docker-entrypoint.…&quot;</span>    43 seconds ago    Up</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>现在我们通过kubectl工具可以看到这里创建了一个新的镜像 Pod：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1       1/1     Running   0          67m</span><br><span class="line">static-web-master1   1/1     Running   0          2m29s</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>**<font color=red>静态 pod 的标签会传递给镜像 Pod，可以用来过滤或筛选</font>**。 </p>
+<p>需要注意的是，<strong>我们不能通过 API 服务器来删除静态 pod</strong>（例如，通过kubectl命令），kubelet 不会删除它。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1       1/1     Running   0          72m</span><br><span class="line">static-web-master1   1/1     Running   0          7m20s</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl delete pod static-web-master1</span></span><br><span class="line">pod <span class="string">&quot;static-web-master1&quot;</span> deleted</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1       1/1     Running   0          72m</span><br><span class="line">static-web-master1   0/1     Pending   0          1s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1       1/1     Running   0          73m</span><br><span class="line">static-web-master1   1/1     Running   0          5s</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="静态-Pod-的动态增加和删除"><a href="#静态-Pod-的动态增加和删除" class="headerlink" title="静态 Pod 的动态增加和删除"></a>静态 Pod 的动态增加和删除</h3><p>运行中的 kubelet 周期扫描配置的目录（我们这个例子中就是 <code>/etc/kubernetes/manifests</code>）下文件的变化，当这个目录中有文件出现或消失时创建或删除 pods：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1       1/1     Running   0          73m</span><br><span class="line">static-web-master1   1/1     Running   0          48s</span><br><span class="line">[root@master1 ~]<span class="comment">#mv /etc/kubernetes/manifests/static-web.yaml /tmp/</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME             READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1   1/1     Running   0          73m</span><br><span class="line">[root@master1 ~]<span class="comment">#mv /tmp/static-web.yaml /etc/kubernetes/manifests/</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE</span><br><span class="line">resource-demo1       1/1     Running   0          74m</span><br><span class="line">static-web-master1   0/1     Pending   0          2s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pod</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS      AGE</span><br><span class="line">resource-demo1       1/1     Running   0             74m</span><br><span class="line">static-web-master1   1/1     Running   1 (28s ago)   5s</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>其实我们用 kubeadm 安装的集群，master 节点上面的几个重要组件都是用静态 Pod 的方式运行的，我们登录到 master 节点上查看<code>/etc/kubernetes/manifests</code>目录：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜  ~ ls /etc/kubernetes/manifests/</span><br><span class="line">etcd.yaml  kube-apiserver.yaml  kube-controller-manager.yaml  kube-scheduler.yaml</span><br></pre></td></tr></table></figure>
+
+<p>现在明白了吧，这种方式也为我们将集群的一些组件容器化提供了可能，因为这些 Pod 都不会受到 apiserver 的控制，不然我们这里kube-apiserver怎么自己去控制自己呢？<strong>万一不小心把这个 Pod 删掉了呢？所以只能有kubelet自己来进行控制</strong>，这就是我们所说的静态 Pod。</p>
+<p>注意：静态pod作用</p>
+<blockquote>
+<p>静态pod本身就是用来去管理我们的k8s集群，例如用静态pod去跑一个nginx，然后去管理我们的k8s集群；</p>
+</blockquote>
+<h2 id="3、Downward-API"><a href="#3、Downward-API" class="headerlink" title="3、Downward API"></a>3、Downward API</h2><p>前面我们从 Pod 的原理到生命周期介绍了 Pod 的一些使用，作为 Kubernetes 中最核心的资源对象、最基本的调度单元，我们可以发现 Pod 中的属性还是非常繁多的，前面我们使用过一个 <code>volumes</code> 的属性，表示声明一个数据卷，我们可以通过命令<code>kubectl explain pod.spec.volumes</code>去查看该对象下面的属性非常多，前面我们只是简单使用了 <code>hostPath</code> 和 <code>emptyDir&#123;&#125;</code> 这两种模式，其中还有一种模式叫做<code>downwardAPI</code>，<strong>这个模式和其他模式不一样的地方在于它不是为了存放容器的数据，也不是用来进行容器和宿主机的数据交换的，而是让 Pod 里的容器能够直接获取到这个 Pod 对象本身的一些信息。</strong></p>
+<p>目前 <code>Downward API</code> 提供了两种方式用于将 Pod 的信息注入到容器内部：</p>
+<ul>
+<li>环境变量：<strong>用于单个变量，可以将 Pod 信息和<u>容器信息</u>直接注入容器内部</strong></li>
+<li>Volume 挂载：将 Pod 信息生成为文件，直接挂载到容器内部中去</li>
+</ul>
+<h3 id="1-环境变量"><a href="#1-环境变量" class="headerlink" title="1.环境变量"></a>1.环境变量</h3><p>我们通过 <code>Downward API</code> 来将 Pod 的 IP、名称以及所对应的 namespace 注入到容器的环境变量中去，然后在容器中打印全部的环境变量来进行验证，对应资源清单文件如下：</p>
+<hr>
+<p>==:heart:实验测试：==</p>
+<p>[root@master1 ~]#vim env-pod.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># env-pod.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">env-pod</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kube-system</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">env-pod</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">busybox</span></span><br><span class="line">    <span class="attr">command:</span> [<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;env&quot;</span>]  <span class="comment">#注意，这个pod执行完这个命令就退出了，没有进程可以hold住容器，可以通过查看日志来确认一些信息了；</span></span><br><span class="line">    <span class="attr">env:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">POD_NAME</span></span><br><span class="line">      <span class="attr">valueFrom:</span></span><br><span class="line">        <span class="attr">fieldRef:</span></span><br><span class="line">          <span class="attr">fieldPath:</span> <span class="string">metadata.name</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">POD_NAMESPACE</span></span><br><span class="line">      <span class="attr">valueFrom:</span></span><br><span class="line">        <span class="attr">fieldRef:</span></span><br><span class="line">          <span class="attr">fieldPath:</span> <span class="string">metadata.namespace</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">POD_IP</span></span><br><span class="line">      <span class="attr">valueFrom:</span></span><br><span class="line">        <span class="attr">fieldRef:</span></span><br><span class="line">          <span class="attr">fieldPath:</span> <span class="string">status.podIP</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到上面我们使用了一种新的方式来设置 env 的值：<code>valueFrom</code>，由于 Pod 的 name 和 namespace 属于元数据，是在 Pod 创建之前就已经定下来了的，所以我们可以使用 metata 就可以获取到了，但是对于 Pod 的 IP 则不一样，因为**我们知道 Pod IP 是不固定的，Pod 重建了就变了，它属于<code>状态数据</code>**，所以我们使用 status 这个属性去获取。另外除了使用 <code>fieldRef</code>获取 Pod 的基本信息外，还可以通过 <code>resourceFieldRef</code> 去获取容器的资源请求和资源限制信息。</p>
+<p>我们直接创建上面的 Pod：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f env-pod.yaml</span></span><br><span class="line">pod/env-pod created</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>Pod 创建成功后，我们可以查看日志：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment"># kubectl logs env-pod -nkube-system</span></span><br><span class="line">POD_IP=10.244.2.10</span><br><span class="line">KUBERNETES_SERVICE_PORT=443</span><br><span class="line">KUBERNETES_PORT=tcp://10.96.0.1:443</span><br><span class="line">KUBE_DNS_SERVICE_PORT_DNS_TCP=53</span><br><span class="line">HOSTNAME=env-pod</span><br><span class="line">SHLVL=1</span><br><span class="line">HOME=/root</span><br><span class="line">KUBE_DNS_SERVICE_HOST=10.96.0.10</span><br><span class="line">KUBE_DNS_PORT_9153_TCP_ADDR=10.96.0.10</span><br><span class="line">KUBE_DNS_PORT_9153_TCP_PORT=9153</span><br><span class="line">KUBE_DNS_PORT_9153_TCP_PROTO=tcp</span><br><span class="line">KUBE_DNS_SERVICE_PORT=53</span><br><span class="line">KUBE_DNS_PORT=udp://10.96.0.10:53</span><br><span class="line">POD_NAME=env-pod</span><br><span class="line">KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1</span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/usr/sbin:/usr/bin:/sbin:/bin</span><br><span class="line">KUBERNETES_PORT_443_TCP_PORT=443</span><br><span class="line">KUBE_DNS_SERVICE_PORT_METRICS=9153</span><br><span class="line">KUBE_DNS_PORT_53_TCP_ADDR=10.96.0.10</span><br><span class="line">KUBERNETES_PORT_443_TCP_PROTO=tcp</span><br><span class="line">KUBE_DNS_PORT_9153_TCP=tcp://10.96.0.10:9153</span><br><span class="line">KUBE_DNS_PORT_53_UDP_ADDR=10.96.0.10</span><br><span class="line">KUBE_DNS_PORT_53_TCP_PORT=53</span><br><span class="line">KUBE_DNS_PORT_53_TCP_PROTO=tcp</span><br><span class="line">KUBE_DNS_PORT_53_UDP_PORT=53</span><br><span class="line">KUBE_DNS_SERVICE_PORT_DNS=53</span><br><span class="line">KUBE_DNS_PORT_53_UDP_PROTO=udp</span><br><span class="line">KUBERNETES_SERVICE_PORT_HTTPS=443</span><br><span class="line">KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443</span><br><span class="line">POD_NAMESPACE=kube-system</span><br><span class="line">KUBERNETES_SERVICE_HOST=10.96.0.1</span><br><span class="line">PWD=/</span><br><span class="line">KUBE_DNS_PORT_53_TCP=tcp://10.96.0.10:53</span><br><span class="line">KUBE_DNS_PORT_53_UDP=udp://10.96.0.10:53</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment"># kubectl logs env-pod -nkube-system|grep POD</span></span><br><span class="line">POD_IP=10.244.2.10</span><br><span class="line">POD_NAME=env-pod</span><br><span class="line">POD_NAMESPACE=kube-system</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment"># kubectl logs -f  env-pod -nkube-system #我淦，这个-f参数有什么区别吗？</span></span><br><span class="line">POD_IP=10.244.2.10</span><br><span class="line">KUBERNETES_SERVICE_PORT=443</span><br><span class="line">KUBERNETES_PORT=tcp://10.96.0.1:443</span><br><span class="line">KUBE_DNS_SERVICE_PORT_DNS_TCP=53</span><br><span class="line">HOSTNAME=env-pod</span><br><span class="line">SHLVL=1</span><br><span class="line">HOME=/root</span><br><span class="line">KUBE_DNS_SERVICE_HOST=10.96.0.10</span><br><span class="line">KUBE_DNS_PORT_9153_TCP_ADDR=10.96.0.10</span><br><span class="line">KUBE_DNS_PORT_9153_TCP_PORT=9153</span><br><span class="line">KUBE_DNS_PORT_9153_TCP_PROTO=tcp</span><br><span class="line">KUBE_DNS_SERVICE_PORT=53</span><br><span class="line">KUBE_DNS_PORT=udp://10.96.0.10:53</span><br><span class="line">POD_NAME=env-pod</span><br><span class="line">KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1</span><br><span class="line">PATH=/usr/<span class="built_in">local</span>/sbin:/usr/<span class="built_in">local</span>/bin:/usr/sbin:/usr/bin:/sbin:/bin</span><br><span class="line">KUBERNETES_PORT_443_TCP_PORT=443</span><br><span class="line">KUBE_DNS_SERVICE_PORT_METRICS=9153</span><br><span class="line">KUBE_DNS_PORT_53_TCP_ADDR=10.96.0.10</span><br><span class="line">KUBERNETES_PORT_443_TCP_PROTO=tcp</span><br><span class="line">KUBE_DNS_PORT_9153_TCP=tcp://10.96.0.10:9153</span><br><span class="line">KUBE_DNS_PORT_53_UDP_ADDR=10.96.0.10</span><br><span class="line">KUBE_DNS_PORT_53_TCP_PORT=53</span><br><span class="line">KUBE_DNS_PORT_53_TCP_PROTO=tcp</span><br><span class="line">KUBE_DNS_PORT_53_UDP_PORT=53</span><br><span class="line">KUBE_DNS_SERVICE_PORT_DNS=53</span><br><span class="line">KUBE_DNS_PORT_53_UDP_PROTO=udp</span><br><span class="line">KUBERNETES_SERVICE_PORT_HTTPS=443</span><br><span class="line">KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443</span><br><span class="line">POD_NAMESPACE=kube-system</span><br><span class="line">KUBERNETES_SERVICE_HOST=10.96.0.1</span><br><span class="line">PWD=/</span><br><span class="line">KUBE_DNS_PORT_53_TCP=tcp://10.96.0.10:53</span><br><span class="line">KUBE_DNS_PORT_53_UDP=udp://10.96.0.10:53</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211107222147427.png" alt="image-20211107222147427"></p>
+<p>我们可以看到 Pod 的 IP、NAME、NAMESPACE 都通过环境变量打印出来了。</p>
+<p>这里需要注意下：pod的状态变化</p>
+<p>这一片估计是健康检查在其作用。。。。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211107222253044.png" alt="image-20211107222253044"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211107222341606.png" alt="image-20211107222341606"></p>
+<p>环境变量</p>
+<p>上面打印 Pod 的环境变量可以看到有很多内置的变量，其中大部分是系统自动为我们添加的，**<code>Kubernetes 会把当前命名空间下面的 Service 信息通过环境变量的形式注入到 Pod 中去</code>**：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get svc -nkube-system</span></span><br><span class="line">NAME       TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE</span><br><span class="line">kube-dns   ClusterIP   10.96.0.10   &lt;none&gt;        53/UDP,53/TCP,9153/TCP   7d14h</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-Volume-挂载"><a href="#2-Volume-挂载" class="headerlink" title="2.Volume 挂载"></a>2.Volume 挂载</h3><p><code>Downward API</code>除了提供环境变量的方式外，还提供了通过 Volume 挂载的方式去获取 Pod 的基本信息。接下来我们通过<code>Downward API</code>将 Pod 的 Label、Annotation 等信息通过 Volume 挂载到容器的某个文件中去，然后在容器中打印出该文件的值来验证，对应的资源清单文件如下所示：</p>
+<hr>
+<p>==:heart:实验测试：==</p>
+<p>[root@master1 ~]#vim volume-pod.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># volume-pod.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">volume-pod</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kube-system</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">k8s-app:</span> <span class="string">test-volume</span></span><br><span class="line">    <span class="attr">node-env:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="attr">own:</span> <span class="string">youdianzhishi</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">podinfo</span></span><br><span class="line">    <span class="attr">downwardAPI:</span></span><br><span class="line">      <span class="attr">items:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">labels</span></span><br><span class="line">        <span class="attr">fieldRef:</span></span><br><span class="line">          <span class="attr">fieldPath:</span> <span class="string">metadata.labels</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">annotations</span></span><br><span class="line">        <span class="attr">fieldRef:</span></span><br><span class="line">          <span class="attr">fieldPath:</span> <span class="string">metadata.annotations</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">volume-pod</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">busybox</span></span><br><span class="line">    <span class="attr">args:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">sleep</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">&quot;3600&quot;</span></span><br><span class="line">    <span class="attr">volumeMounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">podinfo</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">/etc/podinfo</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们将元数据 labels 和 annotaions 以文件的形式挂载到了 <code>/etc/podinfo</code> 目录下，创建上面的 Pod：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f volume-pod.yaml</span></span><br><span class="line">pod/volume-pod created</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>创建成功后，我们可以进入到容器中查看元信息是不是已经存入到文件中了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it volume-pod   -nkube-system  -- sh</span></span><br><span class="line">/ <span class="comment"># cd /etc/podinfo/</span></span><br><span class="line">/etc/podinfo <span class="comment"># ls -l</span></span><br><span class="line">total 0</span><br><span class="line">lrwxrwxrwx    1 root     root            18 Nov  7 14:41 annotations -&gt; ..data/annotations</span><br><span class="line">lrwxrwxrwx    1 root     root            13 Nov  7 14:41 labels -&gt; ..data/labels</span><br><span class="line">/etc/podinfo <span class="comment"># cat labels</span></span><br><span class="line">k8s-app=<span class="string">&quot;test-volume&quot;</span></span><br><span class="line">node-env=<span class="string">&quot;test&quot;</span>/etc/podinfo <span class="comment">#</span></span><br><span class="line">/etc/podinfo <span class="comment"># cat annotations</span></span><br><span class="line">build=<span class="string">&quot;test&quot;</span></span><br><span class="line">kubectl.kubernetes.io/last-applied-configuration=<span class="string">&quot;&#123;\&quot;apiVersion\&quot;:\&quot;v1\&quot;,\&quot;kind\&quot;:\&quot;Pod\&quot;,\&quot;metadata\&quot;:&#123;\&quot;annotations\&quot;:&#123;\&quot;build\&quot;:\&quot;test\&quot;,\&quot;own\&quot;:\&quot;youdianzhishi\&quot;&#125;,\&quot;labels\&quot;:&#123;\&quot;k8s-app\&quot;:\&quot;test-volume\&quot;,\&quot;node-env\&quot;:\&quot;test\&quot;&#125;,\&quot;name\&quot;:\&quot;volume-pod\&quot;,\&quot;namespace\&quot;:\&quot;kube-system\&quot;&#125;,\&quot;spec\&quot;:&#123;\&quot;containers\&quot;:[&#123;\&quot;args\&quot;:[\&quot;sleep\&quot;,\&quot;3600\&quot;],\&quot;image\&quot;:\&quot;busybox\&quot;,\&quot;name\&quot;:\&quot;volume-pod\&quot;,\&quot;volumeMounts\&quot;:[&#123;\&quot;mountPath\&quot;:\&quot;/etc/podinfo\&quot;,\&quot;name\&quot;:\&quot;podinfo\&quot;&#125;]&#125;],\&quot;volumes\&quot;:[&#123;\&quot;downwardAPI\&quot;:&#123;\&quot;items\&quot;:[&#123;\&quot;fieldRef\&quot;:&#123;\&quot;fieldPath\&quot;:\&quot;metadata.labels\&quot;&#125;,\&quot;path\&quot;:\&quot;labels\&quot;&#125;,&#123;\&quot;fieldRef\&quot;:&#123;\&quot;fieldPath\&quot;:\&quot;metadata.annotations\&quot;&#125;,\&quot;path\&quot;:\&quot;annotations\&quot;&#125;]&#125;,\&quot;name\&quot;:\&quot;podinfo\&quot;&#125;]&#125;&#125;\n&quot;</span></span><br><span class="line">kubernetes.io/config.seen=<span class="string">&quot;2021-11-07T22:41:51.934064864+08:00&quot;</span></span><br><span class="line">kubernetes.io/config.source=<span class="string">&quot;api&quot;</span></span><br><span class="line">own=<span class="string">&quot;youdianzhishi&quot;</span>/etc/podinfo <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到 Pod 的 Labels 和 Annotations 信息都被挂载到 <code>/etc/podinfo</code> 目录下面的 lables 和 annotations 文件了。</p>
+<blockquote>
+<p>注意：</p>
+<p>我们可以看到annotations里面还有一些其他的信息，这个是pod启动自动生成的一些信息；</p>
+</blockquote>
+<p>目前，<code>Downward API</code> 支持的字段已经非常丰富了，比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">1. 使用 fieldRef 可以声明使用:</span><br><span class="line"></span><br><span class="line">spec.nodeName - 宿主机名字</span><br><span class="line">status.hostIP - 宿主机IP</span><br><span class="line">metadata.name - Pod的名字</span><br><span class="line">metadata.namespace - Pod的Namespace</span><br><span class="line">status.podIP - Pod的IP</span><br><span class="line">spec.serviceAccountName - Pod的Service Account的名字</span><br><span class="line">metadata.uid - Pod的UID</span><br><span class="line">metadata.labels[<span class="string">&#x27;&lt;KEY&gt;&#x27;</span>] - 指定&lt;KEY&gt;的Label值</span><br><span class="line">metadata.annotations[<span class="string">&#x27;&lt;KEY&gt;&#x27;</span>] - 指定&lt;KEY&gt;的Annotation值</span><br><span class="line">metadata.labels - Pod的所有Label</span><br><span class="line">metadata.annotations - Pod的所有Annotation</span><br><span class="line"></span><br><span class="line">2. 使用 resourceFieldRef 可以声明使用:</span><br><span class="line"></span><br><span class="line">容器的 CPU <span class="built_in">limit</span></span><br><span class="line">容器的 CPU request</span><br><span class="line">容器的 memory <span class="built_in">limit</span></span><br><span class="line">容器的 memory request</span><br></pre></td></tr></table></figure>
+
+
+
+<p>注意</p>
+<p>需要注意的是，**<code>Downward API</code> 能够获取到的信息，一定是 Pod 里的容器进程启动之前就能够确定下来的信息<strong>。而如果你想要获取 Pod 容器运行后才会出现的信息，比如，容器进程的 PID，那就肯定不能使用 <code>Downward API</code> 了，</strong>而应该考虑在 Pod 里定义一个 sidecar 容器来获取了。**</p>
+<p>在实际应用中，如果你的应用有获取 Pod 的基本信息的需求，一般我们就可以利用<code>Downward API</code>来获取基本信息，<strong>然后编写一个启动脚本或者利用<code>initContainer</code>将 Pod 的信息注入到我们容器中去</strong>，然后在我们自己的应用中就可以正常的处理相关逻辑了。</p>
+<p>除了通过 Downward API 可以获取到 Pod 本身的信息之外，<strong>其实我们还可以通过映射其他资源对象来获取对应的信息</strong>，<strong>比如 Secret、ConfigMap 资源对象</strong>，同样我们可以通过环境变量和挂载 Volume 的方式来获取他们的信息，<strong>但是，通过环境变量获取这些信息的方式，不具备自动更新的能力</strong>。<strong>所以，一般情况下，都建议使用 Volume 文件的方式获取这些信息，因为通过 Volume 的方式挂载的文件在 Pod 中会进行热更新。</strong></p>
+<ul>
+<li>注意：downwars API的应用场景</li>
+</ul>
+<blockquote>
+<p>阳总说的：</p>
+<p>比如说你的一个pod，把你的日志输出到一个文件中去，然后你要去采集日志的时候，如果你的多个pod都给他输出，都给他挂载到同一个地方的话，那么它挂载的同样一个日志是不是有可能冲突啊。</p>
+<p>这个时候，最好的方式，是不是就是把每一个pod给他输出到不同的文件或文件夹当中去，那么这个时候，我们就可以获取到pod本身的名称，然后根据pod名称去创建一个日志文件，给他们区分开，这个方式是不是很可以的。</p>
+</blockquote>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="1-注意：label和annotations的区别"><a href="#1-注意：label和annotations的区别" class="headerlink" title="1.注意：label和annotations的区别"></a>1.注意：label和annotations的区别</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># volume-pod.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">volume-pod</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">kube-system</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">k8s-app:</span> <span class="string">test-volume</span></span><br><span class="line">    <span class="attr">node-env:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="attr">own:</span> <span class="string">youdianzhishi</span></span><br><span class="line">    <span class="attr">build:</span> <span class="string">test</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>annotations就是注解；</p>
+<blockquote>
+<p>1.label更多用于开发 人员和我们运维人员，对使用k8s人员来说的，用于来标记的；</p>
+<p>2.annotations更多是程序用来读取资源对象时来使用的；</p>
+</blockquote>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于pod使用进阶实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210922123505950.png" alt="image-20210922123505950"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2021/10/09/71%20Pod%E4%BD%BF%E7%94%A8%E8%BF%9B%E9%98%B6/">https://www.onlyonexl.cn/2021/10/09/71%20Pod%E4%BD%BF%E7%94%A8%E8%BF%9B%E9%98%B6/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/10/10/48%20%E5%AE%9E%E6%88%98-%E9%80%9A%E8%BF%87gitlog%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC%E6%BC%94%E5%8F%98%E5%8E%86%E5%8F%B2(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA-%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4-%E8%8B%8F%E7%8E%B2)-20211010/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="实战：通过gitlog查看版本演变历史-20211010">
+                        
+                        <span class="card-title">实战：通过gitlog查看版本演变历史-20211010</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-10-10
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/git/" class="post-category">
+                                    git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/10/09/47%20%E5%AE%9E%E6%88%98%EF%BC%9AKubernetes%E7%BD%91%E7%BB%9Cingress%E5%AE%9E%E9%AA%8C(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA)-20211006/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="实战-Kubernetes网络ingress实验(成功测试-博客输出)-20211009">
+                        
+                        <span class="card-title">实战-Kubernetes网络ingress实验(成功测试-博客输出)-20211009</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-10-09
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
