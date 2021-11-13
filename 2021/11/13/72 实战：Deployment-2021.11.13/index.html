@@ -479,19 +479,6 @@
             <div id="articleContent">
                 <h2 id="实战：Deployment-2021-11-13"><a href="#实战：Deployment-2021-11-13" class="headerlink" title="实战：Deployment-2021.11.13"></a>实战：Deployment-2021.11.13</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211110225019376.png" alt="image-20211110225019376"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="文档来源"><a href="#文档来源" class="headerlink" title="文档来源"></a>文档来源</h2><blockquote>
-<p>文章来源：课程-Kubernetes进阶训练营第3期-阳明-20210919购买-1998元</p>
-</blockquote>
-<ul>
-<li><p>文档地址</p>
-<p>  <a target="_blank" rel="noopener" href="https://www.qikqiak.com/k3s/controller/deployment/">https://www.qikqiak.com/k3s/controller/deployment/</a></p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211111111438014.png" alt="image-20211111111438014"></p>
-</li>
-<li><p>视频地址</p>
-<p>  <a target="_blank" rel="noopener" href="https://youdianzhishi.com/web/course/1030/2139">https://youdianzhishi.com/web/course/1030/2139</a></p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211111111345639.png" alt="image-20211111111345639"></p>
-</li>
-</ul>
 <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
 
 <h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1、Deployment-控制器"><a href="#1、Deployment-控制器" class="headerlink" title="1、Deployment 控制器"></a>1、Deployment 控制器</h2><p>前面我们学习了 ReplicaSet 控制器，了解到该控制器是用来维护集群中运行的 Pod 数量的，但是往往在实际操作的时候，我们反而不会去直接使用 RS，而是会使用更上层的控制器，比如我们今天要学习的主角 Deployment。<u>Deployment 一个非常重要的功能就是实现了 Pod 的滚动更新，比如我们应用更新了，我们只需要更新我们的容器镜像，然后修改 Deployment 里面的 Pod 模板镜像，那么 Deployment 就会用滚动更新（Rolling Update）的方式来升级现在的 Pod，这个能力是非常重要的。因为对于线上的服务我们需要做到不中断服务，所以滚动更新就成了必须的一个功能。而 Deployment 这个能力的实现，依赖的就是上节课我们学习的ReplicaSet 这个资源对象，实际上我们可以通俗的理解就是每个 Deployment 就对应集群中的一次部署，这样就更好理解了。</u></p>
