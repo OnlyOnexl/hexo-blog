@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021.11.16, Love">
+    <meta name="keywords" content="故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021.11.16 | Love</title>
+    <title>故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021.11.16</h1>
+                    <h1 class="description center-align post-title">故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/impi/">
-                                <span class="chip bg-color">impi</span>
+                            <a href="/tags/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/">
+                                <span class="chip bg-color">僵尸进程</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/impi/" class="post-category">
-                                impi
+                            <a href="/categories/%E6%95%85%E9%9A%9C%E6%A1%88%E4%BE%8B/" class="post-category">
+                                故障案例
                             </a>
                         
                     </div>
@@ -477,52 +477,39 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021-11-16"><a href="#实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021-11-16" class="headerlink" title="实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021.11.16"></a>实战：批量重启物理机或批量从pxe启动-ipmi命令（测试成功-工作实战）-2021.11.16</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116103833879.png" alt="image-20211116103833879"></p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">物理服务器</span><br></pre></td></tr></table></figure>
+                <h2 id="故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态-工作实战-测试成功-2021-11-16"><a href="#故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态-工作实战-测试成功-2021-11-16" class="headerlink" title="故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16"></a>故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116141001213.png" alt="image-20211116141001213"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">centos7服务器</span><br></pre></td></tr></table></figure>
 
-<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1nGuT4rqXIxSCLoxA5dj_zg">https://pan.baidu.com/s/1nGuT4rqXIxSCLoxA5dj_zg</a><br>提取码：hhcj<br>–来自百度网盘超级会员V6的分享</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116103524389.png" alt="image-20211116103524389"></p>
-<h2 id="1、脚本内容"><a href="#1、脚本内容" class="headerlink" title="1、脚本内容"></a>1、脚本内容</h2><blockquote>
-<p>说明：改脚本可让物理机从pxe启动，重启，开机，关机等操作。</p>
-</blockquote>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116103524389.png"></p>
-<p>ipmi_python.py内容：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">r&#x27;ip.txt&#x27;</span>):</span><br><span class="line">    ip=i.split(<span class="string">&quot;/&quot;</span>)[<span class="number">1</span>]</span><br><span class="line">    <span class="built_in">print</span>(ip)</span><br><span class="line">    <span class="comment">#os.system(&quot;ipmitool -I lanplus -H &quot;+ ip + &quot; -U admin -P 123456 chassis bootdev pxe&quot;) #从PXE启动</span></span><br><span class="line">    <span class="comment">#time.sleep(1)</span></span><br><span class="line">    os.system(<span class="string">&quot;ipmitool -I lanplus -H &quot;</span>+ ip + <span class="string">&quot; -U root -P 123456 power off&quot;</span>) <span class="comment">#关机</span></span><br><span class="line">    os.system(<span class="string">&quot;ipmitool -I lanplus -H &quot;</span>+ ip + <span class="string">&quot; -U root -P 123456 power on&quot;</span>) <span class="comment">#开机</span></span><br><span class="line">    os.system(<span class="string">&quot;ipmitool -I lanplus -H &quot;</span>+ ip + <span class="string">&quot; -U root -P 123456 power reset&quot;</span>) <span class="comment">#重启</span></span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">time.sleep(<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1、故障现象"><a href="#1、故障现象" class="headerlink" title="1、故障现象"></a>1、故障现象</h2><p>接业务报障，一台centos7机器，业务用户无法进入某个目录，其他目录都正常，请求帮忙排查。</p>
+<h2 id="2、排查过程"><a href="#2、排查过程" class="headerlink" title="2、排查过程"></a>2、排查过程</h2><p>自己用root账号登录机器后，用root账号进这个目录，发现，进不去，和业务反馈故障现象一致。另外，该故障目录，经自己测试，虽然可以进去，但执行ls -h目录失败。</p>
+<p>经过排查，发现执行<code>top</code>命令后，有2个<code>僵尸进程</code>，再进一步用命令发现该僵尸进程的父进程是<code>1</code>，大致就定位到原因了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116110700127.png" alt="image-20211116110700127"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -A -o <span class="built_in">stat</span>,ppid,pid,cmd | grep -e <span class="string">&#x27;^[Zz]&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>ip.txt内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/物理机带外ip/</span><br><span class="line">/物理机带外ip/</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、使用方法"><a href="#2、使用方法" class="headerlink" title="2、使用方法"></a>2、使用方法</h2><blockquote>
-<p><strong>注意：当前环境一定要有impi软件才可以的。winodws记得在环境变量那里设置下impi软件的PATH路径。</strong></p>
-</blockquote>
-<ol>
-<li>编辑<code>ipmi_python.py</code>文件里的服务器带外用户名和密码，选择要使用的功能代码；</li>
-<li>编辑<code>ip.txt</code>文件；</li>
-<li>右键打开<code>winodws终端</code>，执行<code>python ipmi_python.py</code>即可。</li>
-</ol>
-<h2 id="3、shell版ipmi批量进入pxe命令"><a href="#3、shell版ipmi批量进入pxe命令" class="headerlink" title="3、shell版ipmi批量进入pxe命令"></a>3、shell版ipmi批量进入pxe命令</h2><p>ipmi_shell内容：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> `cat /root/ipmi_ip.txt`</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    impitool -H <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -I lanplus -U root -P 123456 chassis bootdev pxe &amp;&amp; impitool -H <span class="string">&quot;<span class="variable">$i</span>&quot;</span> -I lanplus -U root -P 123456 power reset &amp;&gt; /dev/null</span><br><span class="line">    <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="variable">$i</span> Error</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> &amp;i OK</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="4、ipmi常用命令"><a href="#4、ipmi常用命令" class="headerlink" title="4、ipmi常用命令"></a>4、ipmi常用命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#获取当前电源状态</span></span><br><span class="line">ipmitool -I lan -H 172.168.6.3 -U root -P 123456 power status ( 获取当前电源状态)</span><br><span class="line"></span><br><span class="line"><span class="comment">#开机：</span></span><br><span class="line">ipmitool -I lanplus -H 10.241.24.154 -U admin -P 123456 power on <span class="comment">#如果服务器已经是在开机的情况下，再执行这个命令，服务器是不会重启的</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启</span></span><br><span class="line">ipmitool -I lanplus -H 10.241.24.154 -U ADMIN -P 123456 power reset <span class="comment">#注意：机器在关机的情况下，这个reset命令用不了的。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#冷重启</span></span><br><span class="line">ipmitool  -I lanplus -H   10.241.24.154 -U admin -P 123456 mc reset cold </span><br><span class="line"></span><br><span class="line"><span class="comment">#关机</span></span><br><span class="line">ipmitool -I lanplus -H 10.241.24.154 -U ADMIN -P 123456 power off</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#ipmitool命令-曙光i620-G20服务器-删除日志-带外重启BMC-测试成功_20200222</span></span><br><span class="line"><span class="comment">#ecc 内存告警：先删除日志，再重启bmc。</span></span><br><span class="line">李新：Ipmitool -I lanplus -H   10.241.25.45 -U admin -P 123456 sel clear 			  <span class="comment">#删日志</span></span><br><span class="line">李新：Ipmitool  -I lanplus -H   10.241.25.45 -U admin -P 123456 bmc reset cold        <span class="comment">#BMC热启动</span></span><br></pre></td></tr></table></figure>
-
-
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116110728992.png" alt="image-20211116110728992"></p>
+<p>估计是因为这2个僵尸进程导致上述业务故障原因。</p>
+<p>因此协调业务重启机器，因为<code>该僵尸进程的父进程是1，即Init进程，因此只能通过重启机器来解决掉</code>。</p>
+<h2 id="3、处理办法"><a href="#3、处理办法" class="headerlink" title="3、处理办法"></a>3、处理办法</h2><p>协调业务重启机器后，进测试，原来那个故障目录可正常进入，无僵尸进程。</p>
+<p>故障现象已恢复，结束工单。</p>
+<h2 id="4、参考资料"><a href="#4、参考资料" class="headerlink" title="4、参考资料"></a>4、参考资料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/ai_faker/article/details/109690040?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-1.no_search_link&amp;spm=1001.2101.3001.4242.2">https://blog.csdn.net/ai_faker/article/details/109690040?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_title~default-1.no_search_link&amp;spm=1001.2101.3001.4242.2</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116110925397.png" alt="image-20211116110925397"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116111247377.png" alt="image-20211116111247377"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116111431819.png" alt="image-20211116111431819"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116111535384.png" alt="image-20211116111535384"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116111638135.png" alt="image-20211116111638135"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116111706041.png" alt="image-20211116111706041"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116111740712.png" alt="image-20211116111740712"></p>
+<h2 id="5、总结"><a href="#5、总结" class="headerlink" title="5、总结"></a>5、总结</h2><ul>
+<li>ps、top命令必须要熟悉掌握使用，这2个命令很强大；</li>
+<li>mount和ummount命令</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">1、列出当前系统下all的挂载点：mount -l</span><br><span class="line"><span class="comment">#选线-l：-l, --show-labels       lists all mounts with LABELs 列出所有带有标签的挂载</span></span><br><span class="line"></span><br><span class="line">举例：</span><br><span class="line">[root@xyy admin]<span class="comment">#mount -l</span></span><br><span class="line">sysfs on /sys <span class="built_in">type</span> sysfs (rw,nosuid,nodev,noexec,relatime)</span><br><span class="line">proc on /proc <span class="built_in">type</span> proc (rw,nosuid,nodev,noexec,relatime)</span><br><span class="line">devtmpfs on /dev <span class="built_in">type</span> devtmpfs (rw,nosuid,size=1833900k,nr_inodes=458475,mode=755)</span><br><span class="line">securityfs on /sys/kernel/security <span class="built_in">type</span> securityfs (rw,nosuid,nodev,noexec,relatime)</span><br><span class="line">tmpfs on /dev/shm <span class="built_in">type</span> tmpfs (rw,nosuid,nodev)</span><br><span class="line">devpts on /dev/pts <span class="built_in">type</span> devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)</span><br><span class="line">tmpfs on /run <span class="built_in">type</span> tmpfs (rw,nosuid,nodev,mode=755)</span><br><span class="line">tmpfs on /sys/fs/cgroup <span class="built_in">type</span> tmpfs (ro,nosuid,nodev,noexec,mode=755)</span><br><span class="line">cgroup on /sys/fs/cgroup/systemd <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)</span><br><span class="line">pstore on /sys/fs/pstore <span class="built_in">type</span> pstore (rw,nosuid,nodev,noexec,relatime)</span><br><span class="line">cgroup on /sys/fs/cgroup/hugetlb <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,hugetlb)</span><br><span class="line">cgroup on /sys/fs/cgroup/blkio <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,blkio)</span><br><span class="line">cgroup on /sys/fs/cgroup/cpuset <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)</span><br><span class="line">cgroup on /sys/fs/cgroup/devices <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,devices)</span><br><span class="line">cgroup on /sys/fs/cgroup/net_cls,net_prio <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,net_prio,net_cls)</span><br><span class="line">cgroup on /sys/fs/cgroup/memory <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,memory)</span><br><span class="line">cgroup on /sys/fs/cgroup/cpu,cpuacct <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct,cpu)</span><br><span class="line">cgroup on /sys/fs/cgroup/pids <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,pids)</span><br><span class="line">cgroup on /sys/fs/cgroup/freezer <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,freezer)</span><br><span class="line">cgroup on /sys/fs/cgroup/perf_event <span class="built_in">type</span> cgroup (rw,nosuid,nodev,noexec,relatime,perf_event)</span><br><span class="line">configfs on /sys/kernel/config <span class="built_in">type</span> configfs (rw,relatime)</span><br><span class="line">/dev/vda1 on / <span class="built_in">type</span> ext4 (rw,relatime,data=ordered)</span><br><span class="line">systemd-1 on /proc/sys/fs/binfmt_misc <span class="built_in">type</span> autofs (rw,relatime,fd=31,pgrp=1,timeout=0,minproto=5,maxproto=5,direct,pipe_ino=11331)</span><br><span class="line">mqueue on /dev/mqueue <span class="built_in">type</span> mqueue (rw,relatime)</span><br><span class="line">debugfs on /sys/kernel/debug <span class="built_in">type</span> debugfs (rw,relatime)</span><br><span class="line">hugetlbfs on /dev/hugepages <span class="built_in">type</span> hugetlbfs (rw,relatime)</span><br><span class="line">overlay on /var/lib/docker/overlay2/63481809fcaaa4c9b9975f42780bfe75c2e4f54058182fe34e4fd48367305697/merged <span class="built_in">type</span> overlay (rw,relatime,lowerdir=/var/lib/docker/overlay2/l/XMONIQ6YEPKD3MS25YJ322KHVC:/var/lib/docker/overlay2/l/AMBOHWRSM7IUJD2XR6EJ754GWI:/var/lib/docker/overlay2/l/RXRXWXTPIEEC55GFMRVNSM4MW5:/var/lib/docker/overlay2/l/BP75Q6KOE6HZHPPQFWYTVQMWQ6:/var/lib/docker/overlay2/l/D5GLT2XIUNEF6W6XBH64LNY67A:/var/lib/docker/overlay2/l/2MPOU6Y3QHNOR3V2GU72YHDUEX:/var/lib/docker/overlay2/l/SZZELYXD4FC4HMDPIJUBOTPMAS,upperdir=/var/lib/docker/overlay2/63481809fcaaa4c9b9975f42780bfe75c2e4f54058182fe34e4fd48367305697/diff,workdir=/var/lib/docker/overlay2/63481809fcaaa4c9b9975f42780bfe75c2e4f54058182fe34e4fd48367305697/work)</span><br><span class="line">proc on /run/docker/netns/2903cd1b89c4 <span class="built_in">type</span> proc (rw,nosuid,nodev,noexec,relatime)</span><br><span class="line">tmpfs on /run/user/1000 <span class="built_in">type</span> tmpfs (rw,nosuid,nodev,relatime,size=368872k,mode=700,uid=1000,gid=1000)</span><br><span class="line">[root@xyy admin]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line">2、卸载系统：unmount -l 文件夹路径</span><br><span class="line">-l, --lazy              detach the filesystem now, and cleanup all later   现在分离文件系统，稍后进行清除  </span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>查看服务器带外ip配置情况</li>
+<li>当用<code>kill -9 PID</code>杀死某个进程后，这个进程又自动起来了，可能怀疑该进程是<code>僵尸进程</code>。要判断是否为僵尸进程，可用<code>top</code>命令查看，进一步再用<code>ps -A -o s,ppid,pid,cmd| grep -e &#39;^[Zz]&#39;</code>这个命令进行确认进程PID。</li>
+<li>注意：一般来说，僵尸进程可以直接kill -9 PID。<br>  如果 kill 无效，可以尝试通过ps命令找出僵尸进程的父进程ID并kill。<br>  但是如果僵尸进程的父进程ID为1，为init级，比如我今天遇见的这种情况，是没有办法kill的。<code>那就必须要重启系统才可以了</code>，因为1进程是init级的。<br>  <strong>一般来说僵尸进程一般都会被1进程回收销毁</strong>。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool -H 10.241.57.121 -U admin -P admin lan <span class="built_in">print</span> 1</span><br></pre></td></tr></table></figure>
-
-
-
-<ul>
-<li>查看服务器sn信息</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool -H 10.241.57.121 -U admin -P admin fru <span class="built_in">print</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="5、参考资料"><a href="#5、参考资料" class="headerlink" title="5、参考资料"></a>5、参考资料</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/zygblock/article/details/53433540">https://blog.csdn.net/zygblock/article/details/53433540</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/machangwei-8/p/10350824.html">https://www.cnblogs.com/machangwei-8/p/10350824.html</a></p>
 <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
@@ -540,8 +527,8 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于实战：批量重启物理机或批量从pxe启动-ipmi命令实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108223350304.png" alt="image-20211108223350304"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于以上故障剖析就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211116140917445.png" alt="image-20211116140917445"></p>
 
                 
             </div>
@@ -568,7 +555,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/11/16/75%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%89%B9%E9%87%8F%E9%87%8D%E5%90%AF%E7%89%A9%E7%90%86%E6%9C%BA%E6%88%96%E6%89%B9%E9%87%8F%E4%BB%8Epxe%E5%90%AF%E5%8A%A8-ipmi%E5%91%BD%E4%BB%A4%EF%BC%88%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F-%E5%B7%A5%E4%BD%9C%E5%AE%9E%E6%88%98%EF%BC%89-2021.11.16/">https://www.onlyonexl.cn/2021/11/16/75%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%89%B9%E9%87%8F%E9%87%8D%E5%90%AF%E7%89%A9%E7%90%86%E6%9C%BA%E6%88%96%E6%89%B9%E9%87%8F%E4%BB%8Epxe%E5%90%AF%E5%8A%A8-ipmi%E5%91%BD%E4%BB%A4%EF%BC%88%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F-%E5%B7%A5%E4%BD%9C%E5%AE%9E%E6%88%98%EF%BC%89-2021.11.16/</a>
+                    <a href="https://www.onlyonexl.cn/2021/11/16/76%20%E6%95%85%E9%9A%9C%E6%A1%88%E4%BE%8B%EF%BC%9ALinux%E6%9C%BA%E5%99%A8%E7%94%A8%E6%88%B7cd%E8%BF%9B%E4%B8%8D%E4%BA%86%E7%B3%BB%E7%BB%9F%E6%9F%90%E7%9B%AE%E5%BD%95%E6%88%96%E8%80%85%E8%BF%9B%E5%8E%BB%E5%90%8E%E6%89%A7%E8%A1%8C%E4%B8%8D%E4%BA%86%E5%91%BD%E4%BB%A4%E5%91%88%E7%8E%B0%E5%8D%A1%E6%AD%BB%E7%8A%B6%E6%80%81(%E5%B7%A5%E4%BD%9C%E5%AE%9E%E6%88%98-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F)-2021.11.16%EF%BC%88%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%EF%BC%89/">https://www.onlyonexl.cn/2021/11/16/76%20%E6%95%85%E9%9A%9C%E6%A1%88%E4%BE%8B%EF%BC%9ALinux%E6%9C%BA%E5%99%A8%E7%94%A8%E6%88%B7cd%E8%BF%9B%E4%B8%8D%E4%BA%86%E7%B3%BB%E7%BB%9F%E6%9F%90%E7%9B%AE%E5%BD%95%E6%88%96%E8%80%85%E8%BF%9B%E5%8E%BB%E5%90%8E%E6%89%A7%E8%A1%8C%E4%B8%8D%E4%BA%86%E5%91%BD%E4%BB%A4%E5%91%88%E7%8E%B0%E5%8D%A1%E6%AD%BB%E7%8A%B6%E6%80%81(%E5%B7%A5%E4%BD%9C%E5%AE%9E%E6%88%98-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F)-2021.11.16%EF%BC%88%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%EF%BC%89/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -606,8 +593,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/impi/">
-                                    <span class="chip bg-color">impi</span>
+                                <a href="/tags/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/">
+                                    <span class="chip bg-color">僵尸进程</span>
                                 </a>
                             
                         </div>
@@ -779,10 +766,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/11/16/75%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%89%B9%E9%87%8F%E9%87%8D%E5%90%AF%E7%89%A9%E7%90%86%E6%9C%BA%E6%88%96%E6%89%B9%E9%87%8F%E4%BB%8Epxe%E5%90%AF%E5%8A%A8-ipmi%E5%91%BD%E4%BB%A4%EF%BC%88%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F-%E5%B7%A5%E4%BD%9C%E5%AE%9E%E6%88%98%EF%BC%89-2021.11.16/">
                     <div class="card-image">
@@ -800,9 +786,9 @@
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-16
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-16
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -815,7 +801,6 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -834,13 +819,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/16/76%20%E6%95%85%E9%9A%9C%E6%A1%88%E4%BE%8B%EF%BC%9ALinux%E6%9C%BA%E5%99%A8%E7%94%A8%E6%88%B7cd%E8%BF%9B%E4%B8%8D%E4%BA%86%E7%B3%BB%E7%BB%9F%E6%9F%90%E7%9B%AE%E5%BD%95%E6%88%96%E8%80%85%E8%BF%9B%E5%8E%BB%E5%90%8E%E6%89%A7%E8%A1%8C%E4%B8%8D%E4%BA%86%E5%91%BD%E4%BB%A4%E5%91%88%E7%8E%B0%E5%8D%A1%E6%AD%BB%E7%8A%B6%E6%80%81(%E5%B7%A5%E4%BD%9C%E5%AE%9E%E6%88%98-%E6%B5%8B%E8%AF%95%E6%88%90%E5%8A%9F)-2021.11.16%EF%BC%88%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B%EF%BC%89/">
+                <a href="/2021/11/14/74%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%9C%89%E7%8A%B6%E6%80%81%E6%9C%8D%E5%8A%A1%E9%83%A8%E7%BD%B2-StatefulSet%202021.11.14/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="实战：有状态服务部署-StatefulSet 2021.11.14">
                         
-                        <span class="card-title">故障案例：Linux机器用户cd进不了系统某目录或者进去后执行不了命令呈现卡死状态(工作实战-测试成功)-2021.11.16</span>
+                        <span class="card-title">实战：有状态服务部署-StatefulSet 2021.11.14</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -851,14 +836,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%85%E9%9A%9C%E6%A1%88%E4%BE%8B/" class="post-category">
-                                    故障案例
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
                                 </a>
                             
                             
@@ -868,8 +853,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E5%83%B5%E5%B0%B8%E8%BF%9B%E7%A8%8B/">
-                        <span class="chip bg-color">僵尸进程</span>
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
                     </a>
                     
                 </div>
