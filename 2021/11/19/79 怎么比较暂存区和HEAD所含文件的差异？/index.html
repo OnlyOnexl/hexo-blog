@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="实战：怎样把间隔的几个commit整理成1个？-2021.11.18, Love">
+    <meta name="keywords" content="实战：怎么比较暂存区和HEAD所含文件的差异？-2021.11.19, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>实战：怎样把间隔的几个commit整理成1个？-2021.11.18 | Love</title>
+    <title>实战：怎么比较暂存区和HEAD所含文件的差异？-2021.11.19 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/0.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">实战：怎样把间隔的几个commit整理成1个？-2021.11.18</h1>
+                    <h1 class="description center-align post-title">实战：怎么比较暂存区和HEAD所含文件的差异？-2021.11.19</h1>
                 </div>
             </div>
         </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-11-18
+                    2021-11-19
                 </div>
                 
 
@@ -477,88 +477,43 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实战：怎样把间隔的几个commit整理成1个？-2021-11-18"><a href="#实战：怎样把间隔的几个commit整理成1个？-2021-11-18" class="headerlink" title="实战：怎样把间隔的几个commit整理成1个？-2021.11.18"></a>实战：怎样把间隔的几个commit整理成1个？-2021.11.18</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="文档来源"><a href="#文档来源" class="headerlink" title="文档来源"></a>文档来源</h2><blockquote>
-<p>文章来源：课程：《玩转Git三剑客》-苏玲-极客时间-20210918购买-69元\18  怎样把间隔的几个commit整理成1个？</p>
+                <h2 id="实战：怎么比较暂存区和HEAD所含文件的差异？-2021-11-19"><a href="#实战：怎么比较暂存区和HEAD所含文件的差异？-2021-11-19" class="headerlink" title="实战：怎么比较暂存区和HEAD所含文件的差异？-2021.11.19"></a>实战：怎么比较暂存区和HEAD所含文件的差异？-2021.11.19</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211119103101469.png" alt="image-20211119103101469"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line"></span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="1、实验过程"><a href="#1、实验过程" class="headerlink" title="1、实验过程"></a>1、实验过程</h2><blockquote>
+<p>演示目标：对暂存区和HEAD所含文件的差异比较方法</p>
 </blockquote>
-<p><a target="_blank" rel="noopener" href="https://time.geekbang.org/course/detail/100021601-72798">https://time.geekbang.org/course/detail/100021601-72798</a></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118072344748.png" alt="image-20211118072344748"></p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">$ git version</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
-
-<h2 id="实验软件-无"><a href="#实验软件-无" class="headerlink" title="实验软件(无)"></a>实验软件(无)</h2><h2 id="1、问题需求：怎样把间隔的几个commit整理成1个？"><a href="#1、问题需求：怎样把间隔的几个commit整理成1个？" class="headerlink" title="1、问题需求：怎样把间隔的几个commit整理成1个？"></a>1、问题需求：怎样把间隔的几个commit整理成1个？</h2><p>上节课，我们已经通过<code>git rebase -i</code>命令把相同的commit已经合并完成了，可以看到原来有4个commit信息，但都是描述的是一个静态网站项目，合并为一个commit后，我们的历史commit就立马变的更简洁清晰了。</p>
-<p>现在，有这么个情况，通过<code>git log --grapg</code>发现master分支任然有2处commit是类似的，都是关于readme文件的，此时，我想要把这2个不连续的commit给合并该如何做呢？</p>
-<p>我们首先来查看下当前环境：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository</span><br><span class="line">$ <span class="built_in">cd</span> git_learning/</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span> --graph</span><br><span class="line">* commit c2d593775d52e007c2f8667e5b3cbc6dc7461b82 (HEAD -&gt; master)</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-07 16:24:04 +0800</span><br><span class="line">|</span><br><span class="line">|     Move  filename readme.md readme <span class="comment">#本次想要合并的commit对象2</span></span><br><span class="line">|</span><br><span class="line">* commit 0ac2779c079f15468206a9a8a3e32444bedb6276</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-05 07:12:54 +0800</span><br><span class="line">|</span><br><span class="line">|     Create a complete web page!</span><br><span class="line">|</span><br><span class="line">|     Add index + git logo</span><br><span class="line">|</span><br><span class="line">|     Add style.css</span><br><span class="line">|</span><br><span class="line">|     Add js</span><br><span class="line">|</span><br><span class="line">|     Add a refering project !</span><br><span class="line">|</span><br><span class="line">* commit 6d72184e894e61aab57ea5adcb861076cadb8cee</span><br><span class="line">  Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">  Date:   2021-10-04 08:13:30 +0800</span><br><span class="line"></span><br><span class="line">      Add readme.md <span class="comment">#本次想要合并的commit对象1</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
+<p><strong>step1</strong>：查看当前git状态是干净的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ ls</span><br><span class="line">images/  index.html  js/  readme  styles/</span><br></pre></td></tr></table></figure>
 
 
 
-<p>顺便记录下当前all分支的历史commit信息和图形化commit信息，以被后续观察：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span> --graph --all</span><br><span class="line">* commit c2d593775d52e007c2f8667e5b3cbc6dc7461b82 (HEAD -&gt; master)</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-07 16:24:04 +0800</span><br><span class="line">|</span><br><span class="line">|     Move  filename readme.md readme</span><br><span class="line">|</span><br><span class="line">* commit 0ac2779c079f15468206a9a8a3e32444bedb6276</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-05 07:12:54 +0800</span><br><span class="line">|</span><br><span class="line">|     Create a complete web page!</span><br><span class="line">|</span><br><span class="line">|     Add index + git logo</span><br><span class="line">|</span><br><span class="line">|     Add style.css</span><br><span class="line">|</span><br><span class="line">|     Add js</span><br><span class="line">|</span><br><span class="line">|     Add a refering project !</span><br><span class="line">|</span><br><span class="line">| * commit 30c150103c9c14b9ff33533a91950b0fa708c2ba (temp)</span><br><span class="line">| | Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| | Date:   2021-10-09 08:49:08 +0800</span><br><span class="line">| |</span><br><span class="line">| |     Add <span class="built_in">test</span></span><br><span class="line">| |</span><br><span class="line">| | * commit f99906da3e1494de3a7a48b8d75cbdd78363f425 (tag: js01)</span><br><span class="line">| |/  Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| |   Date:   2021-10-05 07:36:32 +0800</span><br><span class="line">| |</span><br><span class="line">| |       Add js</span><br><span class="line">| |</span><br><span class="line">| * commit c3d346c381b8ae684b2f09af9b3dd87c50628ed5</span><br><span class="line">| | Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| | Date:   2021-10-05 07:28:29 +0800</span><br><span class="line">| |</span><br><span class="line">| |     Add style.css</span><br><span class="line">| |</span><br><span class="line">| * commit 7f633c8fb14972aa1fb64665d954ccad8581b3eb</span><br><span class="line">|/  Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">|   Date:   2021-10-05 07:12:54 +0800</span><br><span class="line">|</span><br><span class="line">|       Add index + git logo</span><br><span class="line">|</span><br><span class="line">* commit 6d72184e894e61aab57ea5adcb861076cadb8cee</span><br><span class="line">  Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">  Date:   2021-10-04 08:13:30 +0800</span><br><span class="line"></span><br><span class="line">      Add readme.md</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p><strong>step2</strong>：编辑index.html文件：我们好像第一个接触的命令是<code>add</code>命令，所以打算在index.html里面添加下add这个命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ vim index.html</span><br><span class="line">……</span><br><span class="line">&lt;li&gt;Add&lt;/li&gt; <span class="comment">#在第32行将`&lt;li&gt;&lt;/li&gt;` 修改为 `&lt;li&gt;Add&lt;/li&gt;`</span></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
 
-<p><code>gitk --all</code></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118063652050.png" alt="image-20211118063652050"></p>
-<h2 id="2、配置方法：仍然要通过git-rebase-i命令"><a href="#2、配置方法：仍然要通过git-rebase-i命令" class="headerlink" title="2、配置方法：仍然要通过git rebase -i命令"></a>2、配置方法：仍然要通过<code>git rebase -i命令</code></h2><p>因为我们要合并的那其中一个commit已经是第一个commit了，它是没有父commit的，所以我们这里只能先加上自己的commit id，再进一步观察现象：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git rebase -i 6d72184e894e61aa</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118064122242.png" alt="image-20211118064122242"></p>
-<p>我们可以发现，进到rebase交互式界面后，是看不到我们要合并的那个属于第一个commit信息的，因此我们需要手动把这个commit信息给补全：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118064641234.png" alt="image-20211118064641234"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pick 6d72184 </span><br><span class="line">s c2d5937 Move  filename readme.md readme</span><br><span class="line">pick 0ac2779 Create a complete web page!</span><br></pre></td></tr></table></figure>
-
-<p>配置好后，我们保存退出，按理说，应该会出现一个要修改message的界面：</p>
-<p>咦，我们看到报异常了：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118064943921.png" alt="image-20211118064943921"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git rebase -i 6d72184e894e61aa</span><br><span class="line">interactive rebase <span class="keyword">in</span> progress; onto 6d72184</span><br><span class="line">Last <span class="built_in">command</span> <span class="keyword">done</span> (1 <span class="built_in">command</span> <span class="keyword">done</span>):</span><br><span class="line">   pick 6d72184</span><br><span class="line">Next commands to <span class="keyword">do</span> (2 remaining commands):</span><br><span class="line">   squash c2d5937 Move  filename readme.md readme</span><br><span class="line">   pick 0ac2779 Create a complete web page!</span><br><span class="line">You are currently rebasing branch <span class="string">&#x27;master&#x27;</span> on <span class="string">&#x27;6d72184&#x27;</span>.</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line">The previous cherry-pick is now empty, possibly due to conflict resolution.</span><br><span class="line">If you wish to commit it anyway, use:</span><br><span class="line"></span><br><span class="line">    git commit --allow-empty</span><br><span class="line"></span><br><span class="line">Otherwise, please use <span class="string">&#x27;git reset&#x27;</span></span><br><span class="line">Could not apply 6d72184...</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master|REBASE-i 1/3)</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211119062458964.png" alt="image-20211119062458964"></p>
+<p><strong>step3</strong>：将编辑后的文件add到暂存区并使用命令<code>git diff --cache</code>命令来比较暂存区和HEAD所含文件之间的差异</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git add index.html</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">&quot;git reset HEAD &lt;file&gt;...&quot;</span> to unstage)</span><br><span class="line"></span><br><span class="line">        modified:   index.html</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git diff --cached</span><br><span class="line">diff --git a/index.html b/index.html</span><br><span class="line">index 7ed8b8e..e208cd6 100644</span><br><span class="line">--- a/index.html</span><br><span class="line">+++ b/index.html</span><br><span class="line">@@ -29,7 +29,7 @@</span><br><span class="line">         &lt;div class=<span class="string">&quot;accordion&quot;</span>&gt;&lt;h1&gt;Basic Commands&lt;/h1&gt;&lt;/div&gt;</span><br><span class="line">             &lt;div class=<span class="string">&quot;panel&quot;</span>&gt;</span><br><span class="line">                 &lt;ol&gt;</span><br><span class="line">-                    &lt;li&gt;&lt;/li&gt;    <span class="comment">#-表示减少的内容</span></span><br><span class="line">+                    &lt;li&gt;Add&lt;/li&gt; <span class="comment">#+表示增加的内容</span></span><br><span class="line">                     &lt;li&gt;&lt;/li&gt;</span><br><span class="line">                     &lt;li&gt;&lt;/li&gt;</span><br><span class="line">                     &lt;li&gt;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
 
 
 
-<p>我们现在看一下，现在git的状态是什么样子的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master|REBASE-i 1/3)</span><br><span class="line">$ git status</span><br><span class="line">interactive rebase <span class="keyword">in</span> progress; onto 6d72184</span><br><span class="line">Last <span class="built_in">command</span> <span class="keyword">done</span> (1 <span class="built_in">command</span> <span class="keyword">done</span>):</span><br><span class="line">   pick 6d72184</span><br><span class="line">Next commands to <span class="keyword">do</span> (2 remaining commands):</span><br><span class="line">   squash c2d5937 Move  filename readme.md readme</span><br><span class="line">   pick 0ac2779 Create a complete web page!</span><br><span class="line">  (use <span class="string">&quot;git rebase --edit-todo&quot;</span> to view and edit)</span><br><span class="line">You are currently rebasing branch <span class="string">&#x27;master&#x27;</span> on <span class="string">&#x27;6d72184&#x27;</span>.</span><br><span class="line">  (all conflicts fixed: run <span class="string">&quot;git rebase --continue&quot;</span>)</span><br><span class="line"></span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master|REBASE-i 1/3)</span><br><span class="line">$</span><br></pre></td></tr></table></figure>
+<p><strong>step4</strong>：我们再来修改下这个index.html文件，突然发现，我们第一个接触的命令是<code>config</code>，因此我们需要修改下刚才编辑的内容，然后再进一步观察下效果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ vim index.html</span><br><span class="line">……</span><br><span class="line">&lt;li&gt;Add&lt;/li&gt; <span class="comment">#在第32行将`&lt;li&gt;Add&lt;/li&gt;` 修改为 `&lt;li&gt;config&lt;/li&gt;`</span></span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211119064659083.png" alt="image-20211119064659083"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#编辑完后记得add到暂存区哦：</span></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git add index.html</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git diff --cached</span><br><span class="line">diff --git a/index.html b/index.html</span><br><span class="line">index 7ed8b8e..b70c42a 100644</span><br><span class="line">--- a/index.html</span><br><span class="line">+++ b/index.html</span><br><span class="line">@@ -29,7 +29,7 @@</span><br><span class="line">         &lt;div class=<span class="string">&quot;accordion&quot;</span>&gt;&lt;h1&gt;Basic Commands&lt;/h1&gt;&lt;/div&gt;</span><br><span class="line">             &lt;div class=<span class="string">&quot;panel&quot;</span>&gt;</span><br><span class="line">                 &lt;ol&gt;</span><br><span class="line">-                    &lt;li&gt;&lt;/li&gt;</span><br><span class="line">+                    &lt;li&gt;config&lt;/li&gt; <span class="comment">#通过比较我们发现这里的内容符合预期的效果</span></span><br><span class="line">                     &lt;li&gt;&lt;/li&gt;</span><br><span class="line">                     &lt;li&gt;&lt;/li&gt;</span><br><span class="line">                     &lt;li&gt;&lt;/li&gt;</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
 
 
 
-<p>我们按照提示去运行下命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master|REBASE-i 1/3)</span><br><span class="line">$ git rebase --<span class="built_in">continue</span></span><br></pre></td></tr></table></figure>
+<p><strong>step5</strong>：通过比较知道，暂存区的内容符合我们的预期，此时就可以使用<code>commit命令</code>直接提交到git仓库了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git commit -m<span class="string">&quot;Add the first command with config&quot;</span></span><br><span class="line">[master 7b84beb] Add the first <span class="built_in">command</span> with config</span><br><span class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</span><br><span class="line"> </span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ gs</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span> --graph</span><br><span class="line">* commit 7b84bebf129ffd961c060e7bd6a5f9ce91ac5f3d (HEAD -&gt; master)</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-11-19 06:52:42 +0800</span><br><span class="line">|</span><br><span class="line">|     Add the first <span class="built_in">command</span> with config</span><br><span class="line">|</span><br><span class="line">* commit 37affa8101e424ef7cedb4738ee669fe2fb0b9fd</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-05 07:12:54 +0800</span><br><span class="line">|</span><br><span class="line">|     Create a complete web page!</span><br><span class="line">|</span><br><span class="line">|     Add index + git logo</span><br><span class="line">|</span><br><span class="line">|     Add style.css</span><br><span class="line">|</span><br><span class="line">|     Add js</span><br><span class="line">|</span><br><span class="line">|     Add a refering project !</span><br><span class="line">|</span><br><span class="line">* commit 70c905452ef82796055a52ccf47612038f5b2e01</span><br><span class="line">  Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">  Date:   2021-10-04 08:13:30 +0800</span><br><span class="line"></span><br><span class="line">      Add readme</span><br><span class="line"></span><br><span class="line">      Add readme.md</span><br><span class="line"></span><br><span class="line">      Move  filename readme.md readme</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
 
-<p>运行这个提示命令后就出现了那个要编辑message的界面了：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118065912875.png" alt="image-20211118065912875"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118070155868.png" alt="image-20211118070155868"></p>
-<p>保存退出后，我们可以看到有log提示<code>successful</code>了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master|REBASE-i 1/3)</span><br><span class="line">$ git rebase --<span class="built_in">continue</span></span><br><span class="line">[detached HEAD 70c9054] Add readme</span><br><span class="line"> Date: Mon Oct 4 08:13:30 2021 +0800</span><br><span class="line"> 1 file changed, 1 insertion(+)</span><br><span class="line"> create mode 100644 readme</span><br><span class="line">Successfully rebased and updated refs/heads/master.</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
-
-<p>接下里，我们验证下效果。</p>
-<h2 id="3、验证效果"><a href="#3、验证效果" class="headerlink" title="3、验证效果"></a>3、验证效果</h2><p>查看当前master分支的历史commit信息：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ git <span class="built_in">log</span> --graph</span><br><span class="line">* commit 37affa8101e424ef7cedb4738ee669fe2fb0b9fd (HEAD -&gt; master)</span><br><span class="line">| Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">| Date:   2021-10-05 07:12:54 +0800</span><br><span class="line">|</span><br><span class="line">|     Create a complete web page!</span><br><span class="line">|</span><br><span class="line">|     Add index + git logo</span><br><span class="line">|</span><br><span class="line">|     Add style.css</span><br><span class="line">|</span><br><span class="line">|     Add js</span><br><span class="line">|</span><br><span class="line">|     Add a refering project !</span><br><span class="line">|</span><br><span class="line">* commit 70c905452ef82796055a52ccf47612038f5b2e01</span><br><span class="line">  Author: xyy &lt;xyy@189.cn&gt;</span><br><span class="line">  Date:   2021-10-04 08:13:30 +0800</span><br><span class="line"></span><br><span class="line">      Add readme</span><br><span class="line"></span><br><span class="line">      Add readme.md</span><br><span class="line"></span><br><span class="line">      Move  filename readme.md readme</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br></pre></td></tr></table></figure>
-
-<p>同时可以看到我们当前all的commit id已经发生了改变了：</p>
-<p>我们再来回顾一下，这个项目，当时有好多commit信息，上一次把几个静态页面的commit给合并到了一个，今天我们又把readme相关的commit给合并成了一个，现在这个项目总共2个commit信息，非常简洁美观。因此，这个git的 rebase功能在工作中还是非常有用的。</p>
-<ul>
-<li>注意啦：现在有个特别神奇且有趣的事情要出现了</li>
-</ul>
-<p>我们看一下当前仓库图形化：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/git_repository/git_learning (master)</span><br><span class="line">$ gitk --all</span><br></pre></td></tr></table></figure>
-
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118071816945.png" alt="image-20211118071816945"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118071837114.png" alt="image-20211118071837114"></p>
-<p><strong>我们可以看到，在git图形化输出上，会形成2颗孤独的树</strong>。按理说，应该只会有一个commit信它是没有父commit的，但是我们在master分支把父commit和其它commit给一起合并了，导致当前master分支的the first commit的id发生了变化，因此和之前那个父commit就独立了，就出现了当前2个独立的树的现象。</p>
-<p>一般情况，我们主要是用master分支的，而对于tem分支，如果确认没用是可以进行删除操作的。</p>
-<p>好了，今天的实验就到此结束了。</p>
-<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="1-注意：本次实验过程中自己也遇到的问题"><a href="#1-注意：本次实验过程中自己也遇到的问题" class="headerlink" title="1.注意：本次实验过程中自己也遇到的问题"></a>1.注意：本次实验过程中自己也遇到的问题</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118145622157.png" alt="image-20211118145622157"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118145715783.png" alt="image-20211118145715783"></p>
-<h3 id="2-真高级：如果要重写根提交（第一个提交）-git-rebase-i-root"><a href="#2-真高级：如果要重写根提交（第一个提交）-git-rebase-i-root" class="headerlink" title="2.真高级：如果要重写根提交（第一个提交）:git rebase -i --root"></a>2.真高级：如果要重写根提交（第一个提交）:<code>git rebase -i --root</code></h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118143500076.png" alt="image-20211118143500076"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">如果要重写根提交（第一个提交），它并没有父节点，该怎么办？在提交列表中，可以手工将根提交添加进来。更简单的方式是使用 `git rebase -i --root` 命令，该命令允许你在分支上变基根提交。也就是说，Git 提供的提交列表会包含从根提交直到当前提交的所有提交。</span><br></pre></td></tr></table></figure>
-
-<h3 id="3-注意：对rebase冲突及解决步骤。"><a href="#3-注意：对rebase冲突及解决步骤。" class="headerlink" title="3.注意：对rebase冲突及解决步骤。"></a>3.注意：对rebase冲突及解决步骤。</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118144735782.png" alt="image-20211118144735782"></p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118150137697.png" alt="image-20211118150137697"></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">作者回复: 冲突属于正常现象，git需要我们自己选择哪一行用哪个变更的内容。只要把有冲突的地方解决掉，就能继续整理commit了。</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="4-技巧：我想知道老师在进入git-rebase-i的交互界面时，是按什么键返回上一页拷贝根commit的"><a href="#4-技巧：我想知道老师在进入git-rebase-i的交互界面时，是按什么键返回上一页拷贝根commit的" class="headerlink" title="4.技巧：我想知道老师在进入git rebase i的交互界面时，是按什么键返回上一页拷贝根commit的"></a>4.技巧：我想知道老师在进入git rebase i的交互界面时，是按什么键返回上一页拷贝根commit的</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118145040344.png" alt="image-20211118145040344"></p>
-<p>下面这3种方法都是可行的：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118145111267.png" alt="image-20211118145111267"></p>
-<h3 id="5-如何删除tag呢？"><a href="#5-如何删除tag呢？" class="headerlink" title="5.如何删除tag呢？"></a>5.如何删除tag呢？</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118145236046.png" alt="image-20211118145236046"></p>
-<h3 id="6-注意：在执行完git-rebase-i-commitID后想悔棋，该怎么办呢？"><a href="#6-注意：在执行完git-rebase-i-commitID后想悔棋，该怎么办呢？" class="headerlink" title="6.注意：在执行完git rebase -i commitID后想悔棋，该怎么办呢？"></a>6.注意：在执行完<code>git rebase -i commitID</code>后想悔棋，该怎么办呢？</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118145940613.png" alt="image-20211118145940613"></p>
+<p>好了，实验到此结束。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="1-git-diff-staged等价于git-diff-cached"><a href="#1-git-diff-staged等价于git-diff-cached" class="headerlink" title="1.git diff --staged等价于git diff --cached"></a>1.<code>git diff --staged</code>等价于<code>git diff --cached</code></h3><p>即：cached和staged都表示<code>缓存区</code>；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211119094618962.png" alt="image-20211119094618962"></p>
+<h3 id="2-git-diff-–cached后面是否要加文件名？"><a href="#2-git-diff-–cached后面是否要加文件名？" class="headerlink" title="2.git diff –cached后面是否要加文件名？"></a>2.git diff –cached后面是否要加文件名？</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211119095345394.png" alt="image-20211119095345394"></p>
+<p>作者回复: 可以指定文件名的。不加就是比对所有文件差异</p>
 <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
@@ -576,8 +531,7 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于怎样把间隔的几个commit整理成1个？实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211118152659945.png" alt="image-20211118152659945"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于怎么比较暂存区和HEAD所含文件的差异实验就到这里了，感谢大家阅读，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
 
                 
             </div>
@@ -604,7 +558,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/11/18/78%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%80%8E%E6%A0%B7%E6%8A%8A%E9%97%B4%E9%9A%94%E7%9A%84%E5%87%A0%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA%EF%BC%9F-2021.11.18/">https://www.onlyonexl.cn/2021/11/18/78%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%80%8E%E6%A0%B7%E6%8A%8A%E9%97%B4%E9%9A%94%E7%9A%84%E5%87%A0%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA%EF%BC%9F-2021.11.18/</a>
+                    <a href="https://www.onlyonexl.cn/2021/11/19/79%20%E6%80%8E%E4%B9%88%E6%AF%94%E8%BE%83%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82%EF%BC%9F/">https://www.onlyonexl.cn/2021/11/19/79%20%E6%80%8E%E4%B9%88%E6%AF%94%E8%BE%83%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82%EF%BC%9F/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -815,9 +769,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/11/19/79%20%E6%80%8E%E4%B9%88%E6%AF%94%E8%BE%83%E6%9A%82%E5%AD%98%E5%8C%BA%E5%92%8CHEAD%E6%89%80%E5%90%AB%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82%EF%BC%9F/">
                     <div class="card-image">
@@ -835,9 +790,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-11-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -850,6 +805,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -868,13 +824,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/11/16/77%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E6%8C%81%E4%B9%85%E5%8C%96%E5%AD%98%E5%82%A8pv%E5%92%8Cpvc(%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-%E5%8D%9A%E5%AE%A2%E8%BE%93%E5%87%BA-simmon%E4%BC%81%E4%B8%9A%E6%95%99%E7%BB%83)-2021.11.16/">
+                <a href="/2021/11/18/78%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%80%8E%E6%A0%B7%E6%8A%8A%E9%97%B4%E9%9A%94%E7%9A%84%E5%87%A0%E4%B8%AAcommit%E6%95%B4%E7%90%86%E6%88%901%E4%B8%AA%EF%BC%9F-2021.11.18/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="实战：k8s持久化存储pv和pvc-2021.11.16">
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="实战：怎样把间隔的几个commit整理成1个？-2021.11.18">
                         
-                        <span class="card-title">实战：k8s持久化存储pv和pvc-2021.11.16</span>
+                        <span class="card-title">实战：怎样把间隔的几个commit整理成1个？-2021.11.18</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -885,14 +841,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-11-18
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/git/" class="post-category">
+                                    git
                                 </a>
                             
                             
@@ -902,8 +858,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/k8s/">
-                        <span class="chip bg-color">k8s</span>
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
                     </a>
                     
                 </div>
