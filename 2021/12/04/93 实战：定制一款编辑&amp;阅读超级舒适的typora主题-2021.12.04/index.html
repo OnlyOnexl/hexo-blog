@@ -1,0 +1,1991 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：定制一款编辑和阅读超级舒适的typora主题-2021.12.04, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：定制一款编辑和阅读超级舒适的typora主题-2021.12.04 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：定制一款编辑和阅读超级舒适的typora主题-2021.12.04</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/typoa/">
+                                <span class="chip bg-color">typoa</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/typora/" class="post-category">
+                                typora
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-04
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：定制一款编辑-amp-阅读超级舒适的typora主题-2021-12-04"><a href="#实战：定制一款编辑-amp-阅读超级舒适的typora主题-2021-12-04" class="headerlink" title="实战：定制一款编辑&amp;阅读超级舒适的typora主题-2021.12.04"></a>实战：定制一款编辑&amp;阅读超级舒适的typora主题-2021.12.04</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204152321879.png" alt="image-20211204152321879"></p>
+<h2 id="文档更新时间"><a href="#文档更新时间" class="headerlink" title="文档更新时间"></a>文档更新时间</h2><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2021年12月4日15:24:39</td>
+<td>创建文档</td>
+</tr>
+</tbody></table>
+<h2 id="typora-css主题迭代版本"><a href="#typora-css主题迭代版本" class="headerlink" title="typora.css主题迭代版本"></a>typora.css主题迭代版本</h2><p>当前最新版本为：<code>lovexyy-2021.12.04-v1.css</code></p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/18mlGL-Cf3UIVnKQyk9nLrw">https://pan.baidu.com/s/18mlGL-Cf3UIVnKQyk9nLrw</a><br>提取码：0owt<br>–来自百度网盘超级会员V6的分享</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204153351673.png" alt="image-20211204153351673"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="本文已在github开源"><a href="#本文已在github开源" class="headerlink" title="本文已在github开源"></a>本文已在github开源</h2><p>关于本篇文章，已开源到github，大家可在github上访问本篇文章，后续也将持续更新……😊</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/OnlyOnexl/typora-custom-theme">https://github.com/OnlyOnexl/typora-custom-theme</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204153040071.png" alt="image-20211204153040071"></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">typora</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204151517548.png" alt="image-20211204151517548"></p>
+<h2 id="1、什么是markdown"><a href="#1、什么是markdown" class="headerlink" title="1、什么是markdown"></a>1、什么是markdown</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211125161231337.png" alt="image-20211125161231337"></p>
+<h3 id="1、Markdown-是什么"><a href="#1、Markdown-是什么" class="headerlink" title="1、Markdown 是什么"></a>1、Markdown 是什么</h3><blockquote>
+<p>Markdown 是一种<strong>轻量级标记语言</strong>，创始人为约翰·格鲁伯（John Gruber）。它允许人们「使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档 」—— 维基百科</p>
+</blockquote>
+<p>如果你看不懂以上维基百科对 Markdown 的定义，就当这段掐了没播。约翰·格鲁伯自己对Markdown的描述的重点也在于 <strong>「easy-to-read，easy-to-write」。</strong></p>
+<h3 id="2、那么到底-easy-在哪里呢"><a href="#2、那么到底-easy-在哪里呢" class="headerlink" title="2、那么到底 easy 在哪里呢"></a>2、那么到底 easy 在哪里呢</h3><p>虽然称作 「标记语言」，但简单理解 Markdown 就是在文本前增加符号来表示文本格式。你不需要关心标题多大号，列表缩进多少，是否对齐，只要使用了同一种符号标记，Markdown 已经帮你做好了排版。</p>
+<p>无图无真相：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211125161126505.png" alt="image-20211125161126505"></p>
+<h3 id="3、Markdown-的好处"><a href="#3、Markdown-的好处" class="headerlink" title="3、Markdown 的好处"></a>3、Markdown 的好处</h3><ol>
+<li><strong>编辑，不用操心排版</strong>你只需要把注意力放在内容上。笔者在用 Markdown 之前，打开word 先想想，标题用啥字体呢，几号字呢？不知不觉我的意志力就被消耗了。<strong>实际上所谓排版，不就是作者的思路以及内容的层级和结构么</strong>，在学会使用 Markdown 之后，几个简单的符号就把这些事儿搞定，样式还特别工整精美。</li>
+<li><strong>修改，不用担心排版</strong>想想那些你在同事之间改来改去的 word 文档吧，如果哪位童鞋从外部粘贴了一段带格式的文字，那么你再次打开文档时会发现整个人都不好了：格式被改的乱七八糟，还要重新调整。如果用 Markdown 群组笔记 ，想改哪里改哪里，根本不用担心格式，改完评论里直接 @TA，多轻松！</li>
+</ol>
+<p>一句话来说，Markdown 是用最简单的方式，零排版成本，写出布局工整、阅读舒适的笔记。<strong>减少干扰，降低成本，提高效率</strong>，不管在什么设备上，看起来都是一个工整的样子。不仅自己阅读爽，分享给朋友也有面儿不是~</p>
+<h3 id="4、哪些牛人都在用"><a href="#4、哪些牛人都在用" class="headerlink" title="4、哪些牛人都在用"></a>4、哪些牛人都在用</h3><ul>
+<li><p>阳志平在 2012 年就发博客推崇了一下 Markdown，但那篇文章虽解读深刻，但也略显极客，<strong>把Markdown 不仅能排版，能做流程图，还支持数学公式的特性</strong>介绍了一遍，<strong>连科技论文都要选择 Markdown</strong> 都涉猎到了。有兴趣阅读的童鞋可<a target="_blank" rel="noopener" href="http://www.yangzhiping.com/tech/r-markdown-knitr.html">点击这里</a> （<strong>注意：这个链接目前打不开了。。</strong>）查看。</p>
+</li>
+<li><p>很多在线博客和内容社区都提供 Markdown 编辑器，不仅在阅读上带来了舒适、统一、美好的体验，每一个参与写作的人，也能够毫不费力地写出排版整齐的文章来。</p>
+</li>
+<li><p>我遇到的很多运维大佬也是采用这个typora来作为课件使用来着的！</p>
+</li>
+</ul>
+<p><strong>来个小技巧</strong>：</p>
+<p>不管我再怎么说 Markdown 的语法记忆负担小、简单，在最初你都会有点儿晕。在这里给大家分享个小技巧：</p>
+<ol>
+<li>最初只需要记住 <code># 标题一</code>、<code>### 标题二</code>、<code>1. 第一点</code>、<code>* 这一点</code>，用这几个写写日志、需求文档、小文章，排版上足够了；</li>
+<li>逐渐的你发现有些文字需要重点指出，那么还可以使用 <code>**加粗**</code>、<code>*斜体*</code> 来对文字做重点说明；</li>
+<li>如果你是名程序员，那么可以用 ```` <code>把代码块包起来，**渲染后可以关键字高亮**（666），用 </code>&gt;` 可以做引用 ；</li>
+</ol>
+<h3 id="5、Markdown-格式标记符号说明-amp-Typora常用快捷键"><a href="#5、Markdown-格式标记符号说明-amp-Typora常用快捷键" class="headerlink" title="5、Markdown 格式标记符号说明(&amp;Typora常用快捷键)"></a>5、Markdown 格式标记符号说明(&amp;Typora常用快捷键)</h3><h4 id="1-标题"><a href="#1-标题" class="headerlink" title="1.标题"></a>1.标题</h4><ul>
+<li><strong>Typora快捷键：</strong><code>Ctrl/Cmd + 数字</code> (数字可以是1到6分别代表不同级标题)</li>
+</ul>
+<ul>
+<li><p>提升标题级别：<code>ctrl +</code></p>
+</li>
+<li><p>降低标题级别：<code>ctrl -</code></p>
+</li>
+</ul>
+<ul>
+<li><strong>markdown语法：</strong></li>
+</ul>
+<p>在行首插入 1 到 6个#，分别表示标题 1 到标题 6</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># 这是标题1</span><br><span class="line">### 这是标题1</span><br><span class="line">###### 这是标题6</span><br></pre></td></tr></table></figure>
+
+<p>点击保存后的效果：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130233909849.png" alt="image-20210130233909849"></p>
+<h4 id="2-有序列表"><a href="#2-有序列表" class="headerlink" title="2. 有序列表"></a>2. 有序列表</h4><ul>
+<li><p><strong>Typora快捷键：</strong><code>ctrl shift [</code></p>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p>在行首增加 <code>1.</code>、<code>2.</code>、<code>3.</code>，即数字和英文句点, 注意句点与文字中间有空格。<strong>不要求数字一定要连续，可以都是<code>1. </code></strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1. 有序列表</span><br><span class="line">1. 有序列表</span><br><span class="line">4. 有序列表</span><br></pre></td></tr></table></figure>
+
+<p>点击保存后的效果：</p>
+<ol>
+<li>有序列表</li>
+<li>有序列表</li>
+<li>有序列表</li>
+</ol>
+<p><strong>备注：</strong></p>
+<p>直接在文字前面按回车后，是可以自动排序的；（无序列表也是一样的）</p>
+<h4 id="3-无序列表"><a href="#3-无序列表" class="headerlink" title="3. 无序列表"></a>3. 无序列表</h4><ul>
+<li><p><strong>Typora快捷键：</strong><code>ctrl shift ]</code></p>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p>在行首增加 <code>*</code> 或 <code>- </code>或<code>+</code>与文字之间有空格</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">* 无序列表</span><br><span class="line">- 无序列表</span><br><span class="line">+ 无序列表</span><br></pre></td></tr></table></figure>
+
+<p>点击保存后的效果：</p>
+<ul>
+<li>无序列表</li>
+<li>无序列表</li>
+</ul>
+<h4 id="4-插入图片"><a href="#4-插入图片" class="headerlink" title="4. 插入图片"></a>4. 插入图片</h4><ul>
+<li><p><strong>Typora快捷键：</strong><code>ctrl+shift+i</code></p>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p>可直接粘贴图片，或将图片文件拖动到光标处。</p>
+<p>也可以使用标准的Markdown语法，如：<br><code> ![](http://cdn.wiz.cn/wp-content/uploads/2015/06/wiz_logo.png)</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130233504646.png" alt="image-20210130233504646"></p>
+<h4 id="5-插入链接"><a href="#5-插入链接" class="headerlink" title="5. 插入链接"></a>5. 插入链接</h4><ul>
+<li><p><strong>Typora快捷键：</strong><code>Ctrl/Cmd + K</code></p>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p><code>[描述](链接地址) ，例如：[为知笔记](http://www.wiz.cn)，注意要使用英文符号</code></p>
+<p>点击保存后的效果：<br><a target="_blank" rel="noopener" href="http://www.wiz.cn/">为知笔记</a></p>
+<h4 id="6-粗体、斜体、删除线、下划线"><a href="#6-粗体、斜体、删除线、下划线" class="headerlink" title="6. 粗体、斜体、删除线、下划线"></a>6. 粗体、斜体、删除线、下划线</h4><ul>
+<li><p><strong>Typora快捷键：</strong></p>
+<ul>
+<li><p>加粗： <code>Ctrl/Cmd + B</code></p>
+</li>
+<li><p>斜体：<code>ctrl + i</code></p>
+</li>
+<li><p>删除线：<code>alt+shift+5</code></p>
+</li>
+<li><p>下划线：<code>ctrl + u</code></p>
+</li>
+</ul>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p>粗体：在文字前后添加 <code>**</code> (注意符号与文字间不要有空格）<br>斜体：在文字前后添加 <code>*</code><br>删除线：在文字前后添加 <code>~~</code></p>
+<p>下划线：<code>ctrl + u</code></p>
+<ol>
+<li><code>**粗体**</code></li>
+<li><code>*斜体*</code></li>
+<li><code>~~删除线~~</code></li>
+<li><u>下划线</u></li>
+</ol>
+<p>保存后的效果：</p>
+<p><strong>粗体</strong><br><em>斜体</em><br><del>删除线</del></p>
+<p><u>下划线</u></p>
+<h4 id="7-引用"><a href="#7-引用" class="headerlink" title="7. 引用"></a>7. 引用</h4><ul>
+<li><p><strong>Typora快捷键：</strong></p>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p>在文字前 添加 <code>&gt;</code></p>
+<p>点击保存后的效果：</p>
+<blockquote>
+<p>如果你无法简洁的表达你的想法，那只说明你还不够了解它。 – 阿尔伯特·爱因斯坦</p>
+</blockquote>
+<h4 id="8-表格"><a href="#8-表格" class="headerlink" title="8. 表格"></a>8. 表格</h4><ul>
+<li><p><strong>Typora快捷键：</strong>插入表格：<code>ctrl T</code></p>
+<ul>
+<li>下方插入行：<code>ctrl enter</code></li>
+<li>上移该行：<code>alt 向上箭头</code></li>
+<li>下移该行：<code>alt 向下箭头</code></li>
+<li>左移该行：<code>alt 向左箭头</code></li>
+<li>右移该行：<code>alt 向右箭头</code></li>
+</ul>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<ol>
+<li><code>| 为知笔记|更新 | 版本 |</code></li>
+<li><code>|------------|-----------|--------|</code></li>
+<li><code>| WizNote | Markdown| Latest |</code></li>
+</ol>
+<p>点击保存后的效果：</p>
+<table>
+<thead>
+<tr>
+<th>为知笔记</th>
+<th>更新</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WizNote</td>
+<td>Markdown</td>
+<td>Latest</td>
+</tr>
+</tbody></table>
+<h4 id="9-代码"><a href="#9-代码" class="headerlink" title="9. 代码"></a>9. 代码</h4><ul>
+<li><p><strong>Typora快捷键：</strong>如下。</p>
+</li>
+<li><p><strong>markdown语法：</strong></p>
+</li>
+</ul>
+<p>先输入 三个反单引号：```，然后直接回车，就会弹出代码框了：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int i = 0; i = 1; </span><br><span class="line">for (int i = 0; i &lt; 100; i++)</span><br><span class="line">&#123;</span><br><span class="line">      printf(&quot;hello markdown!\n&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果需要指定语言， 在开头的3个反向单引号 后紧跟具体语言即可，如: ```bash  <strong>（注意，这个功能很实用！！！）</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y sl</span><br></pre></td></tr></table></figure>
+
+
+
+<p>或者按<code>ctrl shift K</code>即可弹出代码框：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">啦啦啦</span><br></pre></td></tr></table></figure>
+
+<h4 id="10-目录"><a href="#10-目录" class="headerlink" title="10. 目录"></a>10. 目录</h4><p>在任何你想要展示Markdown 笔记目录的地方，添加 <code>[TOC] </code>， 在阅读模式下，标题1~6样式的内容会被提取出来作为目录，相当于大纲功能。</p>
+<p>例如：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130234016969.png" alt="image-20210130234016969"></p>
+<h4 id="11-首行缩进"><a href="#11-首行缩进" class="headerlink" title="11.首行缩进"></a>11.首行缩进</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在需要缩进的地方加如下2个字符：</span><br><span class="line">&amp;emsp;&amp;emsp;</span><br></pre></td></tr></table></figure>
+
+<p>&emsp;&emsp; 爱一个人真的很痛！</p>
+<p>真的很难忘记你。</p>
+<h4 id="12-分割线"><a href="#12-分割线" class="headerlink" title="12.分割线"></a>12.分割线</h4><p>连续输入3个+号，回车即可插入一个分割线：</p>
+<p><strong>效果如下：</strong></p>
+<p>+++</p>
+<h4 id="13-代办清单"><a href="#13-代办清单" class="headerlink" title="13.代办清单"></a>13.代办清单</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-[x] 已完成项目1</span><br><span class="line">-[x] 已完成项目2</span><br><span class="line"></span><br><span class="line">- [ ] 代办项目1</span><br><span class="line">- [ ] 代办项目2</span><br></pre></td></tr></table></figure>
+
+<p><strong>效果如下：</strong></p>
+<ul>
+<li><p><input checked="" disabled="" type="checkbox">  已完成项目1</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  已完成项目2</p>
+</li>
+<li><p><input disabled="" type="checkbox">  代办项目1</p>
+</li>
+<li><p><input disabled="" type="checkbox">  代办项目2</p>
+</li>
+</ul>
+<h4 id="14-Typora其他快捷键"><a href="#14-Typora其他快捷键" class="headerlink" title="14.Typora其他快捷键"></a>14.Typora其他快捷键</h4><ol>
+<li>插入公式块：<code>ctrl shift M</code></li>
+<li>清除样式：<code>ctrl \</code></li>
+<li>粘贴为纯文本：<code>ctrl shift v</code></li>
+<li>撤销： Ctrl/Cmd + Z</li>
+<li>显示/隐藏侧边栏：<code>ctrl + shift + L</code>，等价于<code>ctrl + shift + 1</code></li>
+<li>搜索：<code>ctrl+f</code></li>
+<li>源代码模式：<code>ctrl+/</code>（很少使用）</li>
+<li>切换全屏：<code>F11</code> #再次按F11就可以退出全屏模式了；</li>
+<li>放大、缩小、还原：<ul>
+<li>放大：<code>ctrl + shift + =</code></li>
+<li>缩小：<code>ctrl + shift + -</code></li>
+<li>还原：<code>ctrl + shift + =9</code></li>
+</ul>
+</li>
+<li>应用内窗口切换：<code>ctrl + Tab</code></li>
+<li>开发者工具：<code>shift + F12</code></li>
+<li>表情和符号：<code>windows + 句号</code></li>
+</ol>
+<ul>
+<li><p><strong>建议平常写作时，使用快捷键，使用快捷键，使用快捷键</strong>，语法了解即可。</p>
+</li>
+<li><p>注意：Typora快捷键可以在菜单里查看：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130234039447.png" alt="image-20210130234039447"></p>
+</li>
+</ul>
+<h2 id="2、什么是typora及其常用配置"><a href="#2、什么是typora及其常用配置" class="headerlink" title="2、什么是typora及其常用配置"></a>2、什么是typora及其常用配置</h2><p>写Markdown费事？Typora让你像写word一样行云流水，所见即所得。<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211125161540027.png" alt="image-20211125161540027"></p>
+<h3 id="1、什么是typora"><a href="#1、什么是typora" class="headerlink" title="1、什么是typora"></a>1、什么是typora</h3><ul>
+<li>Typora删除了预览窗口，以及所有其他不必要的干扰。<strong>取而代之的是实时预览。</strong></li>
+<li>Markdown的语法因不同的解析器或编辑器而异，Typora使用的是<a target="_blank" rel="noopener" href="https://docs.github.com/en/github/writing-on-github/basic-writing-and-formatting-syntax">GitHub Flavored Markdown</a>。</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211127075142961.png" alt="image-20211127075142961"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211127075208634.png" alt="image-20211127075208634"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211127075229699.png" alt="image-20211127075229699"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211127075256876.png" alt="image-20211127075256876"></p>
+<h3 id="2、下载"><a href="#2、下载" class="headerlink" title="2、下载"></a>2、下载</h3><p><a target="_blank" rel="noopener" href="https://www.typora.io/#download">Typora下载</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211125161712909.png" alt="image-20211125161712909"></p>
+<h3 id="3、优点"><a href="#3、优点" class="headerlink" title="3、优点"></a>3、优点</h3><h4 id="round-pushpin-所见即所得"><a href="#round-pushpin-所见即所得" class="headerlink" title=":round_pushpin: 所见即所得"></a>:round_pushpin: 所见即所得</h4><p>通常 MD 编辑器，是左边编辑，右边预览，而typora是直接你写啥直接渲染，不搞双栏。</p>
+<p>从现在（2021年）的视角来看，这种所见即所得，即使放到现在，也没有能打的对手，更不用说在当时，有多前卫了。</p>
+<p>不用传统的双栏模式，更符合编写习惯。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/jjygysgyc.gif"></p>
+<h4 id="round-pushpin-足够开放"><a href="#round-pushpin-足够开放" class="headerlink" title=":round_pushpin: 足够开放"></a>:round_pushpin: 足够开放</h4><p>相比众多 Markdown 编辑器，例如 MWeb，Bear ，Typora 的主题允许自行定义，只要你懂点 CSS</p>
+<p>如下是我基于少数派的主题改过的 Typora 个人主题，和公众号的排版保质一致。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202103600644.png" alt="image-20211202103600644"></p>
+<h4 id="round-pushpin-足够简单"><a href="#round-pushpin-足够简单" class="headerlink" title=":round_pushpin: 足够简单"></a>:round_pushpin: 足够简单</h4><p>Typora 对内容不过多的干预，不需要注册帐号，数据全部存在本地，没有同步机制（在我看来，这算优点）</p>
+<h4 id="round-pushpin-图床支持"><a href="#round-pushpin-图床支持" class="headerlink" title=":round_pushpin: 图床支持"></a>:round_pushpin: 图床支持</h4><p>可对接 iPic、uPic 和 PicGo 等知名图床工具，而且还支持 Custom Comand ，这点对于集成更多第三方插件提供了便利！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202103731559.png" alt="image-20211202103731559"></p>
+<h4 id="round-pushpin-版本管理"><a href="#round-pushpin-版本管理" class="headerlink" title=":round_pushpin: 版本管理"></a>:round_pushpin: 版本管理</h4><p>记得有一次，我在写一篇一万多字的文章时（是真的一万多字，不包含代码），不小心删除了文章内容，无论怎么 Command + z 回退都没用，最后在版本管理这边找到了历史版本，有惊无险。</p>
+<p>版本管理，对于文章来说，平时可能用不太着，但要是碰到特殊情况，它就显得非常非常重要。(windows软件貌似没找到这个功能……)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202103909465.png" alt="image-20211202103909465"></p>
+<h4 id="round-pushpin-新版本更新了什么？"><a href="#round-pushpin-新版本更新了什么？" class="headerlink" title=":round_pushpin: 新版本更新了什么？"></a>:round_pushpin: 新版本更新了什么？</h4><p>那么 1.0 的这个付费版本，到底更新了什么史诗级的新功能呢？能让作者将其做为第一个付费版本发布？</p>
+<p>我去 CHANGELOG 上瞄了一眼，”平平无奇” 得让我有点不敢相信这就是付费版本。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202104120014.png" alt="image-20211202104120014"></p>
+<p>总结起来，就两点：</p>
+<ol>
+<li><p>支持 ARM 版本 Windows 和 Linux</p>
+</li>
+<li><p>在编辑数学公式时提供开关来支持是否开启使用 \ 来换行</p>
+</li>
+</ol>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202104150618.png" alt="image-20211202104150618"></p>
+<p>新版本有 15 天的试用期，最后一个免费版本是 0.11.18，可以点这里下载 （失效了的话可以加我微信获取！）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Linux：https://wwe.lanzoui.com/igFedwzagle</span><br><span class="line">MacOS：https://wwe.lanzoui.com/ip9ijwzagpi</span><br><span class="line">Windows：https://wwe.lanzoui.com/i8PP3wzahrg</span><br></pre></td></tr></table></figure>
+
+<p>不过作者在 What’s New? 上特别感谢了这么多年来一直使用 Typora 并且帮助 Typora 变得更好的测试者</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202104217431.png" alt="image-20211202104217431"></p>
+<p>而最值得一提的，可能很多人还不知道，其实 Typora 是一款国人开发的软件。</p>
+<p>作者是 Abner Lee，在互联网上没有太多作者的介绍，我在知乎上有找到作者的帐号，不过动态非常少，唯一和 Typora 相关的动态是下面这个回答。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202104259011.png" alt="image-20211202104259011"></p>
+<p>可见作者一直在用心做产品，把产品做好了，就不需要太多的营销手段， Typora 到今天能如此成功，真的是依靠口口相传的口碑。</p>
+<p><strong>最重要的是，作者能坚持 6 年用爱发电，就凭这个，即使 1.0 版本并没有太多亮眼的新特性，我也愿意为它付费！</strong></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202104315275.png" alt="image-20211202104315275"></p>
+<h4 id="round-pushpin-typora收费情况"><a href="#round-pushpin-typora收费情况" class="headerlink" title=":round_pushpin: typora收费情况"></a>:round_pushpin: typora收费情况</h4><p>在本地使用最多的就是Typora这款软件，之前一直是免费测试版本，最近终于发布了正式版本，下面是明哥对正式版本的分享，致热爱创作或分享的我们。</p>
+<p>在 2021.11月23日，Typora 正式发布 1.0 版本，进入了付费时代。</p>
+<p>1.0 版本是一次性付费而非订阅的，只要支付人民币 89 元，可以在 3 台设备里使用。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202103028083.png" alt="image-20211202103028083"></p>
+<p>有的人，可能会说：辣鸡，我用了这么多年，都用习惯了，终于要开割了吗？</p>
+<p>其实不然，Typora 一直没有开源，更没有承诺过终身免费，因此对于收费这件事来说，虽说突然，但却也一点不意外。</p>
+<h3 id="4、Typora常见配置"><a href="#4、Typora常见配置" class="headerlink" title="4、Typora常见配置"></a>4、Typora常见配置</h3><h4 id="1-本地编辑md文件一般配置方法"><a href="#1-本地编辑md文件一般配置方法" class="headerlink" title="1.本地编辑md文件一般配置方法"></a>1.本地编辑md文件一般配置方法</h4><p>默认情况，Typora软件会把粘贴进去的图片copy到pc c盘的一个目录下面；</p>
+<p>因此，我们会推荐采用使用相对路径来存放当前md文件里的图片；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./$&#123;filename&#125;_md_pictures  #这个代表如何md文件里面有插入图片的话，typora会在该文件的当前目录下生成一个同名目录来专门存放图片数据的</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130233726210.png" alt="image-20210130233726210"><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130233742530.png" alt="image-20210130233742530"></p>
+<h4 id="2-配置自动保存功能"><a href="#2-配置自动保存功能" class="headerlink" title="2.配置自动保存功能"></a>2.配置自动保存功能</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210130233848464.png" alt="image-20210130233848464"></p>
+<h4 id="3-更改字体、大小、颜色、背景色"><a href="#3-更改字体、大小、颜色、背景色" class="headerlink" title="3.更改字体、大小、颜色、背景色"></a>3.更改字体、大小、颜色、背景色</h4><p><strong>（1）更改字体、大小、颜色</strong></p>
+<p><font face="黑体">我是黑体字</font> <font face="微软雅黑">我是微软雅黑</font> <font face="STCAIYUN">我是华文彩云</font> <font color=red>我是红色</font> <font color=#008000>我是绿色</font> <font color=Blue>我是蓝色</font> <font size=5>我是尺寸</font> <font face="黑体" color=green size=5>我是黑体，绿色，尺寸为5</font></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;font face=<span class="string">&quot;黑体&quot;</span>&gt;我是黑体字&lt;/font&gt;</span><br><span class="line">&lt;font face=<span class="string">&quot;微软雅黑&quot;</span>&gt;我是微软雅黑&lt;/font&gt;</span><br><span class="line">&lt;font face=<span class="string">&quot;STCAIYUN&quot;</span>&gt;我是华文彩云&lt;/font&gt;</span><br><span class="line"></span><br><span class="line">&lt;font color=red&gt;我是红色&lt;/font&gt;</span><br><span class="line">&lt;font color=<span class="comment">#008000&gt;我是绿色&lt;/font&gt;</span></span><br><span class="line">&lt;font color=Blue&gt;我是蓝色&lt;/font&gt;</span><br><span class="line"></span><br><span class="line">&lt;font size=5&gt;我是尺寸&lt;/font&gt;</span><br><span class="line"></span><br><span class="line">&lt;font face=<span class="string">&quot;黑体&quot;</span> color=green size=5&gt;我是黑体，绿色，尺寸为5&lt;/font&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>（2）更改背景色</strong></p>
+<p>01、</p>
+<table><tr><td bgcolor=red>背景色red</td></tr></table>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">table</span>&gt;</span><span class="tag">&lt;<span class="name">tr</span>&gt;</span><span class="tag">&lt;<span class="name">td</span> <span class="attr">bgcolor</span>=<span class="string">red</span>&gt;</span>背景色red<span class="tag">&lt;/<span class="name">td</span>&gt;</span><span class="tag">&lt;/<span class="name">tr</span>&gt;</span><span class="tag">&lt;/<span class="name">table</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>02、</p>
+<p><span style='color:yellow;background:red;font-size:14;font-family:字体;'>文字</span></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span style=<span class="string">&#x27;color:yellow;background:red;font-size:文字大小;font-family:字体;&#x27;</span>&gt;文字&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-侧边栏的大纲视图允许折叠和展开"><a href="#3-侧边栏的大纲视图允许折叠和展开" class="headerlink" title="3.侧边栏的大纲视图允许折叠和展开"></a>3.侧边栏的大纲视图允许折叠和展开</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210131170715734.png" alt="image-20210131170715734"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210131170605243.png" alt="image-20210131170605243"></p>
+<h4 id="4-picgo如果配置的是阿里云oss图床的话，那么很轻松可以在typora里一次性上传本地所有图片的；-20211107-已完成-完美"><a href="#4-picgo如果配置的是阿里云oss图床的话，那么很轻松可以在typora里一次性上传本地所有图片的；-20211107-已完成-完美" class="headerlink" title="4.picgo如果配置的是阿里云oss图床的话，那么很轻松可以在typora里一次性上传本地所有图片的；-20211107(已完成)完美"></a>4.picgo如果配置的是阿里云oss图床的话，那么很轻松可以在typora里一次性上传本地所有图片的；-20211107(已完成)<code>完美</code></h4><blockquote>
+<p>注意：前提是oss里的图片名称不能存在，否则会上传报错的！！！</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211107064000219.png" alt="image-20211107064000219"></p>
+<h4 id="5-TS：typora导出word方法-成功测试-？-2021-4-28"><a href="#5-TS：typora导出word方法-成功测试-？-2021-4-28" class="headerlink" title="5.TS：typora导出word方法(成功测试)？-2021.4.28"></a>5.TS：typora导出word方法(成功测试)？-2021.4.28</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428122252430.png" alt="image-20210428122252430"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428122346063.png" alt="image-20210428122346063"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428122415545.png" alt="image-20210428122415545"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428122841754.png" alt="image-20210428122841754"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428122902538.png" alt="image-20210428122902538"></p>
+<p>安装完pandoc后，重启typora软件，再次导出即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428123050722.png" alt="image-20210428123050722"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428123057647.png" alt="image-20210428123057647"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428123121028.png" alt="image-20210428123121028"></p>
+<h4 id="6-TS：我淦-typora的代码出现了格式问题-2021-11-30"><a href="#6-TS：我淦-typora的代码出现了格式问题-2021-11-30" class="headerlink" title="6.TS：我淦-typora的代码出现了格式问题-2021.11.30"></a>6.TS：我淦-typora的代码出现了格式问题-2021.11.30</h4><h5 id="1、问题现象"><a href="#1、问题现象" class="headerlink" title="1、问题现象"></a>1、问题现象</h5><p>我淦，typora的代码快里的代码出现了换行乱序问题。。。好无语。。。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130141916852.png" alt="image-20211130141916852"></p>
+<p>奇怪的是：一篇文章里，有的代码块里的代码乱序了，有的没乱序，这个就很奇怪了。。。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130142038691.png" alt="image-20211130142038691"></p>
+<h5 id="2、排查过程"><a href="#2、排查过程" class="headerlink" title="2、排查过程"></a>2、排查过程</h5><p>:warning:</p>
+<p>重新在一个新winodws环境安装typora后，其默认的换行是<code>CRLF</code>，缩进是<code>2</code>。</p>
+<p>自己之前重新修改过typora的设置，修改结果为：换行是<code>LF</code>，缩进是<code>4</code>。</p>
+<p>个人判断就是这个原因导致的结果。。。</p>
+<ul>
+<li>typora安装后默认的换行符及缩进：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130142619050.png" alt="image-20211130142619050"></p>
+<ul>
+<li>个人typora故障时自己的环境</li>
+</ul>
+<p>自己现在的版本是正式版本：1.0.2，之前老的版本也偶尔看到了这个问题。。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130142808462.png" alt="image-20211130142808462"></p>
+<h5 id="3、解决办法"><a href="#3、解决办法" class="headerlink" title="3、解决办法"></a>3、解决办法</h5><ol>
+<li><p>将自己现在的2个笔记本的typora软件的<code>换行符和缩进</code>全部改成默认属性</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130143031963.png" alt="image-20211130143031963"></p>
+</li>
+<li><p>下次再进行大量赋值粘贴后，必须查看代码是否存在<code>乱序问题</code>；</p>
+</li>
+</ol>
+<h5 id="4、验证效果"><a href="#4、验证效果" class="headerlink" title="4、验证效果"></a>4、验证效果</h5><p>修改为原来安装属性后，我们来确认下是否会对最近编写的文档里的代码是否有影响？</p>
+<p>这里随机查看下2个文档：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130143624310.png" alt="image-20211130143624310"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211130143709665.png" alt="image-20211130143709665"></p>
+<p>随机查看了2个文档，格式都是没任何问题的。</p>
+<p>这个遗留问题后续再观察现象即可。</p>
+<h4 id="7"><a href="#7" class="headerlink" title="7."></a>7.</h4><h3 id="5、typora图标-666"><a href="#5、typora图标-666" class="headerlink" title="5、typora图标(666)"></a>5、typora图标(666)</h3><p>typora图标(typora真的666啊)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126100535580.png" alt="image-20211126100535580"></p>
+<h4 id="1-people"><a href="#1-people" class="headerlink" title="1.people"></a>1.people</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br></pre></td><td class="code"><pre><span class="line">😄 :smile:	|😆 :laughing:	 </span><br><span class="line">😊 :blush:	😃 :smiley:	☺️ :relaxed:</span><br><span class="line">😏 :smirk:	😍 :heart_eyes:	😘 :kissing_heart:</span><br><span class="line">😚 :kissing_closed_eyes:	😳 :flushed:	😌 :relieved:</span><br><span class="line">😆 :satisfied:	😁 :grin:	😉 :wink:</span><br><span class="line">😜 :stuck_out_tongue_winking_eye:	😝 :stuck_out_tongue_closed_eyes:	😀 :grinning:</span><br><span class="line">😗 :kissing:	😙 :kissing_smiling_eyes:	😛 :stuck_out_tongue:</span><br><span class="line">😴 :sleeping:	😟 :worried:	😦 :frowning:</span><br><span class="line">😧 :anguished:	😮 :open_mouth:	😬 :grimacing:</span><br><span class="line">😕 :confused:	😯 :hushed:	😑 :expressionless:</span><br><span class="line">😒 :unamused:	😅 :sweat_smile:	😓 :sweat:</span><br><span class="line">😥 :disappointed_relieved:	😩 :weary:	😔 :pensive:</span><br><span class="line">😞 :disappointed:	😖 :confounded:	😨 :fearful:</span><br><span class="line">😰 :cold_sweat:	😣 :persevere:	😢 :cry:</span><br><span class="line">😭 :sob:	😂 :joy:	😲 :astonished:</span><br><span class="line">😱 :scream:	 	😫 :tired_face:</span><br><span class="line">😠 :angry:	😡 :rage:	😤 :triumph:</span><br><span class="line">😪 :sleepy:	😋 :yum:	😷 :mask:</span><br><span class="line">😎 :sunglasses:	😵 :dizzy_face:	👿 :imp:</span><br><span class="line">😈 :smiling_imp:	😐 :neutral_face:	😶 :no_mouth:</span><br><span class="line">😇 :innocent:	👽 :alien:	💛 :yellow_heart:</span><br><span class="line">💙 :blue_heart:	💜 :purple_heart:	❤️ :heart:</span><br><span class="line">💚 :green_heart:	💔 :broken_heart:	💓 :heartbeat:</span><br><span class="line">💗 :heartpulse:	💕 :two_hearts:	💞 :revolving_hearts:</span><br><span class="line">💘 :cupid:	💖 :sparkling_heart:	✨ :sparkles:</span><br><span class="line">⭐️ :star:	🌟 :star2:	💫 :dizzy:</span><br><span class="line">💥 :boom:	💥 :collision:	💢 :anger:</span><br><span class="line">❗️ :exclamation:	❓ :question:	❕ :grey_exclamation:</span><br><span class="line">❔ :grey_question:	💤 :zzz:	💨 :dash:</span><br><span class="line">💦 :sweat_drops:	🎶 :notes:	🎵 :musical_note:</span><br><span class="line">🔥 :fire:	💩 :hankey:	💩 :poop:</span><br><span class="line">💩 :shit:	👍 :+1:	👍 :thumbsup:</span><br><span class="line">👎 :-1:	👎 :thumbsdown:	👌 :ok_hand:</span><br><span class="line">👊 :punch:	👊 :facepunch:	✊ :fist:</span><br><span class="line">✌️ :v:	👋 :wave:	✋ :hand:</span><br><span class="line">✋ :raised_hand:	👐 :open_hands:	☝️ :point_up:</span><br><span class="line">👇 :point_down:	👈 :point_left:	👉 :point_right:</span><br><span class="line">🙌 :raised_hands:	🙏 :pray:	👆 :point_up_2:</span><br><span class="line">👏 :clap:	💪 :muscle:	🤘 :metal:</span><br><span class="line">🖕 :fu:	🚶 :walking:	🏃 :runner:</span><br><span class="line">🏃 :running:	👫 :couple:	👪 :family:</span><br><span class="line">👬 :two_men_holding_hands:	👭 :two_women_holding_hands:	💃 :dancer:</span><br><span class="line">👯 :dancers:	🙆 :ok_woman:	🙅 :no_good:</span><br><span class="line">💁 :information_desk_person:	🙋 :raising_hand:	👰 :bride_with_veil:</span><br><span class="line">🙎 :person_with_pouting_face:	🙍 :person_frowning:	🙇 :bow:</span><br><span class="line">:couplekiss: :couplekiss:	💑 :couple_with_heart:	💆 :massage:</span><br><span class="line">💇 :haircut:	💅 :nail_care:	👦 :boy:</span><br><span class="line">👧 :girl:	👩 :woman:	👨 :man:</span><br><span class="line">👶 :baby:	👵 :older_woman:	👴 :older_man:</span><br><span class="line">👱 :person_with_blond_hair:	👲 :man_with_gua_pi_mao:	👳 :man_with_turban:</span><br><span class="line">👷 :construction_worker:	👮 :cop:	👼 :angel:</span><br><span class="line">👸 :princess:	😺 :smiley_cat:	😸 :smile_cat:</span><br><span class="line">😻 :heart_eyes_cat:	😽 :kissing_cat:	😼 :smirk_cat:</span><br><span class="line">🙀 :scream_cat:	😿 :crying_cat_face:	😹 :joy_cat:</span><br><span class="line">😾 :pouting_cat:	👹 :japanese_ogre:	👺 :japanese_goblin:</span><br><span class="line">🙈 :see_no_evil:	🙉 :hear_no_evil:	🙊 :speak_no_evil:</span><br><span class="line">💂 :guardsman:	💀 :skull:	🐾 :feet:</span><br><span class="line">👄 :lips:	💋 :kiss:	💧 :droplet:</span><br><span class="line">👂 :ear:	👀 :eyes:	👃 :nose:</span><br><span class="line">👅 :tongue:	💌 :love_letter:	👤 :bust_in_silhouette:</span><br><span class="line">👥 :busts_in_silhouette:	💬 :speech_balloon:	💭 :thought_balloon:</span><br><span class="line">Nature</span><br><span class="line">☀️ :sunny:	☔️ :umbrella:	☁️ :cloud:</span><br><span class="line">❄️ :snowflake:	⛄️ :snowman:	⚡️ :zap:</span><br><span class="line">🌀 :cyclone:	🌁 :foggy:	🌊 :ocean:</span><br><span class="line">🐱 :cat:	🐶 :dog:	🐭 :mouse:</span><br><span class="line">🐹 :hamster:	🐰 :rabbit:	🐺 :wolf:</span><br><span class="line">🐸 :frog:	🐯 :tiger:	🐨 :koala:</span><br><span class="line">🐻 :bear:	🐷 :pig:	🐽 :pig_nose:</span><br><span class="line">🐮 :cow:	🐗 :boar:	🐵 :monkey_face:</span><br><span class="line">🐒 :monkey:	🐴 :horse:	🐎 :racehorse:</span><br><span class="line">🐫 :camel:	🐑 :sheep:	🐘 :elephant:</span><br><span class="line">🐼 :panda_face:	🐍 :snake:	🐦 :bird:</span><br><span class="line">🐤 :baby_chick:	🐥 :hatched_chick:	🐣 :hatching_chick:</span><br><span class="line">🐔 :chicken:	🐧 :penguin:	🐢 :turtle:</span><br><span class="line">🐛 :bug:	🐝 :honeybee:	🐜 :ant:</span><br><span class="line">🐞 :beetle:	🐌 :snail:	🐙 :octopus:</span><br><span class="line">🐠 :tropical_fish:	🐟 :fish:	🐳 :whale:</span><br><span class="line">🐋 :whale2:	🐬 :dolphin:	🐄 :cow2:</span><br><span class="line">🐏 :ram:	🐀 :rat:	🐃 :water_buffalo:</span><br><span class="line">🐅 :tiger2:	🐇 :rabbit2:	🐉 :dragon:</span><br><span class="line">🐐 :goat:	🐓 :rooster:	🐕 :dog2:</span><br><span class="line">🐖 :pig2:	🐁 :mouse2:	🐂 :ox:</span><br><span class="line">🐲 :dragon_face:	🐡 :blowfish:	🐊 :crocodile:</span><br><span class="line">🐪 :dromedary_camel:	🐆 :leopard:	🐈 :cat2:</span><br><span class="line">🐩 :poodle:	🐾 :paw_prints:	💐 :bouquet:</span><br><span class="line">🌸 :cherry_blossom:	🌷 :tulip:	🍀 :four_leaf_clover:</span><br><span class="line">🌹 :rose:	🌻 :sunflower:	🌺 :hibiscus:</span><br><span class="line">🍁 :maple_leaf:	🍃 :leaves:	🍂 :fallen_leaf:</span><br><span class="line">🌿 :herb:	🍄 :mushroom:	🌵 :cactus:</span><br><span class="line">🌴 :palm_tree:	🌲 :evergreen_tree:	🌳 :deciduous_tree:</span><br><span class="line">🌰 :chestnut:	🌱 :seedling:	🌼 :blossom:</span><br><span class="line">🌾 :ear_of_rice:	🐚 :shell:	🌐 :globe_with_meridians:</span><br><span class="line">🌞 :sun_with_face:	🌝 :full_moon_with_face:	🌚 :new_moon_with_face:</span><br><span class="line">🌑 :new_moon:	🌒 :waxing_crescent_moon:	🌓 :first_quarter_moon:</span><br><span class="line">🌔 :waxing_gibbous_moon:	🌕 :full_moon:	🌖 :waning_gibbous_moon:</span><br><span class="line">🌗 :last_quarter_moon:	🌘 :waning_crescent_moon:	🌜 :last_quarter_moon_with_face:</span><br><span class="line">🌛 :first_quarter_moon_with_face:	🌔 :moon:	🌍 :earth_africa:</span><br><span class="line">🌎 :earth_americas:	🌏 :earth_asia:	🌋 :volcano:</span><br><span class="line">🌌 :milky_way:	⛅️ :partly_sunny:	 </span><br><span class="line">Object</span><br><span class="line">🎍 :bamboo:	💝 :gift_heart:	🎎 :dolls:</span><br><span class="line">🎒 :school_satchel:	🎓 :mortar_board:	🎏 :flags:</span><br><span class="line">🎆 :fireworks:	🎇 :sparkler:	🎐 :wind_chime:</span><br><span class="line">🎑 :rice_scene:	🎃 :jack_o_lantern:	👻 :ghost:</span><br><span class="line">🎅 :santa:	🎄 :christmas_tree:	🎁 :gift:</span><br><span class="line">🔔 :bell:	🔕 :no_bell:	🎋 :tanabata_tree:</span><br><span class="line">🎉 :tada:	🎊 :confetti_ball:	🎈 :balloon:</span><br><span class="line">🔮 :crystal_ball:	💿 :cd:	📀 :dvd:</span><br><span class="line">💾 :floppy_disk:	📷 :camera:	📹 :video_camera:</span><br><span class="line">🎥 :movie_camera:	💻 :computer:	📺 :tv:</span><br><span class="line">📱 :iphone:	☎️ :phone:	☎️ :telephone:</span><br><span class="line">📞 :telephone_receiver:	📟 :pager:	📠 :fax:</span><br><span class="line">💽 :minidisc:	📼 :vhs:	🔉 :sound:</span><br><span class="line">🔈 :speaker:	🔇 :mute:	📢 :loudspeaker:</span><br><span class="line">📣 :mega:	⌛️ :hourglass:	⏳ :hourglass_flowing_sand:</span><br><span class="line">⏰ :alarm_clock:	⌚️ :watch:	📻 :radio:</span><br><span class="line">📡 :satellite:	➿ :loop:	🔍 :mag:</span><br><span class="line">🔎 :mag_right:	🔓 :unlock:	🔒 :lock:</span><br><span class="line">🔏 :lock_with_ink_pen:	🔐 :closed_lock_with_key:	🔑 :key:</span><br><span class="line">💡 :bulb:	🔦 :flashlight:	🔆 :high_brightness:</span><br><span class="line">🔅 :low_brightness:	🔌 :electric_plug:	🔋 :battery:</span><br><span class="line">📲 :calling:	✉️ :email:	📫 :mailbox:</span><br><span class="line">📮 :postbox:	🛀 :bath:	🛁 :bathtub:</span><br><span class="line">🚿 :shower:	🚽 :toilet:	🔧 :wrench:</span><br><span class="line">🔩 :nut_and_bolt:	🔨 :hammer:	💺 :seat:</span><br><span class="line">💰 :moneybag:	💴 :yen:	💵 :dollar:</span><br><span class="line">💷 :pound:	💶 :euro:	💳 :credit_card:</span><br><span class="line">💸 :money_with_wings:	📧 :e-mail:	📥 :inbox_tray:</span><br><span class="line">📤 :outbox_tray:	✉️ :envelope:	📨 :incoming_envelope:</span><br><span class="line">📯 :postal_horn:	📪 :mailbox_closed:	📬 :mailbox_with_mail:</span><br><span class="line">📭 :mailbox_with_no_mail:	🚪 :door:	🚬 :smoking:</span><br><span class="line">💣 :bomb:	🔫 :gun:	🔪 :hocho:</span><br><span class="line">💊 :pill:	💉 :syringe:	📄 :page_facing_up:</span><br><span class="line">📃 :page_with_curl:	📑 :bookmark_tabs:	📊 :bar_chart:</span><br><span class="line">📈 :chart_with_upwards_trend:	📉 :chart_with_downwards_trend:	📜 :scroll:</span><br><span class="line">📋 :clipboard:	📆 :calendar:	📅 :date:</span><br><span class="line">📇 :card_index:	📁 :file_folder:	📂 :open_file_folder:</span><br><span class="line">✂️ :scissors:	📌 :pushpin:	📎 :paperclip:</span><br><span class="line">✒️ :black_nib:	✏️ :pencil2:	📏 :straight_ruler:</span><br><span class="line">📐 :triangular_ruler:	📕 :closed_book:	📗 :green_book:</span><br><span class="line">📘 :blue_book:	📙 :orange_book:	📓 :notebook:</span><br><span class="line">📔 :notebook_with_decorative_cover:	📒 :ledger:	📚 :books:</span><br><span class="line">🔖 :bookmark:	📛 :name_badge:	🔬 :microscope:</span><br><span class="line">🔭 :telescope:	📰 :newspaper:	🏈 :football:</span><br><span class="line">🏀 :basketball:	⚽️ :soccer:	⚾️ :baseball:</span><br><span class="line">🎾 :tennis:	🎱 :8ball:	🏉 :rugby_football:</span><br><span class="line">🎳 :bowling:	⛳️ :golf:	🚵 :mountain_bicyclist:</span><br><span class="line">🚴 :bicyclist:	🏇 :horse_racing:	🏂 :snowboarder:</span><br><span class="line">🏊 :swimmer:	🏄 :surfer:	🎿 :ski:</span><br><span class="line">♠️ :spades:	♥️ :hearts:	♣️ :clubs:</span><br><span class="line">♦️ :diamonds:	💎 :gem:	💍 :ring:</span><br><span class="line">🏆 :trophy:	🎼 :musical_score:	🎹 :musical_keyboard:</span><br><span class="line">🎻 :violin:	👾 :space_invader:	🎮 :video_game:</span><br><span class="line">🃏 :black_joker:	🎴 :flower_playing_cards:	🎲 :game_die:</span><br><span class="line">🎯 :dart:	🀄️ :mahjong:	🎬 :clapper:</span><br><span class="line">📝 :memo:	📝 :pencil:	📖 :book:</span><br><span class="line">🎨 :art:	🎤 :microphone:	🎧 :headphones:</span><br><span class="line">🎺 :trumpet:	🎷 :saxophone:	🎸 :guitar:</span><br><span class="line">👞 :shoe:	👡 :sandal:	👠 :high_heel:</span><br><span class="line">💄 :lipstick:	👢 :boot:	👕 :shirt:</span><br><span class="line">👕 :tshirt:	👔 :necktie:	👚 :womans_clothes:</span><br><span class="line">👗 :dress:	🎽 :running_shirt_with_sash:	👖 :jeans:</span><br><span class="line">👘 :kimono:	👙 :bikini:	🎀 :ribbon:</span><br><span class="line">🎩 :tophat:	👑 :crown:	👒 :womans_hat:</span><br><span class="line">👞 :mans_shoe:	🌂 :closed_umbrella:	💼 :briefcase:</span><br><span class="line">👜 :handbag:	👝 :pouch:	👛 :purse:</span><br><span class="line">👓 :eyeglasses:	🎣 :fishing_pole_and_fish:	☕️ :coffee:</span><br><span class="line">🍵 :tea:	🍶 :sake:	🍼 :baby_bottle:</span><br><span class="line">🍺 :beer:	🍻 :beers:	🍸 :cocktail:</span><br><span class="line">🍹 :tropical_drink:	🍷 :wine_glass:	🍴 :fork_and_knife:</span><br><span class="line">🍕 :pizza:	🍔 :hamburger:	🍟 :fries:</span><br><span class="line">🍗 :poultry_leg:	🍖 :meat_on_bone:	🍝 :spaghetti:</span><br><span class="line">🍛 :curry:	🍤 :fried_shrimp:	🍱 :bento:</span><br><span class="line">🍣 :sushi:	🍥 :fish_cake:	🍙 :rice_ball:</span><br><span class="line">🍘 :rice_cracker:	🍚 :rice:	🍜 :ramen:</span><br><span class="line">🍲 :stew:	🍢 :oden:	🍡 :dango:</span><br><span class="line">🥚 :egg:	🍞 :bread:	🍩 :doughnut:</span><br><span class="line">🍮 :custard:	🍦 :icecream:	🍨 :ice_cream:</span><br><span class="line">🍧 :shaved_ice:	🎂 :birthday:	🍰 :cake:</span><br><span class="line">🍪 :cookie:	🍫 :chocolate_bar:	🍬 :candy:</span><br><span class="line">🍭 :lollipop:	🍯 :honey_pot:	🍎 :apple:</span><br><span class="line">🍏 :green_apple:	🍊 :tangerine:	🍋 :lemon:</span><br><span class="line">🍒 :cherries:	🍇 :grapes:	🍉 :watermelon:</span><br><span class="line">🍓 :strawberry:	🍑 :peach:	🍈 :melon:</span><br><span class="line">🍌 :banana:	🍐 :pear:	🍍 :pineapple:</span><br><span class="line">🍠 :sweet_potato:	🍆 :eggplant:	🍅 :tomato:</span><br><span class="line">🌽 :corn:	 	 </span><br></pre></td></tr></table></figure>
+
+<h4 id="2-Places"><a href="#2-Places" class="headerlink" title="2.Places"></a>2.Places</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">🏠 :house:	🏡 :house_with_garden:	🏫 :school:</span><br><span class="line">🏢 :office:	🏣 :post_office:	🏥 :hospital:</span><br><span class="line">🏦 :bank:	🏪 :convenience_store:	🏩 :love_hotel:</span><br><span class="line">🏨 :hotel:	💒 :wedding:	⛪️ :church:</span><br><span class="line">🏬 :department_store:	🏤 :european_post_office:	🌇 :city_sunrise:</span><br><span class="line">🌆 :city_sunset:	🏯 :japanese_castle:	🏰 :european_castle:</span><br><span class="line">⛺️ :tent:	🏭 :factory:	🗼 :tokyo_tower:</span><br><span class="line">🗾 :japan:	🗻 :mount_fuji:	🌄 :sunrise_over_mountains:</span><br><span class="line">🌅 :sunrise:	🌠 :stars:	🗽 :statue_of_liberty:</span><br><span class="line">🌉 :bridge_at_night:	🎠 :carousel_horse:	🌈 :rainbow:</span><br><span class="line">🎡 :ferris_wheel:	⛲️ :fountain:	🎢 :roller_coaster:</span><br><span class="line">🚢 :ship:	🚤 :speedboat:	⛵️ :boat:</span><br><span class="line">⛵️ :sailboat:	🚣 :rowboat:	⚓️ :anchor:</span><br><span class="line">🚀 :rocket:	✈️ :airplane:	🚁 :helicopter:</span><br><span class="line">🚂 :steam_locomotive:	🚊 :tram:	🚞 :mountain_railway:</span><br><span class="line">🚲 :bike:	🚡 :aerial_tramway:	🚟 :suspension_railway:</span><br><span class="line">🚠 :mountain_cableway:	🚜 :tractor:	🚙 :blue_car:</span><br><span class="line">🚘 :oncoming_automobile:	🚗 :car:	🚗 :red_car:</span><br><span class="line">🚕 :taxi:	🚖 :oncoming_taxi:	🚛 :articulated_lorry:</span><br><span class="line">🚌 :bus:	🚍 :oncoming_bus:	🚨 :rotating_light:</span><br><span class="line">🚓 :police_car:	🚔 :oncoming_police_car:	🚒 :fire_engine:</span><br><span class="line">🚑 :ambulance:	🚐 :minibus:	🚚 :truck:</span><br><span class="line">🚋 :train:	🚉 :station:	🚆 :train2:</span><br><span class="line">🚅 :bullettrain_front:	🚄 :bullettrain_side:	🚈 :light_rail:</span><br><span class="line">🚝 :monorail:	🚃 :railway_car:	🚎 :trolleybus:</span><br><span class="line">🎫 :ticket:	⛽️ :fuelpump:	🚦 :vertical_traffic_light:</span><br><span class="line">🚥 :traffic_light:	⚠️ :warning:	🚧 :construction:</span><br><span class="line">🔰 :beginner:	🏧 :atm:	🎰 :slot_machine:</span><br><span class="line">🚏 :busstop:	💈 :barber:	♨️ :hotsprings:</span><br><span class="line">🏁 :checkered_flag:	🎌 :crossed_flags:	🏮 :izakaya_lantern:</span><br><span class="line">🗿 :moyai:	🎪 :circus_tent:	🎭 :performing_arts:</span><br><span class="line">📍 :round_pushpin:	🚩 :triangular_flag_on_post:	🇯🇵 :jp:</span><br><span class="line">🇰🇷 :kr:	🇨🇳 :cn:	🇺🇸 :us:</span><br><span class="line">🇫🇷 :fr:	🇪🇸 :es:	🇮🇹 :it:</span><br><span class="line">🇷🇺 :ru:	🇬🇧 :gb:	🇬🇧 :uk:</span><br><span class="line">🇩🇪 :de:	 	 </span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Symbols"><a href="#3-Symbols" class="headerlink" title="3.Symbols"></a>3.Symbols</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">1️⃣ :one:	2️⃣ :two:	3️⃣ :three:</span><br><span class="line">4️⃣ :four:	5️⃣ :five:	6️⃣ :six:</span><br><span class="line">7️⃣ :seven:	8️⃣ :eight:	9️⃣ :nine:</span><br><span class="line">🔟 :keycap_ten:	🔢 :1234:	0️⃣ :zero:</span><br><span class="line">#️⃣ :hash:	🔣 :symbols:	◀️ :arrow_backward:</span><br><span class="line">⬇️ :arrow_down:	▶️ :arrow_forward:	⬅️ :arrow_left:</span><br><span class="line">🔠 :capital_abcd:	🔡 :abcd:	🔤 :abc:</span><br><span class="line">↙️ :arrow_lower_left:	↘️ :arrow_lower_right:	➡️ :arrow_right:</span><br><span class="line">⬆️ :arrow_up:	↖️ :arrow_upper_left:	↗️ :arrow_upper_right:</span><br><span class="line">⏬ :arrow_double_down:	⏫ :arrow_double_up:	🔽 :arrow_down_small:</span><br><span class="line">⤵️ :arrow_heading_down:	⤴️ :arrow_heading_up:	↩️:leftwards_arrow_with_hook:</span><br><span class="line">↪️ :arrow_right_hook:	↔️ :left_right_arrow:	↕️ :arrow_up_down:</span><br><span class="line">🔼 :arrow_up_small:	🔃 :arrows_clockwise:	🔄 :arrows_counterclockwise:</span><br><span class="line">⏪ :rewind:	⏩ :fast_forward:	ℹ️ :information_source:</span><br><span class="line">🆗 :ok:	🔀 :twisted_rightwards_arrows:	🔁 :repeat:</span><br><span class="line">🔂 :repeat_one:	🆕 :new:	🔝 :top:</span><br><span class="line">🆙 :up:	🆒 :cool:	🆓 :free:</span><br><span class="line">🆖 :ng:	🎦 :cinema:	🈁 :koko:</span><br><span class="line">📶 :signal_strength:	🈹 :u5272:	🈴 :u5408:</span><br><span class="line">🈺 :u55b6:	🈯️ :u6307:	🈷️ :u6708:</span><br><span class="line">🈶 :u6709:	🈵 :u6e80:	🈚️ :u7121:</span><br><span class="line">🈸 :u7533:	🈳 :u7a7a:	🈲 :u7981:</span><br><span class="line">🈂️ :sa:	🚻 :restroom:	🚹 :mens:</span><br><span class="line">🚺 :womens:	🚼 :baby_symbol:	🚭 :no_smoking:</span><br><span class="line">🅿️ :parking:	♿️ :wheelchair:	🚇 :metro:</span><br><span class="line">🛄 :baggage_claim:	🉑 :accept:	🚾 :wc:</span><br><span class="line">🚰 :potable_water:	🚮 :put_litter_in_its_place:	㊙️ :secret:</span><br><span class="line">㊗️ :congratulations:	Ⓜ️ :m:	🛂 :passport_control:</span><br><span class="line">🛅 :left_luggage:	🛃 :customs:	🉐 :ideograph_advantage:</span><br><span class="line">🆑 :cl:	🆘 :sos:	🆔 :id:</span><br><span class="line">🚫 :no_entry_sign:	🔞 :underage:	📵 :no_mobile_phones:</span><br><span class="line">🚯 :do_not_litter:	🚱 :non-potable_water:	🚳 :no_bicycles:</span><br><span class="line">🚷 :no_pedestrians:	🚸 :children_crossing:	⛔️ :no_entry:</span><br><span class="line">✳️ :eight_spoked_asterisk:	✴️ :eight_pointed_black_star:	💟 :heart_decoration:</span><br><span class="line">🆚 :vs:	📳 :vibration_mode:	📴 :mobile_phone_off:</span><br><span class="line">💹 :chart:	💱 :currency_exchange:	♈️ :aries:</span><br><span class="line">♉️ :taurus:	♊️ :gemini:	♋️ :cancer:</span><br><span class="line">♌️ :leo:	♍️ :virgo:	♎️ :libra:</span><br><span class="line">♏️ :scorpius:	♐️ :sagittarius:	♑️ :capricorn:</span><br><span class="line">♒️ :aquarius:	♓️ :pisces:	⛎ :ophiuchus:</span><br><span class="line">🔯 :six_pointed_star:	❎:negative_squared_cross_mark:	🅰️ :a:</span><br><span class="line">🅱️ :b:	🆎 :ab:	🅾️ :o2:</span><br><span class="line">💠:diamond_shape_with_a_dot_inside:	♻️ :recycle:	🔚 :end:</span><br><span class="line">🔛 :on:	🔜 :soon:	🕐 :clock1:</span><br><span class="line">🕜 :clock130:	🕙 :clock10:	🕥 :clock1030:</span><br><span class="line">🕚 :clock11:	🕦 :clock1130:	🕛 :clock12:</span><br><span class="line">🕧 :clock1230:	🕑 :clock2:	🕝 :clock230:</span><br><span class="line">🕒 :clock3:	🕞 :clock330:	🕓 :clock4:</span><br><span class="line">🕟 :clock430:	🕔 :clock5:	🕠 :clock530:</span><br><span class="line">🕕 :clock6:	🕡 :clock630:	🕖 :clock7:</span><br><span class="line">🕢 :clock730:	🕗 :clock8:	🕣 :clock830:</span><br><span class="line">🕘 :clock9:	🕤 :clock930:	💲 :heavy_dollar_sign:</span><br><span class="line">©️ :copyright:	®️ :registered:	™️ :tm:</span><br><span class="line">❌ :x:	❗️ :heavy_exclamation_mark:	‼️ :bangbang:</span><br><span class="line">⁉️ :interrobang:	⭕️ :o:	✖️ :heavy_multiplication_x:</span><br><span class="line">➕ :heavy_plus_sign:	➖ :heavy_minus_sign:	➗ :heavy_division_sign:</span><br><span class="line">💮 :white_flower:	💯 :100:	✔️ :heavy_check_mark:</span><br><span class="line">☑️ :ballot_box_with_check:	🔘 :radio_button:	🔗 :link:</span><br><span class="line">➰ :curly_loop:	〰️ :wavy_dash:	〽️ :part_alternation_mark:</span><br><span class="line">🔱 :trident:	:black_square: :black_square:	:white_square: :white_square:</span><br><span class="line">✅ :white_check_mark:	🔲 :black_square_button:	🔳 :white_square_button:</span><br><span class="line">⚫️ :black_circle:	⚪️ :white_circle:	🔴 :red_circle:</span><br><span class="line">🔵 :large_blue_circle:	🔷 :large_blue_diamond:	🔶 :large_orange_diamond:</span><br><span class="line">🔹 :small_blue_diamond:	🔸 :small_orange_diamond:	🔺 :small_red_triangle:</span><br><span class="line">🔻 :small_red_triangle_down:	 	 </span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="3、定制一款编辑-amp-阅读超级舒适的typora主题"><a href="#3、定制一款编辑-amp-阅读超级舒适的typora主题" class="headerlink" title="3、定制一款编辑&amp;阅读超级舒适的typora主题"></a>3、定制一款编辑&amp;阅读超级舒适的typora主题</h2><h3 id="1、最新版typora主题版本css文件"><a href="#1、最新版typora主题版本css文件" class="headerlink" title="1、最新版typora主题版本css文件"></a>1、最新版typora主题版本css文件</h3><p><code>lovexyy-2021.12.04-v1</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204151517548.png" alt="image-20211204151517548"></p>
+<p>💖 使用方法：将这个主题文件放到typora的主体路径下，重启typora即可</p>
+<p>最终效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204151800324.png" alt="image-20211204151800324"></p>
+<p>关于云笔记的搭建及使用方法可参考我的开源项目：<code>https://github.com/OnlyOnexl/Typora-TheKingOfCloudNotes</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211204151903738.png" alt="image-20211204151903738"></p>
+<h3 id="2、typora主题定制细节"><a href="#2、typora主题定制细节" class="headerlink" title="2、typora主题定制细节"></a>2、typora主题定制细节</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211125160712620.png"></p>
+<h4 id="pushpin-定义的是界面颜色、文字颜色-配置护眼绿-：root字段-已完成"><a href="#pushpin-定义的是界面颜色、文字颜色-配置护眼绿-：root字段-已完成" class="headerlink" title=":pushpin:定义的是界面颜色、文字颜色(配置护眼绿)：root字段(已完成)"></a>:pushpin:定义的是界面颜色、文字颜色(配置护眼绿)：<code>root字段</code>(已完成)</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#说明</span></span><br><span class="line">root里定义的是界面颜色、文字颜色等。</span><br><span class="line"></span><br><span class="line">text-color：文字颜色</span><br><span class="line">bg-color：背景颜色</span><br><span class="line">code-block-bg-color：代码块颜色</span><br><span class="line">side-bar-bg-color：文件夹、大纲处的颜色</span><br><span class="line">window-border：窗口边界颜色</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><p>案例1</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    --text-<span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">    --bg-<span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    --<span class="selector-tag">code</span>-block-bg-<span class="attribute">color</span>: <span class="number">#4d4d4d</span>;</span><br><span class="line">    --side-bar-bg-<span class="attribute">color</span>: <span class="number">#fdf6f5</span>;</span><br><span class="line">    --window-<span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#555</span>;</span><br><span class="line">    </span><br><span class="line">    --active-file-bg-<span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    --active-file-text-<span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">    --item-hover-text-<span class="attribute">color</span>: <span class="number">#666</span>;</span><br><span class="line">    --control-text-<span class="attribute">color</span>: <span class="number">#777</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126144232123.png" alt="image-20211126144232123"></p>
+<p>效果图如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126144325605.png" alt="image-20211126144325605"></p>
+</li>
+<li><p>案例2</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-pseudo">:root</span> &#123;</span><br><span class="line">    --side-bar-bg-<span class="attribute">color</span>: <span class="number">#c7e6c8</span>;</span><br><span class="line">    --control-text-<span class="attribute">color</span>: <span class="number">#777</span>;</span><br><span class="line">	<span class="selector-id">#background-color</span>: <span class="number">#c7edcc</span>;</span><br><span class="line">	<span class="attribute">background</span>: <span class="built_in">url</span>(<span class="string">&#x27;./bg_image/v-34.png&#x27;</span>)  repeat</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126144415434.png" alt="image-20211126144415434"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126144450354.png" alt="image-20211126144450354"></p>
+<p>是600*600大小的图片：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126144522824.png"></p>
+<p>效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126144621365.png" alt="image-20211126144621365"></p>
+<p>完美。</p>
+</li>
+</ul>
+<h4 id="pushpin-正文字体大小及字体类型-配置好看的字体-配置：body字段-已完成"><a href="#pushpin-正文字体大小及字体类型-配置好看的字体-配置：body字段-已完成" class="headerlink" title=":pushpin:正文字体大小及字体类型(配置好看的字体)配置：body字段(已完成)"></a>:pushpin:正文字体大小及字体类型(配置好看的字体)配置：<code>body字段</code>(已完成)</h4><ul>
+<li><p>案例</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">html &#123;</span><br><span class="line">    font-size: <span class="number">18</span>px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">body &#123;</span><br><span class="line">    font-family: <span class="string">&quot;华康手札体W5P&quot;</span>,<span class="string">&#x27;Microsoft YaHei&#x27;</span>,<span class="string">&quot;SimSun&quot;</span>,<span class="string">&quot;Clear Sans&quot;</span>,<span class="string">&quot;Helvetica Neue&quot;</span>,Helvetica,Arial,sans-serif;</span><br><span class="line">    color: rgb(<span class="number">51</span>, <span class="number">51</span>, <span class="number">51</span>);</span><br><span class="line">    line-height: <span class="number">1.6</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126150309858.png" alt="image-20211126150309858"></p>
+</li>
+<li><p>效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126150339159.png" alt="image-20211126150339159"></p>
+</li>
+</ul>
+<h4 id="pushpin-定制typora主题css文件"><a href="#pushpin-定制typora主题css文件" class="headerlink" title=":pushpin:定制typora主题css文件"></a>:pushpin:定制typora主题css文件</h4><p>使用typora的时候，想要自定义一些颜色、字体，或者修改一些设置，这个时候需要修改或者自己编写css文件。</p>
+<p>打开文件 - 偏好设置 - 外观 - 打开主题文件夹，选择你自己的主题名.css（默认是 Github.css），在最后插入 CSS 代码，保存退出，再次打开typora文件即可；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210131103924364-16281470339701.png" alt="image-20210131103924364"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210719101713575.png" alt="image-20210719101713575"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210719101737328.png" alt="image-20210719101737328"></p>
+<h4 id="pushpin-正文字体大小及字体类型配置：font-已完成"><a href="#pushpin-正文字体大小及字体类型配置：font-已完成" class="headerlink" title=":pushpin:正文字体大小及字体类型配置：font(已完成)"></a>:pushpin:正文字体大小及字体类型配置：<code>font</code>(已完成)</h4><ol>
+<li><p>配置方法</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121082733098.png" alt="image-20211121082733098"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 正文字体大小及字体类型配置 */</span></span><br><span class="line"><span class="selector-tag">html</span> &#123;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">16px</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">&quot;华康手札体W5P&quot;</span>, <span class="string">&quot;Open Sans&quot;</span>,<span class="string">&quot;Clear Sans&quot;</span>,<span class="string">&quot;Helvetica Neue&quot;</span>,Helvetica,Arial,sans-serif;</span><br><span class="line">    <span class="comment">/*color: rgb(51, 51, 51);*/</span></span><br><span class="line">    <span class="attribute">background-color</span>: mintcream; <span class="comment">/*正文背景颜色*/</span></span><br><span class="line">    <span class="attribute">color</span>: <span class="built_in">rgb</span>(<span class="number">51</span>, <span class="number">51</span>, <span class="number">51</span>); <span class="comment">/*正文字体颜色*/</span></span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.6</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>配置效果</p>
+<p>1.css主题：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121082840852.png" alt="image-20211121082840852"></p>
+</li>
+</ol>
+<h4 id="pushpin-设置图片默认左对齐：image-已完成"><a href="#pushpin-设置图片默认左对齐：image-已完成" class="headerlink" title=":pushpin:设置图片默认左对齐：image(已完成)"></a>:pushpin:设置图片默认左对齐：<code>image</code>(已完成)</h4><ul>
+<li><p>默认情况，Typora的图片是居中对齐的。</p>
+</li>
+<li><p>现在有个需求，想让每次哦插入的图片都默认做对齐，该如何实现呢？</p>
+</li>
+<li><p>设置方法</p>
+<p>打开文件 - 偏好设置 - 外观 - 打开主题文件夹，选择你自己的主题名.css（默认是 Github.css），在最后插入 CSS 代码，保存退出，再次打开typora文件即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211120220641317.png" alt="image-20211120220641317"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*设置图片默认左对齐：在css文件末尾追加即可*/</span></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-class">.md-image</span><span class="selector-pseudo">:only-child</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: auto;</span><br><span class="line">    <span class="attribute">text-align</span>: left;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>观察效果</p>
+<p>符合预期效果。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211120220914580.png" alt="image-20211120220914580"></p>
+</li>
+</ul>
+<h4 id="pushpin-引用段落：quote-已完成"><a href="#pushpin-引用段落：quote-已完成" class="headerlink" title=":pushpin:引用段落：quote(已完成)"></a>:pushpin:引用段落：<code>quote</code>(已完成)</h4><ul>
+<li>修改位置</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211120215749938.png" alt="image-20211120215749938"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">blockquote</span> &#123;</span><br><span class="line">    <span class="attribute">border-left</span>: <span class="number">4px</span> solid <span class="number">#8080ff</span>; <span class="comment">/*侧边小竖条的颜色 */</span></span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span> <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">color</span>: black; <span class="comment">/*引用段落字体颜色*/</span></span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#deb887</span>; <span class="comment">/*引用段落背景颜色*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>效果如下</li>
+</ul>
+<blockquote>
+<p>引用段落。</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211120215829239.png" alt="image-20211120215829239"></p>
+<h4 id="pushpin-修改typora编辑区域左右间距方法：write-已完成"><a href="#pushpin-修改typora编辑区域左右间距方法：write-已完成" class="headerlink" title=":pushpin:修改typora编辑区域左右间距方法：write(已完成)"></a>:pushpin:修改typora编辑区域左右间距方法：<code>write</code>(已完成)</h4><ol>
+<li><p>配置方法</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121084649932.png" alt="image-20211121084649932"></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#write&#123;</span></span><br><span class="line">    max-width: <span class="number">960</span>px; <span class="comment">/*注意这个是控制编辑的宽度的：可以是100%，980px；*/</span></span><br><span class="line">    margin-top:    <span class="number">30</span>px; <span class="comment">/*top*/</span></span><br><span class="line">    margin-bottom: <span class="number">30</span>px;</span><br><span class="line">    padding: <span class="number">100</span>px <span class="number">60</span>px; <span class="comment">/*top to title padding*/</span></span><br><span class="line">    border-radius: <span class="number">5</span>px;</span><br><span class="line">    -o-box-shadow: <span class="number">0</span> <span class="number">10</span>px <span class="number">10</span>px <span class="meta">#333333;</span></span><br><span class="line">    -webkit-box-shadow: <span class="number">0</span> <span class="number">10</span>px <span class="number">10</span>px <span class="meta">#333333;</span></span><br><span class="line">    -moz-box-shadow: <span class="number">0</span> <span class="number">10</span>px <span class="number">10</span>px <span class="meta">#333333;</span></span><br><span class="line">    box-shadow: <span class="number">0</span>px <span class="number">50</span>px <span class="number">100</span>px <span class="meta">#333333;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#write &gt; ul:first-child,</span></span><br><span class="line"><span class="meta">#write &gt; ol:first-child&#123;</span></span><br><span class="line">    margin-top: <span class="number">30</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>验证效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121084742015.png" alt="image-20211121084742015"></p>
+</li>
+</ol>
+<h4 id="pushpin-模拟mac的三个图标：（已完成）"><a href="#pushpin-模拟mac的三个图标：（已完成）" class="headerlink" title=":pushpin:模拟mac的三个图标：（已完成）"></a>:pushpin:模拟mac的三个图标：（已完成）</h4><p>1.案例</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126150748053.png" alt="image-20211126150748053"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126150813478.png" alt="image-20211126150813478"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* MAC的三个图标 */</span></span><br><span class="line"><span class="selector-class">.CodeMirror-wrap</span> <span class="selector-class">.CodeMirror-scroll</span> &#123;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="selector-id">#write</span> <span class="selector-class">.md-fences</span>:before &#123;</span><br><span class="line">    content: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">4</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">7px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">13px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fa3534</span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="selector-id">#write</span> <span class="selector-class">.CodeMirror-scroll</span>:before &#123;</span><br><span class="line">    content: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">29px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">999</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#ff9900</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-id">#write</span> <span class="selector-class">.md-fences</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">4</span>;</span><br><span class="line">    <span class="attribute">display</span>: block;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">7px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">53px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#19be6b</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126150844217.png" alt="image-20211126150844217"></p>
+<h4 id="pushpin-选中文字部分颜色修改：selection-已完成"><a href="#pushpin-选中文字部分颜色修改：selection-已完成" class="headerlink" title=":pushpin:选中文字部分颜色修改：selection(已完成)"></a>:pushpin:选中文字部分颜色修改：<code>selection</code>(已完成)</h4><p>1.配置方法</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121085538860.png" alt="image-20211121085538860"></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 选中文字部分颜色修改 */</span></span><br><span class="line">::selection &#123;</span><br><span class="line">    background-color: <span class="meta">#d1ff79;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.验证效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121085617973.png" alt="image-20211121085617973"></p>
+<h4 id="pushpin-修改标题颜色：h1-h6-已完成"><a href="#pushpin-修改标题颜色：h1-h6-已完成" class="headerlink" title=":pushpin:修改标题颜色：h1-h6(已完成)"></a>:pushpin:修改标题颜色：<code>h1-h6</code>(已完成)</h4><p>1.配置方法</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121085254716.png" alt="image-20211121085254716"></p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">h1,</span><br><span class="line">h2,</span><br><span class="line">h3,</span><br><span class="line">h4,</span><br><span class="line">h5,</span><br><span class="line">h6 &#123;</span><br><span class="line">    position: relative;</span><br><span class="line">    margin-top: <span class="number">1</span>rem;</span><br><span class="line">    margin-bottom: <span class="number">1</span>rem;</span><br><span class="line">    font-weight: bold;</span><br><span class="line">    line-height: <span class="number">1.4</span>;</span><br><span class="line">    cursor: text;</span><br><span class="line">    color: <span class="meta">#4169E1; /*配置h1-h6级标题颜色*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2.验证效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211121085326262.png" alt="image-20211121085326262"></p>
+<h4 id="pushpin-选中文字部分颜色修改-selection字段-已完成"><a href="#pushpin-选中文字部分颜色修改-selection字段-已完成" class="headerlink" title=":pushpin:选中文字部分颜色修改:selection字段(已完成)"></a>:pushpin:选中文字部分颜色修改:<code>selection字段</code>(已完成)</h4><p>在css文件最后添加</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126152331960.png" alt="image-20211126152331960"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::selection &#123;</span><br><span class="line">    background-color: <span class="comment">#d1ff79;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126152407900.png" alt="image-20211126152407900"></p>
+<h4 id="pushpin-部分文字标红：mark字段-已完成"><a href="#pushpin-部分文字标红：mark字段-已完成" class="headerlink" title=":pushpin:部分文字标红：mark字段(已完成)"></a>:pushpin:部分文字标红：<code>mark字段</code>(已完成)</h4><p>1、配置方法</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126152658804.png" alt="image-20211126152658804"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126152923142.png" alt="image-20211126152923142"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*==背景高亮==,mark是符号==xxx==的效果*/</span></span><br><span class="line"><span class="selector-tag">mark</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="built_in">rgb</span>(<span class="number">0</span>, <span class="number">255</span>, <span class="number">85</span>);</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#f22f27</span>;</span><br><span class="line">    <span class="attribute">font-weight</span>: bold;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">0px</span> solid <span class="number">#ffffff</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.0px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0px</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、效果如下：</p>
+<p>==我爱中国==</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126153000495.png" alt="image-20211126153000495"></p>
+<h4 id="pushpin-链接：-已配置"><a href="#pushpin-链接：-已配置" class="headerlink" title=":pushpin:链接：(已配置)"></a>:pushpin:链接：(已配置)</h4><p>1、配置方法</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126153149055.png" alt="image-20211126153149055"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">/* 链接 */</span><br><span class="line"><span class="comment">#write a &#123;</span></span><br><span class="line">    color: <span class="comment">#f22f27;</span></span><br><span class="line">    text-decoration: none;</span><br><span class="line">    border-bottom: 1px solid <span class="comment">#f22f27;</span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">/* 链接内容为空时直接啥也不显示，比如锚点的地方 */</span><br><span class="line"><span class="comment">#write a:empty &#123;</span></span><br><span class="line">  font-size: 0;</span><br><span class="line">  border: none;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、效果 如下：</p>
+<p><a target="_blank" rel="noopener" href="https://www.baudu.com/">https://www.baudu.com</a></p>
+<h4 id="pushpin-修改代码背景颜色为sublime-text3的背景色：-已完成"><a href="#pushpin-修改代码背景颜色为sublime-text3的背景色：-已完成" class="headerlink" title=":pushpin:修改代码背景颜色为sublime text3的背景色：(已完成)"></a>:pushpin:修改代码背景颜色为sublime text3的背景色：(已完成)</h4><p>1、配置方法</p>
+<p>注意：sublimet text3背景颜色的颜色代码为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">background: <span class="comment">#232323; 这个颜色为sublime text3的颜色；</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210623141801208.png" alt="image-20210623141801208"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126163919759.png" alt="image-20211126163919759"></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*深色背景*/</span></span><br><span class="line"> </span><br><span class="line"><span class="selector-id">#write</span> <span class="selector-class">.md-fences</span><span class="selector-pseudo">:not</span>(<span class="selector-attr">[mermaid-type]</span>)  &#123;</span><br><span class="line">    <span class="attribute">padding-top</span>: <span class="number">7px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#232323</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#eeeeee</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、查看效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126163958460.png" alt="image-20211126163958460"></p>
+<h4 id="question-markdown-nice这种好看的主体如何定制到typora里面来？"><a href="#question-markdown-nice这种好看的主体如何定制到typora里面来？" class="headerlink" title=":question:markdown nice这种好看的主体如何定制到typora里面来？"></a>:question:markdown nice这种好看的主体如何定制到typora里面来？</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126153705296.png" alt="image-20211126153705296"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211007204338324.png" alt="image-20211007204338324"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211126153731499.png" alt="image-20211126153731499"></p>
+<h4 id="📍-实战：修改Typora默认的字体为好看秀美的中文字体华康手札体并配置一些高级定制功能-成功测试-博客输出-2021-04-04"><a href="#📍-实战：修改Typora默认的字体为好看秀美的中文字体华康手札体并配置一些高级定制功能-成功测试-博客输出-2021-04-04" class="headerlink" title="📍 实战：修改Typora默认的字体为好看秀美的中文字体华康手札体并配置一些高级定制功能(成功测试-博客输出)-2021.04.04"></a>📍 实战：修改Typora默认的字体为好看秀美的中文字体华康手札体并配置一些高级定制功能(成功测试-博客输出)-2021.04.04</h4><h5 id="本次测试环境"><a href="#本次测试环境" class="headerlink" title="本次测试环境"></a>本次测试环境</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">winodws10操作系统</span><br><span class="line">typora软件：0.0.98（相近版本一般都可以进行验证操作）</span><br></pre></td></tr></table></figure>
+
+<h5 id="软件位置"><a href="#软件位置" class="headerlink" title="软件位置"></a>软件位置</h5><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805151709273.png" alt="image-20210805151709273"></p>
+<h5 id="1-请客官先体验下最终效果图"><a href="#1-请客官先体验下最终效果图" class="headerlink" title="1.请客官先体验下最终效果图"></a>1.请客官先体验下最终效果图</h5><p>大家可先瞅一瞅最终修改后的效果图如何，再根据自己需求是否决定要更改为如下的字体**”华康手札体W5P”**：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404063826013.png" alt="image-20210404063826013"></p>
+<p>个人觉得”华康手札体W5P”字体还是比较秀美的，哈哈。</p>
+<h5 id="2-需求产生"><a href="#2-需求产生" class="headerlink" title="2.需求产生"></a>2.需求产生</h5><ul>
+<li>typora默认的那个”Open Sans”字体，自己感觉不是很美观啊，虽然可以接受，但总觉得缺了些什么。。</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404064034226.png" alt="image-20210404064034226"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404064059704.png" alt="image-20210404064059704"></p>
+<ul>
+<li>上次修改的Typora的<strong>微软雅黑</strong>这个字体，用了一段时间发现真的也很丑啊。。。。。（呃呃，默认的”Open Scan”字体怎么感觉和微软雅黑看起来没啥区别啊。。。。）</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404064216188.png" alt="image-20210404064216188"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210403231230989.png" alt="image-20210403231230989"></p>
+<ul>
+<li>因此，现在想要更换一款比较好看的字体：于是，上网搜了下，找了许久，发现一个博主写的”华康手札体W5P”这个字体不错，很秀美，因此下面将实现这种需求。<br>本次参考博客链接如下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a2352159950/article/details/108153531">https://blog.csdn.net/a2352159950/article/details/108153531</a></li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210403231356070.png" alt="image-20210403231356070"></p>
+<p>因此接下来参考这个博主的博客进行自定义自己的typora字体。</p>
+<h5 id="3-更改方法"><a href="#3-更改方法" class="headerlink" title="3.更改方法"></a>3.更改方法</h5><h6 id="3-1-下载并安装”华康手札体W5P”字体"><a href="#3-1-下载并安装”华康手札体W5P”字体" class="headerlink" title="3.1 下载并安装”华康手札体W5P”字体"></a>3.1 下载并安装”华康手札体W5P”字体</h6><p>hannotate是什么字体？hannotate sc regular字体又叫手札体 简 常规标准体，这款字体字形清秀工整，线条流畅洒脱，笔形富于变化。</p>
+<p>你可以百度”华康手札体W5P字体进行下载或者从如下百度云链接进行获取：</p>
+<p>1.<a target="_blank" rel="noopener" href="http://www.downcc.com/font/341067.html">http://www.downcc.com/font/341067.html</a> （但是这个虽然叫做绿色下载网站，但是下载后附带一大波软件，无语了。。。。。）<br>2.百度云链接：</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/125Hh-tqWOy1Ht-GvD_P2MQ">https://pan.baidu.com/s/125Hh-tqWOy1Ht-GvD_P2MQ</a><br>提取码：z6ka<br>复制这段内容后打开百度网盘手机App，操作更方便哦–来自百度网盘超级会员V6的分享</p>
+<p>将压缩包解压后，直接把<code>华康手札体w5.ttf</code>文件复制到windows下的<code>C:\WINDOWS\Fonts</code>目录下即可。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404065421073.png" alt="image-20210404065421073"></p>
+<h6 id="3-2-修改Typora默认的字体为好看秀美的中文字体”华康手札体”"><a href="#3-2-修改Typora默认的字体为好看秀美的中文字体”华康手札体”" class="headerlink" title="3.2 修改Typora默认的字体为好看秀美的中文字体”华康手札体”"></a>3.2 修改Typora默认的字体为好看秀美的中文字体”华康手札体”</h6><p>我的Typora使用的是github这个主题(<strong>不同的主题只需要在相应的.css文件中进行同样的修改即可</strong>)，我将以它为例（这里用mac界面展示，win也是一样的）</p>
+<p>1.首先打开typora的偏好设置，在外观中找到主题文件夹，打开这个文件夹</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404065633823.png" alt="image-20210404065633823"></p>
+<p>2.打开github.css文件</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404065706196.png" alt="image-20210404065706196"></p>
+<p>3.这里是修改字体的，找到下面的代码位置，<strong>将”华康手札体W5P”添加到下面的位置，一定要放在最前面</strong><br>(注意，如果改了字体却并未生效，说明你电脑里面没有”华康手札体W5P”这个字体，可以百度搜一下手札体下载，下载解压安装，重启typora即可生效）</p>
+<p>+++</p>
+<p><strong>这里需要注意</strong>：网上其实也有一些关于Typora换字体的文章，但是大多都有一个问题——<strong>中文字体无法正常显示问题</strong>。下面将详细说明如何解决这个问题；（一般是给出2中方法，推荐后面那一种）</p>
+<p>Typora的各种属性都是在主题文件中定义的，实际上Typora就是一个带编辑功能的浏览器，其主题文件就是一个个.css文件；<br>知道了这一点，学过前端的朋友可能就懂了，虽然我没学过前端。。只是略懂一些网页的渲染原理;<br>在这个文件夹下面有几个子文件夹和几个.css文件，实际上这些css就是主题，文件名就是主题名称;</p>
+<p>然后在下面几行有一个body里面定义了一个font-family，这个就是字体的定义了:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404070727160.png" alt="image-20210404070727160"></p>
+<p>在 font-family 后面加一个自己的字体试试？比如 “宋体” 像这样。</p>
+<p>注意双引号和逗号 ！！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404070908139.png" alt="image-20210404070908139"></p>
+<p>重启Typora并选择github主题，你会发现字体并没有变化，这是因为typora现在并不认识中文。<strong>别的教程说的是使用字体的英文名称</strong>，比如“微软雅黑”是“Microsoft Yahei”<br>——这不失为一种解决方案，但是我个人认为，微软雅黑也并不好看。</p>
+<p>所以，在花了一个下午，研究了其他的主题换字体的方式后，我发现——其他的主题也全™是用的英文。。。于是又试了很多方案，在试的过程中无意发现浏览器里面的源码里面可以有中文注释，浏览器是怎么认识中文的呢？<br>百度一下发现<strong>css文档前面声明字符集，浏览器就可以识别中文了</strong>，像这样</p>
+<p>把这个github.css文件用VScode软件打开：</p>
+<p>在VScode底端可以看到文档的字符集是GB2312，<strong>那么就在github.css首行加上</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">&quot;gb2312&quot;</span>；</span><br></pre></td></tr></table></figure>
+
+<p>有可能我在编辑过程中不小心修改了，你的可能和我不一样，最好自己确认一下，如果你的是utf-8,那就加上:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">&quot;UTF-8&quot;</span>；</span><br></pre></td></tr></table></figure>
+
+<p>我本次这个是utf-8：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@charset <span class="string">&quot;UTF-8&quot;</span>；</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404072028674.png" alt="image-20210404072028674"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404072447176.png" alt="image-20210404072447176"></p>
+<p>再重启Typora看看？感染果然变成了宋体</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404072134051.png" alt="image-20210404072134051"></p>
+<p>以此类推，只要你电脑里面有的字体，就都可以用了。</p>
+<p>下面是一些小的注意事项，建议看完。==（如何刚改代码区域字体及背景色？）==<br>上面的操作修改完，只是body的字体，也就是普通编辑区的字体变成了 “宋体” ，但是还有一些区域还是原来的，比如：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404080957672.png" alt="image-20210404080957672"></p>
+<p>这个代码块的字体肯定不是我们设置的宋体，那么要怎么改呢？（虽然这个字体挺好看的，貌似MAC里面用的就是这种字体）<br>继续研究了一段时间发现，<strong>代码的字体是其他的地方限制的</strong>，在github.css的任意地方加上这一段，重启typora：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.CodeMirror div.CodeMirror-code &#123;</span><br><span class="line">    background-color: rgb(195, 195, 195);</span><br><span class="line">    font-family: <span class="string">&quot;宋体&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中background-color是设置代码块的背景颜色，效果就是这样：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404081150422.png" alt="image-20210404081150422"></p>
+<p><strong>这里只是作为演示，代码块这一文字我这里就保持默认了，感觉默认挺好看的</strong>。</p>
+<p>代码块颜色就比较突出了，怎么样？是不是很棒？</p>
+<p>+++</p>
+<p>按照上面方法，把字体换成本次要使用的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404072608789.png" alt="image-20210404072608789"></p>
+<p>重启typora查看效果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404072642393.png" alt="image-20210404072642393"></p>
+<p>已经更换成功，完美！！！</p>
+<h6 id="3-3-定制Typora高级功能"><a href="#3-3-定制Typora高级功能" class="headerlink" title="3.3 定制Typora高级功能"></a>3.3 定制Typora高级功能</h6><ul>
+<li><strong>设置标题颜色：</strong></li>
+</ul>
+<p>找到下图的代码文位置，添加红色框框显示的代码，<strong>这里修改的是绿色的标题，你自己也可以设置其他颜色</strong>，可以在网上找一下rgb颜色表，找一个自己喜欢的颜色作为标题颜色:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">color: rgb(26, 143, 55);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404081622588.png" alt="image-20210404081622588"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404081730983.png" alt="image-20210404081730983"></p>
+<ul>
+<li><strong>部分文字标红</strong>:</li>
+</ul>
+<p>先在偏好设置中选中下面这个高亮(建议拓展语法全勾上）</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404081839168.png" alt="image-20210404081839168"></p>
+<p>然后在github.css文件最后一行加入如下代码，用的时候用左右==包围文字就可以标红了，举例：<code>==要标红的文字==</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/*==背景高亮==*/</span><br><span class="line">mark &#123;</span><br><span class="line">    background: <span class="comment">#ffffff;</span></span><br><span class="line">    color: <span class="comment">#db3f1e;</span></span><br><span class="line">    font-weight: bold;</span><br><span class="line">    border-bottom: 0px solid <span class="comment">#ffffff;</span></span><br><span class="line">    padding: 0.0px;</span><br><span class="line">    margin: 0 0px;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404082012589.png" alt="image-20210404082012589"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404082040552.png" alt="image-20210404082040552"></p>
+<ul>
+<li>选中文字部分颜色修改</li>
+</ul>
+<p>当选中一段文字之后，颜色编程如下的草绿色</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404082129997.png" alt="image-20210404082129997"></p>
+<p>在github.css中最后一行加上如下代码就可以实现了:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">::selection &#123;</span><br><span class="line">    background-color: <span class="comment">#d1ff79;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404082156464.png" alt="image-20210404082156464"></p>
+<p>好了，本次改善typora到此结束了，哈哈。</p>
+<p>欢迎点赞</p>
+<h5 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h5><p>typora是一款非常好用的编辑器，可以用坚果云+typora进行自己的笔记同步备份，虽然网页端无法预览图片，但整体使用下来个人感觉还是很不错的。</p>
+<p>多谢下面2位博主的文章，本次借鉴了他们的博客，这里表示非常感谢博主的无私分享。</p>
+<p>参考文章：</p>
+<p>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_40522908/article/details/104218707">https://blog.csdn.net/qq_40522908/article/details/104218707</a></p>
+<p>原文链接: <a target="_blank" rel="noopener" href="https://blog.csdn.net/a2352159950/article/details/108153531">https://blog.csdn.net/a2352159950/article/details/108153531</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805151416118.png" alt="image-20210805151416118"></p>
+<h4 id="📍-实战：一定不能错过的-Typora-增强插件-VLOOK-2021-11-26"><a href="#📍-实战：一定不能错过的-Typora-增强插件-VLOOK-2021-11-26" class="headerlink" title="📍 实战：一定不能错过的 Typora 增强插件 VLOOK-2021.11.26"></a>📍 实战：一定不能错过的 Typora 增强插件 VLOOK-2021.11.26</h4><h5 id="实战：一定不能错过的-Typora-增强插件-VLOOK-2021-11-26"><a href="#实战：一定不能错过的-Typora-增强插件-VLOOK-2021-11-26" class="headerlink" title="实战：一定不能错过的 Typora 增强插件 VLOOK-2021.11.26"></a>实战：一定不能错过的 Typora 增强插件 VLOOK-2021.11.26</h5><h5 id="软件位置-1"><a href="#软件位置-1" class="headerlink" title="软件位置"></a>软件位置</h5><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210806100400558.png" alt="image-20210806100400558"></p>
+<h5 id="1、什么是VLOOK？"><a href="#1、什么是VLOOK？" class="headerlink" title="1、什么是VLOOK？"></a>1、什么是VLOOK？</h5><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805152444547.png" alt="image-20210805152444547"></p>
+<h6 id="1-让Markdown的自动化排版和交互性上了N个台阶"><a href="#1-让Markdown的自动化排版和交互性上了N个台阶" class="headerlink" title="1.让Markdown的自动化排版和交互性上了N个台阶"></a>1.让Markdown的自动化排版和交互性上了N个台阶</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153321754.png" alt="image-20210805153321754"></p>
+<h6 id="2-内置多套原创文档主题、字体主题，一键切换，支持私人定制"><a href="#2-内置多套原创文档主题、字体主题，一键切换，支持私人定制" class="headerlink" title="2.内置多套原创文档主题、字体主题，一键切换，支持私人定制"></a>2.内置多套原创文档主题、字体主题，一键切换，支持私人定制</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153404448.png" alt="image-20210805153404448"></p>
+<h6 id="3-表格排版-单元格合并、列格式、表格行分组、自动编号…"><a href="#3-表格排版-单元格合并、列格式、表格行分组、自动编号…" class="headerlink" title="3.表格排版+:单元格合并、列格式、表格行分组、自动编号…"></a>3.表格排版+:单元格合并、列格式、表格行分组、自动编号…</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153437129.png" alt="image-20210805153437129"></p>
+<h6 id="4-零成本的图片自动排版～题注、高分屏、反色、替换、版式、…"><a href="#4-零成本的图片自动排版～题注、高分屏、反色、替换、版式、…" class="headerlink" title="4.零成本的图片自动排版～题注、高分屏、反色、替换、版式、…"></a>4.零成本的图片自动排版～题注、高分屏、反色、替换、版式、…</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153519811.png" alt="image-20210805153519811"></p>
+<h6 id="5-火力全开的演示辅助～聚光灯、激光笔、注音…"><a href="#5-火力全开的演示辅助～聚光灯、激光笔、注音…" class="headerlink" title="5.火力全开的演示辅助～聚光灯、激光笔、注音…"></a>5.火力全开的演示辅助～聚光灯、激光笔、注音…</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153542380.png" alt="image-20210805153542380"></p>
+<h6 id="6-OMG-可以按-大纲、逐章、段落、插图，多维度浏览文档内容"><a href="#6-OMG-可以按-大纲、逐章、段落、插图，多维度浏览文档内容" class="headerlink" title="6.OMG!可以按:大纲、逐章、段落、插图，多维度浏览文档内容"></a>6.OMG!可以按:大纲、逐章、段落、插图，多维度浏览文档内容</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153610688.png" alt="image-20210805153610688"></p>
+<h6 id="7-完美适配Dark模式，Markdown变得更Cool了"><a href="#7-完美适配Dark模式，Markdown变得更Cool了" class="headerlink" title="7.完美适配Dark模式，Markdown变得更Cool了"></a>7.完美适配Dark模式，Markdown变得更Cool了</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805153648469.png" alt="image-20210805153648469"></p>
+<h6 id="8-音-视频、标签、引用折叠、高清插图、…30-特性开箱即用"><a href="#8-音-视频、标签、引用折叠、高清插图、…30-特性开箱即用" class="headerlink" title="8.音/视频、标签、引用折叠、高清插图、…30+特性开箱即用"></a>8.音/视频、标签、引用折叠、高清插图、…30+特性开箱即用</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805160538503.png" alt="image-20210805160538503"></p>
+<h5 id="2、下载与配置"><a href="#2、下载与配置" class="headerlink" title="2、下载与配置"></a>2、下载与配置</h5><h6 id="Step-1•下载与配置"><a href="#Step-1•下载与配置" class="headerlink" title="Step    1•下载与配置"></a>Step    1•下载与配置</h6><p>a. 从 VLOOK™ 在 GitHub(<a target="_blank" rel="noopener" href="https://github.com/MadMaxChow/VLOOK/releases">https://github.com/MadMaxChow/VLOOK/releases</a>) 或 Gitee(<a target="_blank" rel="noopener" href="https://gitee.com/madmaxchow/VLOOK/releases">https://gitee.com/madmaxchow/VLOOK/releases</a>) 的主页下载最新发布的版本<br>b. 也可直接在项目主页中下载主题文件(<a target="_blank" rel="noopener" href="https://github.com/MadMaxChow/VLOOK/tree/master/released/theme)%EF%BC%88%E5%A4%87%E7%94%A8%E9%93%BE%E6%8E%A5">https://github.com/MadMaxChow/VLOOK/tree/master/released/theme)（备用链接</a><br>(<a target="_blank" rel="noopener" href="https://gitee.com/madmaxchow/VLOOK/tree/master/released/theme)%EF%BC%89">https://gitee.com/madmaxchow/VLOOK/tree/master/released/theme)）</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805160815829.png" alt="image-20210805160815829"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805160910448.png" alt="image-20210805160910448"></p>
+<h6 id="Step-2•安装并选择主题"><a href="#Step-2•安装并选择主题" class="headerlink" title="Step    2•安装并选择主题"></a>Step    2•安装并选择主题</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805160948258.png" alt="image-20210805160948258"></p>
+<p>b. 模板文件在哪？在目录 released 下的文件「<strong>VLOOK-Document-Template.md</strong>」，也可直接在项目主页中下载文档模板</p>
+<p>(<a target="_blank" rel="noopener" href="https://github.com/MadMaxChow/VLOOK/tree/master/released)%EF%BC%88%E5%A4%87%E7%94%A8%E9%93%BE%E6%8E%A5">https://github.com/MadMaxChow/VLOOK/tree/master/released)（备用链接</a></p>
+<p>(<a target="_blank" rel="noopener" href="https://gitee.com/madmaxchow/VLOOK/tree/master/released)%EF%BC%89">https://gitee.com/madmaxchow/VLOOK/tree/master/released)）</a></p>
+<h6 id="Step-3•应用插件"><a href="#Step-3•应用插件" class="headerlink" title="Step    3•应用插件"></a>Step    3•应用插件</h6><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805161028267.png" alt="image-20210805161028267"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210805161136822.png" alt="image-20210805161136822"></p>
+<p>项目仓库：<a target="_blank" rel="noopener" href="https://github.com/MadMaxChow/VLOOK">https://github.com/MadMaxChow/VLOOK</a></p>
+<h5 id="实际测试效果"><a href="#实际测试效果" class="headerlink" title="实际测试效果"></a>实际测试效果</h5><p>==不是很理想，图片不能展示到html出来，很奇怪==。。-20210806</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210806100736859.png" alt="image-20210806100736859"></p>
+<h4 id="📍-实战：自定义Typora护眼色主题-博客输出-成功测试-2021-3-27"><a href="#📍-实战：自定义Typora护眼色主题-博客输出-成功测试-2021-3-27" class="headerlink" title="📍 实战：自定义Typora护眼色主题(博客输出-成功测试)-2021.3.27"></a>📍 实战：自定义Typora护眼色主题(博客输出-成功测试)-2021.3.27</h4><h5 id="1-原文链接"><a href="#1-原文链接" class="headerlink" title="1.原文链接"></a>1.原文链接</h5><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011622109/article/details/78313850?utm_source=blogxgwz3">https://blog.csdn.net/u011622109/article/details/78313850?utm_source=blogxgwz3</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327102528556.png" alt="image-20210327102528556"></p>
+<h5 id="2-配置方法"><a href="#2-配置方法" class="headerlink" title="2.配置方法"></a>2.配置方法</h5><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327103210156.png" alt="image-20210327103210156"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327103250902.png" alt="image-20210327103250902"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327103304069.png" alt="image-20210327103304069"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327103333486.png" alt="image-20210327103333486"></p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1q4vhIOLkhHLYaDl1Va3fFw">https://pan.baidu.com/s/1q4vhIOLkhHLYaDl1Va3fFw</a><br>提取码：3qz1<br>复制这段内容后打开百度网盘手机App，操作更方便哦–来自百度网盘超级会员V6的分享</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327103347256.png" alt="image-20210327103347256"></p>
+<h5 id="3-总结及改进"><a href="#3-总结及改进" class="headerlink" title="3.总结及改进"></a>3.总结及改进</h5><p>上述这种方法，自己已测试且有效果，但因个人爱好不同，有不同的需求，因此后续自己可以自定义样式。</p>
+<p><strong>主要是这个字体问题</strong>：默认主体字体是微软雅黑，但新主体字体是宋体。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327165315472.png" alt="image-20210327165315472"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327165344811.png" alt="image-20210327165344811"></p>
+<p>在本次github默认主体，其字体应该是微软雅黑好像，看起来还是比较美观的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327165315472.png" alt="image-20210327165315472"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327171414350.png" alt="image-20210327171414350"></p>
+<p>但github_yuxl_bg主体中，默认字体好像是宋体，这个看起来就有些不舒服了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327165344811.png" alt="image-20210327165344811"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327171501951.png" alt="image-20210327171501951"></p>
+<p>测试办法1：因此，在github_yuxl_bg主体主体中直接使用默认github主体的字体，观测效果：（字体还是没改过来。。）</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327171640691.png" alt="image-20210327171640691"></p>
+<p>测试办法2：再次修改，这次换成微软雅黑的字体：终于有效果了，这次字体全部编程微软雅黑了，这个字体看着确实舒服。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;Microsoft YaHei&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327172020501.png" alt="image-20210327172020501"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327172200679.png" alt="image-20210327172200679"></p>
+<p>因此，关于本次自定义主体<code>github_yuxl_bg</code>的优点如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">背景色变成了护眼色；</span><br><span class="line">标题变成了蓝色；</span><br><span class="line">分割线变成了虚线；</span><br><span class="line">table增加了样式；</span><br><span class="line">导航大纲有高亮显示；</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327172718674.png" alt="image-20210327172718674"></p>
+<p>10.如何结合typora+坚果云实现本地笔记维护 &amp; 结合picGo 阿里云oss来上传md笔记到csdn博客？</p>
+<p>（1）默认情况，关闭图片上传功能：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327175201915.png" alt="image-20210327175201915"></p>
+<p>（2）如果有上传到博客需求时，配置如下：打开上传图片到阿里云oss功能，再一键上传本地所有图片。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327175235725.png" alt="image-20210327175235725"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327175245088.png" alt="image-20210327175245088"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327175326097.png" alt="image-20210327175326097"></p>
+<h5 id="4-修改次主题的一级标题为左对齐"><a href="#4-修改次主题的一级标题为左对齐" class="headerlink" title="4.修改次主题的一级标题为左对齐"></a>4.修改次主题的一级标题为左对齐</h5><p>这个主体，一级标题是居中对齐的，这个有些怪，应该是可以修改css文件来着的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327224539909.png" alt="image-20210327224539909"></p>
+<p>本次主体css文件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327224935433.png" alt="image-20210327224935433"></p>
+<p>默认主体css文件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327225012294.png" alt="image-20210327225012294"></p>
+<p>修改这里为left后，果然变成了向左对齐了，完美：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210327225202740.png" alt="image-20210327225202740"></p>
+<h5 id="5-如何给typora换一个优美的字体呢？"><a href="#5-如何给typora换一个优美的字体呢？" class="headerlink" title="5.如何给typora换一个优美的字体呢？"></a>5.如何给typora换一个优美的字体呢？</h5><h5 id="6-如何给typora换一个其他的官方主题呢？"><a href="#6-如何给typora换一个其他的官方主题呢？" class="headerlink" title="6.如何给typora换一个其他的官方主题呢？"></a>6.如何给typora换一个其他的官方主题呢？</h5><p><a target="_blank" rel="noopener" href="https://theme.typora.io/">https://theme.typora.io/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328071050734.png" alt="image-20210328071050734"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">下载主题压缩包，将压缩包里边的几个文件解压到Typora的自定义主题目录，包括：</span><br><span class="line">pie.css</span><br><span class="line">pie-dark.css</span><br><span class="line">pie（文件夹）</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>主题：pie</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328071412477.png" alt="image-20210328071412477"></p>
+<p>更换后效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328071636846.png" alt="image-20210328071636846"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328071701032.png" alt="image-20210328071701032"></p>
+<ul>
+<li>更换主题solarized（更换后效果）</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328072229003.png" alt="image-20210328072229003"></p>
+<h5 id="7改进：如何使这个图片居左对齐呢？"><a href="#7改进：如何使这个图片居左对齐呢？" class="headerlink" title="7改进：如何使这个图片居左对齐呢？"></a>7改进：如何使这个图片居左对齐呢？</h5><p>他提供的这个是居左对齐的。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328073746309.png" alt="image-20210328073746309"></p>
+<p>请看标题5配置方法：</p>
+<p>配置后效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210328074223541.png" alt="image-20210328074223541"></p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于如何定制一款编辑&amp;阅读超级舒适的typora主题实验就到这里了，感谢大家阅读，最后祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2021/12/04/93%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%AE%9A%E5%88%B6%E4%B8%80%E6%AC%BE%E7%BC%96%E8%BE%91&amp;%E9%98%85%E8%AF%BB%E8%B6%85%E7%BA%A7%E8%88%92%E9%80%82%E7%9A%84typora%E4%B8%BB%E9%A2%98-2021.12.04/">https://www.onlyonexl.cn/2021/12/04/93%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%AE%9A%E5%88%B6%E4%B8%80%E6%AC%BE%E7%BC%96%E8%BE%91&amp;%E9%98%85%E8%AF%BB%E8%B6%85%E7%BA%A7%E8%88%92%E9%80%82%E7%9A%84typora%E4%B8%BB%E9%A2%98-2021.12.04/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/typoa/">
+                                    <span class="chip bg-color">typoa</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/12/04/91%20github%E6%8E%A8%E9%80%81%E6%97%B6%E6%8A%A5%E9%94%99%EF%BC%9A%E5%8E%9F%E6%9D%A5%E6%98%AF%E5%AE%98%E6%96%B9%E6%8A%8A%E5%AF%86%E7%A0%81%E6%8D%A2%E6%88%90token%E4%BA%86%E5%93%88%E5%93%88-2021.12.04/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="github推送时报错：原来是官方把密码换成token了哈哈-2021.12.04">
+                        
+                        <span class="card-title">github推送时报错：原来是官方把密码换成token了哈哈-2021.12.04</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-04
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/github/" class="post-category">
+                                    github
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/github/">
+                        <span class="chip bg-color">github</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/03/90%20%E6%89%93%E9%80%A0%E4%B8%80%E6%AC%BE%E6%9C%80%E5%BC%BA%E7%8E%8B%E8%80%85%E4%BA%91%E7%AC%94%E8%AE%B0typora+%E5%9D%9A%E6%9E%9C%E4%BA%91+%E9%98%BF%E9%87%8C%E4%BA%91oss%EF%BC%9F/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="打造一款最强王者云笔记&#34;typora+坚果云+阿里云oss&#34;？">
+                        
+                        <span class="card-title">打造一款最强王者云笔记&#34;typora+坚果云+阿里云oss&#34;？</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-03
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E4%BA%91%E7%AC%94%E8%AE%B0/" class="post-category">
+                                    云笔记
+                                </a>
+                            
+                            <a href="/categories/%E4%BA%91%E7%AC%94%E8%AE%B0/typora/" class="post-category">
+                                    typora
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E4%BA%91%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">云笔记</span>
+                    </a>
+                    
+                    <a href="/tags/typora/">
+                        <span class="chip bg-color">typora</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
