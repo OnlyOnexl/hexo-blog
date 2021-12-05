@@ -479,22 +479,7 @@
             <div id="articleContent">
                 <h2 id="Admission-准入控制器-2021-12-05"><a href="#Admission-准入控制器-2021-12-05" class="headerlink" title="Admission(准入控制器)-2021.12.05"></a>Admission(准入控制器)-2021.12.05</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211205210107821.png" alt="image-20211205210107821"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="文档来源"><a href="#文档来源" class="headerlink" title="文档来源"></a>文档来源</h2><blockquote>
-<p>文章来源：课程-Kubernetes进阶训练营第3期-阳明-20210919购买-1998元</p>
-</blockquote>
-<ul>
-<li><p>文档地址</p>
-<p>  <a target="_blank" rel="noopener" href="https://www.qikqiak.com/k3s/controller/admission/">https://www.qikqiak.com/k3s/controller/admission/</a></p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211201200439584.png" alt="image-20211201200439584"></p>
-</li>
-<li><p>视频地址</p>
-<p>  <a target="_blank" rel="noopener" href="https://youdianzhishi.com/web/course/1030/2145">https://youdianzhishi.com/web/course/1030/2145</a></p>
-<p>  <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211201200408023.png" alt="image-20211201200408023"></p>
-</li>
-</ul>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.21</span><br><span class="line">   CONTAINER-RUNTIME：docker://20.10.7</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
 
 <h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>无</p>
 <h2 id="1、准入控制器"><a href="#1、准入控制器" class="headerlink" title="1、准入控制器"></a>1、准入控制器</h2><p>Kubernetes 提供了需要扩展其内置功能的方法，最常用的可能是**自定义资源类型(CRD)<strong>和</strong>自定义控制器(Operator)**了，除此之外，Kubernetes 还有一些其他非常有趣的功能，比如 <strong><code>admission webhooks</code> 就可以用于扩展 API，用于修改某些 Kubernetes 资源的基本行为。</strong></p>
