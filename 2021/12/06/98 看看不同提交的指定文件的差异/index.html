@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Crd, Love">
+    <meta name="keywords" content="实战：看看不同commit或者不同分支的文件差异-2021.12.06, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Crd | Love</title>
+    <title>实战：看看不同commit或者不同分支的文件差异-2021.12.06 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Crd</h1>
+                    <h1 class="description center-align post-title">实战：看看不同commit或者不同分支的文件差异-2021.12.06</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/k8s/">
-                                <span class="chip bg-color">k8s</span>
+                            <a href="/tags/Git/">
+                                <span class="chip bg-color">Git</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/k8s/" class="post-category">
-                                k8s
+                            <a href="/categories/Git/" class="post-category">
+                                Git
                             </a>
                         
                     </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-05
+                    2021-12-06
                 </div>
                 
 
@@ -477,104 +477,41 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Crd"><a href="#Crd" class="headerlink" title="Crd"></a>Crd</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202183451175.png" alt="image-20211202183451175"></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+                <h2 id="实战：看看不同commit或者不同分支的文件差异-2021-12-06"><a href="#实战：看看不同commit或者不同分支的文件差异-2021-12-06" class="headerlink" title="实战：看看不同commit或者不同分支的文件差异-2021.12.06"></a>实战：看看不同commit或者不同分支的文件差异-2021.12.06</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
 
 <h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>无</p>
-<h2 id="1、什么是CRD"><a href="#1、什么是CRD" class="headerlink" title="1、什么是CRD"></a>1、什么是CRD</h2><p><code>Custom Resource Define</code> 简称 CRD，<strong>是 Kubernetes（v1.7+）为提高可扩展性，让开发者去自定义资源的一种方式</strong>。CRD 资源可以动态注册到集群中，注册完毕后，用户可以通过 kubectl 来创建访问这个自定义的资源对象，类似于操作 Pod 一样。**<font color=red>不过需要注意的是：:warning: CRD 仅仅是资源的定义而已，需要一个 Controller 去监听 CRD 的各种事件来添加自定义的业务逻辑。</font>**</p>
-<h2 id="2、CRD的定义"><a href="#2、CRD的定义" class="headerlink" title="2、CRD的定义"></a>2、CRD的定义</h2><p>如果说只是对 CRD 资源本身进行 CRUD 操作的话，不需要 Controller 也是可以实现的，相当于就是只有数据存入了 etcd 中，而没有对这个数据的相关操作而已。比如我们可以定义一个如下所示的 CRD 资源清单文件：(crd-demo.yaml)</p>
-<blockquote>
-<p>额，这个yaml是有些复杂啊。。。。。。。</p>
-</blockquote>
-<p>🍀 我们来定义一个资源清单</p>
-<p>[root@master1 ~]#vim crd-demo.yaml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="comment"># name 必须匹配下面的spec字段：&lt;plural&gt;.&lt;group&gt;</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">crontabs.stable.example.com</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="comment"># group 名用于 REST API 中的定义：/apis/&lt;group&gt;/&lt;version&gt;</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">stable.example.com</span></span><br><span class="line">  <span class="comment"># 列出自定义资源的所有 API 版本</span></span><br><span class="line">  <span class="attr">versions:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">v1beta1</span>  <span class="comment"># 版本名称，比如 v1、v2beta1 等等</span></span><br><span class="line">    <span class="attr">served:</span> <span class="literal">true</span>  <span class="comment"># 是否开启通过 REST APIs 访问 `/apis/&lt;group&gt;/&lt;version&gt;/...`</span></span><br><span class="line">    <span class="attr">storage:</span> <span class="literal">true</span> <span class="comment"># 必须将一个且只有一个版本标记为存储版本</span></span><br><span class="line">    <span class="attr">schema:</span>  <span class="comment"># 定义自定义对象的声明规范</span></span><br><span class="line">      <span class="attr">openAPIV3Schema:</span></span><br><span class="line">        <span class="attr">description:</span> <span class="string">Define</span> <span class="string">CronTab</span> <span class="string">YAML</span> <span class="string">Spec</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">object</span></span><br><span class="line">        <span class="attr">properties:</span></span><br><span class="line">          <span class="attr">spec:</span></span><br><span class="line">            <span class="attr">type:</span> <span class="string">object</span></span><br><span class="line">            <span class="attr">properties:</span></span><br><span class="line">              <span class="attr">cronSpec:</span></span><br><span class="line">                <span class="attr">type:</span> <span class="string">string</span></span><br><span class="line">              <span class="attr">image:</span></span><br><span class="line">                <span class="attr">type:</span> <span class="string">string</span></span><br><span class="line">              <span class="attr">replicas:</span></span><br><span class="line">                <span class="attr">type:</span> <span class="string">integer</span></span><br><span class="line">  <span class="comment"># 定义作用范围：Namespaced（命名空间级别）或者 Cluster（整个集群）</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="comment"># kind 是 sigular 的一个驼峰形式定义，在资源清单中会使用</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">CronTab</span></span><br><span class="line">    <span class="comment"># plural 名字用于 REST API 中的定义：/apis/&lt;group&gt;/&lt;version&gt;/&lt;plural&gt;</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">crontabs</span></span><br><span class="line">    <span class="comment"># singular 名称用于 CLI 操作或显示的一个别名</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">crontab</span></span><br><span class="line">    <span class="comment"># shortNames 相当于缩写形式</span></span><br><span class="line">    <span class="attr">shortNames:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ct</span></span><br></pre></td></tr></table></figure>
+<h2 id="1、问题需求"><a href="#1、问题需求" class="headerlink" title="1、问题需求"></a>1、问题需求</h2><p>现在，对不同commit或者不同分支之间，我想知道具体有哪些文件有差异，或者对某一个文件来说有哪些差异？</p>
+<h2 id="2、实验步骤"><a href="#2、实验步骤" class="headerlink" title="2、实验步骤"></a>2、实验步骤</h2><p>🍀 查看下当前环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --all --graph</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206065001083.png" alt="image-20211206065001083"></p>
+<p>🍀 现在想查看当前temp和master分支HEAD指向的commit信息，哪些文件有差异？或者对index.html文件来说，有什么差异？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff temp master</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206065307658.png" alt="image-20211206065307658"></p>
+<p>🍀 或者想查看某个特定的文件有哪些差异？后面可以接指定的文件名</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff temp master -- index.html</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206065501596.png" alt="image-20211206065501596"></p>
+<p>🍀 这里的分支名也可以换成commit ID的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git diff 30c1501  7b84beb -- index.html</span><br></pre></td></tr></table></figure>
 
 <blockquote>
-<p>:warning:需要注意的是 v1.16 版本以后已经 GA 了，使用的是 v1 版本，之前都是 v1beta1，定义规范有部分变化，所以要注意版本变化。</p>
+<p>:warning:另外，需要注意的是：diff命令，可以从接轨看出+代表的是后面的文件内容，-代表的是前面文件内容！！！</p>
 </blockquote>
-<p>这个地方的定义和我们定义普通的资源对象比较类似，我们说我们可以随意定义一个自定义的资源对象，但是在创建资源的时候，肯定不是任由我们随意去编写 YAML 文件的，当我们把上面的 CRD 文件提交给 Kubernetes 之后，Kubernetes 会对我们提交的声明文件进行校验，从定义可以看出 CRD 是基于 <a target="_blank" rel="noopener" href="https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#schemaObject">OpenAPI v3 schem</a> 进行规范的。<strong>当然这种校验只是对于字段的类型进行校验，比较初级</strong>，如果想要更加复杂的校验，这个时候就需要通过 Kubernetes 的 admission webhook 来实现了**(所以，一般情况下，我们可能把CRD和admission来结合使用)**。关于校验的更多用法，可以前往<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/#validation">官方文档</a>查看。</p>
-<p>🍀 同样现在我们可以直接使用 kubectl 来创建这个 CRD 资源清单：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f crd-demo.yaml</span></span><br><span class="line">customresourcedefinition.apiextensions.k8s.io/crontabs.stable.example.com created</span><br></pre></td></tr></table></figure>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206065620006.png" alt="image-20211206065620006"></p>
+<p>The end。</p>
+<h2 id="3、命令总结"><a href="#3、命令总结" class="headerlink" title="3、命令总结"></a>3、命令总结</h2><h3 id="1-对不同commit或者不同分支之间，我想知道具体有哪些文件有差异，或者对某一个文件来说有哪些差异？"><a href="#1-对不同commit或者不同分支之间，我想知道具体有哪些文件有差异，或者对某一个文件来说有哪些差异？" class="headerlink" title="1.对不同commit或者不同分支之间，我想知道具体有哪些文件有差异，或者对某一个文件来说有哪些差异？"></a>1.对不同commit或者不同分支之间，我想知道具体有哪些文件有差异，或者对某一个文件来说有哪些差异？</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(1)查看不同commit之间all文件的差异</span><br><span class="line">$ git diff temp  master</span><br><span class="line"></span><br><span class="line">(2)查看不同commit之间特定文件的差异</span><br><span class="line">$ git diff temp  master -- index.html</span><br><span class="line"></span><br><span class="line"><span class="comment">#注意1：上面的分支名可以换做为commitID： 例如：$ git diff commitID1  commitID2 -- index.html</span></span><br><span class="line"><span class="comment">#注意2：另外，需要注意的是，diff命令，可以从接轨看出+代表的是后面的文件内容，-代表的是前面文件内容！！！</span></span><br></pre></td></tr></table></figure>
 
-<p>这个时候我们可以查看到集群中已经有我们定义的这个 CRD 资源对象了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get crd</span></span><br><span class="line">NAME                          CREATED AT</span><br><span class="line">crontabs.stable.example.com   2021-12-05T00:13:50Z</span><br></pre></td></tr></table></figure>
-
-<p>这个时候一个新的 namespace 级别的 RESTful API 就会被创建：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/apis/stable/example.com/v1beta1/namespaces/*/crontabs/...</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get --raw /|grep stable</span></span><br><span class="line">    <span class="string">&quot;/apis/stable.example.com&quot;</span>,</span><br><span class="line">    <span class="string">&quot;/apis/stable.example.com/v1beta1&quot;</span>,</span><br></pre></td></tr></table></figure>
-
-<p>然后我们就可以使用这个 API 端点来创建和管理自定义的对象，这些对象的类型就是上面创建的 CRD 对象规范中的 <code>CronTab</code>。</p>
-<p>🍀 现在在 Kubernetes 集群中我们就多了一种新的资源叫做 <code>crontabs.stable.example.com</code>，我们就可以使用它来定义一个 <code>CronTab</code> 资源对象了，这个自定义资源对象里面可以包含的字段我们在定义的时候通过 <code>schema</code> 进行了规范，比如现在我们来创建一个如下所示的资源清单：(crd-crontab-demo.yaml)</p>
-<p>[root@master1 ~]#vim crd-crontab-demo.yaml</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;stable.example.com/v1beta1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CronTab</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-new-cron-object</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">cronSpec:</span> <span class="string">&quot;* * * * */5&quot;</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">my-awesome-cron-image</span></span><br></pre></td></tr></table></figure>
-
-<p>我们可以直接创建这个对象：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f crd-crontab-demo.yaml</span></span><br><span class="line">crontab.stable.example.com/my-new-cron-object created</span><br></pre></td></tr></table></figure>
-
-<p>然后我们就可以用 kubectl 来管理我们这里创建 CronTab 对象了，比如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get ct</span></span><br><span class="line">NAME                 AGE</span><br><span class="line">my-new-cron-object   36s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get crontab</span></span><br><span class="line">NAME                 AGE</span><br><span class="line">my-new-cron-object   39s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get crontabs</span></span><br><span class="line">NAME                 AGE</span><br><span class="line">my-new-cron-object   41s</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-<p>在使用 kubectl 的时候，资源名称是不区分大小写的，我们可以使用 CRD 中定义的单数或者复数形式以及任何简写。</p>
-<p>🍀 我们也可以查看创建的这个对象的原始 YAML 数据：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get ct -oyaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">items:</span><br><span class="line">- apiVersion: stable.example.com/v1beta1</span><br><span class="line">  kind: CronTab</span><br><span class="line">  metadata:</span><br><span class="line">    annotations:</span><br><span class="line">      kubectl.kubernetes.io/last-applied-configuration: |</span><br><span class="line">        &#123;<span class="string">&quot;apiVersion&quot;</span>:<span class="string">&quot;stable.example.com/v1beta1&quot;</span>,<span class="string">&quot;kind&quot;</span>:<span class="string">&quot;CronTab&quot;</span>,<span class="string">&quot;metadata&quot;</span>:&#123;<span class="string">&quot;annotations&quot;</span>:&#123;&#125;,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;my-new-cron-object&quot;</span>,<span class="string">&quot;namespace&quot;</span>:<span class="string">&quot;default&quot;</span>&#125;,<span class="string">&quot;spec&quot;</span>:&#123;<span class="string">&quot;cronSpec&quot;</span>:<span class="string">&quot;* * * * */5&quot;</span>,<span class="string">&quot;image&quot;</span>:<span class="string">&quot;my-awesome-cron-image&quot;</span>&#125;&#125;</span><br><span class="line">    creationTimestamp: <span class="string">&quot;2021-12-05T00:30:24Z&quot;</span></span><br><span class="line">    generation: 1</span><br><span class="line">    name: my-new-cron-object</span><br><span class="line">    namespace: default</span><br><span class="line">    resourceVersion: <span class="string">&quot;797893&quot;</span></span><br><span class="line">    uid: ad00b100-f2a3-473e-bb35-2f55c052a2e9</span><br><span class="line">  spec:</span><br><span class="line">    cronSpec: <span class="string">&#x27;* * * * */5&#x27;</span></span><br><span class="line">    image: my-awesome-cron-image</span><br><span class="line">kind: List</span><br><span class="line">metadata:</span><br><span class="line">  resourceVersion: <span class="string">&quot;&quot;</span></span><br><span class="line">  selfLink: <span class="string">&quot;&quot;</span></span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
-
-<p>我们可以看到它包含了上面我们定义的 <code>cronSpec</code> 和 <code>image</code> 字段。</p>
-<p>总之，记住：:warning:</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202200947658.png" alt="image-20211202200947658"></p>
-<h2 id="3、Controller"><a href="#3、Controller" class="headerlink" title="3、Controller"></a>3、Controller</h2><blockquote>
-<p>呵呵，又涉及到我们一个开发的知识了。。。好难啊哈哈。。</p>
-</blockquote>
-<p>就如上面我们说的，现在我们自定义的资源创建完成了，但是也只是单纯的把资源清单数据存入到了 etcd 中而已，并没有什么其他用处，因为我们没有定义一个对应的 Controller 来处理他。</p>
-<p>官方提供了一个自定义 Controller 的示例：<a target="_blank" rel="noopener" href="https://github.com/kubernetes/sample-controller%EF%BC%8C%E5%AE%9E%E7%8E%B0%E4%BA%86%EF%BC%9A">https://github.com/kubernetes/sample-controller，实现了：</a></p>
-<ul>
-<li>如何注册资源 Foo</li>
-<li>如何创建、删除和查询 Foo 对象</li>
-<li>如何监听 Foo 资源对象的变化情况</li>
-</ul>
-<p>要想了解 Controller 的实现原理和方式，我们就需要了解下 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/client-go/">client-go</a> 这个库的实现，Kubernetes 部分代码也是基于这个库实现的，也包含了开发自定义控制器时可以使用的各种机制，这些机制在 client-go 源码的 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/client-go/tree/master/tools/cache">tools/cache</a> 目录下面有定义。</p>
-<p>下图显示了 client-go 中的各个组件是如何公众的以及与我们要编写的自定义控制器代码的交互入口：</p>
-<blockquote>
-<p>client-go这个组件其实是非常复杂的。    </p>
-</blockquote>
-<img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/client-go-controller-interaction.jpeg" alt="client-go controller interaction"  />
-
-<p><strong>client-go 组件</strong>：</p>
-<ul>
-<li>Reflector：通过 Kubernetes API 监控 Kubernetes 的资源类型 采用 List/Watch 机制, 可以 Watch 任何资源包括 CRD 添加 object 对象到 FIFO 队列，然后 Informer 会从队列里面取数据</li>
-<li>Informer：controller 机制的基础，循环处理 object 对象 从 Reflector 取出数据，然后将数据给到 Indexer 去缓存，提供对象事件的 handler 接口，只要给 Informer 添加 <code>ResourceEventHandler</code> 实例的回调函数，去实现 <code>OnAdd(obj interface&#123;&#125;)</code>、 <code>OnUpdate(oldObj, newObj interface&#123;&#125;)</code> 和 <code>OnDelete(obj interface&#123;&#125;)</code> 这三个方法，就可以处理好资源的创建、更新和删除操作了。</li>
-<li>Indexer：提供 object 对象的索引，是线程安全的，缓存对象信息</li>
-</ul>
-<p><strong>controller 组件</strong>：</p>
-<ul>
-<li>Informer reference: controller 需要创建合适的 Informer 才能通过 Informer reference 操作资源对象</li>
-<li>Indexer reference: controller 创建 Indexer reference 然后去利用索引做相关处理</li>
-<li>Resource Event Handlers：Informer 会回调这些 handlers</li>
-<li>Work queue: Resource Event Handlers 被回调后将 key 写到工作队列，这里的 key 相当于事件通知，后面根据取出事件后，做后续的处理</li>
-<li>Process Item：从工作队列中取出 key 后进行后续处理，具体处理可以通过 Indexer reference controller 可以直接创建上述两个引用对象去处理，也可以采用工厂模式，官方都有相关示例</li>
-</ul>
-<p><code>client-go/tool/cache/</code> 和自定义 Controller 的控制流(<a target="_blank" rel="noopener" href="https://itnext.io/how-to-create-a-kubernetes-custom-controller-using-client-go-f36a7a7536cc">图片来源</a>)：</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/client-go-controller-workflow.png" alt="client-go controller workflow"></p>
-<p>如上图所示主要有两个部分，一个是发生在 <code>SharedIndexInformer</code> 中，另外一个是在自定义控制器中。</p>
-<ol>
-<li><code>Reflector</code> 通过 Kubernetes APIServer 执行对象（比如 Pod）的 <code>ListAndWatch</code> 查询，记录和对象相关的三种事件类型<code>Added</code>、<code>Updated</code>、<code>Deleted</code>，然后将它们传递到 <code>DeltaFIFO</code> 中去。</li>
-<li><code>DeltaFIFO</code> 接收到事件和 watch 事件对应的对象，然后将他们转换为 <code>Delta</code> 对象，这些 <code>Delta</code> 对象被附加到队列中去等待处理，对于已经删除的，会检查线程安全的 store 中是否已经存在该文件，从而可以避免在不存在某些内容时排队执行删除操作。</li>
-<li>Cache 控制器（不要和自定义控制器混淆）调用 <code>Pop()</code> 方法从 <code>DeltaFIFO</code> 队列中出队列，<code>Delta</code> 对象将传递到 <code>SharedIndexInformer</code> 的 <code>HandleDelta()</code> 方法中以进行进一步处理。</li>
-<li>根据 <code>Delta</code> 对象的操作（事件）类型，首先在 <code>HandleDeltas</code> 方法中通过 <code>indexer</code> 的方法将对对象保存到线程安全的 Store 中，然后，通过 <code>SharedIndexInformer</code> 中的 <code>sharedProcessor</code> 的 <code>distribution()</code> 方法将这些对象发送到事件 handlers，这些事件处理器由自定义控制器通过 <code>SharedInformer</code> 的方法比如 <code>AddEventHandlerWithResyncPeriod()</code> 进行注册。</li>
-<li>已注册的事件处理器通过添加或更新时间的 <code>MetaNamespaceKeyFunc()</code> 或删除事件的 <code>DeletionHandingMetaNamespaceKeyFunc()</code> 将对象转换为格式为 <code>namespace/name</code> 或只是 <code>name</code> 的 key，然后将这个 key 添加到自定义控制器的 <code>workqueue</code> 中，<code>workqueues</code> 的实现可以在 <code>util/workqueue</code> 中找到。</li>
-<li>自定义的控制器通过调用定义的 handlers 处理器从 workqueue 中 pop 一个 key 出来进行处理，handlers 将调用 indexer 的 <code>GetByKey()</code> 从线程安全的 store 中获取对象，我们的业务逻辑就是在这个 handlers 里面实现。</li>
-</ol>
-<p><code>client-go</code> 中也有自定义 Controller 的样例代码，位于：<code>k8s.io/client-go/examples/workqueue/main.go</code>。</p>
-<h2 id="4、Operator"><a href="#4、Operator" class="headerlink" title="4、Operator"></a>4、Operator</h2><p><code>Operator</code> 就可以看成是 CRD 和 Controller 的一种组合特例，Operator 是一种思想，它结合了特定领域知识并通过 CRD 机制扩展了 Kubernetes API 资源，使用户管理 Kubernetes 的内置资源（Pod、Deployment等）一样创建、配置和管理应用程序，Operator 是一个特定的应用程序的控制器，通过扩展 Kubernetes API 资源以代表 Kubernetes 用户创建、配置和管理复杂应用程序的实例，通常包含<strong>资源模型定义</strong>和控制器，通过 <code>Operator</code> 通常是为了实现某种特定软件（通常是有状态服务）的自动化运维。</p>
-<p>我们完全可以通过上面的方式编写一个 CRD 对象，然后去手动实现一个对应的 Controller 就可以实现一个 Operator，但是我们也发现从头开始去构建一个 CRD 控制器并不容易，需要对 Kubernetes 的 API 有深入了解，并且 RBAC 集成、镜像构建、持续集成和部署等都需要很大工作量。为了解决这个问题，社区就推出了对应的简单易用的 Operator 框架，比较主流的是 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/kubebuilder">kubebuilder</a>(推荐这个) 和 <a target="_blank" rel="noopener" href="https://coreos.com/operators">Operator Framework</a>，这两个框架的使用基本上差别不大，我们可以根据自己习惯选择一个即可。</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211202205603424.png" alt="image-20211202205603424"></p>
-<blockquote>
-<p>Operator用起来很简单，但是真正开发的话，还是有一定难度的。</p>
-</blockquote>
-<h2 id="5、参考文档"><a href="#5、参考文档" class="headerlink" title="5、参考文档"></a>5、参考文档</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://itnext.io/how-to-create-a-kubernetes-custom-controller-using-client-go-f36a7a7536cc">How to Create a Kubernetes Custom Controller Using client-go</a></li>
-<li><a target="_blank" rel="noopener" href="https://engineering.bitnami.com/articles/a-deep-dive-into-kubernetes-controllers.html">A deep dive into Kubernetes controllers</a></li>
-</ul>
+<h3 id="2-一般直接在gitlab上查看差异"><a href="#2-一般直接在gitlab上查看差异" class="headerlink" title="2.一般直接在gitlab上查看差异"></a>2.一般直接在gitlab上查看差异</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206103503991.png" alt="image-20211206103503991"></p>
+<p>beyondcompare</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206104259376.png" alt="image-20211206104259376"></p>
+<h3 id="3-github和gitlab也很精彩"><a href="#3-github和gitlab也很精彩" class="headerlink" title="3.github和gitlab也很精彩"></a>3.github和gitlab也很精彩</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206103558845.png" alt="image-20211206103558845"></p>
+<h3 id="4-如果生成patch和给代码打patch"><a href="#4-如果生成patch和给代码打patch" class="headerlink" title="4.如果生成patch和给代码打patch"></a>4.如果生成patch和给代码打patch</h3><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5b5851976fb9a04f844ad0f4">https://juejin.im/post/5b5851976fb9a04f844ad0f4</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206103644725.png" alt="image-20211206103644725"></p>
+<h3 id="5-《Git权威指南》蒋鑫"><a href="#5-《Git权威指南》蒋鑫" class="headerlink" title="5.《Git权威指南》蒋鑫"></a>5.《Git权威指南》蒋鑫</h3><p><a target="_blank" rel="noopener" href="https://github.com/gotgit/gotgit/blob/master/01-meet-git/010-scm-history.rst">https://github.com/gotgit/gotgit/blob/master/01-meet-git/010-scm-history.rst</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206103842009.png" alt="image-20211206103842009"></p>
 <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
 <ol>
@@ -592,8 +529,8 @@
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
 </li>
 </ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于CRD实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211205083435383.png" alt="image-20211205083435383"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于看看不同commit或者不同分支的文件差异实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211206104935545.png" alt="image-20211206104935545"></p>
 
                 
             </div>
@@ -620,7 +557,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/12/05/94%20Crd/">https://www.onlyonexl.cn/2021/12/05/94%20Crd/</a>
+                    <a href="https://www.onlyonexl.cn/2021/12/06/98%20%E7%9C%8B%E7%9C%8B%E4%B8%8D%E5%90%8C%E6%8F%90%E4%BA%A4%E7%9A%84%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82/">https://www.onlyonexl.cn/2021/12/06/98%20%E7%9C%8B%E7%9C%8B%E4%B8%8D%E5%90%8C%E6%8F%90%E4%BA%A4%E7%9A%84%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -658,8 +595,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/k8s/">
-                                    <span class="chip bg-color">k8s</span>
+                                <a href="/tags/Git/">
+                                    <span class="chip bg-color">Git</span>
                                 </a>
                             
                         </div>
@@ -835,13 +772,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/12/06/98%20%E7%9C%8B%E7%9C%8B%E4%B8%8D%E5%90%8C%E6%8F%90%E4%BA%A4%E7%9A%84%E6%8C%87%E5%AE%9A%E6%96%87%E4%BB%B6%E7%9A%84%E5%B7%AE%E5%BC%82/">
+                <a href="/2021/12/06/95%20k8s%E4%B9%8BSecurity%20Context-2021.12.05/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="实战：看看不同commit或者不同分支的文件差异-2021.12.06">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="k8s之Security Context-2021.12.05">
                         
-                        <span class="card-title">实战：看看不同commit或者不同分支的文件差异-2021.12.06</span>
+                        <span class="card-title">k8s之Security Context-2021.12.05</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -858,8 +795,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Git/" class="post-category">
-                                    Git
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
                                 </a>
                             
                             
@@ -869,8 +806,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Git/">
-                        <span class="chip bg-color">Git</span>
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
                     </a>
                     
                 </div>
@@ -884,13 +821,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/05/96%20Admission(%E5%87%86%E5%85%A5%E6%8E%A7%E5%88%B6%E5%99%A8)-2021.12.05/">
+                <a href="/2021/12/05/94%20Crd/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="Admission(准入控制器)-2021.12.05">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Crd">
                         
-                        <span class="card-title">Admission(准入控制器)-2021.12.05</span>
+                        <span class="card-title">Crd</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
