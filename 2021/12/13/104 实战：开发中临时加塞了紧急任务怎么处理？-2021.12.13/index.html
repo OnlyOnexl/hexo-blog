@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12, Love">
+    <meta name="keywords" content="实战：开发中临时加塞了紧急任务怎么处理？-2021.12.13, Love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12 | Love</title>
+    <title>实战：开发中临时加塞了紧急任务怎么处理？-2021.12.13 | Love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12</h1>
+                    <h1 class="description center-align post-title">实战：开发中临时加塞了紧急任务怎么处理？-2021.12.13</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/vscode/">
-                                <span class="chip bg-color">vscode</span>
+                            <a href="/tags/git/">
+                                <span class="chip bg-color">git</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/vscode/" class="post-category">
-                                vscode
+                            <a href="/categories/git/" class="post-category">
+                                git
                             </a>
                         
                     </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-12-12
+                    2021-12-13
                 </div>
                 
 
@@ -477,19 +477,64 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="技巧：vscode设置自动复制鼠标选中内容-亲测有效-2021-12-12"><a href="#技巧：vscode设置自动复制鼠标选中内容-亲测有效-2021-12-12" class="headerlink" title="技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12"></a>技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211212172845992.png" alt="image-20211212172845992"></p>
-<p>当前环境：win10,vscdoe 1.63.0</p>
-<ul>
-<li>步骤1：安装<code>Copy On Select</code>插件，这个安装后，只针对vscode编辑区域生效，终端要想生效换需要另外配置，请看步骤2。</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211212172041095.png" alt="image-20211212172041095"></p>
-<ul>
-<li>步骤2：打开设置，搜索<code>copy on selection</code>，把勾搭上即可。顺便也可以把<code>右键粘贴</code>功能设置下： 搜索 right click behavior, 下拉选择 paste 。</li>
-</ul>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211212172246907.png" alt="image-20211212172246907"></p>
-<ul>
-<li>步骤3：测试效果，完美，么么哒。💖</li>
-</ul>
+                <h2 id="实战：开发中临时加塞了紧急任务怎么处理？-2021-12-13"><a href="#实战：开发中临时加塞了紧急任务怎么处理？-2021-12-13" class="headerlink" title="实战：开发中临时加塞了紧急任务怎么处理？-2021.12.13"></a>实战：开发中临时加塞了紧急任务怎么处理？-2021.12.13</h2><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">win10</span><br><span class="line">git version 2.17.0.windows.1</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>无</p>
+<h2 id="1、实验目的"><a href="#1、实验目的" class="headerlink" title="1、实验目的"></a>1、实验目的</h2><p>假如说，你正在写代码，工作区有正在编辑的代码，有已经add到暂存区的代码，此时，线上业务出现问题了，此时需要你紧急回退到历史的某个分支去修复bug，但你又不想把当前内容给丢失掉，也不想提交一个不完整的项目，你该怎么办呢？</p>
+<p>此时我们可以使用一个<code>stash命令</code>。</p>
+<p>案例：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213140602646.png" alt="image-20211213140602646"></p>
+<p>案例：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213141234475.png" alt="image-20211213141234475"></p>
+<h2 id="2、配置方法"><a href="#2、配置方法" class="headerlink" title="2、配置方法"></a>2、配置方法</h2><p>🍀 查看下当前环境</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git diff <span class="comment">#默认情况`git diff`命令会把工作区和暂存区所有的文件进行对比</span></span><br><span class="line">$ gs</span><br></pre></td></tr></table></figure>
+
+<p>刚好满足工作区和暂存区下都有新操作过的文件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213065739612.png" alt="image-20211213065739612"></p>
+<p>🍀 执行<code>git stash命令</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ git stash</span><br><span class="line">Saved working directory and index state WIP on temp: 30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">执行完成后，我们查看下当前环境</span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ gs</span><br><span class="line">On branch temp</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line">可以看到，当前git的工作区是干净的。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 Bug修复后，现在想回退到刚才写代码的那个环境，该怎么办呢？–&gt;应该执行如下回退命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git stash apply</span><br><span class="line">或者</span><br><span class="line">$ git stash pop</span><br><span class="line">执行上面2条命令都可以的， apply代表会回退以后，stash堆栈/对账会存在记录。但pop不会保存。</span><br><span class="line"></span><br><span class="line">下来，我们看下效果。</span><br><span class="line">1、使用git stash apply回退</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213071333202.png" alt="image-20211213071333202"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">可以看到，已经成功回退了。</span><br><span class="line"></span><br><span class="line">我们再使用git stash list查看下当前stash堆栈里是否会保留记录？</span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on temp: 30c1501 Add <span class="built_in">test</span></span><br><span class="line">可以看到，apply代表会回退以后，stash堆栈/对账会存在记录</span><br><span class="line"></span><br><span class="line">2、这次我们使用git stash pop命令测试下效果</span><br><span class="line">首先，我们再次stash下，再利用git stash pop测试下效果</span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ git stash</span><br><span class="line">Saved working directory and index state WIP on temp: 30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ gs</span><br><span class="line">On branch temp</span><br><span class="line">nothing to commit, working tree clean</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ git stash pop</span><br><span class="line">Removing readme.md</span><br><span class="line">On branch temp</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">&quot;git add/rm &lt;file&gt;...&quot;</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">&quot;git checkout -- &lt;file&gt;...&quot;</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   index.html</span><br><span class="line">        deleted:    readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">&quot;git add&quot;</span> and/or <span class="string">&quot;git commit -a&quot;</span>)</span><br><span class="line">Dropped refs/stash@&#123;0&#125; (144c639fdc85c8bb7265b71b0943f237b082f871)</span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$ git stash list</span><br><span class="line">stash@&#123;0&#125;: WIP on temp: 30c1501 Add <span class="built_in">test</span></span><br><span class="line"></span><br><span class="line">hg@LAPTOP-G8TUFE0T MINGW64 /d/IT/01 IT/github_repo/01 极客时间：git学习测试库/git_learning (temp)</span><br><span class="line">$</span><br><span class="line">可以发现，apply代表会回退以后，stash堆栈/对账会存在记录。但pop不会保存。</span><br></pre></td></tr></table></figure>
+
+<p>实验结束。</p>
+<h2 id="3、命令总结”Fira-Code”"><a href="#3、命令总结”Fira-Code”" class="headerlink" title="3、命令总结”Fira Code”,"></a>3、命令总结”Fira Code”,</h2><h3 id="1-临时保存工作区和暂存区的内容：stash命令"><a href="#1-临时保存工作区和暂存区的内容：stash命令" class="headerlink" title="1.临时保存工作区和暂存区的内容：stash命令"></a>1.临时保存工作区和暂存区的内容：<code>stash命令</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ git stash apply</span><br><span class="line">或者</span><br><span class="line">$ git stash pop</span><br><span class="line">执行上面2条命令都可以的， apply代表会回退以后，stash堆栈/对账会存在记录。但pop不会保存。</span><br><span class="line"><span class="comment">#注意：git stash list 命令显示的最左一列就是stash的序号，如stash@&#123;2&#125; 和 stash@&#123;1&#125;，序号中数字大的代表的是较早的stash。我们pop的时候可以加具体的序号，不加序号的（缺省情况下）为 stash@&#123;0&#125;。</span></span><br><span class="line">用法：git stash pop stash@&#123;2&#125;</span><br><span class="line">git stash pop = git stash pop stash@&#123;0&#125;</span><br><span class="line"></span><br><span class="line">$ git stash list <span class="comment">#查看堆栈里的内容</span></span><br><span class="line">stash@&#123;0&#125;: WIP on temp: 30c1501 Add <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-好问题：执行cherry-pick"><a href="#2-好问题：执行cherry-pick" class="headerlink" title="2.好问题：执行cherry-pick"></a>2.好问题：执行cherry-pick</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213135933425.png" alt="image-20211213135933425"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">作者回复: 好问题。比较不麻烦的做法，分两步走。</span><br><span class="line"></span><br><span class="line">1）在feature分支上，先把dev上修复bug的那个commit 执行cherry-pick。</span><br><span class="line"></span><br><span class="line">2）再git stash pop继续开发。</span><br></pre></td></tr></table></figure>
+
+
+
+<p>案例：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213140105146.png" alt="image-20211213140105146"></p>
+<h3 id="3-git-worktree-add"><a href="#3-git-worktree-add" class="headerlink" title="3.git worktree add ... "></a>3.<code>git worktree add ... </code></h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213141321831.png" alt="image-20211213141321831"></p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人github主页：<a target="_blank" rel="noopener" href="https://github.com/OnlyOnexl">https://github.com/OnlyOnexl</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211212233540208.png" alt="image-20211212233540208"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于git开发中临时加塞了紧急任务怎么处理？实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213141833831.png" alt="image-20211213141833831"></p>
 
                 
             </div>
@@ -516,7 +561,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/12/12/102%20%E6%8A%80%E5%B7%A7%EF%BC%9Avscode%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E5%A4%8D%E5%88%B6%E9%BC%A0%E6%A0%87%E9%80%89%E4%B8%AD%E5%86%85%E5%AE%B9(%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88)-2021.12.12/">https://www.onlyonexl.cn/2021/12/12/102%20%E6%8A%80%E5%B7%A7%EF%BC%9Avscode%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E5%A4%8D%E5%88%B6%E9%BC%A0%E6%A0%87%E9%80%89%E4%B8%AD%E5%86%85%E5%AE%B9(%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88)-2021.12.12/</a>
+                    <a href="https://www.onlyonexl.cn/2021/12/13/104%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%EF%BC%9F-2021.12.13/">https://www.onlyonexl.cn/2021/12/13/104%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%EF%BC%9F-2021.12.13/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -554,8 +599,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/vscode/">
-                                    <span class="chip bg-color">vscode</span>
+                                <a href="/tags/git/">
+                                    <span class="chip bg-color">git</span>
                                 </a>
                             
                         </div>
@@ -727,9 +772,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/12/13/104%20%E5%AE%9E%E6%88%98%EF%BC%9A%E5%BC%80%E5%8F%91%E4%B8%AD%E4%B8%B4%E6%97%B6%E5%8A%A0%E5%A1%9E%E4%BA%86%E7%B4%A7%E6%80%A5%E4%BB%BB%E5%8A%A1%E6%80%8E%E4%B9%88%E5%A4%84%E7%90%86%EF%BC%9F-2021.12.13/">
                     <div class="card-image">
@@ -747,9 +793,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-12-13
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-13
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -762,6 +808,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -780,13 +827,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/12/12/103%20%E6%96%B9%E6%B3%95%EF%BC%9Avscode%E7%BB%88%E7%AB%AF%E8%AE%BE%E7%BD%AE%60ctrl%20e%60%E5%BF%AB%E6%8D%B7%E9%94%AE(%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88)-2021.12.12/">
+                <a href="/2021/12/12/102%20%E6%8A%80%E5%B7%A7%EF%BC%9Avscode%E8%AE%BE%E7%BD%AE%E8%87%AA%E5%8A%A8%E5%A4%8D%E5%88%B6%E9%BC%A0%E6%A0%87%E9%80%89%E4%B8%AD%E5%86%85%E5%AE%B9(%E4%BA%B2%E6%B5%8B%E6%9C%89%E6%95%88)-2021.12.12/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="方法：vscode终端设置`ctrl e`快捷键(亲测有效)-2021.12.12">
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12">
                         
-                        <span class="card-title">方法：vscode终端设置`ctrl e`快捷键(亲测有效)-2021.12.12</span>
+                        <span class="card-title">技巧：vscode设置自动复制鼠标选中内容(亲测有效)-2021.12.12</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
