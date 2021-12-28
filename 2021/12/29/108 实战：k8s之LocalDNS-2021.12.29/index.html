@@ -1,0 +1,1542 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：k8s之LocalDNS-2021.12.29, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：k8s之LocalDNS-2021.12.29 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：k8s之LocalDNS-2021.12.29</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-12-29
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：k8s之LocalDNS-2021-12-29"><a href="#实战：k8s之LocalDNS-2021-12-29" class="headerlink" title="实战：k8s之LocalDNS-2021.12.29"></a>实战：k8s之LocalDNS-2021.12.29</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211220211335.png"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p><code>2021.12.28-实验软件-nodelocaldns</code></p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1cl474vfrXvz0hPya1EDIlQ">https://pan.baidu.com/s/1cl474vfrXvz0hPya1EDIlQ</a><br>提取码：lpz1 </p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229051822258.png" alt="image-20211229051822258"></p>
+<h2 id="1、DNS-优化"><a href="#1、DNS-优化" class="headerlink" title="1、DNS 优化"></a>1、DNS 优化</h2><p>前面我们讲解了<strong>在 Kubernetes 中我们可以使用 CoreDNS 来进行集群的域名解析</strong>，但是如果在<strong>集群规模较大并发较高</strong>的情况下我们仍然需要对 DNS 进行优化，典型的就是大家比较熟悉的 **<u>CoreDNS 会出现超时5s</u>**的情况。</p>
+<h2 id="2、超时原因"><a href="#2、超时原因" class="headerlink" title="2、超时原因"></a>2、超时原因</h2><blockquote>
+<p>:warning: 老师说这里的超时5s故障不是很好去复现，这里解释下超时原因。</p>
+</blockquote>
+<p>在 iptables 模式下（默认情况下，<strong>但实际在ipve下，也是解决不了这个超时问题的！</strong>），<strong>每个服务的 kube-proxy 在主机网络名称空间的 nat 表中创建一些 iptables 规则。</strong></p>
+<p>比如在集群中具有两个 DNS 服务器实例的 kube-dns 服务，其相关规则大致如下所示：</p>
+<p>额，自己对iptables的知识不是很熟悉啊。。。😥😥，硬着头皮看下把。。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">(1) -A PREROUTING -m comment --comment <span class="string">&quot;kubernetes service portals&quot;</span> -j KUBE-SERVICES</span><br><span class="line">&lt;...&gt;</span><br><span class="line">(2) -A KUBE-SERVICES -d 10.96.0.10/32 -p udp -m comment --comment <span class="string">&quot;kube-system/kube-dns:dns cluster IP&quot;</span> -m udp --dport 53 -j KUBE-SVC-TCOU7JCQXEZGVUNU</span><br><span class="line">&lt;...&gt;</span><br><span class="line">(3) -A KUBE-SVC-TCOU7JCQXEZGVUNU -m comment --comment <span class="string">&quot;kube-system/kube-dns:dns&quot;</span> -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-LLLB6FGXBLX6PZF7</span><br><span class="line">(4) -A KUBE-SVC-TCOU7JCQXEZGVUNU -m comment --comment <span class="string">&quot;kube-system/kube-dns:dns&quot;</span> -j KUBE-SEP-LRVEW52VMYCOUSMZ</span><br><span class="line">&lt;...&gt;</span><br><span class="line">(5) -A KUBE-SEP-LLLB6FGXBLX6PZF7 -p udp -m comment --comment <span class="string">&quot;kube-system/kube-dns:dns&quot;</span> -m udp -j DNAT --to-destination 10.32.0.6:53</span><br><span class="line">&lt;...&gt;</span><br><span class="line">(6) -A KUBE-SEP-LRVEW52VMYCOUSMZ -p udp -m comment --comment <span class="string">&quot;kube-system/kube-dns:dns&quot;</span> -m udp -j DNAT --to-destination 10.32.0.7:53</span><br><span class="line"></span><br><span class="line"><span class="comment">#说明：</span></span><br><span class="line">-j代表跳转</span><br></pre></td></tr></table></figure>
+
+<p>我们知道每个 Pod 的 <code>/etc/resolv.conf</code> 文件中都有填充的 <code>nameserver 10.96.0.10</code> 这个条目。所以来自 Pod 的 DNS 查找请求将发送到 <code>10.96.0.10</code>，这是 kube-dns 服务的 ClusterIP 地址。</p>
+<p>由于 <code>(1)</code> 请求进入 <code>KUBE-SERVICE</code> 链，然后匹配规则 <code>(2)</code>，最后根据 <code>(3)</code> 的 random 随机模式，跳转到 (5) 或 (6) 条目，将请求 UDP 数据包的目标 IP 地址修改为 DNS 服务器的<code>实际</code> IP 地址，这是通过 <code>DNAT</code> 完成的。其中 <code>10.32.0.6</code> 和 <code>10.32.0.7</code> 是我们集群中 CoreDNS 的两个 Pod 副本的 IP 地址。</p>
+<h3 id="2-1-内核中的-DNAT"><a href="#2-1-内核中的-DNAT" class="headerlink" title="2.1 内核中的 DNAT"></a>2.1 内核中的 DNAT</h3><p><code>DNAT</code> 的主要职责是同时更改传出数据包的目的地，响应数据包的源，并确保对所有后续数据包进行相同的修改。后者严重依赖于<strong>连接跟踪机制</strong>，也称为 <code>conntrack</code>，它被实现为<strong>内核模块</strong>。<code>conntrack</code> 会跟踪系统中正在进行的网络连接。</p>
+<p><code>conntrack(相当于一张表)</code> 中的每个连接都由两个元组表示，一个元组用于<strong>原始请求（IP_CT_DIR_ORIGINAL）</strong>，另一个元组用于<strong>答复（IP_CT_DIR_REPLY）</strong>。对于 UDP，每个元组都由源 IP 地址，源端口以及目标 IP 地址和目标端口组成，<strong>答复元组包含存储在src 字段中的目标的真实地址。</strong></p>
+<p>例如，如果 IP 地址为 <code>10.40.0.17</code> 的 Pod 向 kube-dns 的 ClusterIP 发送一个请求，该请求被转换为 <code>10.32.0.6</code>，则将创建以下元组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">原始：src = 10.40.0.17 dst = 10.96.0.10 sport = 53378 dport = 53</span><br><span class="line">回复：src = 10.32.0.6 dst = 10.40.0.17 sport = 53 dport = 53378</span><br></pre></td></tr></table></figure>
+
+<p><strong>通过这些条目内核可以相应地修改任何相关数据包的目的地和源地址，而无需再次遍历 DNAT 规则</strong>。此外，它将知道如何修改回复以及应将回复发送给谁。创建 <code>conntrack</code> 条目后，将首先对其进行确认，然后如果没有已确认的 <code>conntrack</code> 条目具有相同的原始元组或回复元组，则内核将尝试确认该条目。<code>conntrack</code> 创建和 DNAT 的简化流程如下所示：</p>
+<p>下面这个，理解起来有些模糊😥😥</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201205160452.png" alt="conntrack"></p>
+<h3 id="2-2-问题"><a href="#2-2-问题" class="headerlink" title="2.2 问题"></a>2.2 问题</h3><p>😥😥 ==o,shift，自己这一块的知识点也是盲区啊。==</p>
+<p>DNS 客户端 (glibc 或 musl libc) 会<strong>并发请求</strong> A 和 AAAA 记录，跟 DNS Server 通信自然会先 connect (<strong>建立fd</strong>)，后面请求报文使用这个 fd 来发送，由于 UDP 是无状态协议，connect 时并不会创建 <code>conntrack</code> 表项, 而并发请求的 A 和 AAAA 记录默认使用同一个 fd 发包，这时它们源 Port 相同，当并发发包时，两个包都还没有被插入 conntrack 表项，所以 netfilter 会为它们分别创建 conntrack 表项，而集群内请求 CoreDNS 都是访问的 CLUSTER-IP，报文最终会被 DNAT 成一个具体的 Pod IP，当两个包被 DNAT 成同一个 IP，最终它们的五元组就相同了，在最终插入的时候后面那个包就会被丢掉，如果 DNS 的 Pod 副本只有一个实例的情况就很容易发生，现象就是 DNS 请求超时，<strong>客户端默认策略是等待 5s 自动重试</strong>，如果重试成功，我们看到的现象就是 DNS 请求有 5s 的延时。</p>
+<blockquote>
+<p>具体原因可以参考 weave works 总结的文章 <a target="_blank" rel="noopener" href="https://www.weave.works/blog/racy-conntrack-and-dns-lookup-timeouts">Racy conntrack and DNS lookup timeouts</a>。</p>
+</blockquote>
+<ul>
+<li>只有多个线程或进程，并发从同一个 socket 发送相同五元组的 UDP 报文时，才有一定概率会发生</li>
+<li>glibc、musl（alpine linux 的 libc 库）都使用 <code>parallel query</code>, 就是并发发出多个查询请求，因此很容易碰到这样的冲突，造成查询请求被丢弃</li>
+<li><strong>由于 ipvs 也使用了 conntrack, 使用 kube-proxy 的 ipvs 模式，并不能避免这个问题</strong></li>
+</ul>
+<h2 id="3、解决方法"><a href="#3、解决方法" class="headerlink" title="3、解决方法"></a>3、解决方法</h2><p>要彻底解决这个问题最好当然是<strong>内核上去 FIX 掉这个 BUG</strong>，除了这种方法之外我们还可以使用其他方法来进行规避，<strong>我们可以避免相同五元组 DNS请求的并发。</strong></p>
+<p>在 <code>resolv.conf</code> 中就有两个相关的参数可以进行配置：</p>
+<ul>
+<li><code>single-request-reopen</code>：发送 A 类型请求和 AAAA 类型请求使用不同的源端口，这样两个请求在 conntrack 表中不占用同一个表项，从而避免冲突。</li>
+<li><code>single-request</code>：避免并发，改为串行发送 A 类型和 AAAA 类型请求。没有了并发，从而也避免了冲突。</li>
+</ul>
+<p>要给容器的 <code>resolv.conf</code> 加上 options 参数，有几个办法：</p>
+<ol>
+<li><p>在容器的 <code>ENTRYPOINT</code> 或者 <code>CMD</code> 脚本中，执行 <code>/bin/echo &#39;options single-request-reopen&#39; &gt;&gt; /etc/resolv.conf</code>(不推荐)</p>
+</li>
+<li><p>在 Pod 的 postStart hook 中添加：(不推荐)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lifecycle:</span><br><span class="line">  postStart:</span><br><span class="line">    <span class="built_in">exec</span>:</span><br><span class="line">      <span class="built_in">command</span>:</span><br><span class="line">      - /bin/sh</span><br><span class="line">      - -c</span><br><span class="line">      - <span class="string">&quot;/bin/echo &#x27;options single-request-reopen&#x27; &gt;&gt; /etc/resolv.conf      </span></span><br></pre></td></tr></table></figure></li>
+<li><p>使用 <code>template.spec.dnsConfig</code> 配置:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">template:</span><br><span class="line">  spec:</span><br><span class="line">    dnsConfig:</span><br><span class="line">      options:</span><br><span class="line">        - name: single-request-reopen</span><br></pre></td></tr></table></figure></li>
+<li><p>使用 ConfigMap 覆盖 Pod 里面的 <code>/etc/resolv.conf</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># configmap</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">data:</span><br><span class="line">  resolv.conf: |</span><br><span class="line">    nameserver 1.2.3.4</span><br><span class="line">    search default.svc.cluster.local svc.cluster.local cluster.local</span><br><span class="line">    options ndots:5 single-request-reopen timeout:1</span><br><span class="line">kind: ConfigMap</span><br><span class="line">metadata:</span><br><span class="line">  name: resolvconf</span><br><span class="line">---</span><br><span class="line"><span class="comment"># Pod Spec</span></span><br><span class="line">spec:</span><br><span class="line">    volumeMounts:</span><br><span class="line">    - name: resolv-conf</span><br><span class="line">      mountPath: /etc/resolv.conf</span><br><span class="line">      subPath: resolv.conf  <span class="comment"># 在某个目录下面挂载一个文件（保证不覆盖当前目录）需要使用subPath -&gt; 不支持热更新</span></span><br><span class="line">...</span><br><span class="line">  volumes:</span><br><span class="line">  - name: resolv-conf</span><br><span class="line">    configMap:</span><br><span class="line">      name: resolvconf</span><br><span class="line">      items:</span><br><span class="line">      - key: resolv.conf</span><br><span class="line">        path: resolv.conf</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>上面的方法在一定程度上可以解决 DNS 超时的问题，但更好的方式是<strong>使用本地 DNS 缓存</strong>，容器的 DNS 请求都发往<strong>本地的 DNS 缓存服务</strong>，也就不需要走 DNAT，当然也不会发生 <code>conntrack</code> 冲突了，而且还可以有效提升 CoreDNS 的性能瓶颈。</p>
+<h2 id="4、性能测试"><a href="#4、性能测试" class="headerlink" title="4、性能测试"></a>4、性能测试</h2><p>💖 实战开始</p>
+<p>这里我们使用一个简单的 golang 程序来测试下使用本地 DNS 缓存的前后性能。代码如下所示：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// main.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">    <span class="string">&quot;context&quot;</span></span><br><span class="line">    <span class="string">&quot;flag&quot;</span></span><br><span class="line">    <span class="string">&quot;fmt&quot;</span></span><br><span class="line">    <span class="string">&quot;net&quot;</span></span><br><span class="line">    <span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line">    <span class="string">&quot;time&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> host <span class="keyword">string</span></span><br><span class="line"><span class="keyword">var</span> connections <span class="keyword">int</span></span><br><span class="line"><span class="keyword">var</span> duration <span class="keyword">int64</span></span><br><span class="line"><span class="keyword">var</span> limit <span class="keyword">int64</span></span><br><span class="line"><span class="keyword">var</span> timeoutCount <span class="keyword">int64</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">    flag.StringVar(&amp;host, <span class="string">&quot;host&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;Resolve host&quot;</span>)</span><br><span class="line">    flag.IntVar(&amp;connections, <span class="string">&quot;c&quot;</span>, <span class="number">100</span>, <span class="string">&quot;Connections&quot;</span>)</span><br><span class="line">    flag.Int64Var(&amp;duration, <span class="string">&quot;d&quot;</span>, <span class="number">0</span>, <span class="string">&quot;Duration(s)&quot;</span>)</span><br><span class="line">    flag.Int64Var(&amp;limit, <span class="string">&quot;l&quot;</span>, <span class="number">0</span>, <span class="string">&quot;Limit(ms)&quot;</span>)</span><br><span class="line">    flag.Parse()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> count <span class="keyword">int64</span> = <span class="number">0</span></span><br><span class="line">    <span class="keyword">var</span> errCount <span class="keyword">int64</span> = <span class="number">0</span></span><br><span class="line">    pool := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">interface</span>&#123;&#125;, connections)</span><br><span class="line">    exit := <span class="built_in">make</span>(<span class="keyword">chan</span> <span class="keyword">bool</span>)</span><br><span class="line">    <span class="keyword">var</span> (</span><br><span class="line">        min <span class="keyword">int64</span> = <span class="number">0</span></span><br><span class="line">        max <span class="keyword">int64</span> = <span class="number">0</span></span><br><span class="line">        sum <span class="keyword">int64</span> = <span class="number">0</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">        time.Sleep(time.Second * time.Duration(duration))</span><br><span class="line">        exit &lt;- <span class="literal">true</span></span><br><span class="line">    &#125;()</span><br><span class="line"></span><br><span class="line">endD:</span><br><span class="line">    <span class="keyword">for</span> &#123;</span><br><span class="line">        <span class="keyword">select</span> &#123;</span><br><span class="line">        <span class="keyword">case</span> pool &lt;- <span class="literal">nil</span>:</span><br><span class="line">            <span class="keyword">go</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">                <span class="keyword">defer</span> <span class="function"><span class="keyword">func</span><span class="params">()</span></span> &#123;</span><br><span class="line">                    &lt;-pool</span><br><span class="line">                &#125;()</span><br><span class="line">                resolver := &amp;net.Resolver&#123;&#125;</span><br><span class="line">                now := time.Now()</span><br><span class="line">                _, err := resolver.LookupIPAddr(context.Background(), host)</span><br><span class="line">                use := time.Since(now).Nanoseconds() / <span class="keyword">int64</span>(time.Millisecond)</span><br><span class="line">                <span class="keyword">if</span> min == <span class="number">0</span> || use &lt; min &#123;</span><br><span class="line">                    min = use</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> use &gt; max &#123;</span><br><span class="line">                    max = use</span><br><span class="line">                &#125;</span><br><span class="line">                sum += use</span><br><span class="line">                <span class="keyword">if</span> limit &gt; <span class="number">0</span> &amp;&amp; use &gt;= limit &#123;</span><br><span class="line">                    timeoutCount++</span><br><span class="line">                &#125;</span><br><span class="line">                atomic.AddInt64(&amp;count, <span class="number">1</span>)</span><br><span class="line">                <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">                    fmt.Println(err.Error())</span><br><span class="line">                    atomic.AddInt64(&amp;errCount, <span class="number">1</span>)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;()</span><br><span class="line">        <span class="keyword">case</span> &lt;-exit:</span><br><span class="line">            <span class="keyword">break</span> endD</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    fmt.Printf(<span class="string">&quot;request count：%d\nerror count：%d\n&quot;</span>, count, errCount)</span><br><span class="line">    fmt.Printf(<span class="string">&quot;request time：min(%dms) max(%dms) avg(%dms) timeout(%dn)\n&quot;</span>, min, max, sum/count, timeoutCount)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>首先配置好 golang 环境，然后直接构建上面的测试应用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go build -o testdns .</span><br></pre></td></tr></table></figure>
+
+<p>至于，如何构建自己的go环境，请查看另外一片文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554/article/details/115671461">Go软件安装-已成功测试-20210413</a>，<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554/article/details/115670762">Vscode构建Go编程环境-已成功测试-20210413</a></p>
+<p>需要注意的问题，请看下文<code>注意1：</code>。</p>
+<p>构建完成后生成一个 testdns 的二进制文件，然后我们将这个二进制文件拷贝到任意一个 Pod 中去进行测试：</p>
+<p>首先这里我部署一个nginx.yaml：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#vim nginx.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:1.7.9</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#kubectl apply -f nginx.yaml</span></span><br><span class="line"><span class="string">deployment.apps/nginx</span> <span class="string">created</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#kubectl get po</span></span><br><span class="line"><span class="string">NAME</span>                     <span class="string">READY</span>   <span class="string">STATUS</span>    <span class="string">RESTARTS</span>   <span class="string">AGE</span></span><br><span class="line"><span class="string">nginx-5d59d67564-k9m2k</span>   <span class="number">1</span><span class="string">/1</span>     <span class="string">Running</span>   <span class="number">0</span>          <span class="string">14s</span></span><br><span class="line"><span class="string">nginx-5d59d67564-lbkwx</span>   <span class="number">1</span><span class="string">/1</span>     <span class="string">Running</span>   <span class="number">0</span>          <span class="string">14s</span>        </span><br></pre></td></tr></table></figure>
+
+<p>拷贝完成后进入这个测试的 Pod 中去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 go]<span class="comment">#kubectl cp testdns nginx-5d59d67564-k9m2k:/root/</span></span><br><span class="line">[root@master1 go]<span class="comment">#kubectl exec -it nginx-5d59d67564-k9m2k -- bash</span></span><br><span class="line">root@nginx-5d59d67564-k9m2k:/<span class="comment"># ls -l  /root/testdns</span></span><br><span class="line">-rwxr-xr-x 1 root root 2903854 Dec 28 07:18 /root/testdns</span><br><span class="line">root@nginx-5d59d67564-k9m2k:/<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们再部署一个svc：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#cat service.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-service</span><br><span class="line">spec:</span><br><span class="line">  ports:</span><br><span class="line">  - name: http</span><br><span class="line">    port: 5000</span><br><span class="line">    protocol: TCP</span><br><span class="line">    targetPort: 80 <span class="comment">#相当于给上面那个nginx暴露服务</span></span><br><span class="line">  selector:</span><br><span class="line">    app: nginx</span><br><span class="line">  <span class="built_in">type</span>: ClusterIP <span class="comment">#默认为ClusterIP模式</span></span><br><span class="line">  </span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f service.yaml</span></span><br><span class="line">service-service/nginx created</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get svc nginx-service</span></span><br><span class="line">NAME            TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE</span><br><span class="line">nginx-service   ClusterIP   10.106.35.68   &lt;none&gt;        5000/TCP   58s</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#curl 10.106.35.68:5000 #可以简单来测试下</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;title&gt;Welcome to nginx!&lt;/title&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">    body &#123;</span><br><span class="line">        width: 35em;</span><br><span class="line">        margin: 0 auto;</span><br><span class="line">        font-family: Tahoma, Verdana, Arial, sans-serif;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;</span><br><span class="line">&lt;p&gt;If you see this page, the nginx web server is successfully installed and</span><br><span class="line">working. Further configuration is required.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;For online documentation and support please refer to</span><br><span class="line">&lt;a href=<span class="string">&quot;http://nginx.org/&quot;</span>&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;</span><br><span class="line">Commercial support is available at</span><br><span class="line">&lt;a href=<span class="string">&quot;http://nginx.com/&quot;</span>&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;</span><br><span class="line"></span><br><span class="line">&lt;p&gt;&lt;em&gt;Thank you <span class="keyword">for</span> using nginx.&lt;/em&gt;&lt;/p&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后我们执行 testdns 程序来进行<strong>压力测试</strong>，比如执行 200 个并发，持续 30 秒：</p>
+<p><strong>:warning:当然，做dns的压力测试，线上应该会有很多的程序的。😋</strong>，本次使用老师go写的代码来进行压测。</p>
+<p>下面这个为老师提供的笔记里面的数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对 nginx-service.default	 这个地址进行解析</span></span><br><span class="line">root@svc-demo-546b7bcdcf-6xsnr:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">request count：12533</span><br><span class="line">error count：5</span><br><span class="line">request time：min(5ms) max(16871ms) avg(425ms) timeout(475n)</span><br><span class="line">root@svc-demo-546b7bcdcf-6xsnr:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">request count：10058</span><br><span class="line">error count：3</span><br><span class="line">request time：min(4ms) max(12347ms) avg(540ms) timeout(487n)</span><br><span class="line">root@svc-demo-546b7bcdcf-6xsnr:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">lookup nginx-service.default on 10.96.0.10:53: no such host</span><br><span class="line">request count：12242</span><br><span class="line">error count：2</span><br><span class="line">request time：min(3ms) max(12206ms) avg(478ms) timeout(644n)</span><br><span class="line">root@svc-demo-546b7bcdcf-6xsnr:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：11008</span><br><span class="line">error count：0</span><br><span class="line">request time：min(3ms) max(11110ms) avg(496ms) timeout(478n)</span><br><span class="line">root@svc-demo-546b7bcdcf-6xsnr:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：9141</span><br><span class="line">error count：0</span><br><span class="line">request time：min(4ms) max(11198ms) avg(607ms) timeout(332n)</span><br><span class="line">root@svc-demo-546b7bcdcf-6xsnr:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：9126</span><br><span class="line">error count：0</span><br><span class="line">request time：min(4ms) max(11554ms) avg(613ms) timeout(197n)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到大部分平均耗时都是在 500ms 左右，这个性能是非常差的，<strong>而且还有部分解析失败的条目</strong>。接下来我们就来尝试使用 <code>NodeLocal DNSCache</code> 来提升 DNS 的性能和可靠性。</p>
+<p>😂注意：自己本次测试现象数据</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">root@nginx-5d59d67564-k9m2k:~<span class="comment"># ./testdns -host nginx-service.default.svc.cluster.local -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：34609</span><br><span class="line">error count：0</span><br><span class="line">request time：min(4ms) max(5191ms) avg(166ms) timeout(2n)</span><br><span class="line">root@nginx-5d59d67564-k9m2k:~<span class="comment"># ./testdns -host nginx-service.default.svc.cluster.local -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：31942</span><br><span class="line">error count：0</span><br><span class="line">request time：min(3ms) max(1252ms) avg(183ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-k9m2k:~<span class="comment"># ./testdns -host nginx-service.default.svc.cluster.local -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：31311</span><br><span class="line">error count：0</span><br><span class="line">request time：min(4ms) max(1321ms) avg(187ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-k9m2k:~<span class="comment">#</span></span><br><span class="line"><span class="comment">#我们可以看到大部分平均耗时都是在 160ms 左右，但是没有看到有看到解析失败的条目</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#并发数改为1000再次测试：</span></span><br><span class="line">root@nginx-5d59d67564-k9m2k:~<span class="comment"># ./testdns -host nginx-service.default.svc.cluster.local -c 1000 -d 30 -l 5000</span></span><br><span class="line">request count：24746</span><br><span class="line">error count：0</span><br><span class="line">request time：min(7ms) max(7273ms) avg(1138ms) timeout(52n)</span><br><span class="line">root@nginx-5d59d67564-k9m2k:~<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>😘 注意：老师本次测试的现象数据</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228161345568.png" alt="image-20211228161345568"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228161412992.png" alt="image-20211228161412992"></p>
+<blockquote>
+<p>这个i/o timeout 可能在你的线上环境出现，因为你线上的业务并发可能都是很高的。</p>
+</blockquote>
+<ul>
+<li><p>注意：dns压力测试不一定能测试成功，主要还和你的环境有关系。</p>
+</li>
+<li><p>注意：-l参数含义，应该是超过5s的话，有点模糊不清。。。</p>
+</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228160519567.png" alt="image-20211228160519567"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228160537753.png" alt="image-20211228160537753"></p>
+<h2 id="5、NodeLocal-DNSCache"><a href="#5、NodeLocal-DNSCache" class="headerlink" title="5、NodeLocal DNSCache"></a>5、NodeLocal DNSCache</h2><p><strong><code>NodeLocal DNSCache</code> 通过在集群节点上运行一个 DaemonSet 来提高集群 DNS 性能和可靠性。</strong>处于 ClusterFirst 的 DNS 模式下的 Pod 可以连接到 kube-dns 的 serviceIP 进行 DNS 查询，<strong>通过 kube-proxy 组件添加的 iptables 规则将其转换为 CoreDNS 端点</strong>。<strong>通过在每个集群节点上运行 DNS 缓存，<code>NodeLocal DNSCache</code> 可以缩短 DNS 查找的延迟时间、使 DNS 查找时间更加一致，以及减少发送到 kube-dns 的 DNS 查询次数。</strong></p>
+<p>在集群中运行 <code>NodeLocal DNSCache</code> 有如下几个好处：</p>
+<ul>
+<li>如果本地没有 CoreDNS 实例，<strong>则具有最高 DNS QPS 的 Pod 可能必须到另一个节点进行解析</strong>，使用 <code>NodeLocal DNSCache</code> 后，拥有本地缓存将有助于改善延迟。</li>
+<li><strong>跳过 iptables DNAT 和连接跟踪</strong>将有助于减少 conntrack 竞争并避免 <strong>UDP DNS 条目填满 conntrack 表</strong>（上面提到的5s超时问题就是这个原因造成的） <code>注意：这里改成TCP的话，也是可以有效果的</code></li>
+<li>从本地缓存代理到 kube-dns 服务的连接可以升级到 TCP，TCP conntrack 条目将在连接关闭时被删除，而 UDP 条目必须超时过后(默认 <code>nfconntrackudp_timeout</code> 是 30 秒)</li>
+<li>将 DNS 查询从 UDP 升级到 TCP 将减少归因于丢弃的 UDP 数据包和 DNS 超时的尾部等待时间，通常长达 30 秒（3 次重试+ 10 秒超时）</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201205165618.png" alt="NodeLocal"></p>
+<p>要安装 <code>NodeLocal DNSCache</code> 也非常简单，直接获取官方的资源清单即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/kubernetes/kubernetes/raw/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#wget https://github.com/kubernetes/kubernetes/raw/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml</span></span><br><span class="line">--2021-12-28 16:38:36--  https://github.com/kubernetes/kubernetes/raw/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml</span><br><span class="line">Resolving github.com (github.com)... 20.205.243.166</span><br><span class="line">Connecting to github.com (github.com)|20.205.243.166|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response... 302 Found</span><br><span class="line">Location: https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml [following]</span><br><span class="line">--2021-12-28 16:38:36--  https://raw.githubusercontent.com/kubernetes/kubernetes/master/cluster/addons/dns/nodelocaldns/nodelocaldns.yaml</span><br><span class="line">Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.108.133, 185.199.111.133, 185.199.109.133, ...</span><br><span class="line">Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.108.133|:443... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 5334 (5.2K) [text/plain]</span><br><span class="line">Saving to: ‘nodelocaldns.yaml’</span><br><span class="line"></span><br><span class="line">100%[===================================================================&gt;] 5,334       --.-K/s   <span class="keyword">in</span> 0.1s</span><br><span class="line"></span><br><span class="line">2021-12-28 16:38:37 (51.4 KB/s) - ‘nodelocaldns.yaml’ saved [5334/5334]</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#ll nodelocaldns.yaml</span></span><br><span class="line">-rw-r--r-- 1 root root 5334 Dec 28 16:38 nodelocaldns.yaml</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>有可能因为网络问题下载失败，这里可以稍微等待下再次尝试。</p>
+<p>该资源清单文件中包含几个变量值得注意，其中：</p>
+<ul>
+<li><code>__PILLAR__DNS__SERVER__</code> ：表示 kube-dns 这个 Service 的 ClusterIP，可以通过命令 <code>kubectl get svc -n kube-system | grep kube-dns | awk&#39;&#123; print $3 &#125;&#39;</code> 获取（我们这里就是 <code>10.96.0.10</code>）</li>
+<li><code>__PILLAR__LOCAL__DNS__</code>：表示 DNSCache 本地的 IP，默认为 <code>169.254.20.10</code></li>
+<li><code>__PILLAR__DNS__DOMAIN__</code>：表示集群域，默认就是 <code>cluster.local</code></li>
+</ul>
+<p>另外还有两个参数 <code>__PILLAR__CLUSTER__DNS__</code> 和 <code>__PILLAR__UPSTREAM__SERVERS__</code>，这两个参数会通过镜像 1.21.1 版本去进行自动配置，对应的值来源于 kube-dns 的 ConfigMap 和定制的 <code>Upstream Server</code> 配置。直接执行如下所示的命令即可安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sed <span class="string">&#x27;s/k8s.gcr.io\/dns/cnych/g</span></span><br><span class="line"><span class="string">s/__PILLAR__DNS__SERVER__/10.96.0.10/g</span></span><br><span class="line"><span class="string">s/__PILLAR__LOCAL__DNS__/169.254.20.10/g</span></span><br><span class="line"><span class="string">s/__PILLAR__DNS__DOMAIN__/cluster.local/g&#x27;</span> nodelocaldns.yaml |</span><br><span class="line">kubectl apply -f -</span><br><span class="line"></span><br><span class="line"><span class="comment">#注意：这个使用的是老师的镜像中转地址cnych。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>可以通过如下命令来查看对应的 Pod 是否已经启动成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -nkube-system -l k8s-app=node-local-dns -owide</span></span><br><span class="line">NAME                   READY   STATUS    RESTARTS   AGE    IP            NODE      NOMINATED NODE   READINESS GATES</span><br><span class="line">node-local-dns-2tbfz   1/1     Running   0          100s   172.29.9.51   master1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">node-local-dns-7xv6x   1/1     Running   0          100s   172.29.9.53   node2     &lt;none&gt;           &lt;none&gt;</span><br><span class="line">node-local-dns-rxhww   1/1     Running   0          100s   172.29.9.52   node1     &lt;none&gt;           &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们导出来一个pod看下情况：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po node-local-dns-2tbfz -nkube-system -oyaml</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到镜像地址被修改过来了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228205450149.png"></p>
+<p>这里可以看到显示从169.254.20.10解析地址，如果没有再去找10.96.0.10的。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228205650235.png" alt="image-20211228205650235"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228210825748.png" alt="image-20211228210825748"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228210904397.png" alt="image-20211228210904397"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228211103262.png" alt="image-20211228211103262"></p>
+<p>:warning: 需要注意的是这里使用 DaemonSet 部署 node-local-dns 使用了 <code>hostNetwork=true</code>，会占用宿主机的 8080 端口，所以需要保证该端口未被占用。</p>
+<p>但是到这里还没有完，如果 kube-proxy 组件使用的是 ipvs 模式的话我们还需要修改 kubelet 的 <code>--cluster-dns</code> 参数，将其指向 <code>169.254.20.10</code>，Daemonset 会在每个节点创建一个网卡来绑这个 IP，Pod 向本节点这个 IP 发 DNS 请求，缓存没有命中的时候才会再代理到上游集群 DNS 进行查询。<strong>iptables 模式下 Pod 还是向原来的集群 DNS 请求，节点上有这个 IP 监听，会被本机拦截，再请求集群上游 DNS，所以不需要更改 <code>--cluster-dns</code> 参数。</strong></p>
+<blockquote>
+<p>:warning:如果担心线上环境修改 <code>--cluster-dns</code> 参数会产生影响，我们也可以直接在新部署的 Pod 中通过 dnsConfig 配置使用新的 localdns 的地址来进行解析。</p>
+</blockquote>
+<p>由于我这里使用的是 kubeadm 安装的 1.22 版本的集群，所以我们只需要替换节点上 <code>/var/lib/kubelet/config.yaml</code> 文件中的 clusterDNS 这个参数值，然后重启即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/10.96.0.10/169.254.20.10/g&#x27;</span> /var/lib/kubelet/config.yaml</span><br><span class="line">systemctl daemon-reload &amp;&amp; systemctl restart kubelet</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229060843178.png" alt="image-20211229060843178"></p>
+<p>注意：all节点均要配置：💖</p>
+<p>待 node-local-dns 安装配置完成后，我们可以部署一个新的 Pod 来验证下：</p>
+<p>[root@master1 ~]#vim test-node-local-dns.yaml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># test-node-local-dns.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">metadata:</span><br><span class="line">  name: test-node-local-dns</span><br><span class="line">spec:</span><br><span class="line">  containers:</span><br><span class="line">  - name: local-dns</span><br><span class="line">    image: busybox</span><br><span class="line">    <span class="built_in">command</span>: [<span class="string">&quot;/bin/sh&quot;</span>, <span class="string">&quot;-c&quot;</span>, <span class="string">&quot;sleep 60m&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>直接部署：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#vim test-node-local-dns.yaml</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f test-node-local-dns.yaml</span></span><br><span class="line">pod/test-node-local-dns created</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it test-node-local-dns -- sh</span></span><br><span class="line">/ <span class="comment"># cat /etc/resolv.conf</span></span><br><span class="line">search default.svc.cluster.local svc.cluster.local cluster.local</span><br><span class="line">nameserver 169.254.20.10</span><br><span class="line">options ndots:5</span><br><span class="line">/ <span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到 nameserver 已经变成 <code>169.254.20.10</code> 了，<strong>当然对于之前的历史 Pod 要想使用 node-local-dns 则需要重建。</strong></p>
+<p>接下来我们重建前面压力测试 DNS 的 Pod，重新将 testdns 二进制文件拷贝到 Pod 中去：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl delete -f nginx.yaml</span></span><br><span class="line">deployment.apps <span class="string">&quot;nginx&quot;</span> deleted</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f nginx.yaml</span></span><br><span class="line">deployment.apps/nginx created</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE</span><br><span class="line">nginx-5d59d67564-kgd4q   1/1     Running   0          22s</span><br><span class="line">nginx-5d59d67564-lxnt2   1/1     Running   0          22s</span><br><span class="line">test-node-local-dns      1/1     Running   0          5m50s</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl cp go/testdns nginx-5d59d67564-kgd4q:/root</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it nginx-5d59d67564-kgd4q -- bash</span></span><br><span class="line">root@nginx-5d59d67564-kgd4q:/<span class="comment"># cd /root/</span></span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ls</span></span><br><span class="line">testdns</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># cat /etc/resolv.conf</span></span><br><span class="line">search default.svc.cluster.local svc.cluster.local cluster.local</span><br><span class="line">nameserver 169.254.20.10</span><br><span class="line">options ndots:5</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#自己本次的测试数据</span></span><br><span class="line"><span class="comment">#再次压测</span></span><br><span class="line"><span class="comment">#先来个200个并发，测试三次</span></span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：47344</span><br><span class="line">error count：0</span><br><span class="line">request time：min(1ms) max(976ms) avg(125ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：49744</span><br><span class="line">error count：0</span><br><span class="line">request time：min(1ms) max(540ms) avg(118ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：55929</span><br><span class="line">error count：0</span><br><span class="line">request time：min(2ms) max(463ms) avg(105ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment">#</span></span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#再来个1000个并发，测试三次</span></span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ./testdns -host nginx-service.default -c 1000 -d 30 -l 5000</span></span><br><span class="line">request count：42177</span><br><span class="line">error count：0</span><br><span class="line">request time：min(16ms) max(2627ms) avg(690ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ./testdns -host nginx-service.default -c 1000 -d 30 -l 5000</span></span><br><span class="line">request count：45456</span><br><span class="line">error count：0</span><br><span class="line">request time：min(29ms) max(2484ms) avg(650ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment"># ./testdns -host nginx-service.default -c 1000 -d 30 -l 5000</span></span><br><span class="line">request count：45713</span><br><span class="line">error count：0</span><br><span class="line">request time：min(3ms) max(1698ms) avg(647ms) timeout(0n)</span><br><span class="line">root@nginx-5d59d67564-kgd4q:~<span class="comment">#</span></span><br><span class="line"><span class="comment">#注意：这个1000并发测试效果就很明显了</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229061244702.png" alt="image-20211229061244702"></p>
+<p>😘 老师笔记的测试数据：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 拷贝到重建的 Pod 中</span></span><br><span class="line">$ kubectl cp testdns svc-demo-546b7bcdcf-b5mkt:/root</span><br><span class="line">$ kubectl <span class="built_in">exec</span> -it svc-demo-546b7bcdcf-b5mkt -- /bin/bash</span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:/<span class="comment"># cat /etc/resolv.conf</span></span><br><span class="line">nameserver 169.254.20.10  <span class="comment"># 可以看到 nameserver 已经更改</span></span><br><span class="line">search default.svc.cluster.local svc.cluster.local cluster.local</span><br><span class="line">options ndots:5</span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:/<span class="comment"># cd /root</span></span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:~<span class="comment"># ls</span></span><br><span class="line">testdns</span><br><span class="line"><span class="comment"># 重新执行压力测试</span></span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：16297</span><br><span class="line">error count：0</span><br><span class="line">request time：min(2ms) max(5270ms) avg(357ms) timeout(8n)</span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：15982</span><br><span class="line">error count：0</span><br><span class="line">request time：min(2ms) max(5360ms) avg(373ms) timeout(54n)</span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：25631</span><br><span class="line">error count：0</span><br><span class="line">request time：min(3ms) max(958ms) avg(232ms) timeout(0n)</span><br><span class="line">root@svc-demo-546b7bcdcf-b5mkt:~<span class="comment"># ./testdns -host nginx-service.default -c 200 -d 30 -l 5000</span></span><br><span class="line">request count：23388</span><br><span class="line">error count：0</span><br><span class="line">request time：min(6ms) max(1130ms) avg(253ms) timeout(0n)</span><br></pre></td></tr></table></figure>
+
+<p>从上面的结果可以看到无论是<strong>最大解析时间还是平均解析时间</strong>都比之前默认的 CoreDNS 提示了不少的效率，所以我们还是非常推荐在线上环境部署 <code>NodeLocal DNSCache</code> 来提升 DNS 的性能和可靠性的。唯一的缺点就是由于 LocalDNS 使用的是 DaemonSet 模式部署，<strong>所以如果需要更新镜像则可能会中断服务</strong>（不过可以使用一些第三方的增强组件来实现==原地升级==解决这个问题，比如 <a target="_blank" rel="noopener" href="https://openkruise.io/">openkruise</a>-阿里云开源的一个增强套件。）。</p>
+<blockquote>
+<p>阿里云也是比较推荐线上去部署这个的。</p>
+</blockquote>
+<h3 id="老师做的操作-了解下即可"><a href="#老师做的操作-了解下即可" class="headerlink" title="老师做的操作(了解下即可)"></a>老师做的操作(了解下即可)</h3><h4 id="修改地方1：image"><a href="#修改地方1：image" class="headerlink" title="修改地方1：image"></a>修改地方1：image</h4><p>修改image地址：</p>
+<p>默认的镜像地址：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228202125939.png" alt="image-20211228202125939"></p>
+<p>老师做了镜像转存后自己的地址：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228201210182.png" alt="image-20211228201210182"></p>
+<h4 id="修改地方2：注意这几个参数"><a href="#修改地方2：注意这几个参数" class="headerlink" title="修改地方2：注意这几个参数"></a>修改地方2：注意这几个参数</h4><ul>
+<li><code>__PILLAR__DNS__DOMAIN__</code></li>
+</ul>
+<p><code>__PILLAR__DNS__SERVER__</code> ：表示 kube-dns 这个 Service 的 ClusterIP，可以通过命令 <code>kubectl get svc -n kube-system | grep kube-dns | awk&#39;&#123; print $3 &#125;&#39;</code> 获取（我们这里就是 <code>10.96.0.10</code>）</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228204220623.png" alt="image-20211228204220623"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get svc -nkube-system |grep kube-dns</span></span><br><span class="line">kube-dns         ClusterIP   10.96.0.10       &lt;none&gt;        53/UDP,53/TCP,9153/TCP   58d</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get svc -nkube-system |grep kube-dns |awk &#x27;&#123;print $3&#125;&#x27;</span></span><br><span class="line">10.96.0.10</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li><code>__PILLAR__LOCAL__DNS__</code>：表示 DNSCache 本地的 IP，默认为 <code>169.254.20.10</code></li>
+</ul>
+<p><code>__PILLAR__LOCAL__DNS__</code>：表示 DNSCache 本地的 IP，默认为 <code>169.254.20.10</code></p>
+<p>这个相当于一个虚拟ip，后面会做一个中转的。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228204143080.png" alt="image-20211228204143080"></p>
+<ul>
+<li><code>__PILLAR__DNS__DOMAIN__</code>：表示集群域，默认就是 <code>cluster.local</code></li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228203714343.png" alt="image-20211228203714343"></p>
+<ul>
+<li>注意</li>
+</ul>
+<p>另外还有两个参数 <code>__PILLAR__CLUSTER__DNS__</code> 和 <code>__PILLAR__UPSTREAM__SERVERS__</code>，这两个参数会通过镜像 1.15.16 版本去进行自动配置，对应的值来源于 kube-dns 的 ConfigMap 和定制的 <code>Upstream Server</code> 配置。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228204409409.png" alt="image-20211228204409409"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228204439143.png" alt="image-20211228204439143"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228204710097.png" alt="image-20211228204710097"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228204734789.png" alt="image-20211228204734789"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228213042748.png" alt="image-20211228213042748"></p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><h3 id="📍-注意1：go环境的安装及程序编译"><a href="#📍-注意1：go环境的安装及程序编译" class="headerlink" title="📍 注意1：go环境的安装及程序编译"></a>📍 注意1：go环境的安装及程序编译</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228110844092.png" alt="image-20211228110844092"></p>
+<p>01.</p>
+<p>自己学了一点go基础。在master01上安装好go环境后，把代码copy进去并运行发现报错了，如下：</p>
+<p>缺少go.mod文件，自己现在用的是新版本：<code>go version go1.16.2 linux/amd64</code>    </p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228130457752.png" alt="image-20211228130457752"></p>
+<p>解决办法：完美解决。</p>
+<p>在代码所在父目录下创建go.mod文件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 go]<span class="comment">#pwd</span></span><br><span class="line">/root/go</span><br><span class="line">[root@master1 go]<span class="comment">#ls</span></span><br><span class="line">main.go</span><br><span class="line">[root@master1 go]<span class="comment">#cd /root</span></span><br><span class="line">[root@master1 ~]<span class="comment">#go mod init module #在代码所在父目录下创建go.mod文件</span></span><br><span class="line">go: creating new go.mod: module module</span><br><span class="line">go: to add module requirements and sums:</span><br><span class="line">        go mod tidy</span><br><span class="line">[root@master1 ~]<span class="comment">#ll go.mod </span></span><br><span class="line">-rw-r--r-- 1 root root 23 Dec 28 13:17 go.mod</span><br><span class="line">[root@master1 ~]<span class="comment">#cd go/</span></span><br><span class="line">[root@master1 go]<span class="comment">#go build -o testdns .</span></span><br><span class="line">[root@master1 go]<span class="comment">#ll -h testdns </span></span><br><span class="line">-rwxr-xr-x 1 root root 2.8M Dec 28 13:17 testdns</span><br><span class="line">[root@master1 go]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>这个是在linux下构建的代码，当然在windows下也是可以构建的。</p>
+<p>02.</p>
+<p>或者在winodws go环境下编译也是可以的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228142124121.png" alt="image-20211228142124121"></p>
+<p>不管是在linux环境下吗，还是windows环境下，还是旧版本或新版本go环境，代码只需要写一份就可以。</p>
+<p>:warning: 注意：老师有说过，当时他在mac下如果直接编译代码的吗，生成的二进制文件只适合mac。</p>
+<p>因为我们的pod是在linux下跑的，因此这里要指定下linux再编译代码。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211226214548960.png" alt="image-20211226214548960"></p>
+<p>那么问题来了，我在winodws下构建的代码，要不要也指定这个参数呢？？🤣</p>
+<p>本次直接使用老师的命令在linux下直接编译即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 go]<span class="comment">#pwd</span></span><br><span class="line">/root/go</span><br><span class="line">[root@master1 go]<span class="comment">#ls</span></span><br><span class="line">main.go</span><br><span class="line">[root@master1 go]<span class="comment">#GOOS=linux GOARCH=amd64 go build -o testdns .</span></span><br><span class="line">[root@master1 go]<span class="comment">#ll</span></span><br><span class="line">total 2840</span><br><span class="line">-rw-r--r-- 1 root root    1904 Dec 27 15:58 main.go</span><br><span class="line">-rwxr-xr-x 1 root root 2903854 Dec 28 15:13 testdns</span><br><span class="line">[root@master1 go]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>这里，这个压测软件testdns已经给你准备好了，可以直接使用。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229055205162.png" alt="image-20211229055205162"></p>
+<p>:warning:还有个问题：就是关于linux下go环境不生效问题，需要再次source下，记得之前是没问题的啊，这次配置就有问题，奇怪……后面再排查下。</p>
+<h3 id="📍-注意2：关于镜像转存"><a href="#📍-注意2：关于镜像转存" class="headerlink" title="📍 注意2：关于镜像转存"></a>📍 注意2：关于镜像转存</h3><p>[root@master1 ~]#vim nodelocaldns.yaml</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228164547319.png" alt="image-20211228164547319"></p>
+<p>我们要把这个地址替换下，我们要做个镜像中转。</p>
+<p>来到如下这个网址：</p>
+<p><a target="_blank" rel="noopener" href="https://katacoda.com/">https://katacoda.com/</a></p>
+<blockquote>
+<p>katacoda.com也是一个比较好的学习网站。</p>
+</blockquote>
+<p>使用github账号登录网站即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228164812872.png" alt="image-20211228164812872"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228165134191.png" alt="image-20211228165134191"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228165200375.png" alt="image-20211228165200375"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228165219046.png" alt="image-20211228165219046"></p>
+<p>这个是外国网站，还是比较慢的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228165452141.png" alt="image-20211228165452141"></p>
+<p>这里使用科学上网：</p>
+<p>这里它可能也是起了一个pod或者容器。</p>
+<p>我们把k8s.gcr.io/dns/k8s-dns-node-cache:1.21.1镜像给它拉取下来：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">![image-20211228170512165](https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228170512165.png)</span><br><span class="line"></span><br><span class="line">这个推的速度太慢了。。。。😥😥但是老师的为啥这么快呢？难道是因为老师的那个镜像仓库地址是全球可达的，做了域名转换的吗(cdn加速的吗)？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 如何转存镜像？</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">```bash</span><br><span class="line">[root@xyy admin]<span class="comment">#docker pull k8s.gcr.io/dns/k8s-dns-node-cache:1.21.1</span></span><br><span class="line">Error response from daemon: Get <span class="string">&quot;https://k8s.gcr.io/v2/&quot;</span>: net/http: request canceled <span class="keyword">while</span> waiting <span class="keyword">for</span> connection (Client.Timeout exceeded <span class="keyword">while</span> awaiting headers)</span><br><span class="line">[root@xyy admin]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，这个镜像地址<code>k8s-dns-node-cache:1.21.1</code>没在dockerhub仓库源，也没在阿里的镜像仓库源。</p>
+<ul>
+<li>感觉push的速度好慢啊：。。。</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228194231650.png" alt="image-20211228194231650"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228194454566.png" alt="image-20211228194454566"></p>
+<p>注意：现在的时间 2021年12月29日05:22:35这个push的速度会快些的😘，f**k，但是后面还是推送失败了。。。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229052245721.png" alt="image-20211229052245721"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229053913644.png" alt="image-20211229053913644"></p>
+<ul>
+<li>老师这里已经做好了镜像转存，我这里再推送到自己仓库下。</li>
+</ul>
+<p>查看之前从老师做好的镜像转存那里下载好的镜像：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229064839534.png" alt="image-20211229064839534"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#ctr -n k8s.io i ls -q|grep k8s-dns-node-cache</span></span><br><span class="line">docker.io/cnych/k8s-dns-node-cache:1.21.1</span><br><span class="line">docker.io/cnych/k8s-dns-node-cache@sha256:04c4f6b1f2f2f72441dadcea1c8eec611af4d963315187ceb04b939d1956782f</span><br><span class="line">nerdctl -n k8s.io images|grep k8s-dns-node-cache</span><br><span class="line"></span><br><span class="line"><span class="comment">#注意：ctr命令和nerdctl命令在k8s里使用都是需要加上，-n k8s.io命名空间的。</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229065141383.png" alt="image-20211229065141383"></p>
+<p>开始转存：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#登录自己的阿里云仓库</span></span><br><span class="line">[root@master1 ~]<span class="comment">#nerdctl login --username=执次一生为寻爱zxl registry.cn-hangzhou.aliyuncs.com</span></span><br><span class="line">Enter Password: Login Succeeded</span><br><span class="line"></span><br><span class="line"><span class="comment">#重新打tag</span></span><br><span class="line">[root@master1 ~]<span class="comment">#nerdctl -n k8s.io tag cnych/k8s-dns-node-cache:1.21.1 registry.cn-hangzhou.aliyuncs.com/onlyonexyypublic/k8s-dns-node-cache:1.21.1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#注意：打好的tag也是在-n k8s.io下的。</span></span><br><span class="line">[root@master1 ~]<span class="comment">#nerdctl -n k8s.io images|grep k8s-dns-node-cache</span></span><br><span class="line">……</span><br><span class="line">cnych/k8s-dns-node-cache                                                 1.21.1                                                              04c4f6b1f2f2    10 hours ago          104.3 MiB</span><br><span class="line">registry.cn-hangzhou.aliyuncs.com/onlyonexyypublic/k8s-dns-node-cache    1.21.1                                                              04c4f6b1f2f2    About a minute ago    104.3 MiB</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#开始push</span></span><br><span class="line">[root@master1 ~]<span class="comment">#nerdctl -n k8s.io push registry.cn-hangzhou.aliyuncs.com/onlyonexyypublic/k8s-dns-node-cache:1.21.1</span></span><br><span class="line">INFO[0000] pushing as a single-platform image (application/vnd.docker.distribution.manifest.v2+json, sha256:04c4f6b1f2f2f72441dadcea1c8eec611af4d963315187ceb04b939d1956782f)</span><br><span class="line">manifest-sha256:04c4f6b1f2f2f72441dadcea1c8eec611af4d963315187ceb04b939d1956782f: waiting        |--------------------------------------|</span><br><span class="line">layer-sha256:af833073aa9559031531fca731390d329e083cccc0b824c236e7efc5742ae666:    waiting        |--------------------------------------|</span><br><span class="line">config-sha256:5bae806f8f123c54ca6a754c567e8408393740792ba8b89ee3bb6c5f95e6fbe1:   waiting        |--------------------------------------|</span><br><span class="line">layer-sha256:20b09fbd30377e1315a8bc9e15b5f8393a1090a7ec3f714ba5fce0c9b82a42f2:    waiting        |--------------------------------------|</span><br><span class="line">elapsed: 0.8 s                                                                    total:   0.0 B (0.0 B/s)                           </span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>发现已经成功推送了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.cn-hangzhou.aliyuncs.com/onlyonexyypublic/k8s-dns-node-cache:1.21.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229065746720.png" alt="image-20211229065746720"></p>
+<p>自己下去拉取测试下吧：</p>
+<p>我这里在云虚机上拉取测试下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229070537707.png" alt="image-20211229070537707"></p>
+<h3 id="📍-注意3：老师这个镜像仓库地址是做了域名转换的吗，怎么这么短的呢？"><a href="#📍-注意3：老师这个镜像仓库地址是做了域名转换的吗，怎么这么短的呢？" class="headerlink" title="📍 注意3：老师这个镜像仓库地址是做了域名转换的吗，怎么这么短的呢？"></a>📍 注意3：老师这个镜像仓库地址是做了域名转换的吗，怎么这么短的呢？</h3><p>自己阿里云镜像服务地址：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull registry.cn-hangzhou.aliyuncs.com/onlyonexyypublic/k8s-dns-node-cache:[镜像版本号]</span><br></pre></td></tr></table></figure>
+
+<p>老师自己的镜像地址：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211228201210182.png" alt="image-20211228201210182"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229070720628.png" alt="image-20211229070720628"></p>
+<p>哦，原来在这里，包括前面那个中转速度慢的原因。这个后面再看把！！！😘</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211229070807953.png" alt="image-20211229070807953"></p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人github主页：<a target="_blank" rel="noopener" href="https://github.com/OnlyOnexl">https://github.com/OnlyOnexl</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211214105904221.png" alt="image-20211214105904221"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于LocalDNS实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/7.jpg"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2021/12/29/108%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8BLocalDNS-2021.12.29/">https://www.onlyonexl.cn/2021/12/29/108%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8BLocalDNS-2021.12.29/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/12/29/108%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8BLocalDNS-2021.12.29/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="实战：k8s之LocalDNS-2021.12.29">
+                        
+                        <span class="card-title">实战：k8s之LocalDNS-2021.12.29</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/12/24/107%20%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9A%E4%B8%8D%E9%9C%80%E8%A6%81Git%E7%AE%A1%E7%90%86%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%9F-2021.12.24/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="28 如何指定不需要Git管理的文件？-2021.12.24">
+                        
+                        <span class="card-title">28 如何指定不需要Git管理的文件？-2021.12.24</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-12-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/git/" class="post-category">
+                                    git
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/git/">
+                        <span class="chip bg-color">git</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
