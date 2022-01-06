@@ -1,0 +1,1414 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：ingress-nginx 高级配置2-2022.1.7, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：ingress-nginx 高级配置2-2022.1.7 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：ingress-nginx 高级配置2-2022.1.7</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                            <a href="/tags/ingress-ns/">
+                                <span class="chip bg-color">ingress-ns</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-01-07
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：ingress-nginx-高级配置2-2022-1-7"><a href="#实战：ingress-nginx-高级配置2-2022-1-7" class="headerlink" title="实战：ingress-nginx 高级配置2-2022.1.7"></a>实战：ingress-nginx 高级配置2-2022.1.7</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220105210547190.png" alt="image-20220105210547190"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>无</p>
+<h2 id="1、HTTPS"><a href="#1、HTTPS" class="headerlink" title="1、HTTPS"></a>1、HTTPS</h2><p>如果我们需要用 HTTPS 来访问我们这个应用的话，就需要监听 443 端口了，同样<strong>用 HTTPS 访问应用必然就需要证书</strong>。</p>
+<blockquote>
+<p>注意：在安装ingress-nginx时，默认已经在监听443端口了。</p>
+<p>[root@master1 ~]#netstat -antlp|grep 443<br>tcp        0      0 0.0.0.0:443             0.0.0.0:*               LISTEN      8872/nginx: master</p>
+</blockquote>
+<h3 id="📍-演示1：用-HTTPS-来访问我们的应用"><a href="#📍-演示1：用-HTTPS-来访问我们的应用" class="headerlink" title="📍 演示1：用 HTTPS 来访问我们的应用"></a>📍 演示1：用 HTTPS 来访问我们的应用</h3><p>🍀 这里我们用 <code>openssl</code> 来创建一个自签名的证书：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj &quot;/CN=foo.bar.com&quot;</span></span><br><span class="line">Generating a 2048 bit RSA private key</span><br><span class="line">....................................+++</span><br><span class="line">.............+++</span><br><span class="line">writing new private key to <span class="string">&#x27;tls.key&#x27;</span></span><br><span class="line">-----</span><br></pre></td></tr></table></figure>
+
+<p>🍀 然后通过 Secret 对象来引用证书文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 要注意证书文件名称必须是 tls.crt 和 tls.key</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl create secret tls foo-tls --cert=tls.crt --key=tls.key </span></span><br><span class="line">secret/foo-tls created</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get secrets foo-tls </span></span><br><span class="line">NAME      TYPE                DATA   AGE</span><br><span class="line">foo-tls   kubernetes.io/tls   2      13s</span><br></pre></td></tr></table></figure>
+
+<p>🍀 这个时候我们就可以创建一个 HTTPS 访问应用的：</p>
+<p>记得提前创建好应用：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># my-nginx.yaml    </span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span>   </span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-nginx</span>   </span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span>        </span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">my-nginx</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">my-nginx</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">my-nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-nginx</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">my-nginx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">protocol:</span> <span class="string">TCP</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">http</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">my-nginx</span>   </span><br><span class="line">    </span><br><span class="line"><span class="comment">#查看应用</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">basic-auth</span>]<span class="comment">#kubectl get po,deploy,svc,ingress</span></span><br><span class="line"><span class="string">NAME</span>                            <span class="string">READY</span>   <span class="string">STATUS</span>    <span class="string">RESTARTS</span>   <span class="string">AGE</span></span><br><span class="line"><span class="string">pod/my-nginx-7c4ff94949-7zwxw</span>   <span class="number">1</span><span class="string">/1</span>     <span class="string">Running</span>   <span class="number">0</span>          <span class="string">6h30m</span></span><br><span class="line"></span><br><span class="line"><span class="string">NAME</span>                       <span class="string">READY</span>   <span class="string">UP-TO-DATE</span>   <span class="string">AVAILABLE</span>   <span class="string">AGE</span></span><br><span class="line"><span class="string">deployment.apps/my-nginx</span>   <span class="number">1</span><span class="string">/1</span>     <span class="number">1</span>            <span class="number">1</span>           <span class="string">6h30m</span></span><br><span class="line"></span><br><span class="line"><span class="string">NAME</span>                 <span class="string">TYPE</span>        <span class="string">CLUSTER-IP</span>      <span class="string">EXTERNAL-IP</span>   <span class="string">PORT(S)</span>   <span class="string">AGE</span></span><br><span class="line"><span class="string">service/kubernetes</span>   <span class="string">ClusterIP</span>   <span class="number">10.96</span><span class="number">.0</span><span class="number">.1</span>       <span class="string">&lt;none&gt;</span>        <span class="number">443</span><span class="string">/TCP</span>   <span class="string">67d</span></span><br><span class="line"><span class="string">service/my-nginx</span>     <span class="string">ClusterIP</span>   <span class="number">10.103</span><span class="number">.81</span><span class="number">.161</span>   <span class="string">&lt;none&gt;</span>        <span class="number">80</span><span class="string">/TCP</span>    <span class="string">6h30m</span></span><br><span class="line"></span><br><span class="line"><span class="string">NAME</span>                                 <span class="string">CLASS</span>   <span class="string">HOSTS</span>                <span class="string">ADDRESS</span>       <span class="string">PORTS</span>   <span class="string">AGE</span></span><br><span class="line"><span class="string">ingress.networking.k8s.io/my-nginx</span>   <span class="string">nginx</span>   <span class="string">ngdemo.qikqiak.com</span>   <span class="number">172.29</span><span class="number">.9</span><span class="number">.51</span>   <span class="number">80</span>      <span class="string">6h30m</span></span><br></pre></td></tr></table></figure>
+
+<p>编写ingress：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#vim ingress-https.yaml           </span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Ingress</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ingress-https</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ingressClassName:</span> <span class="string">nginx</span></span><br><span class="line">  <span class="attr">tls:</span>  <span class="comment"># 配置 tls 证书</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hosts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">foo.bar.com</span></span><br><span class="line">    <span class="attr">secretName:</span> <span class="string">foo-tls</span> <span class="comment">#包含证书的一个secret对象名称</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">host:</span> <span class="string">foo.bar.com</span></span><br><span class="line">    <span class="attr">http:</span></span><br><span class="line">      <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">/</span></span><br><span class="line">        <span class="attr">pathType:</span> <span class="string">Prefix</span></span><br><span class="line">        <span class="attr">backend:</span></span><br><span class="line">          <span class="attr">service:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">my-nginx</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">#本地pc配置下域名解析</span></span><br><span class="line"><span class="string">这里记得在自己本地pc的hosts里面做下域名解析：</span></span><br><span class="line"><span class="string">C:\WINDOWS\System32\drivers\etc</span></span><br><span class="line"><span class="number">172.29</span><span class="number">.9</span><span class="number">.51</span> <span class="string">foo.bar.com</span></span><br></pre></td></tr></table></figure>
+
+<p>部署并测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 https]<span class="comment">#kubectl apply -f ingress-https.yaml </span></span><br><span class="line">ingress.networking.k8s.io/ingress-https created</span><br><span class="line">[root@master1 https]<span class="comment">#kubectl get ingress</span></span><br><span class="line">NAME            CLASS   HOSTS                ADDRESS       PORTS     AGE</span><br><span class="line">ingress-https   nginx   foo.bar.com          172.29.9.51   80, 443   6s</span><br><span class="line">my-nginx        nginx   ngdemo.qikqiak.com   172.29.9.51   80        6h40m</span><br></pre></td></tr></table></figure>
+
+<p>在自己pc浏览器里进行验证：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106194511673.png" alt="image-20220106194511673"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106194518009.png" alt="image-20220106194518009"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106194549377.png" alt="image-20220106194549377"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106194605297.png" alt="image-20220106194605297"></p>
+<p>测试结束。😘</p>
+<blockquote>
+<p>:warning: 除了<strong>自签名证书</strong>或者<strong>购买正规机构的 CA 证书</strong>之外，<strong>我们还可以通过一些工具来自动生成合法的证书</strong>，<a target="_blank" rel="noopener" href="https://cert-manager.io/">cert-manager</a> 是一个云原生证书管理开源项目，可以用于在 Kubernetes 集群中<strong>提供 HTTPS 证书并自动续期</strong>，支持 <code>Let&#39;s Encrypt/HashiCorp/Vault</code> 这些免费证书的签发。在 Kubernetes 中，可以通过 Kubernetes Ingress 和 Let’s Encrypt <strong>实现外部服务的自动化 HTTPS</strong>。</p>
+<p>感觉很厉害的样子哦哈哈😂😂</p>
+</blockquote>
+<h2 id="2、TCP与UDP"><a href="#2、TCP与UDP" class="headerlink" title="2、TCP与UDP"></a>2、TCP与UDP</h2><h3 id="📍-演示1：TCP与UDP"><a href="#📍-演示1：TCP与UDP" class="headerlink" title="📍 演示1：TCP与UDP"></a>📍 演示1：TCP与UDP</h3><p>由于在 Ingress 资源对象中没有直接对 TCP 或 UDP 服务的支持，要在 <code>ingress-nginx</code> 中提供支持，需要在控制器启动参数中添加 <code>--tcp-services-configmap</code> 和 <code>--udp-services-configmap</code> 标志指向一个 ConfigMap，其中的 key 是要使用的外部端口，value 值是使用格式 <code>&lt;namespace/service name&gt;:&lt;service port&gt;:[PROXY]:[PROXY]</code> 暴露的服务，端口可以使用端口号或者端口名称，最后两个字段是可选的，用于配置 PROXY 代理。</p>
+<p>🍀 比如现在我们要通过 <code>ingress-nginx</code> 来暴露一个 MongoDB 服务，首先创建如下的应用：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#mkdir tcp</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#cd tcp</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">tcp</span>]<span class="comment">#vim mongo.yaml</span></span><br><span class="line"><span class="comment"># mongo.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">mongo</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">mongo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">mongo</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">mongo</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">        <span class="attr">emptyDir:</span> &#123;&#125;</span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">mongo</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">mongo:4.0</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">27017</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">          <span class="attr">mountPath:</span> <span class="string">/data/db</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">mongo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">mongo</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">27017</span></span><br></pre></td></tr></table></figure>
+
+<p>🍀 直接创建上面的资源对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 tcp]<span class="comment">#kubectl apply -f mongo.yaml </span></span><br><span class="line">deployment.apps/mongo created</span><br><span class="line">service/mongo created</span><br><span class="line">[root@master1 tcp]<span class="comment">#kubectl get svc </span></span><br><span class="line">NAME         TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)     AGE</span><br><span class="line">kubernetes   ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP     67d</span><br><span class="line">mongo        ClusterIP   10.103.108.49   &lt;none&gt;        27017/TCP   2m57s</span><br><span class="line">my-nginx     ClusterIP   10.103.81.161   &lt;none&gt;        80/TCP      7h49m</span><br><span class="line">[root@master1 tcp]<span class="comment">#kubectl get po -l app=mongo</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE</span><br><span class="line">mongo-7885fb6bd4-28p8x   1/1     Running   0          3m20s</span><br></pre></td></tr></table></figure>
+
+<p>🍀 现在我们要通过 <code>ingress-nginx</code> 来暴露上面的 MongoDB 服务，我们需要创建一个如下所示的 ConfigMap：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 tcp]<span class="comment">#vim tcp-services.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: ConfigMap</span><br><span class="line">metadata:</span><br><span class="line">  name: tcp-services</span><br><span class="line">  namespace: ingress-nginx</span><br><span class="line">data:</span><br><span class="line">  <span class="string">&quot;27017&quot;</span>: default/mongo:27017</span><br><span class="line"></span><br><span class="line"><span class="comment">#这里是不用部署的，因为我们下面是使用helm方式部署的。</span></span><br></pre></td></tr></table></figure>
+
+<p>🍀 然后在 <code>ingress-nginx</code> 的启动参数中添加 <code>--tcp-services-configmap=$(POD_NAMESPACE)/ingress-nginx-tcp</code> 这样的配置即可，由于我们这里使用的是 Helm Chart 进行安装的，**<u>我们只需要去覆盖 Values 值重新安装即可</u>**，修改 <code>ci/daemonset-prod.yaml(因为自己当时新建的文件就是这个)</code> 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ingress-nginx]<span class="comment">#ls</span></span><br><span class="line">CHANGELOG.md  Chart.yaml  ci  OWNERS  README.md  templates  values.yaml</span><br><span class="line">[root@master1 ingress-nginx]<span class="comment">#vim ci/daemonset-prod.yaml </span></span><br><span class="line"><span class="comment"># ...... 其他部分省略，和之前的保持一致</span></span><br><span class="line"></span><br><span class="line">tcp:  <span class="comment"># 配置 tcp 服务</span></span><br><span class="line">  27017: <span class="string">&quot;default/mongo:27017&quot;</span>  <span class="comment"># 使用 27017 端口去映射 mongo 服务</span></span><br><span class="line">  <span class="comment"># 9000: &quot;default/test:8080&quot;   # 如果还需要暴露其他 TCP 服务，继续添加即可</span></span><br></pre></td></tr></table></figure>
+
+<p>🍀 配置完成后重新更新当前的 <code>ingress-nginx</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜ helm upgrade --install ingress-nginx . -f ./ci/daemonset-prod.yaml --namespace ingress-nginx</span><br></pre></td></tr></table></figure>
+
+<p>:warning: 注意：在执行这一步时，会发现一直卡在那里</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106205859291.png" alt="image-20220106205859291"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106205921270.png" alt="image-20220106205921270"></p>
+<p>这里的等一会儿，原始是有admission webhook</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106210134244.png" alt="image-20220106210134244"></p>
+<p>耐心等待一会儿就好了：</p>
+<p>🍀 重新部署完成后会自动生成一个名为 <code>ingress-nginx-tcp</code> 的 ConfigMap 对象，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get cm -ningress-nginx</span></span><br><span class="line">NAME                        DATA   AGE</span><br><span class="line">ingress-controller-leader   0      4d5h</span><br><span class="line">ingress-nginx-controller    1      4d5h</span><br><span class="line">ingress-nginx-tcp           1      2m22s</span><br><span class="line">kube-root-ca.crt            1      4d5h</span><br><span class="line">tcp-services                1      8m26s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get configmap -n ingress-nginx ingress-nginx-tcp -o yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">data:</span><br><span class="line">  <span class="string">&quot;27017&quot;</span>: default/mongo:27017</span><br><span class="line">kind: ConfigMap</span><br><span class="line">metadata:</span><br><span class="line">  annotations:</span><br><span class="line">    meta.helm.sh/release-name: ingress-nginx</span><br><span class="line">    meta.helm.sh/release-namespace: ingress-nginx</span><br><span class="line">  creationTimestamp: <span class="string">&quot;2022-01-06T12:59:55Z&quot;</span></span><br><span class="line">  labels:</span><br><span class="line">    app.kubernetes.io/component: controller</span><br><span class="line">    app.kubernetes.io/instance: ingress-nginx</span><br><span class="line">    app.kubernetes.io/managed-by: Helm</span><br><span class="line">    app.kubernetes.io/name: ingress-nginx</span><br><span class="line">    app.kubernetes.io/version: 1.1.0</span><br><span class="line">    helm.sh/chart: ingress-nginx-4.0.13</span><br><span class="line">  name: ingress-nginx-tcp</span><br><span class="line">  namespace: ingress-nginx</span><br><span class="line">  resourceVersion: <span class="string">&quot;1309200&quot;</span></span><br><span class="line">  uid: be0b9e3d-d201-4166-917d-39197724b1ce</span><br></pre></td></tr></table></figure>
+
+<p>🍀 在 <code>ingress-nginx</code> 的启动参数中也添加上 <code>--tcp-services-configmap=$(POD_NAMESPACE)/ingress-nginx-tcp</code> 这样的配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -ningress-nginx</span></span><br><span class="line">NAME                                            READY   STATUS    RESTARTS     AGE</span><br><span class="line">ingress-nginx-controller-jfq9r                  1/1     Running   0            4m38s</span><br><span class="line">ingress-nginx-defaultbackend-84854cd6cb-zct8c   1/1     Running   4 (8h ago)   4d5h</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po ingress-nginx-controller-jfq9r -ningress-nginx -oyaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Pod</span><br><span class="line">……</span><br><span class="line">  containers:</span><br><span class="line">  - args:</span><br><span class="line">    - /nginx-ingress-controller</span><br><span class="line">    - --default-backend-service=$(POD_NAMESPACE)/ingress-nginx-defaultbackend</span><br><span class="line">    - --election-id=ingress-controller-leader</span><br><span class="line">    - --controller-class=k8s.io/ingress-nginx</span><br><span class="line">    - --configmap=$(POD_NAMESPACE)/ingress-nginx-controller</span><br><span class="line">    - --tcp-services-configmap=$(POD_NAMESPACE)/ingress-nginx-tcp</span><br><span class="line">    - --validating-webhook=:8443</span><br><span class="line">    - --validating-webhook-certificate=/usr/<span class="built_in">local</span>/certificates/cert</span><br><span class="line">    - --validating-webhook-key=/usr/<span class="built_in">local</span>/certificates/key</span><br><span class="line">……</span><br><span class="line">    ports:</span><br><span class="line">    - containerPort: 80</span><br><span class="line">      hostPort: 80</span><br><span class="line">      name: http</span><br><span class="line">      protocol: TCP</span><br><span class="line">    - containerPort: 443</span><br><span class="line">      hostPort: 443</span><br><span class="line">      name: https</span><br><span class="line">      protocol: TCP</span><br><span class="line">    - containerPort: 8443</span><br><span class="line">      hostPort: 8443</span><br><span class="line">      name: webhook</span><br><span class="line">      protocol: TCP</span><br><span class="line">    - containerPort: 27017</span><br><span class="line">      hostPort: 27017</span><br><span class="line">      name: 27017-tcp</span><br><span class="line">      protocol: TCP</span><br></pre></td></tr></table></figure>
+
+<p>🍀 现在我们就可以通过 <code>ingress-nginx</code> 暴露的 27017 端口去访问 Mongo 服务了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#netstat -antlp|grep 27017</span></span><br><span class="line">tcp        0      0 0.0.0.0:27017           0.0.0.0:*               LISTEN      118681/nginx: maste</span><br><span class="line">tcp6       0      0 :::27017                :::*                    LISTEN      118681/nginx: maste</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it mongo-7885fb6bd4-28p8x -- bash&gt; show dbs</span></span><br><span class="line">root@mongo-7885fb6bd4-28p8x:/<span class="comment"># mongo --host 172.29.9.51  --port 27017</span></span><br><span class="line">……</span><br><span class="line">&gt; show dbs</span><br><span class="line">admin   0.000GB</span><br><span class="line">config  0.000GB</span><br><span class="line"><span class="built_in">local</span>   0.000GB</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+
+<p>🍀 同样的我们也可以去查看最终生成的 <code>nginx.conf</code> 配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -ningress-nginx</span></span><br><span class="line">NAME                                            READY   STATUS    RESTARTS     AGE</span><br><span class="line">ingress-nginx-controller-jfq9r                  1/1     Running   0            17m</span><br><span class="line">ingress-nginx-defaultbackend-84854cd6cb-zct8c   1/1     Running   4 (8h ago)   4d5h</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec  ingress-nginx-controller-jfq9r -ningress-nginx -- cat /etc/nginx/nginx.conf</span></span><br><span class="line">......</span><br><span class="line">stream &#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment"># TCP services</span></span><br><span class="line">    server &#123;</span><br><span class="line">            preread_by_lua_block &#123;</span><br><span class="line">                    ngx.var.proxy_upstream_name=<span class="string">&quot;tcp-default-mongo-27017&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            listen                  27017;</span><br><span class="line">            listen                  [::]:27017;</span><br><span class="line">            proxy_timeout           600s;</span><br><span class="line">            proxy_next_upstream     on;</span><br><span class="line">            proxy_next_upstream_timeout 600s;</span><br><span class="line">            proxy_next_upstream_tries   3;</span><br><span class="line">            proxy_pass              upstream_balancer;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"># UDP services</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>TCP 相关的配置位于 <code>stream</code> 配置块下面。</p>
+<p>🍀 <strong>从 Nginx 1.9.13 版本开始提供 UDP 负载均衡</strong>，同样我们也可以在 <code>ingress-nginx</code> 中来代理 UDP 服务，比如我们可以去暴露 <code>kube-dns</code> 的服务，同样需要创建一个如下所示的 ConfigMap：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">udp-services</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">ingress-nginx</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">53:</span> <span class="string">&quot;kube-system/kube-dns:53&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后需要在 <code>ingress-nginx</code> 参数中添加一个 <code>- --udp-services-configmap=$(POD_NAMESPACE)/udp-services</code> 这样的配置，当然我们这里只需要去修改 Values 文件值即可，修改 <code>ci/daemonset-prod.yaml</code> 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ci/daemonset-prod.yaml</span></span><br><span class="line"><span class="comment"># ...... 其他部分省略，和之前的保持一致</span></span><br><span class="line"></span><br><span class="line">tcp:  <span class="comment"># 配置 tcp 服务</span></span><br><span class="line">  27017: <span class="string">&quot;default/mongo:27017&quot;</span>  <span class="comment"># 使用 27017 端口去映射 mongo 服务</span></span><br><span class="line">  <span class="comment"># 9000: &quot;default/test:8080&quot;   # 如果还需要暴露其他 TCP 服务，继续添加即可</span></span><br><span class="line"></span><br><span class="line">udp:  <span class="comment"># 配置 udp 服务</span></span><br><span class="line">  53: <span class="string">&quot;kube-system/kube-dns:53&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后重新更新即可。</p>
+<p>测试结束。😘</p>
+<h2 id="3、全局配置"><a href="#3、全局配置" class="headerlink" title="3、全局配置"></a>3、全局配置</h2><h3 id="📍-演示1：全局配置"><a href="#📍-演示1：全局配置" class="headerlink" title="📍 演示1：全局配置"></a>📍 演示1：全局配置</h3><p>🍀 除了可以通过 <code>annotations</code> 对指定的 Ingress 进行定制之外，我们还可以配置 <code>ingress-nginx</code> 的全局配置，在控制器启动参数中通过标志 <code>--configmap</code> 指定了一个全局的 ConfigMap 对象，我们可以将全局的一些配置直接定义在该对象中即可：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#kubectl get po -ningress-nginx</span></span><br><span class="line"><span class="string">NAME</span>                                            <span class="string">READY</span>   <span class="string">STATUS</span>    <span class="string">RESTARTS</span>     <span class="string">AGE</span></span><br><span class="line"><span class="string">ingress-nginx-controller-jfq9r</span>                  <span class="number">1</span><span class="string">/1</span>     <span class="string">Running</span>   <span class="number">0</span>            <span class="string">83m</span></span><br><span class="line"><span class="string">ingress-nginx-defaultbackend-84854cd6cb-zct8c</span>   <span class="number">1</span><span class="string">/1</span>     <span class="string">Running</span>   <span class="number">4</span> <span class="string">(9h</span> <span class="string">ago)</span>   <span class="string">4d6h</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#kubectl edit pod ingress-nginx-controller-jfq9r -ningress-nginx</span></span><br><span class="line"><span class="string">……</span></span><br><span class="line"><span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">args:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/nginx-ingress-controller</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">--configmap=$(POD_NAMESPACE)/ingress-nginx-controller</span></span><br><span class="line">    <span class="string">......</span></span><br></pre></td></tr></table></figure>
+
+<p>比如这里我们用于全局配置的 ConfigMap 名为 <code>ingress-nginx-controller</code>：(这个是当初用helm安装ingress-nginx默认就创建好的)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get cm -ningress-nginx</span></span><br><span class="line">NAME                        DATA   AGE</span><br><span class="line">ingress-controller-leader   0      4d6h</span><br><span class="line">ingress-nginx-controller    1      4d6h <span class="comment">#是这个</span></span><br><span class="line">ingress-nginx-tcp           1      88m</span><br><span class="line">kube-root-ca.crt            1      4d6h</span><br><span class="line">tcp-services                1      94m</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>比如我们可以添加如下所示的一些常用配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl edit configmap ingress-nginx-controller -n ingress-nginx</span><br><span class="line">apiVersion: v1</span><br><span class="line">data:</span><br><span class="line">  allow-snippet-annotations: <span class="string">&quot;true&quot;</span></span><br><span class="line">  client-header-buffer-size: 32k  <span class="comment"># 注意不是下划线</span></span><br><span class="line">  client-max-body-size: 5m</span><br><span class="line">  use-gzip: <span class="string">&quot;true&quot;</span></span><br><span class="line">  gzip-level: <span class="string">&quot;7&quot;</span></span><br><span class="line">  large-client-header-buffers: 4 32k</span><br><span class="line">  proxy-connect-timeout: 11s</span><br><span class="line">  proxy-read-timeout: 12s</span><br><span class="line">  keep-alive: <span class="string">&quot;75&quot;</span>   <span class="comment"># 启用keep-alive，连接复用，提高QPS，一般线上都是建议启用这个keep-alive的；</span></span><br><span class="line">  keep-alive-requests: <span class="string">&quot;100&quot;</span></span><br><span class="line">  upstream-keepalive-connections: <span class="string">&quot;10000&quot;</span></span><br><span class="line">  upstream-keepalive-requests: <span class="string">&quot;100&quot;</span></span><br><span class="line">  upstream-keepalive-timeout: <span class="string">&quot;60&quot;</span></span><br><span class="line">  disable-ipv6: <span class="string">&quot;true&quot;</span></span><br><span class="line">  disable-ipv6-dns: <span class="string">&quot;true&quot;</span></span><br><span class="line">  max-worker-connections: <span class="string">&quot;65535&quot;</span></span><br><span class="line">  max-worker-open-files: <span class="string">&quot;10240&quot;</span></span><br><span class="line">kind: ConfigMap</span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>修改完成后 Nginx 配置会自动重载生效，我们可以查看 <code>nginx.conf</code> 配置文件进行验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl <span class="built_in">exec</span> -it ingress-nginx-controller-gc582 -n ingress-nginx -- cat /etc/nginx/nginx.conf |grep large_client_header_buffers</span><br><span class="line">        large_client_header_buffers     4 32k;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 由于我们这里是 Helm Chart 安装的，为了保证重新部署后配置还在，我们同样需要通过 Values 进行全局配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim ci/daemonset-prod.yaml</span></span><br><span class="line"><span class="attr">controller:</span></span><br><span class="line">  <span class="attr">config:</span> <span class="comment">#注意下这个层级关系</span></span><br><span class="line">    <span class="attr">allow-snippet-annotations:</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">    <span class="attr">client-header-buffer-size:</span> <span class="string">32k</span>  <span class="comment"># 注意不是下划线,这里写的横杠：-最后在nginx.conf配置文件里会被翻译成下划线_的；</span></span><br><span class="line">    <span class="attr">client-max-body-size:</span> <span class="string">5m</span></span><br><span class="line">    <span class="attr">use-gzip:</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">    <span class="attr">gzip-level:</span> <span class="string">&quot;7&quot;</span></span><br><span class="line">    <span class="attr">large-client-header-buffers:</span> <span class="number">4</span> <span class="string">32k</span></span><br><span class="line">    <span class="attr">proxy-connect-timeout:</span> <span class="string">11s</span></span><br><span class="line">    <span class="attr">proxy-read-timeout:</span> <span class="string">12s</span></span><br><span class="line">    <span class="attr">keep-alive:</span> <span class="string">&quot;75&quot;</span>   <span class="comment"># 启用keep-alive，连接复用，提高QPS</span></span><br><span class="line">    <span class="attr">keep-alive-requests:</span> <span class="string">&quot;100&quot;</span></span><br><span class="line">    <span class="attr">upstream-keepalive-connections:</span> <span class="string">&quot;10000&quot;</span></span><br><span class="line">    <span class="attr">upstream-keepalive-requests:</span> <span class="string">&quot;100&quot;</span></span><br><span class="line">    <span class="attr">upstream-keepalive-timeout:</span> <span class="string">&quot;60&quot;</span></span><br><span class="line">    <span class="attr">disable-ipv6:</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">    <span class="attr">disable-ipv6-dns:</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">    <span class="attr">max-worker-connections:</span> <span class="string">&quot;65535&quot;</span></span><br><span class="line">    <span class="attr">max-worker-open-files:</span> <span class="string">&quot;10240&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其他省略</span></span><br></pre></td></tr></table></figure>
+
+<p>Will add custom configuration options to Nginx <a target="_blank" rel="noopener" href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/</a><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106223958797.png" alt="image-20220106223958797"></p>
+<p>配置了<code>vim ci/daemonset-prod.yaml</code>文件后，我们重新应用下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ingress-nginx]<span class="comment">#ls</span></span><br><span class="line">CHANGELOG.md  Chart.yaml  ci  OWNERS  README.md  templates  values.yaml</span><br><span class="line">[root@master1 ingress-nginx]<span class="comment">#helm upgrade --install ingress-nginx . -f ./ci/daemonset-prod.yaml --namespace ingress-nginx</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106224759751.png" alt="image-20220106224759751"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106224752072.png" alt="image-20220106224752072"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106224856876.png" alt="image-20220106224856876"></p>
+<p>验证下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ingress-nginx]<span class="comment">#kubectl get po -ningress-nginx</span></span><br><span class="line">NAME                                            READY   STATUS    RESTARTS      AGE</span><br><span class="line">ingress-nginx-controller-jfq9r                  1/1     Running   0             113m</span><br><span class="line">ingress-nginx-defaultbackend-84854cd6cb-zct8c   1/1     Running   4 (10h ago)   4d6h</span><br><span class="line">[root@master1 ingress-nginx]<span class="comment">#kubectl exec ingress-nginx-controller-jfq9r -ningress-nginx -- cat /etc/nginx/nginx.conf|grep keepalive</span></span><br><span class="line">        keepalive_timeout  75s;</span><br><span class="line">        keepalive_requests 100;</span><br><span class="line">                <span class="comment"># See http://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive</span></span><br><span class="line">                keepalive 320;</span><br><span class="line">                keepalive_timeout  60s;</span><br><span class="line">                keepalive_requests 10000;</span><br><span class="line">                keepalive_timeout 0;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 此外往往我们还需要对 <code>ingress-nginx</code> 部署的节点进行性能优化，修改一些内核参数，使得适配 Nginx 的使用场景，一般我们是直接去修改节点上的内核参数，为了能够统一管理，我们可以使用 <code>initContainers</code> 来进行配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ingress-nginx]<span class="comment">#ls</span></span><br><span class="line">CHANGELOG.md  Chart.yaml  ci  OWNERS  README.md  templates  values.yaml</span><br><span class="line">[root@master1 ingress-nginx]<span class="comment">#vim values.yaml </span></span><br><span class="line">  extraInitContainers: []</span><br><span class="line">  <span class="comment">## Containers, which are run before the app containers are started.</span></span><br><span class="line">  <span class="comment"># - name: init-myservice</span></span><br><span class="line">  <span class="comment">#   image: busybox</span></span><br><span class="line">  <span class="comment">#   command: [&#x27;sh&#x27;, &#x27;-c&#x27;, &#x27;until nslookup myservice; do echo waiting for myservice; sleep 2; done;&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">initContainers:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">command:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">/bin/sh</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">-c</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">|</span></span><br><span class="line"><span class="string">    mount -o remount rw /proc/sys</span></span><br><span class="line"><span class="string">    sysctl -w net.core.somaxconn=65535  # 具体的配置视具体情况而定</span></span><br><span class="line"><span class="string">    sysctl -w net.ipv4.tcp_tw_reuse=1</span></span><br><span class="line"><span class="string">    sysctl -w net.ipv4.ip_local_port_range=&quot;1024 65535&quot;</span></span><br><span class="line"><span class="string">    sysctl -w fs.file-max=1048576</span></span><br><span class="line"><span class="string">    sysctl -w fs.inotify.max_user_instances=16384</span></span><br><span class="line"><span class="string">    sysctl -w fs.inotify.max_user_watches=524288</span></span><br><span class="line"><span class="string">    sysctl -w fs.inotify.max_queued_events=16384</span></span><br><span class="line"><span class="string"></span><span class="attr">image:</span> <span class="string">busybox</span></span><br><span class="line"><span class="attr">imagePullPolicy:</span> <span class="string">IfNotPresent</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">init-sysctl</span></span><br><span class="line"><span class="attr">securityContext:</span></span><br><span class="line">  <span class="attr">capabilities:</span></span><br><span class="line">    <span class="attr">add:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">SYS_ADMIN</span></span><br><span class="line">    <span class="attr">drop:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ALL</span></span><br><span class="line"><span class="string">......</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>由于我们这里使用的是 Helm Chart 安装的 <code>ingress-nginx</code>，同样只需要去配置 Values 值即可，模板中提供了对 <code>initContainers</code> 的支持，配置如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">ingress-nginx</span>]<span class="comment">#ls</span></span><br><span class="line"><span class="string">CHANGELOG.md</span>  <span class="string">Chart.yaml</span>  <span class="string">ci</span>  <span class="string">OWNERS</span>  <span class="string">README.md</span>  <span class="string">templates</span>  <span class="string">values.yaml</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">ingress-nginx</span>]<span class="comment">#vim ci/daemonset-prod.yaml </span></span><br><span class="line"><span class="string">……</span></span><br><span class="line"><span class="attr">controller:</span></span><br><span class="line">  <span class="comment"># 其他省略，配置 initContainers</span></span><br><span class="line">  <span class="attr">extraInitContainers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">init-sysctl</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">busybox</span></span><br><span class="line">    <span class="attr">securityContext:</span></span><br><span class="line">      <span class="attr">capabilities:</span></span><br><span class="line">        <span class="attr">add:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">SYS_ADMIN</span></span><br><span class="line">        <span class="attr">drop:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">ALL</span></span><br><span class="line">    <span class="attr">command:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/bin/sh</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">-c</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">|</span></span><br><span class="line"><span class="string">      mount -o remount rw /proc/sys</span></span><br><span class="line"><span class="string">      sysctl -w net.core.somaxconn=65535  # socket监听的backlog上限</span></span><br><span class="line"><span class="string">      sysctl -w net.ipv4.tcp_tw_reuse=1  # 开启重用，允许将 TIME-WAIT sockets 重新用于新的TCP连接</span></span><br><span class="line"><span class="string">      sysctl -w net.ipv4.ip_local_port_range=&quot;1024 65535&quot;</span></span><br><span class="line"><span class="string">      sysctl -w fs.file-max=1048576</span></span><br><span class="line"><span class="string">      sysctl -w fs.inotify.max_user_instances=16384</span></span><br><span class="line"><span class="string">      sysctl -w fs.inotify.max_user_watches=524288</span></span><br><span class="line"><span class="string">      sysctl -w fs.inotify.max_queued_events=16384</span></span><br></pre></td></tr></table></figure>
+
+<p>同样重新部署即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜ helm upgrade --install ingress-nginx . -f ./ci/daemonset-prod.yaml --namespace ingress-nginx</span><br></pre></td></tr></table></figure>
+
+<p>部署完成后通过 <code>initContainers</code> 就可以修改节点内核参数了，生产环境建议对节点内核参数进行相应的优化。</p>
+<p>查看并验证：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -ningress-nginx</span></span><br><span class="line">NAME                                            READY   STATUS    RESTARTS      AGE</span><br><span class="line">ingress-nginx-controller-rq77g                  1/1     Running   0             30s</span><br><span class="line">ingress-nginx-defaultbackend-84854cd6cb-zct8c   1/1     Running   4 (17h ago)   4d13h</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec ingress-nginx-controller-rq77g -ningress-nginx -- sysctl -a|grep fs.inotify.max_queued_events</span></span><br><span class="line">Defaulted container <span class="string">&quot;controller&quot;</span> out of: controller, init-sysctl (init)</span><br><span class="line">fs.inotify.max_queued_events = 16384</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec ingress-nginx-controller-rq77g -ningress-nginx -- sysctl -a|grep fs.inotify.max_user_watches</span></span><br><span class="line">Defaulted container <span class="string">&quot;controller&quot;</span> out of: controller, init-sysctl (init)</span><br><span class="line">fs.inotify.max_user_watches = 524288</span><br><span class="line"><span class="comment">#可以看到已生效，符合预期</span></span><br></pre></td></tr></table></figure>
+
+<p>测试结束。😘</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><h3 id="📍-helm-chart知识点"><a href="#📍-helm-chart知识点" class="headerlink" title="📍 helm chart知识点"></a>📍 helm chart知识点</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106213702584.png" alt="image-20220106213702584"></p>
+<p>vim values.yaml：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107060408524.png" alt="image-20220107060408524"></p>
+<p>vim ci/daemonset-prod.yaml</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107060711009.png" alt="image-20220107060711009"></p>
+<p>template内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107060819435.png" alt="image-20220107060819435"></p>
+<p>_params.tml</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107060845552.png" alt="image-20220107060845552"></p>
+<h3 id="📍-关于ingress-nginx更多使用方法"><a href="#📍-关于ingress-nginx更多使用方法" class="headerlink" title="📍 关于ingress-nginx更多使用方法"></a>📍 关于ingress-nginx更多使用方法</h3><p>Will add custom configuration options to Nginx <a target="_blank" rel="noopener" href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/</a><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220106223958797.png" alt="image-20220106223958797"></p>
+<p>🍀 当然，我们也是可以定制404的</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107061445547.png" alt="image-20220107061445547"></p>
+<p>🍀 annotations配置是针对单个域名生效的</p>
+<p>注意：你想要针对单个域名或者ingress对象配置的话，是通过annotations来配置的。至于具体能配哪些东西，这里可以查看官方链接。</p>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107062421653.png" alt="image-20220107062421653"></p>
+<p>🍀 在nginx能做的配置大多数是可以在ingress的anotations里面配置的。</p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人github</p>
+<p> <a target="_blank" rel="noopener" href="https://github.com/OnlyOnexl">https://github.com/OnlyOnexl</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220105203338290.png" alt="image-20220105203338290"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于ingress-nginx 高级配置2实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220107064022980.png" alt="image-20220107064022980"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/01/07/114%20%E5%AE%9E%E6%88%98%EF%BC%9Aingress-nginx%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE2-2022.1.7/">https://www.onlyonexl.cn/2022/01/07/114%20%E5%AE%9E%E6%88%98%EF%BC%9Aingress-nginx%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE2-2022.1.7/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                                <a href="/tags/ingress-ns/">
+                                    <span class="chip bg-color">ingress-ns</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/01/07/114%20%E5%AE%9E%E6%88%98%EF%BC%9Aingress-nginx%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE2-2022.1.7/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="实战：ingress-nginx 高级配置2-2022.1.7">
+                        
+                        <span class="card-title">实战：ingress-nginx 高级配置2-2022.1.7</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-07
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                    <a href="/tags/ingress-ns/">
+                        <span class="chip bg-color">ingress-ns</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/05/113%20%E5%AE%9E%E6%88%98%EF%BC%9Aingress-nginx%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE1-2022.1.5/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="实战：ingress-nginx 高级配置1-2022.1.5">
+                        
+                        <span class="card-title">实战：ingress-nginx 高级配置1-2022.1.5</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-05
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
