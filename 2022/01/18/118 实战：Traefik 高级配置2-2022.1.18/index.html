@@ -1,0 +1,1375 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：Traefik 高级配置2-2022.1.18, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：Traefik 高级配置2-2022.1.18 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：Traefik 高级配置2-2022.1.18</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                            <a href="/tags/traefik/">
+                                <span class="chip bg-color">traefik</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-01-18
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：Traefik-高级配置2-2022-1-18"><a href="#实战：Traefik-高级配置2-2022-1-18" class="headerlink" title="实战：Traefik 高级配置2-2022.1.18"></a>实战：Traefik 高级配置2-2022.1.18</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220109164500924.png" alt="image-20220109164500924"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1N9RYHNJofTimb6q7esnkcg">https://pan.baidu.com/s/1N9RYHNJofTimb6q7esnkcg</a><br>提取码：apnz<br>–来自百度网盘超级会员V6的分享</p>
+<p><code>2022.1.18-32.Traefik高级配置2</code></p>
+<h2 id="1、Traefik-Pilot"><a href="#1、Traefik-Pilot" class="headerlink" title="1、Traefik Pilot"></a>1、Traefik Pilot</h2><p>虽然 Traefik 已经默认实现了很多中间件，可以满足大部分我们日常的需求，但是在实际工作中，<strong>用户仍然还是有自定义中间件的需求</strong>，这就是 <a target="_blank" rel="noopener" href="https://pilot.traefik.io/">Traefik Pilot</a> 的功能了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225100314.png" alt="pilot"></p>
+<p><strong>Traefik Pilot 是一个 SaaS 平台，和 Traefik 进行链接来扩展其功能</strong>，它提供了很多功能，通过一个<strong>全局控制面板和 Dashboard</strong> 来增强对 Traefik 的观测和控制：</p>
+<ul>
+<li>Traefik 代理和代理组的网络活动的指标</li>
+<li>服务健康问题和安全漏洞警报</li>
+<li>扩展 Traefik 功能的插件</li>
+</ul>
+<h3 id="📍-演示1：traefik使用Traefik-Pilot-成功测试"><a href="#📍-演示1：traefik使用Traefik-Pilot-成功测试" class="headerlink" title="📍 演示1：traefik使用Traefik Pilot(成功测试)"></a>📍 演示1：traefik使用Traefik Pilot(成功测试)</h3><p>在 Traefik 可以使用 <code>Traefik Pilot</code> 的功能之前，必须先连接它们，我们只需要对 Traefik 的静态配置进行少量更改即可。</p>
+<blockquote>
+<p>Traefik 代理必须要能访问互联网才能连接到 <code>Traefik Pilot</code>，通过 HTTPS 在 443 端口上建立连接。</p>
+</blockquote>
+<p>🍀 首先我们需要在 <code>Traefik Pilot</code> 主页上(<a target="_blank" rel="noopener" href="https://pilot.traefik.io/)%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E5%B8%90%E6%88%B7%EF%BC%8C%E6%B3%A8%E5%86%8C%E6%96%B0%E7%9A%84">https://pilot.traefik.io/)创建一个帐户，注册新的</a> <code>Traefik</code> 实例并开始使用 <code>Traefik Pilot</code>。登录后，可以通过选择 <code>Register New Traefik Instance</code>来创建新实例。</p>
+<p>这边我们在之前的<code>traefik-dashboard</code>功能基础上，直接点击右边连接traefik pilot进行登录就好：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225100714.png" alt="创建实例"></p>
+<p>另外，当我们的 Traefik 尚未连接到 <code>Traefik Pilot</code> 时，Traefik Web UI 中将出现一个响铃图标，我们可以选择 <code>Connect with Traefik Pilot</code> 导航到 Traefik Pilot UI 进行操作。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225100905.png" alt="Pilot UI"></p>
+<p>🍀 登录完成后，<code>Traefik Pilot</code> 会生成一个新实例的令牌，我们需要将这个 Token 令牌添加到 Traefik 静态配置中。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225101104.png" alt="Pilot 配置"></p>
+<p>🍀 我们这里就是在 <code>ci/deployment-prod.yaml</code> 文件中启用 Pilot 的配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#vim traefik/ci/deployment-prod.yaml</span></span><br><span class="line"><span class="comment"># Activate Pilot integration</span></span><br><span class="line"><span class="attr">pilot:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">&quot;e079ea6e-536a-48c6-b3e3-f7cfaf94f477&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后重新更新 Traefik：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#helm upgrade --install traefik ./traefik -f ./traefik/ci/deployment-prod.yaml --namespace kube-system</span></span><br><span class="line"><span class="string">Release</span> <span class="string">&quot;traefik&quot;</span> <span class="string">has</span> <span class="string">been</span> <span class="string">upgraded.</span> <span class="string">Happy</span> <span class="string">Helming!</span></span><br><span class="line"><span class="attr">NAME:</span> <span class="string">traefik</span></span><br><span class="line"><span class="attr">LAST DEPLOYED:</span> <span class="string">Sun</span> <span class="string">Jan</span> <span class="number">16</span> <span class="number">11</span><span class="string">:55:13</span> <span class="number">2022</span></span><br><span class="line"><span class="attr">NAMESPACE:</span> <span class="string">kube-system</span></span><br><span class="line"><span class="attr">STATUS:</span> <span class="string">deployed</span></span><br><span class="line"><span class="attr">REVISION:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">TEST SUITE:</span> <span class="string">None</span></span><br></pre></td></tr></table></figure>
+
+<p>更新完成后，我们在 Traefik 的 Web UI 中就可以看到 Traefik Pilot UI 相关的信息了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225101951.png" alt="更新完成"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220116115832921.png" alt="image-20220116115832921"></p>
+<p>🍀 接下来我们就可以在 Traefik Pilot 的插件页面选择我们想要使用的插件，比如我们这里使用 <a target="_blank" rel="noopener" href="https://github.com/traefik/plugindemo">Demo Plugin</a> 这个插件。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225102230.png" alt="Demo 插件"></p>
+<p>点击右上角的 <code>Install Plugin</code> 按钮安装插件会弹出一个对话框提示我们如何安装。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225102357.png" alt="插件提示"></p>
+<p>首先我们需要将当前 Traefik 注册到 Traefik Pilot（已完成），然后需要以静态配置的方式添加这个插件到 Traefik 中，这里我们同样更新 <code>ci/deployment-prod.yaml</code> 文件中的 Values 值即可：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#vim traefik/ci/deployment-prod.yaml</span></span><br><span class="line"><span class="comment"># Activate Pilot integration</span></span><br><span class="line"><span class="attr">pilot:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">token:</span> <span class="string">&quot;43644c57-f40f-4159-a3a5-5e6e40db1a29&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">additionalArguments:</span></span><br><span class="line"><span class="comment"># 添加 demo plugin 的支持</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">--experimental.plugins.plugindemo.modulename=github.com/traefik/plugindemo</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">--experimental.plugins.plugindemo.version=v0.2.1</span></span><br><span class="line"><span class="comment"># 其他配置</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#特别注意：这里还是需要做持久化配置的，否则会报错</span></span><br><span class="line">[<span class="string">root@master1</span> <span class="number">32.</span><span class="string">Traefik</span>]<span class="comment">#cat pv.yaml </span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolume</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">ReadWriteOnce</span></span><br><span class="line">  <span class="attr">capacity:</span></span><br><span class="line">    <span class="attr">storage:</span> <span class="string">128Mi</span></span><br><span class="line">  <span class="attr">hostPath:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">/data/k8s/traefik</span></span><br><span class="line"></span><br><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#cat traefik/ci/deployment-prod.yaml</span></span><br><span class="line"><span class="string">……</span></span><br><span class="line"><span class="attr">persistence:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">true</span>  <span class="comment"># 开启持久化</span></span><br><span class="line">  <span class="attr">accessMode:</span> <span class="string">ReadWriteOnce</span></span><br><span class="line">  <span class="attr">size:</span> <span class="string">128Mi</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">/data</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 由于上面持久化了ACME的数据，需要重新配置下面的安全上下文</span></span><br><span class="line"><span class="attr">securityContext:</span></span><br><span class="line">  <span class="attr">readOnlyRootFilesystem:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">runAsGroup:</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">runAsUser:</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">runAsNonRoot:</span> <span class="literal">false</span></span><br><span class="line"><span class="string">……</span></span><br></pre></td></tr></table></figure>
+
+<p>同样重新更新 Traefik：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#helm upgrade --install traefik ./traefik -f ./traefik/ci/deployment-prod.yaml --namespace kube-system</span></span><br><span class="line">Release <span class="string">&quot;traefik&quot;</span> has been upgraded. Happy Helming!</span><br><span class="line">NAME: traefik</span><br><span class="line">LAST DEPLOYED: Sun Jan 16 12:51:42 2022</span><br><span class="line">NAMESPACE: kube-system</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 3</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+
+<p>更新完成后创建一个如下所示的 Middleware 对象：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="number">32.</span><span class="string">Traefik</span>]<span class="comment">#vim who.yaml</span></span><br><span class="line"><span class="string">……</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">traefik.containo.us/v1alpha1</span> <span class="comment">#注意，我这里直接把这个yaml内容放到who.yaml应用里面去</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Middleware</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">myplugin</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">plugin:</span></span><br><span class="line">    <span class="attr">plugindemo:</span>  <span class="comment"># 插件名</span></span><br><span class="line">      <span class="attr">Headers:</span></span><br><span class="line">        <span class="attr">X-Demo:</span> <span class="string">test</span></span><br><span class="line">        <span class="attr">Foo:</span> <span class="string">bar</span></span><br></pre></td></tr></table></figure>
+
+<p>然后添加到上面的 whoami 应用的 IngressRoute 对象中去：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="number">32.</span><span class="string">Traefik</span>]<span class="comment">#vim who.yaml</span></span><br><span class="line"><span class="string">……</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">traefik.containo.us/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">IngressRoute</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ingressroute-demo</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">entryPoints:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">routes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">match:</span> <span class="string">Host(`who.qikqiak.com`)</span> <span class="string">&amp;&amp;</span> <span class="string">PathPrefix(`/notls`)</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">Rule</span></span><br><span class="line">    <span class="attr">services:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">whoami</span>  <span class="comment"># K8s Service</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">middlewares:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">myplugin</span>  <span class="comment"># 使用上面新建的 middleware</span></span><br><span class="line">    </span><br><span class="line"><span class="comment">#kubectl apply -f 32.Traefik/who.yaml    </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 更新完成后，当我们去访问 <code>http://who.qikqiak.com/notls</code> 的时候就可以看到新增了两个上面插件中定义的两个 Header。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20201225104027.png" alt="自定义插件显示"></p>
+<p>个人实验现象也成功了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220116130556424.png" alt="image-20220116130556424"></p>
+<p>测试结束。😘完美</p>
+<p>🍀 当然除了使用 Traefik Pilot 上开发者提供的插件之外，我们也可以根据自己的需求自行开发自己的插件，可以自行参考文档：<a target="_blank" rel="noopener" href="https://doc.traefik.io/traefik-pilot/plugins/plugin-dev/%E3%80%82">https://doc.traefik.io/traefik-pilot/plugins/plugin-dev/。</a></p>
+<p>🍀 plugin demo插件介绍</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220116123229582.png" alt="image-20220116123229582"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220116123320398.png" alt="image-20220116123320398"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220116123350864.png" alt="image-20220116123350864"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220116123409854.png" alt="image-20220116123409854"></p>
+<h2 id="2、私有插件"><a href="#2、私有插件" class="headerlink" title="2、私有插件"></a>2、私有插件</h2><p>上面我们介绍了可以使用 Traefik Pilot 来使用插件，但是这是一个 SaaS 服务平台，对于大部分企业场景下面不是很适用，<strong>我们更多的场景下需要在本地环境加载插件</strong>，为解决这个问题，<strong>在 Traefik v2.5 版本后，就提供了一种直接从本地存储目录加载插件的新方法</strong>，不需要启用 Traefik Pilot，只需要将插件源码放入一个名为 <code>/plugins-local</code> 的新目录，相对于当前工作目录去创建这个目录，比如我们直接使用的是 traefik 的 docker 镜像，则入口点则是根目录 <code>/</code>，Traefik 本身会去构建你的插件，所以我们要做的就是编写源代码，并把它放在正确的目录下，让 Traefik 来加载它即可。</p>
+<p>需要注意的是由于在每次启动的时候插件只加载一次，<strong>所以如果我们希望重新加载你的插件源码的时候需要重新启动 Traefik</strong>。</p>
+<p>下面我们使用一个简单的自定义插件示例来说明如何使用私有插件。</p>
+<h3 id="📍-演示1：traefik私有插件-成功测试"><a href="#📍-演示1：traefik私有插件-成功测试" class="headerlink" title="📍 演示1：traefik私有插件(成功测试)"></a>📍 演示1：traefik私有插件(成功测试)</h3><p>前面几个步骤是如何构建并转存对象的步骤：</p>
+<p>🍀 首先我们定义一个名为 <code>Dockerfile.demo</code> 的 Dockerfile 文件，先从 git 仓库中克隆插件源码，然后以 <code>traefik:v2.5</code> 为基础镜像，将插件源码拷贝到 <code>/plugins-local</code> 目录，如下所示：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">FROM alpine:3</span><br><span class="line">ARG PLUGIN_MODULE=github.com/traefik/plugindemo</span><br><span class="line">ARG PLUGIN_GIT_REPO=https://github.com/traefik/plugindemo.git</span><br><span class="line">ARG PLUGIN_GIT_BRANCH=master</span><br><span class="line">RUN apk add --update git &amp;&amp; \</span><br><span class="line">    git <span class="built_in">clone</span> <span class="variable">$&#123;PLUGIN_GIT_REPO&#125;</span> /plugins-local/src/<span class="variable">$&#123;PLUGIN_MODULE&#125;</span> \</span><br><span class="line">      --depth 1 --single-branch --branch <span class="variable">$&#123;PLUGIN_GIT_BRANCH&#125;</span></span><br><span class="line">FROM traefik:v2.5</span><br><span class="line">COPY --from=0 /plugins-local /plugins-local</span><br></pre></td></tr></table></figure>
+
+<p>我们这里使用的演示插件和上面 Pilot 中演示的是同一个插件，我们可以通过该插件去自定义请求头信息。</p>
+<p>🍀 然后在 <code>Dockerfile.demo</code> 目录下面，构建镜像：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ docker build -f Dockerfile.demo -t cnych/traefik-private-demo-plugin:2.5.4 .</span><br><span class="line"><span class="comment"># 推送到镜像仓库</span></span><br><span class="line">➜ docker push cnych/traefik-private-demo-plugin:2.5.4</span><br></pre></td></tr></table></figure>
+
+
+
+<p>:warning: 我这里先直接用老师的镜像，后面再研究这个katacoda网站无法打开问题。</p>
+<p>🍀 镜像构建完成后就可以使用这个镜像来测试 demo 插件了，同样我们这里直接去覆盖的 Values 文件，更新 <code>ci/deployment-prod.yaml</code> 文件中的 Values 值，将镜像修改成上面我们自定义的镜像地址：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ci/deployment-prod.yaml</span></span><br><span class="line"><span class="attr">image:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">cnych/traefik-private-demo-plugin</span></span><br><span class="line">  <span class="attr">tag:</span> <span class="number">2.5</span><span class="number">.4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 其他省略</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不需要开启 pilot 了</span></span><br><span class="line"><span class="attr">pilot:</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">additionalArguments:</span></span><br><span class="line"><span class="comment"># 添加 demo plugin 的本地支持</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">--experimental.localPlugins.plugindemo.moduleName=github.com/traefik/plugindemo</span></span><br><span class="line"><span class="comment"># 其他省略</span></span><br></pre></td></tr></table></figure>
+
+<p>注意上面我们添加 Traefik 的启动参数的时候使用的 <code>--experimental.localPlugins</code>。</p>
+<p>🍀 然后重新更新 Traefik：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#helm upgrade --install traefik --namespace=kube-system ./traefik -f ./traefik/ci/deployment-prod.yaml</span></span><br></pre></td></tr></table></figure>
+
+<p>🍀 更新完成后就可以使用我们的私有插件来创建一个 Middleware 对象了：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@master1</span> <span class="string">~</span>]<span class="comment">#vim who.yaml</span></span><br><span class="line"><span class="string">……</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">traefik.containo.us/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Middleware</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-private-plugin</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">plugin:</span></span><br><span class="line">    <span class="attr">plugindemo:</span>  <span class="comment"># 插件名</span></span><br><span class="line">      <span class="attr">Headers:</span></span><br><span class="line">        <span class="attr">X-Demo:</span> <span class="string">private-demo</span></span><br><span class="line">        <span class="attr">Foo:</span> <span class="string">bar</span></span><br></pre></td></tr></table></figure>
+
+<p>然后添加到上面的 whoami 应用的 IngressRoute 对象中去：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">traefik.containo.us/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">IngressRoute</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ingressroute-demo</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">entryPoints:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">routes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">match:</span> <span class="string">Host(`who.qikqiak.com`)</span> <span class="string">&amp;&amp;</span> <span class="string">PathPrefix(`/notls`)</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">Rule</span></span><br><span class="line">    <span class="attr">services:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">whoami</span>  <span class="comment"># K8s Service</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">middlewares:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">my-private-plugin</span>  <span class="comment"># 使用上面新建的 middleware</span></span><br></pre></td></tr></table></figure>
+
+<p>🍀 更新上面的资源对象后，我们再去访问 <code>http://who.qikqiak.com/notls</code> 就可以看到新增了两个上面插件中定义的两个 Header，证明我们的私有插件配置成功了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl apply -f who.yaml </span></span><br><span class="line">service/whoami created</span><br><span class="line">deployment.apps/whoami created</span><br><span class="line">ingressroute.traefik.containo.us/ingressroute-demo created</span><br><span class="line">middleware.traefik.containo.us/my-private-plugin created</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220117222831340.png" alt="image-20220117222831340"></p>
+<p>实验结束，完美😘。</p>
+<p>🍀 最后，本实验完整yaml文件内容如下：</p>
+<p>[root@master1 ~]# cat traefik/ci/deployment-prod.yaml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ci/deployment-prod.yaml #我们用如下文件覆盖掉默认values.yaml文件内容。</span></span><br><span class="line">deployment:</span><br><span class="line">  enabled: <span class="literal">true</span></span><br><span class="line">  kind: Deployment</span><br><span class="line"></span><br><span class="line">image:</span><br><span class="line">  name: cnych/traefik-private-demo-plugin</span><br><span class="line">  tag: 2.5.4</span><br><span class="line"><span class="comment"># 使用 IngressClass. Traefik 版本&lt;2.3 或者 Kubernetes 版本 &lt; 1.18.x 会被忽略</span></span><br><span class="line">ingressClass:</span><br><span class="line">  <span class="comment"># 还没有进行完整的单元测试，pending https://github.com/rancher/helm-unittest/pull/12</span></span><br><span class="line">  enabled: <span class="literal">true</span></span><br><span class="line">  isDefaultClass: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">ingressRoute:  <span class="comment"># 不用自动创建，我们自己处理</span></span><br><span class="line">  dashboard:</span><br><span class="line">    enabled: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># 配置 providers</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">providers:</span><br><span class="line">  kubernetesCRD:  <span class="comment"># 开启 crd provider</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">    allowCrossNamespace: <span class="literal">true</span>  <span class="comment"># 是否允许跨命名空间</span></span><br><span class="line">    allowExternalNameServices: <span class="literal">true</span>  <span class="comment"># 是否允许使用 ExternalName 的服务</span></span><br><span class="line"></span><br><span class="line">  kubernetesIngress:  <span class="comment"># 开启 ingress provider</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">    allowExternalNameServices: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">logs:</span><br><span class="line">  general:</span><br><span class="line">    <span class="comment"># format: json</span></span><br><span class="line">    level: DEBUG</span><br><span class="line">  access:</span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">ports:</span><br><span class="line">  web:</span><br><span class="line">    port: 8000</span><br><span class="line">    hostPort: 80  <span class="comment"># 使用 hostport 模式</span></span><br><span class="line"></span><br><span class="line">  websecure:</span><br><span class="line">    port: 8443</span><br><span class="line">    hostPort: 443  <span class="comment"># 使用 hostport 模式</span></span><br><span class="line"></span><br><span class="line">  metrics:</span><br><span class="line">    port: 9100</span><br><span class="line">    hostPort: 9101</span><br><span class="line"></span><br><span class="line">service:  <span class="comment"># host 模式就不需要创建 Service 了，云端环境可以用 Service 模式</span></span><br><span class="line">  enabled: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">resources:</span><br><span class="line">  requests:</span><br><span class="line">    cpu: <span class="string">&quot;100m&quot;</span></span><br><span class="line">    memory: <span class="string">&quot;100Mi&quot;</span></span><br><span class="line">  limits:</span><br><span class="line">    cpu: <span class="string">&quot;100m&quot;</span></span><br><span class="line">    memory: <span class="string">&quot;100Mi&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tolerations:   # kubeadm 安装的集群默认情况下master是有污点，如果需要安装在master节点需要添加容忍</span></span><br><span class="line"><span class="comment"># - key: &quot;node-role.kubernetes.io/master&quot;</span></span><br><span class="line"><span class="comment">#   operator: &quot;Equal&quot;</span></span><br><span class="line"><span class="comment">#   effect: &quot;NoSchedule&quot;</span></span><br><span class="line"></span><br><span class="line">nodeSelector:   <span class="comment"># 固定到node1这个边缘节点</span></span><br><span class="line">  kubernetes.io/hostname: <span class="string">&quot;node1&quot;</span></span><br><span class="line"></span><br><span class="line">pilot:</span><br><span class="line">  enabled: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">additionalArguments:</span><br><span class="line"><span class="comment"># 添加 demo plugin 的本地支持</span></span><br><span class="line">- --experimental.localPlugins.plugindemo.moduleName=github.com/traefik/plugindemo</span><br><span class="line"><span class="comment"># 其他省略</span></span><br></pre></td></tr></table></figure>
+
+<p>[root@master1 ~]# cat who.yaml</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#who.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: whoami</span><br><span class="line">spec:</span><br><span class="line">  ports:</span><br><span class="line">    - protocol: TCP</span><br><span class="line">      name: web</span><br><span class="line">      port: 80</span><br><span class="line">  selector:</span><br><span class="line">    app: whoami</span><br><span class="line">---</span><br><span class="line">kind: Deployment</span><br><span class="line">apiVersion: apps/v1</span><br><span class="line">metadata:</span><br><span class="line">  name: whoami</span><br><span class="line">  labels:</span><br><span class="line">    app: whoami</span><br><span class="line">spec:</span><br><span class="line">  replicas: 2</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: whoami</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: whoami</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">        - name: whoami</span><br><span class="line">          image: containous/whoami</span><br><span class="line">          ports:</span><br><span class="line">            - name: wen</span><br><span class="line">              containerPort: 80</span><br><span class="line">---</span><br><span class="line">apiVersion: traefik.containo.us/v1alpha1</span><br><span class="line">kind: IngressRoute</span><br><span class="line">metadata:</span><br><span class="line">  name: ingressroute-demo</span><br><span class="line">spec:</span><br><span class="line">  entryPoints:</span><br><span class="line">  - web</span><br><span class="line">  routes:</span><br><span class="line">  - match: Host(`who.qikqiak.com`) &amp;&amp; PathPrefix(`/notls`)</span><br><span class="line">    kind: Rule</span><br><span class="line">    services:</span><br><span class="line">    - name: whoami</span><br><span class="line">      port: 80</span><br><span class="line">    middlewares:</span><br><span class="line">    - name: my-private-plugin  <span class="comment"># 使用上面新建的 middleware</span></span><br><span class="line">---</span><br><span class="line">apiVersion: traefik.containo.us/v1alpha1</span><br><span class="line">kind: Middleware</span><br><span class="line">metadata:</span><br><span class="line">  name: my-private-plugin</span><br><span class="line">spec:</span><br><span class="line">  plugin:</span><br><span class="line">    plugindemo:  <span class="comment"># 插件名</span></span><br><span class="line">      Headers:</span><br><span class="line">        X-Demo: private-demo</span><br><span class="line">        Foo: bar</span><br></pre></td></tr></table></figure>
+
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人github</p>
+<p> <a target="_blank" rel="noopener" href="https://github.com/OnlyOnexl">https://github.com/OnlyOnexl</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220105203338290.png" alt="image-20220105203338290"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于Traefik 高级配置2实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108223350304.png" alt="image-20211108223350304"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/01/18/118%20%E5%AE%9E%E6%88%98%EF%BC%9ATraefik%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE2-2022.1.18/">https://www.onlyonexl.cn/2022/01/18/118%20%E5%AE%9E%E6%88%98%EF%BC%9ATraefik%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE2-2022.1.18/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                                <a href="/tags/traefik/">
+                                    <span class="chip bg-color">traefik</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/01/18/118%20%E5%AE%9E%E6%88%98%EF%BC%9ATraefik%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE2-2022.1.18/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="实战：Traefik 高级配置2-2022.1.18">
+                        
+                        <span class="card-title">实战：Traefik 高级配置2-2022.1.18</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                    <a href="/tags/traefik/">
+                        <span class="chip bg-color">traefik</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/01/16/117%20%E5%AE%9E%E6%88%98%EF%BC%9ATraefik%20%E9%AB%98%E7%BA%A7%E9%85%8D%E7%BD%AE1-2022.1.16/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="实战：Traefik 高级配置1-2022.1.16">
+                        
+                        <span class="card-title">实战：Traefik 高级配置1-2022.1.16</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-01-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                    <a href="/tags/traefik/">
+                        <span class="chip bg-color">traefik</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
