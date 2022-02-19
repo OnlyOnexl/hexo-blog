@@ -1,0 +1,1466 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：Descheduler-2022.2.19, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：Descheduler-2022.2.19 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：Descheduler-2022.2.19</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-02-19
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：Descheduler-2022-2-19"><a href="#实战：Descheduler-2022-2-19" class="headerlink" title="实战：Descheduler-2022.2.19"></a>实战：Descheduler-2022.2.19</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219161107422.png" alt="image-20220219161107422"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/19x43qNOI2oogXTcgEDCwgQ?pwd=0min">https://pan.baidu.com/s/19x43qNOI2oogXTcgEDCwgQ?pwd=0min</a><br>提取码：0min<br><code>2022.2.19-41.Descheduler-s实验代码</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219224827339.png" alt="image-20220219224827339"></p>
+<h2 id="1、Descheduler"><a href="#1、Descheduler" class="headerlink" title="1、Descheduler"></a>1、Descheduler</h2><p>从 kube-scheduler 的角度来看，它是通过一系列算法计算出最佳节点运行 Pod，当出现新的 Pod 进行调度时，调度程序会根据其当时对 Kubernetes 集群的资源描述做出最佳调度决定，但是 <strong>Kubernetes 集群是非常动态的</strong>，由于整个集群范围内的变化，比如一个节点为了维护，我们先执行了驱逐操作，这个节点上的所有 Pod 会被驱逐到其他节点去，但是当我们维护完成后，之前的 Pod 并不会自动回到该节点上来，因为 <strong>Pod 一旦被绑定了节点是不会触发重新调度的</strong>，由于这些变化，<strong>Kubernetes 集群在一段时间内就可能会出现不均衡的状态，所以需要均衡器来重新平衡集群。</strong></p>
+<p>当然我们可以去手动做一些集群的平衡，比如手动去删掉某些 Pod，触发重新调度就可以了，但是显然这是一个繁琐的过程，也不是解决问题的方式。<strong>为了解决实际运行中集群资源无法充分利用或浪费的问题</strong>，可以使用 <a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/descheduler">descheduler</a> 组件对集群的 Pod 进行调度优化，<code>descheduler</code> 可以根据一些规则和配置策略来帮助我们重新平衡集群状态，其核心原理是根据其策略配置找到可以被移除的 Pod 并驱逐它们，**<u>其本身并不会进行调度被驱逐的 Pod，而是依靠默认的调度器来实现</u>**，目前支持的策略有：</p>
+<ul>
+<li>RemoveDuplicates</li>
+<li>LowNodeUtilization</li>
+<li>RemovePodsViolatingInterPodAntiAffinity</li>
+<li>RemovePodsViolatingNodeAffinity</li>
+<li>RemovePodsViolatingNodeTaints</li>
+<li>RemovePodsViolatingTopologySpreadConstraint</li>
+<li>RemovePodsHavingTooManyRestarts</li>
+<li>PodLifeTime</li>
+</ul>
+<p>这些策略都是可以启用或者禁用的，作为策略的一部分，也可以配置与策略相关的一些参数，<strong>默认情况下，所有策略都是启用的</strong>。另外，还有一些通用配置，如下：</p>
+<ul>
+<li><code>nodeSelector</code>：限制要处理的节点</li>
+<li><code>evictLocalStoragePods</code>: 驱逐使用 LocalStorage 的 Pods</li>
+<li><code>ignorePvcPods</code>: 是否忽略配置 PVC 的 Pods，默认是 False</li>
+<li><code>maxNoOfPodsToEvictPerNode</code>：节点允许的最大驱逐 Pods 数</li>
+</ul>
+<p>我们可以通过如下所示的 <code>DeschedulerPolicy</code> 来配置：(<strong>这里是要用一个configmap来进行使用的。</strong>)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">nodeSelector:</span> <span class="string">prod=dev</span></span><br><span class="line"><span class="attr">evictLocalStoragePods:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">maxNoOfPodsToEvictPerNode:</span> <span class="number">40</span></span><br><span class="line"><span class="attr">ignorePvcPods:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">strategies:</span>  <span class="comment"># 配置策略</span></span><br><span class="line">  <span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2、安装"><a href="#2、安装" class="headerlink" title="2、安装"></a>2、安装</h2><h3 id="📍-案例演示：descheduler安装-测试成功"><a href="#📍-案例演示：descheduler安装-测试成功" class="headerlink" title="📍 案例演示：descheduler安装(测试成功)"></a>📍 案例演示：descheduler安装(测试成功)</h3><p>🍀 <code>descheduler</code> 可以以 <code>Job</code>、<code>CronJob</code> 或者 <code>Deployment</code> 的形式运行在 k8s 集群内，同样我们可以使用 Helm Chart 来安装 <code>descheduler</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#helm repo add descheduler https://kubernetes-sigs.github.io/descheduler/</span></span><br><span class="line"><span class="string">&quot;descheduler&quot;</span> has been added to your repositories</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#helm fetch descheduler/descheduler</span></span><br><span class="line">[root@master1 ~]<span class="comment">#tar xf descheduler-0.23.1.tgz </span></span><br></pre></td></tr></table></figure>
+
+<p>通过 Helm Chart 我们可以配置 <code>descheduler</code> 以 <code>CronJob</code> 或者 <code>Deployment</code> 方式运行。:warning: 默认情况下 <code>descheduler</code> 会以一个 <code>critical pod</code> 运行，以避免被自己或者 kubelet 驱逐了，需要确保集群中有 <code>system-cluster-critical</code> 这个 Priorityclass：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get priorityclass system-cluster-critical</span></span><br><span class="line">NAME                      VALUE        GLOBAL-DEFAULT   AGE</span><br><span class="line">system-cluster-critical   2000000000   <span class="literal">false</span>            111d</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 使用 Helm Chart 安装默认情况下会以 <code>CronJob</code> 的形式运行，执行周期为 <code>schedule: &quot;*/2 * * * *&quot;</code>，这样每隔两分钟会执行一次 <code>descheduler</code> 任务，默认的配置策略如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">descheduler</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">policy.yaml:</span> <span class="string">|</span></span><br><span class="line"><span class="string">    apiVersion: &quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="string">    kind: &quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="string">    strategies:</span></span><br><span class="line"><span class="string">      LowNodeUtilization:</span></span><br><span class="line"><span class="string">        enabled: true</span></span><br><span class="line"><span class="string">        params:</span></span><br><span class="line"><span class="string">          nodeResourceUtilizationThresholds:</span></span><br><span class="line"><span class="string">            targetThresholds:</span></span><br><span class="line"><span class="string">              cpu: 50</span></span><br><span class="line"><span class="string">              memory: 50</span></span><br><span class="line"><span class="string">              pods: 50</span></span><br><span class="line"><span class="string">            thresholds:</span></span><br><span class="line"><span class="string">              cpu: 20</span></span><br><span class="line"><span class="string">              memory: 20</span></span><br><span class="line"><span class="string">              pods: 20</span></span><br><span class="line"><span class="string">      RemoveDuplicates:</span></span><br><span class="line"><span class="string">        enabled: true</span></span><br><span class="line"><span class="string">      RemovePodsViolatingInterPodAntiAffinity:</span></span><br><span class="line"><span class="string">        enabled: true</span></span><br><span class="line"><span class="string">      RemovePodsViolatingNodeAffinity:</span></span><br><span class="line"><span class="string">        enabled: true</span></span><br><span class="line"><span class="string">        params:</span></span><br><span class="line"><span class="string">          nodeAffinityType:</span></span><br><span class="line"><span class="string">          - requiredDuringSchedulingIgnoredDuringExecution</span></span><br><span class="line"><span class="string">      RemovePodsViolatingNodeTaints:</span></span><br><span class="line"><span class="string">        enabled: true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 通过配置 <code>DeschedulerPolicy</code> 的 <code>strategies</code>，可以指定 <code>descheduler</code> 的执行策略，这些策略都是可以启用或禁用的。下面我们会详细介绍，这里我们使用默认策略即可，使用如下命令直接安装即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#helm upgrade --install descheduler descheduler/descheduler --set image.repository=cnych/descheduler,podSecurityPolicy.create=false -n kube-system</span></span><br><span class="line">Release <span class="string">&quot;descheduler&quot;</span> does not exist. Installing it now.</span><br><span class="line">NAME: descheduler</span><br><span class="line">LAST DEPLOYED: Sat Feb 19 17:05:31 2022</span><br><span class="line">NAMESPACE: kube-system</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">NOTES:</span><br><span class="line">Descheduler installed as a CronJob .   </span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 部署完成后会创建一个 <code>CronJob</code> 资源对象来平衡集群状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get cronjob -n kube-system</span><br><span class="line">NAME          SCHEDULE      SUSPEND   ACTIVE   LAST SCHEDULE   AGE</span><br><span class="line">descheduler   */2 * * * *   False     1        27s             31s</span><br><span class="line">➜ kubectl get job -n kube-system</span><br><span class="line">NAME                   COMPLETIONS   DURATION   AGE</span><br><span class="line">descheduler-27378876   1/1           72s        79s</span><br><span class="line">➜ kubectl get pods -n kube-system -l job-name=descheduler-27378876</span><br><span class="line">NAME                            READY   STATUS      RESTARTS   AGE</span><br><span class="line">descheduler-27378876--1-btjmd   0/1     Completed   0          2m21s</span><br></pre></td></tr></table></figure>
+
+<p>正常情况下就会创建一个对应的 Job 来执行 <code>descheduler</code> 任务，我们可以通过查看日志可以了解做了哪些平衡操作：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl logs -f descheduler-27378876--1-btjmd -n kube-system</span><br><span class="line">I0121 02:37:10.127266       1 named_certificates.go:53] <span class="string">&quot;Loaded SNI cert&quot;</span> index=0 certName=<span class="string">&quot;self-signed loopback&quot;</span> certDetail=<span class="string">&quot;\&quot;apiserver-loopback-client@1642732630\&quot; [serving] validServingFor=[apiserver-loopback-client] issuer=\&quot;apiserver-loopback-client-ca@1642732629\&quot; (2022-01-21 01:37:09 +0000 UTC to 2023-01-21 01:37:09 +0000 UTC (now=2022-01-21 02:37:10.127237 +0000 UTC))&quot;</span></span><br><span class="line">I0121 02:37:10.127324       1 secure_serving.go:195] Serving securely on [::]:10258</span><br><span class="line">I0121 02:37:10.127363       1 tlsconfig.go:240] <span class="string">&quot;Starting DynamicServingCertificateController&quot;</span></span><br><span class="line">I0121 02:37:10.138724       1 node.go:46] <span class="string">&quot;Node lister returned empty list, now fetch directly&quot;</span></span><br><span class="line">I0121 02:37:10.172264       1 nodeutilization.go:167] <span class="string">&quot;Node is overutilized&quot;</span> node=<span class="string">&quot;master1&quot;</span> usage=map[cpu:1225m memory:565Mi pods:16] usagePercentage=map[cpu:61.25 memory:15.391786081415567 pods:14.545454545454545]</span><br><span class="line">I0121 02:37:10.172313       1 nodeutilization.go:164] <span class="string">&quot;Node is underutilized&quot;</span> node=<span class="string">&quot;node1&quot;</span> usage=map[cpu:675m memory:735Mi pods:16] usagePercentage=map[cpu:16.875 memory:9.542007959787252 pods:14.545454545454545]</span><br><span class="line">I0121 02:37:10.172328       1 nodeutilization.go:170] <span class="string">&quot;Node is appropriately utilized&quot;</span> node=<span class="string">&quot;node2&quot;</span> usage=map[cpu:975m memory:1515Mi pods:15] usagePercentage=map[cpu:24.375 memory:19.66820054018583 pods:13.636363636363637]</span><br><span class="line">I0121 02:37:10.172340       1 lownodeutilization.go:100] <span class="string">&quot;Criteria for a node under utilization&quot;</span> CPU=20 Mem=20 Pods=20</span><br><span class="line">I0121 02:37:10.172346       1 lownodeutilization.go:101] <span class="string">&quot;Number of underutilized nodes&quot;</span> totalNumber=1</span><br><span class="line">I0121 02:37:10.172355       1 lownodeutilization.go:114] <span class="string">&quot;Criteria for a node above target utilization&quot;</span> CPU=50 Mem=50 Pods=50</span><br><span class="line">I0121 02:37:10.172360       1 lownodeutilization.go:115] <span class="string">&quot;Number of overutilized nodes&quot;</span> totalNumber=1</span><br><span class="line">I0121 02:37:10.172374       1 nodeutilization.go:223] <span class="string">&quot;Total capacity to be moved&quot;</span> CPU=1325 Mem=3267772416 Pods=39</span><br><span class="line">I0121 02:37:10.172399       1 nodeutilization.go:226] <span class="string">&quot;Evicting pods from node&quot;</span> node=<span class="string">&quot;master1&quot;</span> usage=map[cpu:1225m memory:565Mi pods:16]</span><br><span class="line">I0121 02:37:10.172485       1 nodeutilization.go:229] <span class="string">&quot;Pods on node&quot;</span> node=<span class="string">&quot;master1&quot;</span> allPods=16 nonRemovablePods=13 removablePods=3</span><br><span class="line">I0121 02:37:10.172495       1 nodeutilization.go:236] <span class="string">&quot;Evicting pods based on priority, if they have same priority, they&#x27;ll be evicted based on QoS tiers&quot;</span></span><br><span class="line">I0121 02:37:10.180353       1 evictions.go:130] <span class="string">&quot;Evicted pod&quot;</span> pod=<span class="string">&quot;default/topo-demo-6bbf65d967-lzlfh&quot;</span> reason=<span class="string">&quot;LowNodeUtilization&quot;</span></span><br><span class="line">I0121 02:37:10.181506       1 nodeutilization.go:269] <span class="string">&quot;Evicted pods&quot;</span> pod=<span class="string">&quot;default/topo-demo-6bbf65d967-lzlfh&quot;</span> err=&lt;nil&gt;</span><br><span class="line">I0121 02:37:10.181541       1 nodeutilization.go:294] <span class="string">&quot;Updated node usage&quot;</span> node=<span class="string">&quot;master1&quot;</span> CPU=1225 Mem=592445440 Pods=15</span><br><span class="line">I0121 02:37:10.182496       1 event.go:291] <span class="string">&quot;Event occurred&quot;</span> object=<span class="string">&quot;default/topo-demo-6bbf65d967-lzlfh&quot;</span> kind=<span class="string">&quot;Pod&quot;</span> apiVersion=<span class="string">&quot;v1&quot;</span> <span class="built_in">type</span>=<span class="string">&quot;Normal&quot;</span> reason=<span class="string">&quot;Descheduled&quot;</span> message=<span class="string">&quot;pod evicted by sigs.k8s.io/deschedulerLowNodeUtilization&quot;</span></span><br><span class="line">......</span><br></pre></td></tr></table></figure>
+
+<p>从日志中我们就可以清晰的知道因为什么策略驱逐了哪些 Pods。</p>
+<p>🍀 descheduler安装出现的问题</p>
+<p>:warning: 要注意自己helm chart版本和老师转存的镜像是否一致，否则可能拉取镜像失败：</p>
+<p>values.yaml内容：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219185204895.png" alt="image-20220219185204895"></p>
+<p>Chart.yaml文件内容：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219185509176.png" alt="image-20220219185509176"></p>
+<p>老师这里已经转存好的镜像如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219185903544.png" alt="image-20220219185903544"></p>
+<p>因此这里需要用如下命令来拉取：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">helm upgrade --install descheduler descheduler/descheduler --<span class="built_in">set</span> image.repository=cnych/descheduler,image.tag=v0.22.1,podSecurityPolicy.create=<span class="literal">false</span> -n kube-system</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#helm upgrade --install descheduler descheduler/descheduler --set image.repository=cnych/descheduler,image.tag=v0.22.1,podSecurityPolicy.create=false -n kube-system</span></span><br><span class="line">Release <span class="string">&quot;descheduler&quot;</span> does not exist. Installing it now.</span><br><span class="line">NAME: descheduler</span><br><span class="line">LAST DEPLOYED: Sat Feb 19 19:04:52 2022</span><br><span class="line">NAMESPACE: kube-system</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">NOTES:</span><br><span class="line">Descheduler installed as a CronJob .</span><br></pre></td></tr></table></figure>
+
+<p>完美。😘</p>
+<p>🍀 疑问</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219191708132.png" alt="image-20220219191708132"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219191801727.png" alt="image-20220219191801727"></p>
+<p>感觉自己的这个pod有问题，是因为自己的helm版本和老师的不一致吗。。。。;</p>
+<p>不是，老师这里也是这个现象的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219224536223.png" alt="image-20220219224536223"></p>
+<h2 id="3、PDB"><a href="#3、PDB" class="headerlink" title="3、PDB"></a>3、PDB</h2><p>由于使用 <code>descheduler</code> 会将 Pod 驱逐进行重调度，但是如果一个服务的所有副本都被驱逐的话，则可能导致该服务不可用。如果服务本身存在单点故障，驱逐的时候肯定就会造成服务不可用了，<strong>这种情况我们强烈建议使用反亲和性和多副本来避免单点故障</strong>。但是如果服务本身就被打散在多个节点上，这些 Pod 都被驱逐的话，这个时候也会造成服务不可用了，这种情况下我们可以通过配置 <code>PDB（PodDisruptionBudget）</code> <strong>对象来避免所有副本同时被删除，比如我们可以设置在驱逐的时候某应用最多只有一个副本不可用</strong>，则创建如下所示的资源清单即可：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">policy/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PodDisruptionBudget</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">pdb-demo</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">maxUnavailable:</span> <span class="number">1</span>  <span class="comment"># 设置最多不可用的副本数量，或者使用 minAvailable，可以使用整数或百分比</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span>    <span class="comment"># 匹配Pod标签</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">demo</span></span><br></pre></td></tr></table></figure>
+
+<p>关于 PDB 的更多详细信息可以查看官方文档：<a target="_blank" rel="noopener" href="https://kubernetes.io/docs/tasks/run-application/configure-pdb/%E3%80%82">https://kubernetes.io/docs/tasks/run-application/configure-pdb/。</a></p>
+<blockquote>
+<p>:warning: 所以如果我们使用 <code>descheduler</code> 来重新平衡集群状态，那么我们强烈建议给应用创建一个对应的 <code>PodDisruptionBudget</code> 对象进行保护。</p>
+</blockquote>
+<h2 id="4、策略"><a href="#4、策略" class="headerlink" title="4、策略"></a>4、策略</h2><h3 id="1-PodLifeTime"><a href="#1-PodLifeTime" class="headerlink" title="1.PodLifeTime"></a>1.PodLifeTime</h3><p>该策略用于驱逐比 <code>maxPodLifeTimeSeconds</code> 更旧的 Pods；可以通过 <code>podStatusPhases</code> 来配置哪类状态的 Pods 会被驱逐。建议为每个应用程序创建一个 PDB，以确保应用程序的可用性，比如我们可以配置如下所示的策略来驱逐运行超过7天的 Pod：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;PodLifeTime&quot;:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">params:</span></span><br><span class="line">      <span class="attr">maxPodLifeTimeSeconds:</span> <span class="number">604800</span>  <span class="comment"># Pods 运行最多7天</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-RemoveDuplicates"><a href="#2-RemoveDuplicates" class="headerlink" title="2.RemoveDuplicates"></a>2.RemoveDuplicates</h3><p><strong>该策略确保只有一个和 Pod 关联的 RS、Deployment 或者 Job 资源对象运行在同一节点上。</strong>如果还有更多的 Pod 则将这些重复的 Pod 进行驱逐，以便更好地在集群中分散 Pod。如果某些节点由于某些原因崩溃了，这些节点上的 Pod 漂移到了其他节点，导致多个与 RS 关联的 Pod 在同一个节点上运行，就有可能发生这种情况，一旦出现故障的节点再次准备就绪，就可以启用该策略来驱逐这些重复的 Pod。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220124113540.png" alt="RemoveDuplicates"></p>
+<p>配置策略的时候，可以指定参数 <code>excludeOwnerKinds</code> 用于排除类型，这些类型下的 Pod 不会被驱逐：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;RemoveDuplicates&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">       <span class="attr">removeDuplicates:</span></span><br><span class="line">         <span class="attr">excludeOwnerKinds:</span></span><br><span class="line">         <span class="bullet">-</span> <span class="string">&quot;ReplicaSet&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-LowNodeUtilization"><a href="#3-LowNodeUtilization" class="headerlink" title="3.LowNodeUtilization"></a>3.LowNodeUtilization</h3><blockquote>
+<p>这个策略用的想对比较多一些。</p>
+</blockquote>
+<p>该策略主要用于查找未充分利用的节点，并从其他节点驱逐 Pod，以便 kube-scheudler 重新将它们调度到未充分利用的节点上。该策略的参数可以通过字段 <code>nodeResourceUtilizationThresholds</code> 进行配置。</p>
+<p>节点的利用率不足可以通过配置 <code>thresholds</code> 阈值参数来确定，可以通过 CPU、内存和 Pods 数量的百分比进行配置。如果节点的使用率均低于所有阈值，则认为该节点未充分利用。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220124112813.png" alt="LowNodeUtilization"></p>
+<p>此外，还有一个可配置的阈值 <code>targetThresholds</code>，用于计算可能驱逐 Pods 的潜在节点，该参数也可以配置 CPU、内存以及 Pods 数量的百分比进行配置。<code>thresholds</code> 和 <code>targetThresholds</code> 可以根据你的集群需求进行动态调整，如下所示示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;LowNodeUtilization&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">       <span class="attr">nodeResourceUtilizationThresholds:</span></span><br><span class="line">         <span class="attr">thresholds:</span> <span class="comment">#注意：这个是未充分利用节点</span></span><br><span class="line">           <span class="string">&quot;cpu&quot;</span> <span class="string">:</span> <span class="number">20</span></span><br><span class="line">           <span class="attr">&quot;memory&quot;:</span> <span class="number">20</span></span><br><span class="line">           <span class="attr">&quot;pods&quot;:</span> <span class="number">20</span></span><br><span class="line">         <span class="attr">targetThresholds:</span> <span class="comment">#注意：这个可能驱逐 Pods 的潜在节点</span></span><br><span class="line">           <span class="string">&quot;cpu&quot;</span> <span class="string">:</span> <span class="number">50</span></span><br><span class="line">           <span class="attr">&quot;memory&quot;:</span> <span class="number">50</span></span><br><span class="line">           <span class="attr">&quot;pods&quot;:</span> <span class="number">50</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>:warning: 注意：这里可以考虑下用p8s来采集node的负载指标然后写在这里进行自定义；</p>
+</blockquote>
+<p>需要注意的是：</p>
+<ul>
+<li>仅支持以下三种资源类型：cpu、memory、pods</li>
+<li><code>thresholds</code> 和 <code>targetThresholds</code> 必须配置相同的类型</li>
+<li>参数值的访问是0-100（百分制）</li>
+<li>相同的资源类型，<code>thresholds</code> 的配置不能高于 <code>targetThresholds</code> 的配置</li>
+</ul>
+<p>如果未指定任何资源类型，则默认是100%，以避免节点从未充分利用变为过度利用。</p>
+<p>和 <code>LowNodeUtilization</code> 策略关联的另一个参数是 <code>numberOfNodes</code>，只有当未充分利用的节点数大于该配置值的时候，才可以配置该参数来激活该策略，**<u>该参数对于大型集群非常有用</u>**，其中有一些节点可能会频繁使用或短期使用不足，默认情况下，numberOfNodes 为0。</p>
+<h3 id="4-RemovePodsViolatingInterPodAntiAffinity"><a href="#4-RemovePodsViolatingInterPodAntiAffinity" class="headerlink" title="4.RemovePodsViolatingInterPodAntiAffinity"></a>4.RemovePodsViolatingInterPodAntiAffinity</h3><p>该策略可以确保从节点中删除违反 Pod 反亲和性的 Pod，比如某个节点上有 podA 这个 Pod，并且 podB 和 podC（在同一个节点上运行）具有禁止它们在同一个节点上运行的反亲和性规则，则 podA 将被从该节点上驱逐，以便 podB 和 podC 运行正常运行。当 podB 和 podC 已经运行在节点上后，反亲和性规则被创建就会发送这样的问题。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220124113908.png" alt="RemovePodsViolatingInterPodAntiAffinity"></p>
+<p>要禁用该策略，直接配置成 false 即可：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;RemovePodsViolatingInterPodAntiAffinity&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-RemovePodsViolatingNodeTaints"><a href="#5-RemovePodsViolatingNodeTaints" class="headerlink" title="5.RemovePodsViolatingNodeTaints"></a>5.RemovePodsViolatingNodeTaints</h3><p>该策略可以确保从节点中删除违反 <code>NoSchedule</code> 污点的 Pod，比如有一个名为 podA 的 Pod，通过配置容忍 <code>key=value:NoSchedule</code> 允许被调度到有该污点配置的节点上，如果节点的污点随后被更新或者删除了，则污点将不再被 Pods 的容忍满足，然后将被驱逐：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;RemovePodsViolatingNodeTaints&quot;:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-RemovePodsViolatingNodeAffinity"><a href="#6-RemovePodsViolatingNodeAffinity" class="headerlink" title="6.RemovePodsViolatingNodeAffinity"></a>6.RemovePodsViolatingNodeAffinity</h3><p>该策略确保从节点中删除违反节点亲和性的 Pod。比如名为 podA 的 Pod 被调度到了节点 nodeA，podA 在调度的时候满足了节点亲和性规则 <code>requiredDuringSchedulingIgnoredDuringExecution</code>，但是随着时间的推移，节点 nodeA 不再满足该规则了，那么如果另一个满足节点亲和性规则的节点 nodeB 可用，则 podA 将被从节点 nodeA 驱逐，如下所示的策略配置示例：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;RemovePodsViolatingNodeAffinity&quot;:</span></span><br><span class="line">    <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">params:</span></span><br><span class="line">      <span class="attr">nodeAffinityType:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;requiredDuringSchedulingIgnoredDuringExecution&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="7-RemovePodsViolatingTopologySpreadConstraint"><a href="#7-RemovePodsViolatingTopologySpreadConstraint" class="headerlink" title="7.RemovePodsViolatingTopologySpreadConstraint"></a>7.RemovePodsViolatingTopologySpreadConstraint</h3><p>该策略确保从节点驱逐违反拓扑分布约束的 Pods，具体来说，它试图驱逐将拓扑域平衡到每个约束的 <code>maxSkew</code> 内所需的最小 Pod 数，不过该策略需要 k8s 版本高于1.18才能使用。</p>
+<p>默认情况下，此策略仅处理硬约束，如果将参数 <code>includeSoftConstraints</code> 设置为 True，也将支持软约束。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;RemovePodsViolatingTopologySpreadConstraint&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">       <span class="attr">includeSoftConstraints:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="8-RemovePodsHavingTooManyRestarts"><a href="#8-RemovePodsHavingTooManyRestarts" class="headerlink" title="8.RemovePodsHavingTooManyRestarts"></a>8.RemovePodsHavingTooManyRestarts</h3><p>该策略确保从节点中删除重启次数过多的 Pods，它的参数包括 <code>podRestartThreshold</code>（这是应将 Pod 逐出的重新启动次数），以及包括<code>InitContainers</code>，它确定在计算中是否应考虑初始化容器的重新启动，策略配置如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;RemovePodsHavingTooManyRestarts&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">       <span class="attr">podsHavingTooManyRestarts:</span></span><br><span class="line">         <span class="attr">podRestartThreshold:</span> <span class="number">100</span></span><br><span class="line">         <span class="attr">includingInitContainers:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5、Filter-Pods"><a href="#5、Filter-Pods" class="headerlink" title="5、Filter Pods"></a>5、Filter Pods</h2><p>在驱逐 Pods 的时候，有时并不需要所有 Pods 都被驱逐，<code>descheduler</code> 提供了两种主要的方式进行过滤：命名空间过滤和优先级过滤。</p>
+<h3 id="1-命名空间过滤"><a href="#1-命名空间过滤" class="headerlink" title="1.命名空间过滤"></a>1.命名空间过滤</h3><p>该策略可以配置是包含还是排除某些名称空间。可以使用该策略的有：</p>
+<ul>
+<li>PodLifeTime</li>
+<li>RemovePodsHavingTooManyRestarts</li>
+<li>RemovePodsViolatingNodeTaints</li>
+<li>RemovePodsViolatingNodeAffinity</li>
+<li>RemovePodsViolatingInterPodAntiAffinity</li>
+<li>RemoveDuplicates</li>
+<li>RemovePodsViolatingTopologySpreadConstraint</li>
+</ul>
+<p>比如只驱逐某些命令空间下的 Pods，则可以使用 <code>include</code> 参数进行配置，如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;PodLifeTime&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">        <span class="attr">podLifeTime:</span></span><br><span class="line">          <span class="attr">maxPodLifeTimeSeconds:</span> <span class="number">86400</span></span><br><span class="line">        <span class="attr">namespaces:</span></span><br><span class="line">          <span class="attr">include:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">&quot;namespace1&quot;</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">&quot;namespace2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>又或者要排除掉某些命令空间下的 Pods，则可以使用 <code>exclude</code> 参数配置，如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;PodLifeTime&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">        <span class="attr">podLifeTime:</span></span><br><span class="line">          <span class="attr">maxPodLifeTimeSeconds:</span> <span class="number">86400</span></span><br><span class="line">        <span class="attr">namespaces:</span></span><br><span class="line">          <span class="attr">exclude:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">&quot;namespace1&quot;</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">&quot;namespace2&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-优先级过滤"><a href="#2-优先级过滤" class="headerlink" title="2.优先级过滤"></a>2.优先级过滤</h3><p>所有策略都可以配置优先级阈值，只有在该阈值以下的 Pod 才会被驱逐。我们可以通过设置 <code>thresholdPriorityClassName</code>（将阈值设置为指定优先级类别的值）或 <code>thresholdPriority</code>（直接设置阈值）参数来指定该阈值。默认情况下，该阈值设置为 <code>system-cluster-critical</code> 这个 PriorityClass 类的值。</p>
+<p>比如使用 <code>thresholdPriority</code>：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;PodLifeTime&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">        <span class="attr">podLifeTime:</span></span><br><span class="line">          <span class="attr">maxPodLifeTimeSeconds:</span> <span class="number">86400</span></span><br><span class="line">        <span class="attr">thresholdPriority:</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+
+<p>或者使用 <code>thresholdPriorityClassName</code> 进行过滤：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">&quot;descheduler/v1alpha1&quot;</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">&quot;DeschedulerPolicy&quot;</span></span><br><span class="line"><span class="attr">strategies:</span></span><br><span class="line">  <span class="attr">&quot;PodLifeTime&quot;:</span></span><br><span class="line">     <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">     <span class="attr">params:</span></span><br><span class="line">        <span class="attr">podLifeTime:</span></span><br><span class="line">          <span class="attr">maxPodLifeTimeSeconds:</span> <span class="number">86400</span></span><br><span class="line">        <span class="attr">thresholdPriorityClassName:</span> <span class="string">&quot;priorityclass1&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>不过需要注意不能同时配置 <code>thresholdPriority</code> 和 <code>thresholdPriorityClassName</code>，如果指定的优先级类不存在，则 descheduler 不会创建它，并且会引发错误。</p>
+<h2 id="6、注意事项"><a href="#6、注意事项" class="headerlink" title="6、注意事项"></a>6、注意事项</h2><p>当使用descheduler驱除Pods的时候，需要注意以下几点：</p>
+<ul>
+<li><p>关键性 Pod 不会被驱逐，比如 <code>priorityClassName</code> 设置为 <code>system-cluster-critical</code> 或 <code>system-node-critical</code> 的 Pod</p>
+</li>
+<li><p>不属于 RS、Deployment 或 Job 管理的 Pods 不会被驱逐</p>
+</li>
+<li><p>DaemonSet 创建的 Pods 不会被驱逐</p>
+</li>
+<li><p>使用 <code>LocalStorage</code> 的 Pod 不会被驱逐，除非设置 <code>evictLocalStoragePods: true</code></p>
+</li>
+<li><p>具有 PVC 的 Pods 不会被驱逐，除非设置 <code>ignorePvcPods: true</code></p>
+</li>
+<li><p>在 <code>LowNodeUtilization</code> 和 <code>RemovePodsViolatingInterPodAntiAffinity</code> 策略下，Pods 按优先级从低到高进行驱逐，如果优先级相同，<code>Besteffort</code> 类型的 Pod 要先于 <u><code>Burstable</code> 和 <code>Guaranteed</code> 类型</u>被驱逐</p>
+</li>
+<li><p><code>annotations</code> 中带有 <code>descheduler.alpha.kubernetes.io/evict</code> 字段的 Pod 都可以被驱逐，该注释用于覆盖阻止驱逐的检查，用户可以选择驱逐哪个Pods</p>
+</li>
+<li><p>如果 Pods 驱逐失败，可以设置 <code>--v=4</code> 从 <code>descheduler</code> 日志中查找原因，如果驱逐违反 PDB 约束，则不会驱逐这类 Pods</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219222613564.png" alt="image-20220219222613564"></p>
+</li>
+</ul>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><h3 id="📍-kubernetes-sigs-descheduler官方网站"><a href="#📍-kubernetes-sigs-descheduler官方网站" class="headerlink" title="📍 kubernetes-sigs/descheduler官方网站"></a>📍 kubernetes-sigs/descheduler官方网站</h3><p><a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/descheduler">https://github.com/kubernetes-sigs/descheduler</a></p>
+<ul>
+<li>常见安装方式</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219163747677.png" alt="image-20220219163747677"></p>
+<ul>
+<li>yaml文件所在位置</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219163814188.png" alt="image-20220219163814188"></p>
+<ul>
+<li>helm安装方式</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/descheduler#install-using-helm">https://github.com/kubernetes-sigs/descheduler#install-using-helm</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219164014610.png" alt="image-20220219164014610"></p>
+<h3 id="📍-注意：descheduler和k8s版本问题"><a href="#📍-注意：descheduler和k8s版本问题" class="headerlink" title="📍 注意：descheduler和k8s版本问题"></a>📍 注意：descheduler和k8s版本问题</h3><p><a target="_blank" rel="noopener" href="https://github.com/kubernetes-sigs/descheduler">https://github.com/kubernetes-sigs/descheduler</a></p>
+<p>什么样的k8s集群版本就是用什么样的descheduler；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219223059197.png" alt="image-20220219223059197"></p>
+<h3 id="📍-生产环境是用方法"><a href="#📍-生产环境是用方法" class="headerlink" title="📍 生产环境是用方法"></a>📍 生产环境是用方法</h3><p>调度框架，就是扩展我们的<code>kube-scheduler</code>的；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220219223759401.png" alt="image-20220219223759401"></p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人已开源干货😘</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01 实战：打造一款王者云笔记：typora+坚果云+阿里云oss</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DXS6qiIQvPWVCRiS0qoE">https://www.jianguoyun.com/p/DXS6qiIQvPWVCRiS0qoE</a></td>
+</tr>
+<tr>
+<td align="left">02 实战：定制宇宙中最美的typora主题皮肤</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DeUK9u0QvPWVCRib0qoE">https://www.jianguoyun.com/p/DeUK9u0QvPWVCRib0qoE</a></td>
+</tr>
+<tr>
+<td align="left">03 玩转vscode</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DZe8gmsQvPWVCRid0qoE">https://www.jianguoyun.com/p/DZe8gmsQvPWVCRid0qoE</a></td>
+</tr>
+<tr>
+<td align="left">04 陈果的幸福哲学课</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/Db0kM7gQvPWVCRj2q6YE">https://www.jianguoyun.com/p/Db0kM7gQvPWVCRj2q6YE</a></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于descheduler实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108223350304.png" alt="image-20211108223350304"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/02/19/125%20%E5%AE%9E%E6%88%98%EF%BC%9ADescheduler-2022.2.19/">https://www.onlyonexl.cn/2022/02/19/125%20%E5%AE%9E%E6%88%98%EF%BC%9ADescheduler-2022.2.19/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/02/19/124%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8B%E6%8B%93%E6%89%91%E5%88%86%E5%B8%83%E7%BA%A6%E6%9D%9F-2022.2.19/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="实战：k8s之拓扑分布约束-2022.2.19">
+                        
+                        <span class="card-title">实战：k8s之拓扑分布约束-2022.2.19</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-02-19
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/18/123%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8B%E4%BA%B2%E5%90%88%E6%80%A7%E8%B0%83%E5%BA%A6-2022.2.18/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="实战：k8s之亲合性调度-2022.2.18">
+                        
+                        <span class="card-title">实战：k8s之亲合性调度-2022.2.18</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
