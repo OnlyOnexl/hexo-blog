@@ -1,0 +1,1420 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：k8s之存储插件-2022.2.23, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：k8s之存储插件-2022.2.23 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：k8s之存储插件-2022.2.23</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-02-23
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：k8s之存储插件-2022-2-23"><a href="#实战：k8s之存储插件-2022-2-23" class="headerlink" title="实战：k8s之存储插件-2022.2.23"></a>实战：k8s之存储插件-2022.2.23</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220222144008038.png" alt="image-20220222144008038"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1-uA-4Y0GNaTnot46nF_blg?pwd=tt98">https://pan.baidu.com/s/1-uA-4Y0GNaTnot46nF_blg?pwd=tt98</a><br>提取码：tt98<br><code>2022.2.22-45.存储插件-实验代码</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223085919066.png" alt="image-20220223085919066"></p>
+<h2 id="1、存储插件"><a href="#1、存储插件" class="headerlink" title="1、存储插件"></a>1、存储插件</h2><p>前面的章节中我们介绍了在 Kubernetes 中的持久化存储的使用，了解了 PV、PVC 以及 StorageClass 的使用方法，从本地存储到 NFS 共享存储都有学习，到这里我们其实已经可以完成应用各种场景的数据持久化了，但是难免在实际的使用过程中会遇到各种各样的问题，要解决这些问题最好的方式就是来了解下 <strong>Kubernetes 中存储的实现原理</strong>。</p>
+<p><strong>Kubernetes 默认情况下就提供了主流的存储卷接入方案</strong>，我们可以执行命令 <code>kubectl explain pod.spec.volumes</code> 查看到支持的各种存储卷。另外也提供了<strong>插件机制</strong>，允许其他类型的存储服务接入到 Kubernetes 系统中来，在 Kubernetes 中就对应 <code>In-Tree</code> 和 <code>Out-Of-Tree</code> 两种方式，<code>In-Tree</code> 就是在 Kubernetes 源码内部实现的，和 Kubernetes 一起发布、管理的，但是更新迭代慢、灵活性比较差。<code>Out-Of-Tree</code> 是独立于 Kubernetes 的，目前主要有 <code>CSI</code> 和 <code>FlexVolume</code> 两种机制，开发者可以根据自己的存储类型实现不同的存储插件接入到 Kubernetes 中去，其中 <code>CSI</code> 是现在也是以后主流的方式，所以当然我们的重点也会是 <code>CSI</code> 的使用介绍。</p>
+<h2 id="2、FlexVolume"><a href="#2、FlexVolume" class="headerlink" title="2、FlexVolume"></a>2、FlexVolume</h2><p>FlexVolume 提供了一种扩展 Kubernetes 存储插件的方式，用户可以自定义自己的存储插件。要使用 FlexVolume 需要在每个节点上安装存储插件二进制文件，<strong>该二进制需要实现 FlexVolume 的相关接口</strong>，默认存储插件的存放路径为 <code>/usr/libexec/kubernetes/kubelet-plugins/volume/exec/&lt;vendor~driver&gt;/&lt;driver&gt;</code>，<code>VolumePlugins</code> 组件会不断 watch 这个目录来实现插件的添加、删除等功能。</p>
+<p>其中 <code>vendor~driver</code> 的名字需要和 Pod 中<code>flexVolume.driver</code> 的字段名字匹配，例如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/libexec/kubernetes/kubelet-plugins/volume/exec/foo~cifs/cifs</span><br></pre></td></tr></table></figure>
+
+<p>对应的 Pod 中的 <code>flexVolume.driver</code> 属性为：<code>foo/cifs</code>。</p>
+<p>在我们实现自定义存储插件的时候，需要实现 FlexVolume 的部分接口，因为要看实际需求，并不一定所有接口都需要实现。比如对于类似于 NFS 这样的存储就没必要实现 <code>attach/detach</code> 这些接口了，因为不需要，只需要实现 <code>init/mount/umount</code> 3个接口即可。</p>
+<ul>
+<li>init: <code>&lt;driver executable&gt; init</code> - <code>kubelet/kube-controller-manager</code> 初始化存储插件时调用，插件需要返回是否需要要 attach 和 detach 操作</li>
+<li>attach: <code>&lt;driver executable&gt; attach &lt;json options&gt; &lt;node name&gt;</code> - 将存储卷挂载到 Node 节点上</li>
+<li>detach: <code>&lt;driver executable&gt; detach &lt;mount device&gt; &lt;node name&gt;</code> - 将存储卷从 Node 上卸载</li>
+<li>waitforattach: <code>&lt;driver executable&gt; waitforattach &lt;mount device&gt; &lt;json options&gt;</code> - 等待 attach 操作成功（超时时间为 10 分钟）</li>
+<li>isattached: <code>&lt;driver executable&gt; isattached &lt;json options&gt; &lt;node name&gt;</code> - 检查存储卷是否已经挂载</li>
+<li>mountdevice: <code>&lt;driver executable&gt; mountdevice &lt;mount dir&gt; &lt;mount device&gt; &lt;json options&gt;</code> - 将设备挂载到指定目录中以便后续 bind mount 使用</li>
+<li>unmountdevice: <code>&lt;driver executable&gt; unmountdevice &lt;mount device&gt;</code> - 将设备取消挂载</li>
+<li>mount: <code>&lt;driver executable&gt; mount &lt;mount dir&gt; &lt;json options&gt;</code> - 将存储卷挂载到指定目录中</li>
+<li>unmount: <code>&lt;driver executable&gt; unmount &lt;mount dir&gt;</code> - 将存储卷取消挂载</li>
+</ul>
+<p>实现上面的这些接口需要返回如下所示的 JSON 格式的数据：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;status&quot;</span>: <span class="string">&quot;&lt;Success/Failure/Not supported&gt;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;message&quot;</span>: <span class="string">&quot;&lt;Reason for success/failure&gt;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;device&quot;</span>: <span class="string">&quot;&lt;Path to the device attached. This field is valid only for attach &amp; waitforattach call-outs&gt;&quot;</span></span><br><span class="line">    <span class="string">&quot;volumeName&quot;</span>: <span class="string">&quot;&lt;Cluster wide unique name of the volume. Valid only for getvolumename call-out&gt;&quot;</span></span><br><span class="line">    <span class="string">&quot;attached&quot;</span>: &lt;True/False (Return <span class="literal">true</span> if volume is attached on the node. Valid only for isattached call-out)&gt;</span><br><span class="line">    <span class="string">&quot;capabilities&quot;</span>: &lt;Only included as part of the Init response&gt;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;attach&quot;</span>: &lt;True/False (Return <span class="literal">true</span> if the driver implements attach and detach)&gt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>比如我们来实现一个 NFS 的 FlexVolume 插件，最简单的方式就是写一个脚本，然后实现 init、mount、unmount 3个命令即可，然后按照上面的 JSON 格式返回数据，最后把这个脚本放在节点的 FlexVolume 插件目录下面即可。</p>
+<h3 id="📍-案例演示：FlexVolume测试-测试成功"><a href="#📍-案例演示：FlexVolume测试-测试成功" class="headerlink" title="📍 案例演示：FlexVolume测试(测试成功)"></a>📍 案例演示：FlexVolume测试(测试成功)</h3><p>🍀 下面就是官方给出的一个 NFS 的 FlexVolume 插件示例，可以从 <a target="_blank" rel="noopener" href="https://github.com/kubernetes/examples/blob/master/staging/volumes/flexvolume/nfs">https://github.com/kubernetes/examples/blob/master/staging/volumes/flexvolume/nfs</a> 获取脚本：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220222150411139.png" alt="image-20220222150411139"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="comment"># 注意:</span></span><br><span class="line"><span class="comment">#  - 在使用插件之前需要先安装 jq。</span></span><br><span class="line"><span class="function"><span class="title">usage</span></span>() &#123;</span><br><span class="line">    err <span class="string">&quot;Invalid usage. Usage: &quot;</span></span><br><span class="line">    err <span class="string">&quot;\t<span class="variable">$0</span> init&quot;</span></span><br><span class="line">    err <span class="string">&quot;\t<span class="variable">$0</span> mount &lt;mount dir&gt; &lt;json params&gt;&quot;</span></span><br><span class="line">    err <span class="string">&quot;\t<span class="variable">$0</span> unmount &lt;mount dir&gt;&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">err</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> -ne $* 1&gt;&amp;2</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">log</span></span>() &#123;</span><br><span class="line">    <span class="built_in">echo</span> -ne $* &gt;&amp;1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">ismounted</span></span>() &#123;</span><br><span class="line">    MOUNT=`findmnt -n <span class="variable">$&#123;MNTPATH&#125;</span> 2&gt;/dev/null | cut -d<span class="string">&#x27; &#x27;</span> -f1`</span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$&#123;MOUNT&#125;</span>&quot;</span> == <span class="string">&quot;<span class="variable">$&#123;MNTPATH&#125;</span>&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;1&quot;</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">&quot;0&quot;</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">domount</span></span>() &#123;</span><br><span class="line">    MNTPATH=<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line">    NFS_SERVER=$(<span class="built_in">echo</span> <span class="variable">$2</span> | jq -r <span class="string">&#x27;.server&#x27;</span>)</span><br><span class="line">    SHARE=$(<span class="built_in">echo</span> <span class="variable">$2</span> | jq -r <span class="string">&#x27;.share&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> [ $(ismounted) -eq 1 ] ; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">log</span> <span class="string">&#x27;&#123;&quot;status&quot;: &quot;Success&quot;&#125;&#x27;</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    mkdir -p <span class="variable">$&#123;MNTPATH&#125;</span> &amp;&gt; /dev/null</span><br><span class="line"></span><br><span class="line">    mount -t nfs <span class="variable">$&#123;NFS_SERVER&#125;</span>:/<span class="variable">$&#123;SHARE&#125;</span> <span class="variable">$&#123;MNTPATH&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">    <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">        err <span class="string">&quot;&#123; \&quot;status\&quot;: \&quot;Failure\&quot;, \&quot;message\&quot;: \&quot;Failed to mount <span class="variable">$&#123;NFS_SERVER&#125;</span>:<span class="variable">$&#123;SHARE&#125;</span> at <span class="variable">$&#123;MNTPATH&#125;</span>\&quot;&#125;&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&#x27;&#123;&quot;status&quot;: &quot;Success&quot;&#125;&#x27;</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">unmount</span></span>() &#123;</span><br><span class="line">    MNTPATH=<span class="variable">$1</span></span><br><span class="line">    <span class="keyword">if</span> [ $(ismounted) -eq 0 ] ; <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">log</span> <span class="string">&#x27;&#123;&quot;status&quot;: &quot;Success&quot;&#125;&#x27;</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    umount <span class="variable">$&#123;MNTPATH&#125;</span> &amp;&gt; /dev/null</span><br><span class="line">    <span class="keyword">if</span> [ $? -ne 0 ]; <span class="keyword">then</span></span><br><span class="line">        err <span class="string">&quot;&#123; \&quot;status\&quot;: \&quot;Failed\&quot;, \&quot;message\&quot;: \&quot;Failed to unmount volume at <span class="variable">$&#123;MNTPATH&#125;</span>\&quot;&#125;&quot;</span></span><br><span class="line">        <span class="built_in">exit</span> 1</span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&#x27;&#123;&quot;status&quot;: &quot;Success&quot;&#125;&#x27;</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">op=<span class="variable">$1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ! <span class="built_in">command</span> -v jq &gt;/dev/null 2&gt;&amp;1; <span class="keyword">then</span></span><br><span class="line">    err <span class="string">&quot;&#123; \&quot;status\&quot;: \&quot;Failure\&quot;, \&quot;message\&quot;: \&quot;&#x27;jq&#x27; binary not found. Please install jq package before using this driver\&quot;&#125;&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">&quot;<span class="variable">$op</span>&quot;</span> = <span class="string">&quot;init&quot;</span> ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">log</span> <span class="string">&#x27;&#123;&quot;status&quot;: &quot;Success&quot;, &quot;capabilities&quot;: &#123;&quot;attach&quot;: false&#125;&#125;&#x27;</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$#</span> -lt 2 ]; <span class="keyword">then</span></span><br><span class="line">    usage</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">shift</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="string">&quot;<span class="variable">$op</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">    mount)</span><br><span class="line">        domount $*</span><br><span class="line">        ;;</span><br><span class="line">    unmount)</span><br><span class="line">        unmount $*</span><br><span class="line">        ;;</span><br><span class="line">    *)</span><br><span class="line">        <span class="built_in">log</span> <span class="string">&#x27;&#123;&quot;status&quot;: &quot;Not supported&quot;&#125;&#x27;</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">esac</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">exit</span> 1</span><br></pre></td></tr></table></figure>
+
+<p>将上面脚本命名成 nfs，放置到 node1 节点对应的插件下面： <code>/usr/libexec/kubernetes/kubelet-plugins/volume/exec/ydzs~nfs/nfs</code>，并设置权限为 700：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 ~]<span class="comment">#mkdir -p /usr/libexec/kubernetes/kubelet-plugins/volume/exec/ydzs~nfs</span></span><br><span class="line">[root@node1 ~]<span class="comment">#vim /usr/libexec/kubernetes/kubelet-plugins/volume/exec/ydzs~nfs/nfs</span></span><br><span class="line"><span class="comment">#将上面脚本写进去</span></span><br><span class="line">[root@node1 ~]<span class="comment">#chmod 700 /usr/libexec/kubernetes/kubelet-plugins/volume/exec/ydzs~nfs/nfs</span></span><br><span class="line"><span class="comment"># 安装 jq 工具</span></span><br><span class="line">[root@node1 ~]<span class="comment">#yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span></span><br><span class="line">[root@node1 ~]<span class="comment">#yum install jq -y</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 这个时候我们部署一个应用到 node1 节点上，并用 <code>flexVolume</code> 来持久化容器中的数据（当然也可以通过定义 flexvolume 类型的 PV、PVC 来使用），如下所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 01-test-flexvolume.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">test-flexvolume</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">nodeSelector:</span></span><br><span class="line">    <span class="attr">kubernetes.io/hostname:</span> <span class="string">node1</span></span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">flexVolume:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">&quot;ydzs/nfs&quot;</span>  <span class="comment"># 定义插件类型，根据这个参数在对应的目录下面找到插件的可执行文件</span></span><br><span class="line">      <span class="attr">fsType:</span> <span class="string">&quot;nfs&quot;</span>  <span class="comment"># 定义存储卷文件系统类型</span></span><br><span class="line">      <span class="attr">options:</span>  <span class="comment"># 定义所有与存储相关的一些具体参数</span></span><br><span class="line">        <span class="attr">server:</span> <span class="string">&quot;172.29.9.51&quot;</span></span><br><span class="line">        <span class="attr">share:</span> <span class="string">&quot;var/lib/k8s/data/&quot;</span> <span class="comment">#注意这里：不需要加斜杠的，因为之前shell脚本那里加了。</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">nginx</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">volumeMounts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">      <span class="attr">subPath:</span> <span class="string">testflexvolume</span></span><br><span class="line">      <span class="attr">mountPath:</span> <span class="string">/usr/share/nginx/html</span></span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>flexVolume.driver</code> 就是插件目录 <code>ydzs~nfs</code> 对应的 <code>ydzs/nfs</code> 名称，<code>flexVolume.options</code> 中根据上面的 nfs 脚本可以得知里面配置的是 NFS 的 Server 地址和挂载目录路径。</p>
+<p>🍀 直接创建上面的资源对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f 01-test-flexvolume.yaml </span><br><span class="line">pod/test-flexvolume created</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -owide</span></span><br><span class="line">NAME              READY   STATUS    RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">test-flexvolume   1/1     Running   0          29s     10.244.1.9    node1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it test-flexvolume mount |grep test</span></span><br><span class="line">kubectl <span class="built_in">exec</span> [POD] [COMMAND] is DEPRECATED and will be removed <span class="keyword">in</span> a future version. Use kubectl <span class="built_in">exec</span> [POD] -- [COMMAND] instead.</span><br><span class="line">172.29.9.51:/var/lib/k8s/data/testflexvolume on /usr/share/nginx/html <span class="built_in">type</span> nfs4 (rw,relatime,vers=4.1,rsize=262144,wsize=262144,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,clientaddr=172.29.9.52,local_lock=none,addr=172.29.9.51)</span><br></pre></td></tr></table></figure>
+
+<p>同样我们可以查看到 Pod 的本地持久化目录是被 mount 到了 NFS 上面，证明上面我们的 FlexVolume 插件是正常的。</p>
+<p>🍀 测试</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#echo &quot;test flexvolume storage&quot; &gt; /var/lib/k8s/data/testflexvolume/index.html</span></span><br><span class="line">[root@master1 ~]<span class="comment">#curl 10.244.1.9</span></span><br><span class="line"><span class="built_in">test</span> flexvolume storage</span><br></pre></td></tr></table></figure>
+
+
+
+<p>:warning: 调用</p>
+<blockquote>
+<p>当我们要去真正的 mount NFS 的时候，就是通过 kubelet 调用 <code>VolumePlugin</code>，然后直接执行命令<code>/usr/libexec/kubernetes/kubelet-plugins/volume/exec/ydzs~nfs/nfs mount &lt;mount dir&gt; &lt;json param&gt;</code> 来完成的，就相当于平时我们在宿主机上面手动挂载 NFS 的方式一样的，所以存储插件 nfs 是一个可执行的二进制文件或者 shell 脚本都是可以的。</p>
+</blockquote>
+<p>实验结束，完美。😘</p>
+<h2 id="3、CSI"><a href="#3、CSI" class="headerlink" title="3、CSI"></a>3、CSI</h2><blockquote>
+<p>怎么感觉理解起来还是有一定难度的：</p>
+</blockquote>
+<p>既然已经有了 <code>FlexVolume</code> 插件了，为什么还需要 <code>CSI</code> 插件呢？上面我们使用 FlexVolume 插件的时候可以看出 FlexVolume 插件实际上相当于就是一个普通的 shell 命令，类似于平时我们在 Linux 下面执行的 <code>ls</code> 命令一样，只是返回的信息是 JSON 格式的数据，<strong>并不是我们通常认为的一个常驻内存的进程</strong>，<strong>而 CSI 是一个更加完善、编码更加方便友好的一种存储插件扩展方式</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://kubernetes-csi.github.io/docs/">CSI</a> 是 <code>Container Storage Interface</code> 的简称，旨在能为容器编排引擎和存储系统间建立一套标准的存储调用接口，通过该接口能为容器编排引擎提供存储服务。在 CSI 之前，K8S 里提供存储服务基本上是通过 <code>in-tree</code> 的方式来提供，如下图：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220215193127.png" alt="without csi"></p>
+<p>这种方式需要将存储提供者的代码逻辑放到 K8S 的代码库中运行，<strong>调用引擎与插件间属于强耦合</strong>，这种方式会带来一些问题：</p>
+<ul>
+<li>存储插件需要一同随K8S发布</li>
+<li>K8S社区需要对存储插件的测试、维护负责</li>
+<li>存储插件的问题有可能会影响K8S部件正常运行</li>
+<li>存储插件享有K8S部件同等的特权存在安全隐患</li>
+<li>存储插件开发者必须遵循K8S社区的规则开发代码</li>
+</ul>
+<p>基于这些问题和挑战，CO（Container Orchestrator） 厂商提出 Container Storage Interface 用来定义容器存储标准，<strong>它独立于 Kubernetes Storage SIG</strong>，由 Kubernetes、Mesos、Cloud Foundry 三家一起推动。<strong>CSI 规范定义了存储提供商实现 CSI 兼容插件的最小操作集合和部署建议，CSI 规范的主要焦点是声明插件必须实现的接口。</strong></p>
+<p>在 Kubernetes 上整合 CSI 插件的整体架构如下图所示：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220215160824.png" alt="kubernetes csi structrue"></p>
+<p>Kubernetes CSI 存储体系主要由两部分组成：</p>
+<ul>
+<li><p><strong>Kubernetes 外部组件</strong>：包含 <code>Driver registrar</code>、<code>External provisioner</code>、<code>External attacher</code> 三部分，这三个组件是从 Kubernetes 原本的 in-tree 存储体系中剥离出来的存储管理功能，实际上是 Kubernetes 中的一种<strong>外部 controller</strong>，它们 watch kubernetes 的 API 资源对象，根据 watch 到的状态来调用下面提到的第二部分的 CSI 插件来实现存储的管理和操作。这部分是 Kubernetes 团队维护的，插件开发者完全不必关心其实现细节。</p>
+<ul>
+<li><code>Driver registra</code>：一个 Sidecar 容器，向 Kubernetes 注册 CSI Driver，添加 Drivers 的一些信息</li>
+<li><code>External provisioner</code>：也是一个 Sidecar 容器，watch Kubernetes 的 PVC对象，调用对应 CSI 的 Volume创建、删除等操作</li>
+<li><code>External attacher</code>：一个 Sidecar 容器，watch Kubernetes 系统里的 <code>VolumeAttachment</code> 对象，调用对应 CSI 的 ControllerPublish 和 ControllerUnpublish 操作来完成对应的 Volume 的 Attach/Detach。而 Volume 的 Mount/Unmount 阶段并不属于外部组件，<strong>当真正需要执行 Mount 操作的时候，kubelet 会去直接调用下面的 CSI Node 服务来完成 Volume 的 Mount/UnMount 操作</strong>。</li>
+</ul>
+</li>
+<li><p><strong>CSI 存储插件</strong>: 这部分正是开发者需要实现的 CSI 插件部分，<strong>都是通过 gRPC 实现的服务</strong>，一般会用一个二进制文件对外提供服务，主要包含三部分：<code>CSI Identity</code>、<code>CSI Controller</code>、<code>CSI Node</code>。</p>
+<ul>
+<li><p><code>CSI Identity</code> — 主要用于负责对外暴露这个插件本身的信息，确保插件的健康状态。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">service Identity &#123;</span><br><span class="line">    <span class="comment">// 返回插件的名称和版本</span></span><br><span class="line">    rpc GetPluginInfo(GetPluginInfoRequest)</span><br><span class="line">        returns (GetPluginInfoResponse) &#123;&#125;</span><br><span class="line">    <span class="comment">// 返回这个插件的包含的功能，比如非块存储类型的 CSI 插件不需要实现 Attach 功能，GetPluginCapabilities 就可以在返回中标注这个 CSI 插件不包含 Attach 功能</span></span><br><span class="line">    rpc GetPluginCapabilities(GetPluginCapabilitiesRequest)</span><br><span class="line">        returns (GetPluginCapabilitiesResponse) &#123;&#125;</span><br><span class="line">    <span class="comment">// 插件插件是否正在运行</span></span><br><span class="line">    rpc Probe (ProbeRequest)</span><br><span class="line">        returns (ProbeResponse) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>CSI Controller</code> - 主要实现 Volume 管理流程当中的 Provision 和 Attach 阶段，Provision 阶段是指创建和删除 Volume 的流程，而 Attach 阶段是指把存储卷附着在某个节点或脱离某个节点的流程，另外只有块存储类型的 CSI 插件才需要 Attach 功能。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">service Controller &#123;</span><br><span class="line">    <span class="comment">// 创建存储卷，包括云端存储介质以及PV对象</span></span><br><span class="line">    rpc CreateVolume (CreateVolumeRequest)</span><br><span class="line">        returns (CreateVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//  删除存储卷</span></span><br><span class="line">    rpc DeleteVolume (DeleteVolumeRequest)</span><br><span class="line">        returns (DeleteVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 挂载存储卷，将存储介质挂载到目标节点</span></span><br><span class="line">    rpc ControllerPublishVolume (ControllerPublishVolumeRequest)</span><br><span class="line">        returns (ControllerPublishVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 卸载存储卷</span></span><br><span class="line">    rpc ControllerUnpublishVolume (ControllerUnpublishVolumeRequest)</span><br><span class="line">        returns (ControllerUnpublishVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 例如：是否可以同时用于多个节点的读/写</span></span><br><span class="line">    rpc ValidateVolumeCapabilities (ValidateVolumeCapabilitiesRequest)</span><br><span class="line">        returns (ValidateVolumeCapabilitiesResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回所有可用的 volumes</span></span><br><span class="line">    rpc ListVolumes (ListVolumesRequest)</span><br><span class="line">        returns (ListVolumesResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 可用存储池的总容量</span></span><br><span class="line">    rpc GetCapacity (GetCapacityRequest)</span><br><span class="line">        returns (GetCapacityResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 例如. 插件可能未实现 GetCapacity、Snapshotting</span></span><br><span class="line">    rpc ControllerGetCapabilities (ControllerGetCapabilitiesRequest)</span><br><span class="line">        returns (ControllerGetCapabilitiesResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 创建快照</span></span><br><span class="line">    rpc CreateSnapshot (CreateSnapshotRequest)</span><br><span class="line">        returns (CreateSnapshotResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 删除指定的快照</span></span><br><span class="line">    rpc DeleteSnapshot (DeleteSnapshotRequest)</span><br><span class="line">        returns (DeleteSnapshotResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取所有的快照</span></span><br><span class="line">    rpc ListSnapshots (ListSnapshotsRequest)</span><br><span class="line">        returns (ListSnapshotsResponse) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p><code>CSI Node</code> — 负责控制 Kubernetes 节点上的 Volume 的相关功能。其中 Volume 的挂载被分成了 NodeStageVolume 和 NodePublishVolume 两个阶段。NodeStageVolume 接口主要是针对块存储类型的 CSI 插件而提供的，块设备在 “Attach” 阶段被附着在 Node 上后，需要挂载至 Pod 对应目录上，但因为块设备在 linux 上只能 mount 一次，而在 kubernetes volume 的使用场景中，一个 volume 可能被挂载进同一个 Node 上的多个 Pod 实例中，所以这里提供了 NodeStageVolume 这个接口，使用这个接口把块设备格式化后先挂载至 Node 上的一个临时全局目录，然后再调用 NodePublishVolume 使用 linux 中的 <code>bind mount</code> 技术把这个全局目录挂载进 Pod 中对应的目录上。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">service Node &#123;</span><br><span class="line">    <span class="comment">// 在节点上初始化存储卷（格式化），并执行挂载到Global目录</span></span><br><span class="line">    rpc NodeStageVolume (NodeStageVolumeRequest)</span><br><span class="line">        returns (NodeStageVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// umount 存储卷在节点上的 Global 目录</span></span><br><span class="line">    rpc NodeUnstageVolume (NodeUnstageVolumeRequest)</span><br><span class="line">        returns (NodeUnstageVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在节点上将存储卷的 Global 目录挂载到 Pod 的实际挂载目录</span></span><br><span class="line">    rpc NodePublishVolume (NodePublishVolumeRequest)</span><br><span class="line">        returns (NodePublishVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// unmount 存储卷在节点上的 Pod 挂载目录</span></span><br><span class="line">    rpc NodeUnpublishVolume (NodeUnpublishVolumeRequest)</span><br><span class="line">        returns (NodeUnpublishVolumeResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取节点上Volume挂载文件系统统计信息（总空间、可用空间等）</span></span><br><span class="line">    rpc NodeGetVolumeStats (NodeGetVolumeStatsRequest)</span><br><span class="line">        returns (NodeGetVolumeStatsResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取节点的唯一 ID</span></span><br><span class="line">    rpc NodeGetId (NodeGetIdRequest)</span><br><span class="line">        returns (NodeGetIdResponse) &#123;</span><br><span class="line">        option deprecated = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回节点插件的能力</span></span><br><span class="line">    rpc NodeGetCapabilities (NodeGetCapabilitiesRequest)</span><br><span class="line">        returns (NodeGetCapabilitiesResponse) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取节点的一些信息</span></span><br><span class="line">    rpc NodeGetInfo (NodeGetInfoRequest)</span><br><span class="line">        returns (NodeGetInfoResponse) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>只需要实现上面的接口就可以实现一个 CSI 插件了。虽然 Kubernetes 并未规定 CSI 插件的打包安装，但是提供了以下建议来简化我们在 Kubernetes 上容器化 CSI Volume 驱动程序的部署方案，具体的方案介绍可以查看 CSI 规范介绍文档 <a target="_blank" rel="noopener" href="https://github.com/container-storage-interface/spec/blob/master/spec.md">https://github.com/container-storage-interface/spec/blob/master/spec.md</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220215161609.png" alt="container storage interface deploy"></p>
+<p>按照上图的推荐方案，<code>CSI Controller</code> 负责 Volumes 的创建删除等操作，整个集群只需要部署一个，以 StatefulSet 或者 Deployment 方式部署均可。<code>CSI Node</code> 部分负责 Volumes 的 attach、detach 等操作，需要在每个节点部署一个，所以用 DaemonSet 方式部署，因为这两部分实现在同一个 CSI 插件程序中，因此只需要把这个 CSI 插件与 <code>External Components</code> 以容器方式部署在同一个 Pod 中，把这个 CSI 插件与 <code>Driver registrar</code> 以容器方式部署在 DaemonSet 的 Pod 中，即可完成 CSI 的部署。</p>
+<p>比如在训练营第一期中我们使用的 Rook 部署的 Ceph 集群就实现了 CSI 插件的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get pods -n rook-ceph |grep plugin</span><br><span class="line">csi-cephfsplugin-2s9d5                                 3/3     Running     0          21d</span><br><span class="line">csi-cephfsplugin-fgp4v                                 3/3     Running     0          17d</span><br><span class="line">csi-cephfsplugin-fv5nx                                 3/3     Running     0          21d</span><br><span class="line">csi-cephfsplugin-mn8q4                                 3/3     Running     0          17d</span><br><span class="line">csi-cephfsplugin-nf6h8                                 3/3     Running     0          21d</span><br><span class="line">csi-cephfsplugin-provisioner-56c8b7ddf4-68h6d          4/4     Running     0          21d</span><br><span class="line">csi-cephfsplugin-provisioner-56c8b7ddf4-rq4t6          4/4     Running     0          21d</span><br><span class="line">csi-cephfsplugin-xwnl4                                 3/3     Running     0          21d</span><br><span class="line">csi-rbdplugin-7r88w                                    3/3     Running     0          21d</span><br><span class="line">csi-rbdplugin-95g5j                                    3/3     Running     0          21d</span><br><span class="line">csi-rbdplugin-bnzpr                                    3/3     Running     0          21d</span><br><span class="line">csi-rbdplugin-dvftb                                    3/3     Running     0          21d</span><br><span class="line">csi-rbdplugin-jzmj2                                    3/3     Running     0          17d</span><br><span class="line">csi-rbdplugin-provisioner-6ff4dd4b94-bvtss             5/5     Running     0          21d</span><br><span class="line">csi-rbdplugin-provisioner-6ff4dd4b94-lfn68             5/5     Running     0          21d</span><br><span class="line">csi-rbdplugin-trxb4                                    3/3     Running     0          17d</span><br></pre></td></tr></table></figure>
+
+<p>这里其实是实现了 <strong>RBD 和 CephFS</strong> 两种 CSI，用 DaemonSet 在每个节点上运行了一个包含 <code>Driver registra</code> 容器的 Pod，当然和节点相关的操作比如 Mount/Unmount 也是在这个 Pod 里面执行的，其他的比如 Provision、Attach 都是在另外的 <code>csi-rbdplugin-provisioner-xxx</code> Pod 中执行的。</p>
+<h2 id="4、测试"><a href="#4、测试" class="headerlink" title="4、测试"></a>4、测试</h2><p>现在我们来测试通过 CSI 的形式使用 NFS 存储，当然首先我们需要在 Kubernetes 集群中安装 NFS CSI 的驱动，<a target="_blank" rel="noopener" href="https://github.com/kubernetes-csi/csi-driver-nfs">https://github.com/kubernetes-csi/csi-driver-nfs</a> 就是一个 NFS 的 CSI 驱动实现的项目。</p>
+<h3 id="📍-案例演示：nfs-csi测试"><a href="#📍-案例演示：nfs-csi测试" class="headerlink" title="📍 案例演示：nfs csi测试"></a>📍 案例演示：nfs csi测试</h3><p>🍀 如果能访问 github 则可以直接使用下面的命令一键安装 NFS CSI 驱动程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜ curl -skSL https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/deploy/install-driver.sh | bash -s master --</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 也可以本地安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">➜ git <span class="built_in">clone</span> https://github.com/kubernetes-csi/csi-driver-nfs.git</span><br><span class="line">➜ <span class="built_in">cd</span> csi-driver-nfs</span><br><span class="line"><span class="comment">#注意：这里要把deploy下面的2个yaml文件里的镜像仓库修改为老师的仓库地址；</span></span><br><span class="line">➜ /yaml/2022.2.22-45.存储插件-实验代码/csi-driver-nfs-edited$ ./deploy/install-driver.sh master <span class="built_in">local</span></span><br><span class="line">use <span class="built_in">local</span> deploy</span><br><span class="line">Installing NFS CSI driver, version: master ...</span><br><span class="line">serviceaccount/csi-nfs-controller-sa created</span><br><span class="line">clusterrole.rbac.authorization.k8s.io/nfs-external-provisioner-role created</span><br><span class="line">clusterrolebinding.rbac.authorization.k8s.io/nfs-csi-provisioner-binding created</span><br><span class="line">csidriver.storage.k8s.io/nfs.csi.k8s.io created</span><br><span class="line">deployment.apps/csi-nfs-controller created</span><br><span class="line">daemonset.apps/csi-nfs-node created</span><br><span class="line">NFS CSI driver installed successfully.</span><br></pre></td></tr></table></figure>
+
+<p>和上面介绍的部署方式基本上也是一致的，首先会用 DaemonSet 的形式在每个节点上运行了一个包含 <code>Driver registra</code> 容器的 Pod，当然和节点相关的操作比如 Mount/Unmount 也是在这个 Pod 里面执行的，其他的比如 Provision、Attach 都是在另外的 <code>csi-nfs-controller-xxx</code> Pod 中执行的。</p>
+<p>:warning: 注意：这里要把deploy下面的2个yaml文件里的镜像仓库修改为老师的仓库地址；</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">csi-nfs-controller.yaml</span></span><br><span class="line">	<span class="string">cnych/sig-storage-csi-provisioner:v3.1.0</span></span><br><span class="line">	<span class="string">cnych/sig-storage-livenessprobe:v2.5.0</span></span><br><span class="line">	<span class="string">cnych/nfs-csi:latest</span></span><br><span class="line"></span><br><span class="line"><span class="string">csi-nfs-node.yaml</span></span><br><span class="line">	<span class="string">cnych/sig-storage-livenessprobe:v2.5.0</span></span><br><span class="line">	<span class="string">cnych/sig-storage-csi-node-driver-registrar:v2.4.0</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220222181334211.png" alt="image-20220222181334211"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl -n kube-system get pod -o wide -l app=csi-nfs-controller</span></span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">csi-nfs-controller-77b67449c9-w2zqk   3/3     Running   0          5m24s   172.29.9.53   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl -n kube-system get pod -o wide -l app=csi-nfs-node</span></span><br><span class="line">NAME                 READY   STATUS    RESTARTS   AGE     IP            NODE      NOMINATED NODE   READINESS GATES</span><br><span class="line">csi-nfs-node-r876f   3/3     Running   0          5m41s   172.29.9.53   node2     &lt;none&gt;           &lt;none&gt;</span><br><span class="line">csi-nfs-node-vt8l4   3/3     Running   0          5m41s   172.29.9.51   master1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">csi-nfs-node-xbssn   3/3     Running   0          5m41s   172.29.9.52   node1     &lt;none&gt;           &lt;none&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 当 csi 的驱动安装完成后我们就可以通过 csi 的方式来使用我们的 nfs 存储了。</p>
+<p>比如我们创建</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#02-nfs-csi-pv-pvc.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolume</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">pv-nfs</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">capacity:</span></span><br><span class="line">    <span class="attr">storage:</span> <span class="string">10Gi</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ReadWriteMany</span></span><br><span class="line">  <span class="attr">persistentVolumeReclaimPolicy:</span> <span class="string">Retain</span></span><br><span class="line">  <span class="attr">mountOptions:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">hard</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">nfsvers=4.1</span></span><br><span class="line">  <span class="attr">csi:</span></span><br><span class="line">    <span class="attr">driver:</span> <span class="string">nfs.csi.k8s.io</span></span><br><span class="line">    <span class="attr">readOnly:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">volumeHandle:</span> <span class="string">unique-volumeid</span>  <span class="comment"># make sure it&#x27;s a unique id in the cluster</span></span><br><span class="line">    <span class="attr">volumeAttributes:</span></span><br><span class="line">      <span class="attr">server:</span> <span class="number">172.29</span><span class="number">.9</span><span class="number">.51</span></span><br><span class="line">      <span class="attr">share:</span> <span class="string">/var/lib/k8s/data</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolumeClaim</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">pvc-nfs-static</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ReadWriteMany</span></span><br><span class="line">  <span class="attr">resources:</span></span><br><span class="line">    <span class="attr">requests:</span></span><br><span class="line">      <span class="attr">storage:</span> <span class="string">10Gi</span></span><br><span class="line">  <span class="comment"># persistentVolumeReclaimPolicy: Retain    </span></span><br><span class="line">  <span class="attr">volumeName:</span> <span class="string">pv-nfs</span> <span class="comment">#这里直接指定了pv</span></span><br><span class="line">  <span class="attr">storageClassName:</span> <span class="string">&quot;&quot;</span> <span class="comment">#因为我们前面有配置自动存储类</span></span><br></pre></td></tr></table></figure>
+
+<p>直接创建上面的资源对象后我们的 PV 和 PVC 就绑定在一起了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f 02-nfs-csi-pv-pvc.yaml </span><br><span class="line">persistentvolume/pv-nfs created</span><br><span class="line">persistentvolumeclaim/pvc-nfs-static created</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pv</span></span><br><span class="line">NAME     CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE</span><br><span class="line">pv-nfs   10Gi       RWX            Retain           Bound    default/pvc-nfs-static                           2m12s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pvc</span></span><br><span class="line">NAME             STATUS   VOLUME   CAPACITY   ACCESS MODES   STORAGECLASS   AGE  </span><br><span class="line">pvc-nfs-static   Bound    pv-nfs   10Gi       RWX                           2m14s</span><br></pre></td></tr></table></figure>
+
+<p>这里的核心配置是 PV 中的 <code>csi</code> 属性的配置，需要通过 <code>csi.driver</code> 来指定我们要使用的驱动名称，比如我们这里使用 nfs 的名称为 <code>nfs.csi.k8s.io</code>，然后就是根据具体的驱动配置相关的参数。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220222183420244.png" alt="image-20220222183420244"></p>
+<p>🍀 同样还可以创建一个用于动态创建 PV 的 StorageClass 对象：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#03-nfs-csi-storageclass.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">storage.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">StorageClass</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nfs-csi</span></span><br><span class="line"><span class="attr">provisioner:</span> <span class="string">nfs.csi.k8s.io</span></span><br><span class="line"><span class="attr">parameters:</span></span><br><span class="line">  <span class="attr">server:</span> <span class="number">172.29</span><span class="number">.9</span><span class="number">.51</span></span><br><span class="line">  <span class="attr">share:</span> <span class="string">/var/lib/k8s/data</span></span><br><span class="line">  <span class="comment"># csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume</span></span><br><span class="line">  <span class="comment"># csi.storage.k8s.io/provisioner-secret-name: &quot;mount-options&quot;</span></span><br><span class="line">  <span class="comment"># csi.storage.k8s.io/provisioner-secret-namespace: &quot;default&quot;</span></span><br><span class="line"><span class="attr">reclaimPolicy:</span> <span class="string">Delete</span></span><br><span class="line"><span class="attr">volumeBindingMode:</span> <span class="string">Immediate</span></span><br><span class="line"><span class="attr">mountOptions:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hard</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">nfsvers=4.1</span></span><br></pre></td></tr></table></figure>
+
+<p>对于我们普通用户来说使用起来都是一样的，只需要管理员提供何时的 PV 或 StorageClass 即可，这里我们就使用的 CSI 的形式来提供 NFS 的存储。</p>
+<p>直接部署并测试：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f 03-nfs-csi-storageclass.yaml </span><br><span class="line">storageclass.storage.k8s.io/nfs-csi created</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get sc</span></span><br><span class="line">NAME                   PROVISIONER                                     RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE</span><br><span class="line">local-storage          kubernetes.io/no-provisioner                    Delete          WaitForFirstConsumer   <span class="literal">false</span>                  42h</span><br><span class="line">nfs-client (default)   cluster.local/nfs-subdir-external-provisioner   Delete          Immediate              <span class="literal">true</span>                   25h</span><br><span class="line">nfs-csi                nfs.csi.k8s.io                                  Delete          Immediate              <span class="literal">false</span>                  14h</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 然后写一个nfs-csi-sc-pvc.yaml并部署，观察效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f 04-nfs-csi-sc-pvc.yaml </span><br><span class="line">persistentvolumeclaim/nfs-csi-sc-pvc created</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pvc</span></span><br><span class="line">NAME             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE</span><br><span class="line">nfs-csi-sc-pvc   Bound    pvc-628c2b7d-6c51-4a4c-ac0d-87bea6ef89be   20Gi       RWX            nfs-csi        42s</span><br><span class="line">pvc-nfs-static   Bound    pv-nfs                                     10Gi       RWX                           14h</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pv</span></span><br><span class="line">NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                    STORAGECLASS   REASON   AGE       </span><br><span class="line">pv-nfs                                     10Gi       RWX            Retain           Bound    default/pvc-nfs-static                           14h       </span><br><span class="line">pvc-628c2b7d-6c51-4a4c-ac0d-87bea6ef89be   20Gi       RWX            Delete           Bound    default/nfs-csi-sc-pvc   nfs-csi                 46s       </span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到自动生成的<code>pvc-628c2b7d-6c51-4a4c-ac0d-87bea6ef89be</code>和<code>nfs-csi-sc-pvc</code>已成功绑定，愈合预期效果，这里pod测试就不做了，都一样。</p>
+<p>实验结束，完美。😘</p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人已开源干货😘</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01 实战：打造一款王者云笔记：typora+坚果云+阿里云oss</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DXS6qiIQvPWVCRiS0qoE">https://www.jianguoyun.com/p/DXS6qiIQvPWVCRiS0qoE</a></td>
+</tr>
+<tr>
+<td align="left">02 实战：定制宇宙中最美的typora主题皮肤</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DeUK9u0QvPWVCRib0qoE">https://www.jianguoyun.com/p/DeUK9u0QvPWVCRib0qoE</a></td>
+</tr>
+<tr>
+<td align="left">03 玩转vscode</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DZe8gmsQvPWVCRid0qoE">https://www.jianguoyun.com/p/DZe8gmsQvPWVCRid0qoE</a></td>
+</tr>
+<tr>
+<td align="left">04 陈果的幸福哲学课</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/Db0kM7gQvPWVCRj2q6YE">https://www.jianguoyun.com/p/Db0kM7gQvPWVCRj2q6YE</a></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于存储插件实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223090025962.png" alt="image-20220223090025962"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/02/23/129%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8B%E5%AD%98%E5%82%A8%E6%8F%92%E4%BB%B6-2022.2.23/">https://www.onlyonexl.cn/2022/02/23/129%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8B%E5%AD%98%E5%82%A8%E6%8F%92%E4%BB%B6-2022.2.23/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/02/23/129%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8B%E5%AD%98%E5%82%A8%E6%8F%92%E4%BB%B6-2022.2.23/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="实战：k8s之存储插件-2022.2.23">
+                        
+                        <span class="card-title">实战：k8s之存储插件-2022.2.23</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/22/128%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8BNFS%E5%AD%98%E5%82%A8-2022.2.22/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="实战：k8s之NFS存储-2022.2.22">
+                        
+                        <span class="card-title">实战：k8s之NFS存储-2022.2.22</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
