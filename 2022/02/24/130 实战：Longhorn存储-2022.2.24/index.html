@@ -1,0 +1,1484 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：Longhorn存储-2022.2.24, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：Longhorn存储-2022.2.24 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：Longhorn存储-2022.2.24</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/k8s/">
+                                <span class="chip bg-color">k8s</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-02-24
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：Longhorn存储-2022-2-24"><a href="#实战：Longhorn存储-2022-2-24" class="headerlink" title="实战：Longhorn存储-2022.2.24"></a>实战：Longhorn存储-2022.2.24</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223125227921.png" alt="image-20220223125227921"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实验环境：</span><br><span class="line">1、win10,vmwrokstation虚机；</span><br><span class="line">2、k8s集群：3台centos7.6 1810虚机，1个master节点,2个node节点</span><br><span class="line">   k8s version：v1.22.2</span><br><span class="line">   containerd://1.5.5</span><br></pre></td></tr></table></figure>
+
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Ou2WCWmsqOFUSLmOZ2orVQ?pwd=lda8">https://pan.baidu.com/s/1Ou2WCWmsqOFUSLmOZ2orVQ?pwd=lda8</a><br>提取码：lda8<br><code>2022.2.23-46.Longhorn存储-实验代码</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220224175121944.png" alt="image-20220224175121944"></p>
+<h2 id="1、Longhorn"><a href="#1、Longhorn" class="headerlink" title="1、Longhorn"></a>1、Longhorn</h2><p>前面我们学习了本地存储、NFS共享存储，除了这些存储类型之外，还有一个块存储，同样为 Kubernetes 提供块存储的方案有很多，比如 <strong>Ceph RBD</strong>，今天我们为大家介绍的是 <strong>Rancher 开源的一款 Kubernetes 的云原生分布式块存储方案 - Longhorn</strong>。</p>
+<p>使用 Longhorn，可以：</p>
+<ul>
+<li>使用 <strong>Longhorn 卷</strong>作为 Kubernetes 集群中<strong>分布式有状态应用程序</strong>的持久存储</li>
+<li>将你的块存储分区为 Longhorn 卷，以便你可以在有或没有云提供商的情况下使用 Kubernetes 卷</li>
+<li>跨多个节点和数据中心复制块存储以提高可用性</li>
+<li>将备份数据存储在 NFS 或 AWS S3 等外部存储中</li>
+<li>创建跨集群灾难恢复卷，以便可以从第二个 Kubernetes 集群中的备份中快速恢复主 Kubernetes 集群中的数据</li>
+<li>调度一个卷的快照，并将备份调度到 NFS 或 S3 兼容的<strong>二级存储</strong></li>
+<li>从备份还原卷</li>
+<li>不中断持久卷的情况下升级 Longhorn</li>
+</ul>
+<p>Longhorn 还带有独立的 UI，可以使用 Helm、kubectl 或 Rancher 应用程序目录进行安装。</p>
+<h2 id="2、架构"><a href="#2、架构" class="headerlink" title="2、架构"></a>2、架构</h2><p>Longhorn 为每个卷创建一个专用的存储控制器，并在多个节点上存储的多个副本之间同步复制该卷。Longhorn 在整体上分为两层：<strong>数据平面和控制平面</strong>，<strong>Longhorn Engine</strong> 是存储控制器，对应数据平面，<strong>Longhorn Manager</strong> 对应控制平面。</p>
+<p>Longhorn Manager 会以 <strong>DaemonSet</strong> 的形式在 Longhorn 集群中的每个节点上运行，它负责在 Kubernetes 集群中创建和管理卷，并处理来自 UI 或 Kubernetes 卷插件的 API 调用，它是遵循 Kubernetes 控制器模式。</p>
+<p>Longhorn Manager 通过与 Kubernetes APIServer 通信来创建新的 Longhorn volume CRD，然后 Longhorn Manager 会一直 Watch APIServer 的响应，当它看到发现创建了一个新的 Longhorn volume CRD 时，Longhorn Manager 就会去创建一个新的对应卷。当 Longhorn Manager 被要求创建一个卷时，它会在卷所连接的节点上创建一个 Longhorn Engine 实例，并在每个将放置副本的节点上创建一个副本，副本应放置在不同的主机上以确保最大可用性。副本的多条数据路径确保了 Longhorn 卷的高可用性，即使某个副本或引擎出现问题，也不会影响所有副本或 Pod 对卷的访问。</p>
+<p>Longhorn Engine 始终与使用 Longhorn 卷的 Pod 在同一节点中运行，它在存储在多个节点上的多个副本之间同步复制卷。</p>
+<p>如下图所示，描述了 Longhorn 卷、Longhorn Engine、<strong>副本实例</strong>和<strong>磁盘之间</strong>的读/写数据流:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220215150944.png" alt="卷、Longhorn Engine、副本实例和磁盘之间的读/写数据流"></p>
+<ul>
+<li>上图中有3个 Longhorn 卷实例</li>
+<li><strong>每个卷都有一个专用控制器，称为 Longhorn Engine</strong>，并作为 Linux 进程运行</li>
+<li>每个 Longhorn 卷有两个副本，每个副本也是一个 Linux 进程</li>
+<li>图中的箭头表示<strong>卷、控制器实例、副本实例和磁盘之间</strong>的读/写数据流</li>
+<li>通过为每个卷创建单独的 Longhorn Engine，如果一个控制器发生故障，其他卷的功能不会受到影响</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223134955684.png" alt="image-20220223134955684"></p>
+<p><strong>在 Longhorn 中，每个 Engine 只需要服务一个卷</strong>，简化了存储控制器的设计，由于控制器软件的故障域与单个卷隔离，因此控制器崩溃只会影响一个卷。由于 Longhorn Engine 足够简单和轻便，<strong>因此我们可以创建多达 100000 个独立的 Engine</strong>，Kubernetes 去调度这些独立的 Engine，从一组共享的磁盘中提取资源，并与 Longhorn 合作形成一个弹性的分布式块存储系统。</p>
+<p>因为每个卷都有自己的控制器，<strong>所以每个卷的控制器和副本实例也可以升级</strong>，而不会导致 IO 操作明显中断。<strong>Longhorn 可以创建一个长时间运行的 job 任务来协调所有卷的升级</strong>，而不会中断系统的运行。</p>
+<p>Longhorn 是通过 CSI 驱动在 Kubernetes 中管理的，CSI 驱动通过调用 Longhorn 来创建卷，为 Kubernetes 工作负载创建持久性数据，CSI 插件可以让我们创建、删除、附加、分离、挂载卷，并对卷进行快照操作，Kubernetes 集群内部使用 CSI 接口与Longhorn CSI 驱动进行通信，而 Longhorn CSI 驱动是通过使用 Longhorn API 与 Longhorn Manager 进行通信。</p>
+<p>此外 Longhorn 还提供一个 UI 界面程序，通过 Longhorn API 与 Longhorn Manager 进行交互，通过 Longhorn UI 可以管理快照、备份、节点和磁盘等，此外，集群工作节点的空间使用情况还可以通过 Longhorn UI 查看。</p>
+<h2 id="3、安装"><a href="#3、安装" class="headerlink" title="3、安装"></a>3、安装</h2><p>要在 Kubernetes 集群上安装 Longhorn，需要集群的每个节点都必须满足以下要求：</p>
+<ul>
+<li>与 Kubernetes 兼容的容器运行时（Docker v1.13+、containerd v1.3.7+ 等）</li>
+<li>Kubernetes v1.18+</li>
+<li>安装 <code>open-iscsi</code>，并且 <code>iscsid</code> 守护程序在所有节点上运行，这是必要的，因为 <strong>Longhorn 依赖主机上的 <code>iscsiadm</code> 为 Kubernetes 提供持久卷</strong></li>
+<li><strong>RWX 支持需要每个节点上都安装 NFSv4 客户端</strong></li>
+<li><strong>宿主机文件系统支持 <code>file extents</code> 功能来存储数据，目前我们支持：ext4 与 XFS</strong></li>
+<li>bash、curl、findmnt、grep、awk、blkid、lsblk 等工具必须安装</li>
+<li><code>Mount propagation</code> 必须启用，它允许将一个容器挂载的卷与同一 pod 中的其他容器共享，甚至可以与同一节点上的其他 pod 共享</li>
+<li><strong>Longhorn workloads 必须能够以 root 身份运行</strong>才能正确部署和操作 Longhorn。</li>
+</ul>
+<h3 id="1-依赖"><a href="#1-依赖" class="headerlink" title="1.依赖"></a>1.依赖</h3><p>🍀 为了验证这些环境要求，Longhorn 官方提供了一个脚本来帮助我们进行检查，执行该脚本需要在本地安装 <code>jq</code> 工具，执行下面的命令即可运行脚本：(这个可以在后续安装完成后测试)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜ curl -sSfL https://raw.githubusercontent.com/longhorn/longhorn/v1.2.3/scripts/environment_check.sh | bash</span><br><span class="line">daemonset.apps/longhorn-environment-check created</span><br><span class="line">waiting <span class="keyword">for</span> pods to become ready (0/2)</span><br><span class="line">waiting <span class="keyword">for</span> pods to become ready (0/2)</span><br><span class="line">all pods ready (2/2)</span><br><span class="line"></span><br><span class="line">  MountPropagation is enabled!</span><br><span class="line"></span><br><span class="line">cleaning up...</span><br><span class="line">daemonset.apps <span class="string">&quot;longhorn-environment-check&quot;</span> deleted</span><br><span class="line">clean up complete</span><br></pre></td></tr></table></figure>
+
+<p>如果没有检查通过会给出相关的提示信息。</p>
+<p>🍀 要安装 <code>open-iscsi</code>，可以直接使用下面的命令即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apt-get install open-iscsi  # Debian 和 Ubuntu 系统命令</span></span><br><span class="line">➜ yum install -y iscsi-initiator-utils</span><br></pre></td></tr></table></figure>
+
+<p>😂或者可以使用yaml文件部署：(😋我这里就是使用这种方式部署的哈哈，很方便的)</p>
+<p>Longhorn 官方还为我们还提供了一个 iscsi 安装程序，可以更轻松地自动安装 <code>open-iscsi</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.2.3/deploy/prerequisite/longhorn-iscsi-installation.yaml</span><br></pre></td></tr></table></figure>
+
+<p>部署完成后，运行以下命令来检查安装程序的 pod 状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get pod | grep longhorn-iscsi-installation</span><br><span class="line">longhorn-iscsi-installation-49hd7   1/1     Running   0          21m</span><br><span class="line">longhorn-iscsi-installation-pzb7r   1/1     Running   0          39m</span><br></pre></td></tr></table></figure>
+
+<p>也可以通过以下命令查看日志，查看安装结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl logs longhorn-iscsi-installation-pzb7r -c iscsi-installation</span><br><span class="line">...</span><br><span class="line">Installed:</span><br><span class="line">  iscsi-initiator-utils.x86_64 0:6.2.0.874-7.amzn2</span><br><span class="line"></span><br><span class="line">Dependency Installed:</span><br><span class="line">  iscsi-initiator-utils-iscsiuio.x86_64 0:6.2.0.874-7.amzn2</span><br><span class="line"></span><br><span class="line">Complete!</span><br><span class="line">Created symlink from /etc/systemd/system/multi-user.target.wants/iscsid.service to /usr/lib/systemd/system/iscsid.service.</span><br><span class="line">iscsi install successfully</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 同样要安装 NFSv4 客户端，可以直接使用下面的命令一键安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># apt-get install nfs-common  #  Debian 和 Ubuntu 系统命令</span></span><br><span class="line">➜ yum install nfs-utils</span><br></pre></td></tr></table></figure>
+
+<p>😂或者可以使用yaml文件部署：</p>
+<p>同样 Longhorn 官方也提供了一个 nfs 客户端安装程序，可以更轻松地自动安装 nfs-client：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.2.3/deploy/prerequisite/longhorn-nfs-installation.yaml</span><br></pre></td></tr></table></figure>
+
+<p>部署完成后，运行以下命令来检查安装程序的 pod 状态：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get pod | grep longhorn-nfs-installation</span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">longhorn-nfs-installation-t2v9v   1/1     Running   0          143m</span><br><span class="line">longhorn-nfs-installation-7nphm   1/1     Running   0          143m</span><br></pre></td></tr></table></figure>
+
+<p>也可以通过以下命令查看日志，查看安装结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl logs longhorn-nfs-installation-t2v9v -c nfs-installation</span><br><span class="line">...</span><br><span class="line">nfs install successfully</span><br></pre></td></tr></table></figure>
+
+<p>相关依赖环境准备好过后就可以开始安装 Longhorn 了。</p>
+<p>🍀 注意事项</p>
+<p>:warning: 如果使用yaml文件在k8s节点上安装上面<code>iscsi-initiator-utils和nfs-utils</code>软件时，使用这个yaml文件部署还是非常方便的，因为节点数越多使用这个效果就越明显。</p>
+<p>记得要改下这2个yaml里镜像仓库地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image: registry.aliyun.comcs/k8sxio/pause:3.5</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223202041454.png" alt="image-20220223202041454"></p>
+<p>:warning: 现在有个有趣的问题</p>
+<blockquote>
+<p>安装一个软件可以采用pod形式了，哈哈。<code>可以借鉴这种安装方式的</code>。</p>
+</blockquote>
+<p>注意一下这个yaml文件的使用方式；</p>
+<p>那我把这个DaemonSet资源移除后，原来安装的软件应该是换在原来机器上面的吧；–&gt;应该在的。–&gt;已测试：<code>是存在的！</code></p>
+<p>这个相当于把脚本集成到了这个command里面：666</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">OS=$(grep <span class="string">&quot;ID_LIKE&quot;</span> /etc/os-release | cut -d <span class="string">&#x27;=&#x27;</span> -f 2); </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ <span class="string">&quot;<span class="variable">$&#123;OS&#125;</span>&quot;</span> == *<span class="string">&quot;debian&quot;</span>* ]]; <span class="keyword">then</span> sudo apt-get update -q -y &amp;&amp; sudo apt-get install -q -y open-iscsi &amp;&amp; sudo systemctl -q <span class="built_in">enable</span> iscsid &amp;&amp; sudo systemctl start iscsid; </span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span> [[ <span class="string">&quot;<span class="variable">$&#123;OS&#125;</span>&quot;</span> == *<span class="string">&quot;suse&quot;</span>* ]]; <span class="keyword">then</span> sudo zypper --gpg-auto-import-keys -q refresh &amp;&amp; sudo zypper --gpg-auto-import-keys -q install -y open-iscsi &amp;&amp; sudo systemctl -q <span class="built_in">enable</span> iscsid &amp;&amp; sudo systemctl start iscsid; </span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> sudo yum makecache -q -y &amp;&amp; sudo yum --<span class="built_in">setopt</span>=tsflags=noscripts install -q -y iscsi-initiator-utils &amp;&amp; <span class="built_in">echo</span> <span class="string">&quot;InitiatorName=<span class="subst">$(/sbin/iscsi-iname)</span>&quot;</span> &gt; /etc/iscsi/initiatorname.iscsi &amp;&amp; sudo systemctl -q <span class="built_in">enable</span> iscsid &amp;&amp; sudo systemctl start iscsid; <span class="keyword">fi</span> &amp;&amp; <span class="keyword">if</span> [ $? -eq 0 ]; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">&quot;iscsi install successfully&quot;</span>; <span class="keyword">else</span> <span class="built_in">echo</span> <span class="string">&quot;iscsi install failed error code $?&quot;</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">DaemonSet</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">longhorn-iscsi-installation</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">longhorn-iscsi-installation</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="attr">command:</span> <span class="string">&amp;cmd</span> <span class="string">OS=$(grep</span> <span class="string">&quot;ID_LIKE&quot;</span> <span class="string">/etc/os-release</span> <span class="string">|</span> <span class="string">cut</span> <span class="string">-d</span> <span class="string">&#x27;=&#x27;</span> <span class="string">-f</span> <span class="number">2</span><span class="string">);</span> <span class="string">if</span> [[ <span class="string">&quot;$&#123;OS&#125;&quot;</span> <span class="string">==</span> <span class="string">*&quot;debian&quot;*</span> ]]<span class="string">;</span> <span class="string">then</span> <span class="string">sudo</span> <span class="string">apt-get</span> <span class="string">update</span> <span class="string">-q</span> <span class="string">-y</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">apt-get</span> <span class="string">install</span> <span class="string">-q</span> <span class="string">-y</span> <span class="string">open-iscsi</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">systemctl</span> <span class="string">-q</span> <span class="string">enable</span> <span class="string">iscsid</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">systemctl</span> <span class="string">start</span> <span class="string">iscsid;</span> <span class="string">elif</span> [[ <span class="string">&quot;$&#123;OS&#125;&quot;</span> <span class="string">==</span> <span class="string">*&quot;suse&quot;*</span> ]]<span class="string">;</span> <span class="string">then</span> <span class="string">sudo</span> <span class="string">zypper</span> <span class="string">--gpg-auto-import-keys</span> <span class="string">-q</span> <span class="string">refresh</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">zypper</span> <span class="string">--gpg-auto-import-keys</span> <span class="string">-q</span> <span class="string">install</span> <span class="string">-y</span> <span class="string">open-iscsi</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">systemctl</span> <span class="string">-q</span> <span class="string">enable</span> <span class="string">iscsid</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">systemctl</span> <span class="string">start</span> <span class="string">iscsid;</span> <span class="string">else</span> <span class="string">sudo</span> <span class="string">yum</span> <span class="string">makecache</span> <span class="string">-q</span> <span class="string">-y</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">yum</span> <span class="string">--setopt=tsflags=noscripts</span> <span class="string">install</span> <span class="string">-q</span> <span class="string">-y</span> <span class="string">iscsi-initiator-utils</span> <span class="string">&amp;&amp;</span> <span class="string">echo</span> <span class="string">&quot;InitiatorName=$(/sbin/iscsi-iname)&quot;</span> <span class="string">&gt;</span> <span class="string">/etc/iscsi/initiatorname.iscsi</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">systemctl</span> <span class="string">-q</span> <span class="string">enable</span> <span class="string">iscsid</span> <span class="string">&amp;&amp;</span> <span class="string">sudo</span> <span class="string">systemctl</span> <span class="string">start</span> <span class="string">iscsid;</span> <span class="string">fi</span> <span class="string">&amp;&amp;</span> <span class="string">if</span> [ <span class="string">$?</span> <span class="string">-eq</span> <span class="number">0</span> ]<span class="string">;</span> <span class="string">then</span> <span class="string">echo</span> <span class="string">&quot;iscsi install successfully&quot;</span><span class="string">;</span> <span class="string">else</span> <span class="string">echo</span> <span class="string">&quot;iscsi install failed error code $?&quot;</span><span class="string">;</span> <span class="string">fi</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">longhorn-iscsi-installation</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">longhorn-iscsi-installation</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">hostNetwork:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">hostPID:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">initContainers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">iscsi-installation</span></span><br><span class="line">        <span class="attr">command:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">nsenter</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">--mount=/proc/1/ns/mnt</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">--</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">bash</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">-c</span></span><br><span class="line">          <span class="bullet">-</span> <span class="meta">*cmd</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">alpine:3.12</span></span><br><span class="line">        <span class="attr">securityContext:</span></span><br><span class="line">          <span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">sleep</span></span><br><span class="line">        <span class="comment"># image: k8s.gcr.io/pause:3.1</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">registry.aliyun.com/k8sxio/pause:3.5</span></span><br><span class="line">  <span class="attr">updateStrategy:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">RollingUpdate</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>:warning: 自己使用yaml安装如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f longhorn-iscsi-installation.yaml </span><br><span class="line">daemonset.apps/longhorn-iscsi-installation created</span><br><span class="line"></span><br><span class="line"><span class="comment">#从安装结果看，好像master节点不需要安装。。</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -owide</span></span><br><span class="line">NAME                                READY   STATUS    RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">longhorn-iscsi-installation-7zq4k   1/1     Running   0          4m22s   172.29.9.53   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">longhorn-iscsi-installation-b4ztm   1/1     Running   0          27s     172.29.9.52   node1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试是否安装成功：</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl logs longhorn-iscsi-installation-7zq4k -c iscsi-installation</span></span><br><span class="line">Package iscsi-initiator-utils-6.2.0.874-22.el7_9.x86_64 already installed and latest version</span><br><span class="line">iscsi install successfully</span><br><span class="line">[root@node1 ~]<span class="comment">#rpm -qa|grep iscsi-initiator-utils</span></span><br><span class="line">iscsi-initiator-utils-6.2.0.874-22.el7_9.x86_64</span><br><span class="line">iscsi-initiator-utils-iscsiuio-6.2.0.874-22.el7_9.x86_64</span><br></pre></td></tr></table></figure>
+
+
+
+<p>:warning: 注意：之前在做nfs测试实验是，这个包3个节点都已经暗转改好了的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@node1 ~]<span class="comment">#rpm -qa |grep nfs-utils</span></span><br><span class="line">nfs-utils-1.3.0-0.68.el7.2.x86_64</span><br></pre></td></tr></table></figure>
+
+<p>我们可以继续尝试用yaml文件再次安装下这个包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f longhorn-nfs-installation.yaml </span><br><span class="line">daemonset.apps/longhorn-nfs-installation created</span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -owide</span></span><br><span class="line">NAME                                READY   STATUS    RESTARTS   AGE     IP            NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">longhorn-iscsi-installation-7zq4k   1/1     Running   0          10m     172.29.9.53   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">longhorn-iscsi-installation-b4ztm   1/1     Running   0          6m47s   172.29.9.52   node1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">longhorn-nfs-installation-dggst     1/1     Running   0          19s     172.29.9.52   node1   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">longhorn-nfs-installation-k7dtt     1/1     Running   0          19s     172.29.9.53   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">[root@master1 ~]<span class="comment">#    </span></span><br><span class="line"></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl logs longhorn-nfs-installation-dggst -c nfs-installation</span></span><br><span class="line">Package 1:nfs-utils-1.3.0-0.68.el7.2.x86_64 already installed and latest version</span><br><span class="line">nfs install successfully</span><br></pre></td></tr></table></figure>
+
+<p>完成，继续进行下一步。</p>
+<h3 id="2-部署"><a href="#2-部署" class="headerlink" title="2.部署"></a>2.部署</h3><p>🍀 loghorn github地址</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/longhorn/longhorn">https://github.com/longhorn/longhorn</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223202758226.png" alt="image-20220223202758226"></p>
+<p>🍀 官方支持使用 <strong>Rancher Catalog 应用</strong>、kubectl 与 helm 三种方式来进行安装，同样这里我们选择使用 helm 进行安装。</p>
+<p>首先添加 longhorn 的 chart 仓库：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#helm repo add longhorn https://charts.longhorn.io</span></span><br><span class="line">[root@master1 ~]<span class="comment">#helm repo update</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 然后可以根据自己的实际场景定制 values 文件，可以通过下面的命令获取默认的 values 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜ curl -Lo values.yaml https://raw.githubusercontent.com/longhorn/charts/master/charts/longhorn/values.yaml</span><br></pre></td></tr></table></figure>
+
+<p>然后可以修改 values 文件中的配置，longhorn 推荐单独挂盘作为存储使用，这里作为测试直接使用默认的 <code>/var/lib/longhorn</code> 目录。</p>
+<p>如下所示默认配置的示例片段：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">defaultSettings:</span></span><br><span class="line">  <span class="attr">backupTarget:</span> <span class="string">s3://backupbucket@us-east-1/backupstore</span></span><br><span class="line">  <span class="attr">backupTargetCredentialSecret:</span> <span class="string">minio-secret</span></span><br><span class="line">  <span class="attr">createDefaultDiskLabeledNodes:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">defaultDataPath:</span> <span class="string">/var/lib/longhorn-example/</span></span><br><span class="line">  <span class="attr">replicaSoftAntiAffinity:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">storageOverProvisioningPercentage:</span> <span class="number">600</span></span><br><span class="line">  <span class="attr">storageMinimalAvailablePercentage:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">upgradeChecker:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">defaultReplicaCount:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">defaultDataLocality:</span> <span class="string">disabled</span></span><br><span class="line">  <span class="attr">guaranteedEngineCPU:</span></span><br><span class="line">  <span class="attr">defaultLonghornStaticStorageClass:</span> <span class="string">longhorn-static-example</span></span><br><span class="line">  <span class="attr">backupstorePollInterval:</span> <span class="number">500</span></span><br><span class="line">  <span class="attr">taintToleration:</span> <span class="string">key1=value1:NoSchedule;</span> <span class="string">key2:NoExecute</span></span><br><span class="line">  <span class="attr">systemManagedComponentsNodeSelector:</span> <span class="string">&quot;label-key1:label-value1&quot;</span></span><br><span class="line">  <span class="attr">priority-class:</span> <span class="string">high-priority</span></span><br><span class="line">  <span class="attr">autoSalvage:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">disableSchedulingOnCordonedNode:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">replicaZoneSoftAntiAffinity:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">volumeAttachmentRecoveryPolicy:</span> <span class="string">never</span></span><br><span class="line">  <span class="attr">nodeDownPodDeletionPolicy:</span> <span class="string">do-nothing</span></span><br><span class="line">  <span class="attr">mkfsExt4Parameters:</span> <span class="string">-O</span> <span class="string">^64bit,^metadata_csum</span></span><br><span class="line">  <span class="attr">guaranteed-engine-manager-cpu:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">guaranteed-replica-manager-cpu:</span> <span class="number">15</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ingress:</span>  <span class="comment"># 开启ingress</span></span><br><span class="line">  <span class="attr">enabled:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">ingressClassName:</span> <span class="string">nginx</span>  <span class="comment"># 配置 ingressclass</span></span><br><span class="line">  <span class="attr">host:</span> <span class="string">longhorn.k8s.local</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="attr">nginx.ingress.kubernetes.io/proxy-body-size:</span> <span class="string">10000m</span></span><br><span class="line"><span class="attr">enablePSP:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 我这里直接下载原value.yaml文件然后进行编辑：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#wget https://raw.githubusercontent.com/longhorn/charts/master/charts/longhorn/values.yaml</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223205426656.png" alt="image-20220223205426656"></p>
+<p>:warning: 因为老师这里用到了Ingress nginx，so我要重新部署下这个ingress nginx，然后才开始安装longhorn，尽可能地和老师的步骤保持一致。</p>
+<p>具体如何安装ingress-nginx，请看我的另一篇文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554/article/details/122283914">https://blog.csdn.net/weixin_39246554/article/details/122283914</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220224085730802.png" alt="image-20220224085730802"></p>
+<p>我这里再贴一下具体的操作命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">➜ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx</span><br><span class="line">➜ helm repo update</span><br><span class="line">➜ helm fetch ingress-nginx/ingress-nginx</span><br><span class="line">➜ tar -xvf ingress-nginx-4.0.13.tgz &amp;&amp; <span class="built_in">cd</span> ingress-nginx</span><br><span class="line"></span><br><span class="line"><span class="comment">#vim ci/daemonset-prod.yaml</span></span><br><span class="line"><span class="comment"># ci/daemonset-prod.yaml</span></span><br><span class="line">controller:</span><br><span class="line">  name: controller</span><br><span class="line">  image:</span><br><span class="line">    repository: cnych/ingress-nginx <span class="comment">#老师这里是转存过的。</span></span><br><span class="line">    tag: <span class="string">&quot;v1.1.0&quot;</span></span><br><span class="line">    digest:</span><br><span class="line"></span><br><span class="line">  dnsPolicy: ClusterFirstWithHostNet</span><br><span class="line"></span><br><span class="line">  hostNetwork: <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  publishService:  <span class="comment"># hostNetwork 模式下设置为false，通过节点IP地址上报ingress status数据</span></span><br><span class="line">    enabled: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># 是否需要处理不带 ingressClass 注解或者 ingressClassName 属性的 Ingress 对象</span></span><br><span class="line">  <span class="comment"># 设置为 true 会在控制器启动参数中新增一个 --watch-ingress-without-class 标注</span></span><br><span class="line">  watchIngressWithoutClass: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  kind: DaemonSet</span><br><span class="line"></span><br><span class="line">  tolerations:   <span class="comment"># kubeadm 安装的集群默认情况下master是有污点，需要容忍这个污点才可以部署</span></span><br><span class="line">  - key: <span class="string">&quot;node-role.kubernetes.io/master&quot;</span></span><br><span class="line">    operator: <span class="string">&quot;Equal&quot;</span></span><br><span class="line">    effect: <span class="string">&quot;NoSchedule&quot;</span></span><br><span class="line"></span><br><span class="line">  nodeSelector:   <span class="comment"># 固定到master1节点</span></span><br><span class="line">    kubernetes.io/hostname: master1</span><br><span class="line"></span><br><span class="line">  service:  <span class="comment"># HostNetwork 模式不需要创建service</span></span><br><span class="line">    enabled: <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">  admissionWebhooks: <span class="comment"># 强烈建议开启 admission webhook</span></span><br><span class="line">    enabled: <span class="literal">true</span></span><br><span class="line">    createSecretJob:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpu: 10m</span><br><span class="line">          memory: 20Mi</span><br><span class="line">        requests:</span><br><span class="line">          cpu: 10m</span><br><span class="line">          memory: 20Mi</span><br><span class="line">    patchWebhookJob:</span><br><span class="line">      resources:</span><br><span class="line">        limits:</span><br><span class="line">          cpu: 10m</span><br><span class="line">          memory: 20Mi</span><br><span class="line">        requests:</span><br><span class="line">          cpu: 10m</span><br><span class="line">          memory: 20Mi</span><br><span class="line">    patch:</span><br><span class="line">      enabled: <span class="literal">true</span></span><br><span class="line">      image:</span><br><span class="line">        repository: cnych/ingress-nginx-webhook-certgen <span class="comment">#老师做了镜像转存</span></span><br><span class="line">        tag: v1.1.1</span><br><span class="line">        digest:</span><br><span class="line"></span><br><span class="line">defaultBackend:  <span class="comment"># 配置默认后端</span></span><br><span class="line">  enabled: <span class="literal">true</span></span><br><span class="line">  name: defaultbackend</span><br><span class="line">  image:</span><br><span class="line">    repository: cnych/ingress-nginx-defaultbackend <span class="comment">#老师做了镜像转存</span></span><br><span class="line">    tag: <span class="string">&quot;1.5&quot;</span></span><br><span class="line">    </span><br><span class="line">[root@master1 ci]<span class="comment"># kubectl create ns ingress-nginx</span></span><br><span class="line">namespace/ingress-nginx created</span><br><span class="line">[root@master1 ingress-nginx]<span class="comment">#helm upgrade --install ingress-nginx . -f ./ci/daemonset-prod.yaml --namespace ingress-nginx #upgrade如果存在的话，我就迁移更新，不存在的话，我就去安装。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#验证</span></span><br><span class="line">➜ kubectl get svc -n ingress-nginx</span><br><span class="line">NAME                                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">ingress-nginx-controller-admission   ClusterIP   10.96.15.99     &lt;none&gt;        443/TCP   11m</span><br><span class="line">ingress-nginx-defaultbackend         ClusterIP   10.97.250.253   &lt;none&gt;        80/TCP    11m</span><br><span class="line">➜ kubectl get pods -n ingress-nginx</span><br><span class="line">NAME                                            READY   STATUS    RESTARTS   AGE</span><br><span class="line">ingress-nginx-controller-5dfdd4659c-9g7c2       1/1     Running   0          11m</span><br><span class="line">ingress-nginx-defaultbackend-84854cd6cb-xb7rv   1/1     Running   0          11m</span><br></pre></td></tr></table></figure>
+
+<p>使用一个案例测试ingress-nginx安装成功后，我们继续进行下一步。</p>
+<p>🍀 然后执行下面的命令一键安装 Longhorn：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">➜ helm upgrade --install longhorn longhorn/longhorn --namespace longhorn-system --create-namespace -f values.yaml</span><br><span class="line">NAME: longhorn</span><br><span class="line">LAST DEPLOYED: Sun Feb 20 16:14:05 2022</span><br><span class="line">NAMESPACE: longhorn-system</span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br><span class="line">NOTES:</span><br><span class="line">Longhorn is now installed on the cluster!</span><br><span class="line"></span><br><span class="line">Please <span class="built_in">wait</span> a few minutes <span class="keyword">for</span> other Longhorn components such as CSI deployments, Engine Images, and Instance Managers to be initialized.</span><br><span class="line"></span><br><span class="line">Visit our documentation at https://longhorn.io/docs/</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 记得做一下ingress nginx的域名解析</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#在自己pc笔记本上做下域名解析：C:\WINDOWS\System32\drivers\etc\hosts</span></span><br><span class="line">172.29.9.51 longhorn.k8s.local </span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 部署后可以查看 Pod 的运行状态来确保安装正确：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get pods -n longhorn-system</span><br><span class="line">NAME                                        READY   STATUS    RESTARTS   AGE</span><br><span class="line">csi-attacher-5f46994f7-fqntq                1/1     Running   0          33s</span><br><span class="line">csi-attacher-5f46994f7-ltxg8                1/1     Running   0          36m</span><br><span class="line">csi-attacher-5f46994f7-vw75d                1/1     Running   0          36m</span><br><span class="line">csi-provisioner-6ccbfbf86f-bvc99            1/1     Running   0          33s</span><br><span class="line">csi-provisioner-6ccbfbf86f-k46hn            1/1     Running   0          36m</span><br><span class="line">csi-provisioner-6ccbfbf86f-lxm8h            1/1     Running   0          36m</span><br><span class="line">csi-resizer-6dd8bd4c97-52gmm                1/1     Running   0          35m</span><br><span class="line">csi-resizer-6dd8bd4c97-9btj6                1/1     Running   0          3s</span><br><span class="line">csi-resizer-6dd8bd4c97-fdjmp                1/1     Running   0          35m</span><br><span class="line">csi-snapshotter-86f65d8bc-5mjk2             1/1     Running   0          33s</span><br><span class="line">csi-snapshotter-86f65d8bc-5rrfs             1/1     Running   0          35m</span><br><span class="line">csi-snapshotter-86f65d8bc-bg6nv             1/1     Running   0          35m</span><br><span class="line">engine-image-ei-fa2dfbf0-jrb2d              1/1     Running   0          36m</span><br><span class="line">engine-image-ei-fa2dfbf0-m5799              1/1     Running   0          36m</span><br><span class="line">instance-manager-e-051171e6                 1/1     Running   0          36m</span><br><span class="line">instance-manager-e-db94b4b7                 1/1     Running   0          24m</span><br><span class="line">instance-manager-r-dd84ad5c                 1/1     Running   0          36m</span><br><span class="line">instance-manager-r-f5eefb8a                 1/1     Running   0          24m</span><br><span class="line">longhorn-csi-plugin-mljt2                   2/2     Running   0          35m</span><br><span class="line">longhorn-csi-plugin-rfzcj                   2/2     Running   0          24m</span><br><span class="line">longhorn-driver-deployer-6db849975f-dh4p4   1/1     Running   0          58m</span><br><span class="line">longhorn-manager-bxks6                      1/1     Running   0          24m</span><br><span class="line">longhorn-manager-tj58k                      1/1     Running   0          2m50s</span><br><span class="line">longhorn-ui-6f547c964-k56xr                 1/1     Running   0          58m</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 由于上面安装的时候我们添加了 Ingress 支持，所以可以通过配置的域名去访问 Longhorn UI：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">➜ kubectl get ingress  -n longhorn-system</span><br><span class="line">NAME               CLASS   HOSTS                ADDRESS         PORTS   AGE</span><br><span class="line">longhorn-ingress   nginx   longhorn.k8s.local   192.168.31.31   80      4m11s</span><br></pre></td></tr></table></figure>
+
+<p>这里我们使用的 ingress-nginx 这个控制器，安装完成后在浏览器中直接访问 <code>http://longhorn.k8s.local</code> 即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220220190036.png" alt="Longhorn UI"></p>
+<p>Longhorn UI 界面中展示了当前存储系统的状态，也可以在页面中进行其他相关配置。</p>
+<p>🍀 此外还会创建一个默认的 StorageClass 对象：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get sc longhorn </span></span><br><span class="line">NAME                 PROVISIONER          RECLAIMPOLICY   VOLUMEBINDINGMODE   ALLOWVOLUMEEXPANSION   AGE</span><br><span class="line">longhorn (default)   driver.longhorn.io   Delete          Immediate           <span class="literal">true</span>                   19h</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get sc longhorn -oyaml</span></span><br><span class="line">allowVolumeExpansion: <span class="literal">true</span></span><br><span class="line">apiVersion: storage.k8s.io/v1</span><br><span class="line">kind: StorageClass</span><br><span class="line">metadata:</span><br><span class="line">  annotations:</span><br><span class="line">    longhorn.io/last-applied-configmap: |</span><br><span class="line">      kind: StorageClass</span><br><span class="line">      apiVersion: storage.k8s.io/v1</span><br><span class="line">      metadata:</span><br><span class="line">        name: longhorn</span><br><span class="line">        annotations:</span><br><span class="line">          storageclass.kubernetes.io/is-default-class: <span class="string">&quot;true&quot;</span></span><br><span class="line">      provisioner: driver.longhorn.io</span><br><span class="line">      allowVolumeExpansion: <span class="literal">true</span></span><br><span class="line">      reclaimPolicy: <span class="string">&quot;Delete&quot;</span></span><br><span class="line">      volumeBindingMode: Immediate</span><br><span class="line">      parameters:</span><br><span class="line">        numberOfReplicas: <span class="string">&quot;2&quot;</span></span><br><span class="line">        staleReplicaTimeout: <span class="string">&quot;30&quot;</span></span><br><span class="line">        fromBackup: <span class="string">&quot;&quot;</span></span><br><span class="line">        fsType: <span class="string">&quot;ext4&quot;</span></span><br><span class="line">    storageclass.kubernetes.io/is-default-class: <span class="string">&quot;true&quot;</span></span><br><span class="line">  creationTimestamp: <span class="string">&quot;2022-02-23T14:02:29Z&quot;</span></span><br><span class="line">  name: longhorn</span><br><span class="line">  resourceVersion: <span class="string">&quot;1515618&quot;</span></span><br><span class="line">  uid: ab7eaf7a-d178-45f3-826a-8fec4e4e5149</span><br><span class="line">parameters:</span><br><span class="line">  fromBackup: <span class="string">&quot;&quot;</span></span><br><span class="line">  fsType: ext4</span><br><span class="line">  numberOfReplicas: <span class="string">&quot;2&quot;</span></span><br><span class="line">  staleReplicaTimeout: <span class="string">&quot;30&quot;</span></span><br><span class="line">provisioner: driver.longhorn.io</span><br><span class="line">reclaimPolicy: Delete</span><br><span class="line">volumeBindingMode: Immediate</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 自己暗转过后效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220223221550456.png" alt="image-20220223221550456"></p>
+<h3 id="3、测试"><a href="#3、测试" class="headerlink" title="3、测试"></a>3、测试</h3><p>🍀 下面我们来测试使用 longhorn 提供一个存储卷，由于提供了默认的 StorageClass，所以直接创建 PVC 即可，创建一个如下所示的 PVC：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#01-longhorn-pvc.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolumeClaim</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">mysql-pvc</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">storageClassName:</span> <span class="string">longhorn</span> <span class="comment">#当然你也可以不指定，因为之前指定了默认的storageclasss。</span></span><br><span class="line">  <span class="attr">accessModes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ReadWriteOnce</span></span><br><span class="line">  <span class="attr">resources:</span></span><br><span class="line">    <span class="attr">requests:</span></span><br><span class="line">      <span class="attr">storage:</span> <span class="string">1Gi</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 然后部署一个 mysql 应用来使用上面的 PVC 进行数据持久化：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#02-mysql-deployment.yaml</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">mysql</span></span><br><span class="line">  <span class="attr">strategy:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">Recreate</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">mysql</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">mysql:5.6</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">mysql</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">MYSQL_ROOT_PASSWORD</span></span><br><span class="line">          <span class="attr">value:</span> <span class="string">password</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">3306</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">mysql</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">          <span class="attr">mountPath:</span> <span class="string">/var/lib/mysql</span></span><br><span class="line">      <span class="attr">volumes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">data</span></span><br><span class="line">        <span class="attr">persistentVolumeClaim:</span></span><br><span class="line">          <span class="attr">claimName:</span> <span class="string">mysql-pvc</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 直接创建上面的资源对象</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ kubectl apply -f 01-longhorn-pvc.yaml </span><br><span class="line">persistentvolumeclaim/mysql-pvc created</span><br><span class="line">hg@LAPTOP-G8TUFE0T:/mnt/c/Users/hg/Desktop/yaml/2022.2.23-46.Longhorn存储-实验代码/edited</span><br><span class="line">$ kubectl apply -f 02-mysql-deployment.yaml </span><br><span class="line">deployment.apps/mysql created</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 验证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看pod和pvc信息</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -owide</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE    IP             NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">mysql-6879698bd4-nmlrg   1/1     Running   0          105s   10.244.2.244   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pvc mysql-pvc      </span></span><br><span class="line">NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   AGE</span><br><span class="line">mysql-pvc   Bound    pvc-52031b79-4905-47be-b8fc-09629c25de1f   1Gi        RWO            longhorn       117s</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#查看pv信息</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pv pvc-52031b79-4905-47be-b8fc-09629c25de1f </span></span><br><span class="line">NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM               STORAGECLASS   REASON   AGE</span><br><span class="line">pvc-52031b79-4905-47be-b8fc-09629c25de1f   1Gi        RWO            Delete           Bound    default/mysql-pvc   longhorn                3m</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get pv pvc-52031b79-4905-47be-b8fc-09629c25de1f -oyaml</span></span><br><span class="line">……</span><br><span class="line">  csi:</span><br><span class="line">    driver: driver.longhorn.io</span><br><span class="line">    fsType: ext4</span><br><span class="line">    volumeAttributes:</span><br><span class="line">      fromBackup: <span class="string">&quot;&quot;</span></span><br><span class="line">      fsType: ext4</span><br><span class="line">      numberOfReplicas: <span class="string">&quot;2&quot;</span></span><br><span class="line">      staleReplicaTimeout: <span class="string">&quot;30&quot;</span></span><br><span class="line">      storage.kubernetes.io/csiProvisionerIdentity: 1645625127582-8081-driver.longhorn.io</span><br><span class="line">    volumeHandle: pvc-52031b79-4905-47be-b8fc-09629c25de1f</span><br><span class="line">  persistentVolumeReclaimPolicy: Delete</span><br><span class="line">  storageClassName: longhorn</span><br><span class="line">  volumeMode: Filesystem</span><br><span class="line">status:</span><br><span class="line">  phase: Bound</span><br><span class="line">  </span><br><span class="line"><span class="comment">#进入pod测试mysql应用</span></span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it mysql-6879698bd4-nmlrg -- mysql -uroot -ppassword</span></span><br><span class="line">Warning: Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 1</span><br><span class="line">Server version: 5.6.51 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2021, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+---------------------+</span><br><span class="line">| Database            |</span><br><span class="line">+---------------------+</span><br><span class="line">| information_schema  |</span><br><span class="line">| <span class="comment">#mysql50#lost+found |</span></span><br><span class="line">| mysql               |</span><br><span class="line">| performance_schema  |</span><br><span class="line">+---------------------+</span><br><span class="line">4 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.05 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; create database longhorn;</span><br><span class="line">Query OK, 1 row affected (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+---------------------+</span><br><span class="line">| Database            |</span><br><span class="line">+---------------------+</span><br><span class="line">| information_schema  |</span><br><span class="line">| longhorn            |</span><br><span class="line">| <span class="comment">#mysql50#lost+found |</span></span><br><span class="line">| mysql               |</span><br><span class="line">| performance_schema  |</span><br><span class="line">+---------------------+</span><br><span class="line">5 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="built_in">exit</span></span><br><span class="line">Bye</span><br><span class="line">[root@master1 ~]<span class="comment">#</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 应用启动成功后我们可以去节点上查看数据来验证是否成功：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po -owide </span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE     IP             NODE    NOMINATED NODE   READINESS GATES</span><br><span class="line">mysql-6879698bd4-nmlrg   1/1     Running   0          6m54s   10.244.2.244   node2   &lt;none&gt;           &lt;none&gt;</span><br><span class="line">[root@master1 ~]<span class="comment">#ssh node2</span></span><br><span class="line">Last login: Wed Feb 23 22:11:35 2022 from master1</span><br><span class="line">[root@node2 ~]<span class="comment">#ls /var/lib/longhorn/</span></span><br><span class="line">engine-binaries  longhorn-disk.cfg  replicas</span><br><span class="line">[root@node2 ~]<span class="comment">#ls /var/lib/longhorn/replicas/</span></span><br><span class="line">pvc-52031b79-4905-47be-b8fc-09629c25de1f-863b6d00</span><br><span class="line">[root@node2 ~]<span class="comment">#ls /var/lib/longhorn/replicas/pvc-52031b79-4905-47be-b8fc-09629c25de1f-863b6d00/</span></span><br><span class="line">revision.counter  volume-head-000.img  volume-head-000.img.meta  volume.meta</span><br></pre></td></tr></table></figure>
+
+<p>:warning: <strong>需要注意的是 longhorn 是分布式块存储，与分布式文件系统不同，不能超过 pv 设置的存储大小（上例中为1G）</strong>。</p>
+<p>类似于vmware里的<code>厚纸杯延迟置0</code>；</p>
+<p>🍀 刚才我们在数据库中创建了一个名为 <code>longhorn</code> 的数据库，然后我们重建 Pod 再次查看数据是否依然存在：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[root@master1 ~]<span class="comment">#kubectl get po</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE</span><br><span class="line">mysql-6879698bd4-nmlrg   1/1     Running   0          8m39s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl delete po mysql-6879698bd4-nmlrg </span></span><br><span class="line">pod <span class="string">&quot;mysql-6879698bd4-nmlrg&quot;</span> deleted</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl get po</span></span><br><span class="line">NAME                     READY   STATUS    RESTARTS   AGE</span><br><span class="line">mysql-6879698bd4-jj4jm   1/1     Running   0          6s</span><br><span class="line">[root@master1 ~]<span class="comment">#kubectl exec -it mysql-6879698bd4-jj4jm  -- mysql -uroot -ppassword</span></span><br><span class="line">Warning: Using a password on the <span class="built_in">command</span> line interface can be insecure.</span><br><span class="line">Welcome to the MySQL monitor.  Commands end with ; or \g.</span><br><span class="line">Your MySQL connection id is 1</span><br><span class="line">Server version: 5.6.51 MySQL Community Server (GPL)</span><br><span class="line"></span><br><span class="line">Copyright (c) 2000, 2021, Oracle and/or its affiliates. All rights reserved.</span><br><span class="line"></span><br><span class="line">Oracle is a registered trademark of Oracle Corporation and/or its</span><br><span class="line">affiliates. Other names may be trademarks of their respective</span><br><span class="line">owners.</span><br><span class="line"></span><br><span class="line">Type <span class="string">&#x27;help;&#x27;</span> or <span class="string">&#x27;\h&#x27;</span> <span class="keyword">for</span> <span class="built_in">help</span>. Type <span class="string">&#x27;\c&#x27;</span> to clear the current input statement.</span><br><span class="line"></span><br><span class="line">mysql&gt; show databases;</span><br><span class="line">+---------------------+</span><br><span class="line">| Database            |</span><br><span class="line">+---------------------+</span><br><span class="line">| information_schema  |</span><br><span class="line">| longhorn            |</span><br><span class="line">| <span class="comment">#mysql50#lost+found |</span></span><br><span class="line">| mysql               |</span><br><span class="line">| performance_schema  |</span><br><span class="line">+---------------------+</span><br><span class="line">5 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.02 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看到前面创建的数据库依然存在，证明我们的数据持久化成功了。</p>
+<p>🍀 在 Longhorn UI 界面中也可以看到数据卷的信息：</p>
+<p><a target="_blank" rel="noopener" href="http://longhorn.k8s.local/">http://longhorn.k8s.local/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220224082838462.png" alt="image-20220224082838462"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220224082857458.png" alt="image-20220224082857458"></p>
+<p>实验结束，完美。😘</p>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>总之这个longhorn整体使用起来比ceph要简单很多，ceph还是复杂很多的；<br>并且longhorn整体性能比我们之前说的nfs要高好几倍的，但是它的性能比我们直接使用本地磁盘还是要差一些的，这是必然的；<br>并且longhorn也是rancher开源的，所以这个ui界面和rancher也是比较类似的；<br>01 可以指定其中的一些节点作为存储使用：例如你总共有6个node节点，当然你是可以指定其中的4个节点来做存储使用的；<br>02 也可以扩容节点的存储：例如某个节点新添加了一块盘，那么你也是可以通过web界面将其添加进来的；(在node选项那里)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220224175321508.png" alt="image-20220224175321508"></p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人已开源干货😘</p>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th>链接</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">01 实战：打造一款王者云笔记：typora+坚果云+阿里云oss</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DXS6qiIQvPWVCRiS0qoE">https://www.jianguoyun.com/p/DXS6qiIQvPWVCRiS0qoE</a></td>
+</tr>
+<tr>
+<td align="left">02 实战：定制宇宙中最美的typora主题皮肤</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DeUK9u0QvPWVCRib0qoE">https://www.jianguoyun.com/p/DeUK9u0QvPWVCRib0qoE</a></td>
+</tr>
+<tr>
+<td align="left">03 玩转vscode</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DZe8gmsQvPWVCRid0qoE">https://www.jianguoyun.com/p/DZe8gmsQvPWVCRid0qoE</a></td>
+</tr>
+<tr>
+<td align="left">04 陈果的幸福哲学课</td>
+<td><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/Db0kM7gQvPWVCRj2q6YE">https://www.jianguoyun.com/p/Db0kM7gQvPWVCRj2q6YE</a></td>
+</tr>
+</tbody></table>
+</li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>​    好了，关于<code>longhorn存储</code>实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108223350304.png" alt="image-20211108223350304"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/02/24/130%20%E5%AE%9E%E6%88%98%EF%BC%9ALonghorn%E5%AD%98%E5%82%A8-2022.2.24/">https://www.onlyonexl.cn/2022/02/24/130%20%E5%AE%9E%E6%88%98%EF%BC%9ALonghorn%E5%AD%98%E5%82%A8-2022.2.24/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/k8s/">
+                                    <span class="chip bg-color">k8s</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/02/24/130%20%E5%AE%9E%E6%88%98%EF%BC%9ALonghorn%E5%AD%98%E5%82%A8-2022.2.24/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="实战：Longhorn存储-2022.2.24">
+                        
+                        <span class="card-title">实战：Longhorn存储-2022.2.24</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-24
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/02/23/129%20%E5%AE%9E%E6%88%98%EF%BC%9Ak8s%E4%B9%8B%E5%AD%98%E5%82%A8%E6%8F%92%E4%BB%B6-2022.2.23/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="实战：k8s之存储插件-2022.2.23">
+                        
+                        <span class="card-title">实战：k8s之存储插件-2022.2.23</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-02-23
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/k8s/">
+                        <span class="chip bg-color">k8s</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
