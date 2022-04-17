@@ -1,0 +1,1697 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：3种方式安装Jenkins-2022.4.17（博客分享）, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：3种方式安装Jenkins-2022.4.17（博客分享） | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：3种方式安装Jenkins-2022.4.17（博客分享）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/jenkins/">
+                                <span class="chip bg-color">jenkins</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/jenkins/" class="post-category">
+                                jenkins
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-04-17
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实战：3种方式安装Jenkins-2022-4-17（博客分享）"><a href="#实战：3种方式安装Jenkins-2022-4-17（博客分享）" class="headerlink" title="实战：3种方式安装Jenkins-2022.4.17（博客分享）"></a>实战：3种方式安装Jenkins-2022.4.17（博客分享）</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411203714499.png" alt="image-20220411203714499"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="实战1：rpm包方式安装jenkins-mk-2022-4-16-测试成功"><a href="#实战1：rpm包方式安装jenkins-mk-2022-4-16-测试成功" class="headerlink" title="实战1：rpm包方式安装jenkins-mk-2022.4.16(测试成功)"></a>实战1：rpm包方式安装jenkins-mk-2022.4.16(测试成功)</h2><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">centos7.6虚机</span><br><span class="line">java-1.8.0-openjdk</span><br><span class="line">jenkins-2.277.3-1.1.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<h3 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h3><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1u2DV65zfwUPkGQowFLBtQQ">https://pan.baidu.com/s/1u2DV65zfwUPkGQowFLBtQQ</a><br>提取码：6rff<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220417084052960.png" alt="image-20220417084052960"></p>
+<h3 id="1、安装-JDK"><a href="#1、安装-JDK" class="headerlink" title="1、安装 JDK"></a>1、安装 JDK</h3><p>Jenkins 是 Java 编写的，所以需要先安装 JDK，这里采用 yum 安装，如果对版本有需求，可以直接在 Oracle 官网下载 JDK。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># yum install -y java-1.8.0-openjdk #光盘镜像中有，也可以 rpm 直接安装</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>:warning: ==问题==：我这里采用yum安装的java-1.8.0-openjdk和去官网下载的8.0 jdk有什么不一样的地方吗？<br>jdk有一些版权问题；<br>类似：google公司的安卓手机 &amp; oracle 之间的版权纠纷 =&gt; 采用开源的；</p>
+</blockquote>
+<h3 id="2、安装-jenkins"><a href="#2、安装-jenkins" class="headerlink" title="2、安装 jenkins"></a>2、安装 jenkins</h3><p>官方下载地址：<a target="_blank" rel="noopener" href="https://jenkins.io/zh/download/">https://jenkins.io/zh/download/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428060924349.png" alt="image-20210428060924349"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428060954928.png" alt="image-20210428060954928"></p>
+<p>方法 1：直接上传 jenkins-2.277.3-1.1.noarch.rpm 到 linux 上(本次采用这种方式安装)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># rpm -ivh jenkins-2.277.3-1.1.noarch.rpm</span></span><br></pre></td></tr></table></figure>
+
+<p>jenkins清华源插件下载地址：<br><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/redhat-stable/">https://mirrors.tuna.tsinghua.edu.cn/jenkins/redhat-stable/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210514205213857.png" alt="image-20210514205213857"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210428212328.png" alt="image-20210428061933430"></p>
+<p>方法 2：在线安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># wget -O /etc/yum.repos.d/jenkins.repo </span></span><br><span class="line">http://pkg.jenkins.io/redhat/jenkins.repo </span><br><span class="line">[root@GitLab yum.repos.d]<span class="comment"># rpm --import http://pkg.jenkins.io/redhat/jenkins.io.key</span></span><br><span class="line"></span><br><span class="line">[root@GitLab yum.repos.d]<span class="comment"># yum install -y jenkins #安装 jenkins,这个默认是安装最新版本的。</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 注意：</p>
+<p><strong>新版 jenkins 的服务端口为 8080</strong>，为了不和 GitLab 的服务端口相冲突，修改 Jenkins 的默认端口<br>8080 为 198:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab jenkins]<span class="comment"># netstat -antup|grep 8080</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429060740566.png" alt="image-20210429060740566"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab yum.repos.d]<span class="comment"># vim /etc/sysconfig/jenkins</span></span><br><span class="line">改：29 JENKINS_USER=<span class="string">&quot;jenkins&quot;</span> </span><br><span class="line">为：29 JENKINS_USER=<span class="string">&quot;root&quot;</span> <span class="comment">#以 root</span></span><br><span class="line"></span><br><span class="line">改：56 JENKINS_PORT=<span class="string">&quot;8080&quot;</span></span><br><span class="line">为：56 JENKINS_PORT=<span class="string">&quot; 198 &quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>开启jenkins服务并设置为开机启动</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># systemctl restart  jenkins </span></span><br><span class="line">[root@GitLab ~]<span class="comment"># systemctl enable  jenkins</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429061500374.png" alt="image-20210429061500374"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429061509010.png" alt="image-20210429061509010"></p>
+<ul>
+<li>修改 jenkins 默认源</li>
+</ul>
+<p>在 web 界面访问 jenkins 时，默认会到国外的网站下载 <strong>hudson.model.UpdateCenter.xml 文 件</strong>。而这个文件在中国下载时很慢，需要换成清华的源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># sed -i &#x27;s/https:\/\/updates.jenkins.io\/update-center.json/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins\/updates\/update-center.json/g&#x27; /var/lib/jenkins/hudson.model.UpdateCenter.xml</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429062755432.png" alt="image-20210429062755432"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429062805621.png" alt="image-20210429062805621"></p>
+<h3 id="3、访问-Jenkins-并安装相关插件"><a href="#3、访问-Jenkins-并安装相关插件" class="headerlink" title="3、访问 Jenkins 并安装相关插件"></a>3、访问 Jenkins 并安装相关插件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># iptables -F # 要清空防火规则，还要关闭 selinux</span></span><br><span class="line">[root@GitLab ~]<span class="comment"># getenforce </span></span><br><span class="line">Disabled</span><br></pre></td></tr></table></figure>
+
+<p>开始正常使用：<a target="_blank" rel="noopener" href="http://172.29.9.10:198/">http://172.29.9.10:198</a> #打开后，<strong>先不要进行密码配置操作，此时还需要做一些其他修改：</strong></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429063303063.png" alt="image-20210429063303063"></p>
+<p>我们前面虽然修改了默认从清华下载 <strong>default.json 文件</strong>，但是文件内容和官方是没有区别的，联网<br>检测是通过 google.com 进行检测，所有的插件地址也都是指向官方源，国内源虽然提供了default.json 下载，但是并不能修改源中的任何配置。我们替换 default.json 中的国外地址为清华的地<br>址，这样就可以通过清华下载所有插件了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># cp /var/lib/jenkins/updates/default.json&#123;,.bak&#125;</span></span><br><span class="line"></span><br><span class="line">修改插件地址：</span><br><span class="line">[root@GitLab ~]<span class="comment"># sed -i s&quot;/https:\/\/updates.jenkins.io\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g&quot; /var/lib/jenkins/updates/default.json</span></span><br><span class="line"></span><br><span class="line">修改联网检测地址：</span><br><span class="line">[root@GitLab ~]<span class="comment"># sed -i &#x27;s/http:\/\/www.google.com/https:\/\/www.baidu.com/g&#x27; /var/lib/jenkins/updates/default.json</span></span><br><span class="line"></span><br><span class="line">修改后重启生效</span><br><span class="line">[root@GitLab ~]<span class="comment"># systemctl restart jenkins</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：主要是替换如下2和value值：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;connectionCheckUrl&quot;</span>:<span class="string">&quot;http://www.google.com/&quot;</span></span><br><span class="line"><span class="string">&quot;url&quot;</span>:<span class="string">&quot;https://updates.jenkins.io/download/war/2.293/jenkins.war&quot;</span></span><br><span class="line"></span><br><span class="line">替换为：</span><br><span class="line">https://mirrors.tuna.tsinghua.edu.cn/jenkins <span class="comment">#插件地址</span></span><br><span class="line">https://www.baidu.com <span class="comment">#联网检测地址</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515082940815.png" alt="image-20210515082940815"></p>
+<p>替换前：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515071405515.png" alt="image-20210515071405515"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515071429991.png" alt="image-20210515071429991"></p>
+<p>替换后：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515082532696.png" alt="image-20210515082532696"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515082549708.png" alt="image-20210515082549708"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515082832814.png" alt="image-20210515082832814"></p>
+<ul>
+<li>为了安全考虑，首先需要解锁 Jenkins</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@GitLab ~]<span class="comment"># cat /var/lib/jenkins/secrets/initialAdminPassword #查看初始化密码文件。</span></span><br><span class="line">b6c8041665204d1f9dcf8b20416568e8</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429072315584.png" alt="image-20210429072315584"></p>
+<h4 id="1-在线安装插件"><a href="#1-在线安装插件" class="headerlink" title="1.在线安装插件"></a>1.在线安装插件</h4><p>选择需要安装的插件：<br>选择默认即可，会安装通用的社区插件，剩下的可以在使用的时候再进行安装。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429072411819.png" alt="image-20210429072411819"></p>
+<p>🍀 ==这里需要注意了：==</p>
+<p>关于安装jenkins插件失败的问题：</p>
+<p>**前面已经替换了”插件地址”和”联网检测地址”**，但是在下载插件的时候，依然会有一些包安装失败(遇到这个情况的概率非常大)。  (这里可以不修改插件地址，直接连vpn，但效果应该是一样的)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515083559891.png" alt="image-20210515083559891"></p>
+<p>再次点击重试，还是无法安装上述插件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515083933603.png" alt="image-20210515083933603"></p>
+<p>经过自己多次尝试，发现是需要一些依赖包，才可以安装上述插件：(<strong>后续可通过在线升级jenkins版本进行安装依赖包，进而上述安装失败的插件也会被一起安装的</strong>)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515084100030.png" alt="image-20210515084100030"></p>
+<p>如果点重试，还是失败，那就点 “继续”，等安装成后，再手动下载插件进行安装。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429075320521.png" alt="image-20210429075320521"></p>
+<ul>
+<li>创建管理员用户：admin 密码： 123456 全名： hg 邮箱：<a href="mailto:&#111;&#110;&#101;&#x78;&#108;&#x66;&#111;&#114;&#121;&#x6f;&#117;&#64;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;">&#111;&#110;&#101;&#x78;&#108;&#x66;&#111;&#114;&#121;&#x6f;&#117;&#64;&#49;&#x36;&#x33;&#46;&#99;&#x6f;&#x6d;</a></li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429074107231.png" alt="image-20210429074107231"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429074324822.png" alt="image-20210429074324822"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429074351788.png" alt="image-20210429074351788"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429074401818.png" alt="image-20210429074401818"></p>
+<ul>
+<li>登录到jenkins界面：<strong>接下来我们解决因依赖包问题导致jenkins某些插件安装失败的问题</strong>。</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210429075407722.png" alt="image-20210429075407722"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085125182.png" alt="image-20210515085125182"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085242957.png" alt="image-20210515085242957"></p>
+<ul>
+<li>由这个提示可以看出，<strong>自己目前的jenkins版本(jenkins-2.277.3-1.1)太老了，不支持某些依赖包，因此，这里需要升级jenkins版本</strong>：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085315062.png" alt="image-20210515085315062"></p>
+<p>点击<code>或自动升级</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085439476.png" alt="image-20210515085439476"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085529552.png" alt="image-20210515085529552"></p>
+<p>第一次下载失败：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085720743.png" alt="image-20210515085720743"></p>
+<p>打开vpn后，再次尝试：升级成功！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085753206.png" alt="image-20210515085753206"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085836922.png" alt="image-20210515085836922"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515085844098.png" alt="image-20210515085844098"></p>
+<p>如下代表升级jenkins版本成功：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515090104269.png" alt="image-20210515090104269"></p>
+<p>此时发现原来安装失败的插件，现在全部已经安装成功了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515083559891.png" alt="image-20210515083559891"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515090240704.png" alt="image-20210515090240704"></p>
+<ul>
+<li>到此 jenkins 安装成功。注：关机后，创建一个虚拟机快照。</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210515090357187.png" alt="image-20210515090357187"></p>
+<h4 id="2-手动安装相关插件"><a href="#2-手动安装相关插件" class="headerlink" title="2.手动安装相关插件"></a>2.手动安装相关插件</h4><p>==方法1==</p>
+<p>如果在线安装插件失败了，或是无网环境下想安装插件，可以选择手动安装。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210510073537484.png" alt="image-20210510073537484"></p>
+<p>这里不用管，点继续，等安装成功后，我们再手动安装插件。</p>
+<p>在这里找到自己要下载的插件的名字和版本号：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210510074406619.png" alt="image-20210510074406619"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210510074418907.png" alt="image-20210510074418907"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210510074459346.png" alt="image-20210510074459346"></p>
+<p>在这里下载：</p>
+<p>在这里下载：<br>插件下载地址：<br><a target="_blank" rel="noopener" href="http://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins/">http://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins/</a><br>或<br><a target="_blank" rel="noopener" href="http://updates.jenkins-ci.org/download/plugins/">http://updates.jenkins-ci.org/download/plugins/</a> </p>
+<p>比如我要下载：gitlab-api，版本是：1.0.6<br>下载： <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins/gitlab-api/1.0.6/">https://mirrors.tuna.tsinghua.edu.cn/jenkins/plugins/gitlab-api/1.0.6/</a><br>在有网的环境下，把自己需要的插件下载好，然后再从本地上传。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511061218419.png" alt="image-20210511061218419"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511061230780.png" alt="image-20210511061230780"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511061240535.png" alt="image-20210511061240535"></p>
+<ul>
+<li>自己测试过程：现在测试手动安装插件效果</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511060639603.png" alt="image-20210511060639603"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511060713073.png" alt="image-20210511060713073"></p>
+<p>这里可以直接安装成功的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511060825360.png" alt="image-20210511060825360"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511060836972.png" alt="image-20210511060836972"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511061126869.png" alt="image-20210511061126869"></p>
+<p>这里手动卸载后，再次手动安装进行测试效果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511061831673.png" alt="image-20210511061831673"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511061844579.png" alt="image-20210511061844579"></p>
+<p>呃呃，这个状态怎么持续好久。。。打算手动命令重启下jenkins。。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062106189.png" alt="image-20210511062106189"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062124168.png" alt="image-20210511062124168"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062145917.png" alt="image-20210511062145917"></p>
+<p>命令行手动重启jenkins后，gitlab-api插件就不见了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062254993.png" alt="image-20210511062254993"></p>
+<p>现在手动上传gitlab-api离线安装包：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062343617.png" alt="image-20210511062343617"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062439586.png" alt="image-20210511062439586"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062514935.png" alt="image-20210511062514935"></p>
+<p>安装成功：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062741804.png" alt="image-20210511062741804"></p>
+<p>🍀 ==方法2：==</p>
+<p>也可以直接把一台安装好 jenkins 插件服务器的/var/lib/jenkins/plugins 目录下的文件<br>复制到新的 jenkins 中。</p>
+<p>实验环境：xuegod64 是一台已经安装好 jenkins 服务的服务器，xuegod63 因为网络的原因，没<br>有安装好插件。现在要把 xuegod64 上的插件安装到 xuegod63 上。</p>
+<ol>
+<li><p>将 xuegod64 上的插件打包<br>[root@xuegod64 ~]# cd /var/lib/jenkins<br>[root@xuegod64 jenkins]# <strong>tar czvf jenkins-2.150.2-plugins.tar.gz plugins</strong>/ #把安装好<br>的插件打包</p>
+</li>
+<li><p>将 xuegod64 上的 jenkins-2.150.2-plugins.tar.gz 上传到 xuegod63 的/root/目录下<br>[root@xuegod63 ~]# cd /var/lib/jenkins/<br>[root@xuegod63 ~]# <strong>rm -rf /var/lib/jenkins/plugins</strong><br>[root@xuegod63 ~]# tar zxvf jenkins-2.150.2-plugins.tar.gz -C /var/lib/jenkins/plugins/ #把插<br>件解出来<br>[root@xuegod63 ~]# /etc/init.d/jenkins restart </p>
+</li>
+</ol>
+<p>  注：记得重启 jenkins，这个非常重要，因为不重启，插件不会生效</p>
+<ul>
+<li>测试过程：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062840850.png" alt="image-20210511062840850"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062900831.png" alt="image-20210511062900831"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511062940900.png" alt="image-20210511062940900"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511063209027.png" alt="image-20210511063209027"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511063314965.png" alt="image-20210511063314965"></p>
+<ul>
+<li>==注意：jenkins天天升级，因此生产环境中保留一份插件压缩包是非常有必要的==</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511063803658.png" alt="image-20210511063803658"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511063905156.png" alt="image-20210511063905156"></p>
+<p>例如：注意：这里的rancher1.x 和2.x插件是不兼容的，现在这里都没有1.x插件了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210511064432955.png" alt="image-20210511064432955"></p>
+<h2 id="实战2：docker方式安装jenkins-泽阳-2022-4-17-测试成功-推荐-😘"><a href="#实战2：docker方式安装jenkins-泽阳-2022-4-17-测试成功-推荐-😘" class="headerlink" title="==实战2：docker方式安装jenkins-泽阳-2022.4.17(测试成功)(推荐)==😘"></a>==实战2：docker方式安装jenkins-泽阳-2022.4.17(测试成功)(推荐)==😘</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411203714499.png" alt="image-20220411203714499"></p>
+<h3 id="实验环境-1"><a href="#实验环境-1" class="headerlink" title="实验环境"></a>实验环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">win10笔记本</span><br><span class="line">1台虚机 centos7.9 vmworkstation </span><br><span class="line">jenkins/jenkins:2.332.2-centos7-jdk8</span><br><span class="line">docker 20.10.11</span><br></pre></td></tr></table></figure>
+
+<h3 id="实验软件-1"><a href="#实验软件-1" class="headerlink" title="实验软件"></a>实验软件</h3><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1d4Y_oq_nysDR7Psl8syKZw?pwd=l6lo">https://pan.baidu.com/s/1d4Y_oq_nysDR7Psl8syKZw?pwd=l6lo</a><br>提取码：l6lo<br><code>2022.4.16-实战2：docker方式安装jenkins-2022.4.16(测试成功)</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416231345667.png" alt="image-20220416231345667"></p>
+<h3 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>docker环境已安装(本次版本：20.10.11)</li>
+</ul>
+<h3 id="1️⃣-Jenkins-master节点安装"><a href="#1️⃣-Jenkins-master节点安装" class="headerlink" title="1️⃣ Jenkins master节点安装"></a>1️⃣ Jenkins master节点安装</h3><p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411204412172.png" alt="image-20220411204412172"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411204423279.png" alt="image-20220411204423279"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411204432786.png" alt="image-20220411204432786"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411204442666.png" alt="image-20220411204442666"></p>
+<p>🍀 自己配置过程如下：</p>
+<h4 id="0、安装jdk环境"><a href="#0、安装jdk环境" class="headerlink" title="0、安装jdk环境"></a>0、安装jdk环境</h4><p>:warning: 我们测试环境，是在一台虚机上跑了一个jenkins容器。但后面添加一个jenkins agent时，是将这个虚机作为其agent使用，因此这个虚机也要安装java环境的！！！</p>
+<p>不管你是jenkins master节点，还是agent节点，都是需要jdk环境的！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1)下载jdk软件</span><br><span class="line">[root@devops ~]<span class="comment">#wget https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz --no-check-certificate</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414185032534.png" alt="image-20220414185032534"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414185225338.png" alt="image-20220414185225338"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">（2）配置jdk环境</span><br><span class="line">[root@devops ~]<span class="comment">#tar zxf OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz -C /usr/local/</span></span><br><span class="line">[root@devops ~]<span class="comment">#cd /usr/local/jdk8u322-b06/</span></span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#pwd</span></span><br><span class="line">/usr/<span class="built_in">local</span>/jdk8u322-b06</span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#vim /etc/profile</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk8u322-b06</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#source /etc/profile</span></span><br><span class="line"></span><br><span class="line">（3）验证</span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#java -version</span></span><br><span class="line">openjdk version <span class="string">&quot;1.8.0_322&quot;</span></span><br><span class="line">OpenJDK Runtime Environment (Temurin)(build 1.8.0_322-b06)</span><br><span class="line">OpenJDK 64-Bit Server VM (Temurin)(build 25.322-b06, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h4 id="1、docker拉取jenkins镜像并启动容器"><a href="#1、docker拉取jenkins镜像并启动容器" class="headerlink" title="1、docker拉取jenkins镜像并启动容器"></a>1、docker拉取jenkins镜像并启动容器</h4><p>🍀 下载jenkins镜像</p>
+<p>去dockerhub官方网站去下载jenkins镜像</p>
+<p>在dockerhub里搜索<code>jenkins/jenkins</code>，点击<code>tag</code>，搜索<code>jdk8</code>，然后选择<code>2.332.2-centos7-jdk8</code>即可：</p>
+<p><a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411211033562.png" alt="image-20220411211033562"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411211301713.png" alt="image-20220411211301713"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull jenkins/jenkins:2.332.2-centos7-jdk8</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 完整安装过程如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先在本地宿主机创建/data/cicd/jenkins目录并赋予权限</span></span><br><span class="line">mkdir -p /data/cicd/jenkins</span><br><span class="line">chmod +x /data/cicd/jenkins</span><br><span class="line"></span><br><span class="line">(1)拉取镜像</span><br><span class="line">[root@devops harbor]<span class="comment">#docker pull jenkins/jenkins:2.332.2-centos7-jdk8</span></span><br><span class="line"></span><br><span class="line">(2)创建jenkins工作目录</span><br><span class="line">[root@devops harbor]<span class="comment">#mkdir -p /data/cicd/jenkins</span></span><br><span class="line">[root@devops harbor]<span class="comment">#chmod 777 -R /data/cicd/jenkins</span></span><br><span class="line"></span><br><span class="line">（3）启动jenkins</span><br><span class="line">docker run -itd --name jenkins --restart=always \</span><br><span class="line">-p 8080:8080 \</span><br><span class="line">-p 50000:50000 \</span><br><span class="line">--privileged=<span class="literal">true</span>  \</span><br><span class="line">-e JAVA_OPTS=<span class="string">&quot;-Dorg.apache.commons.jelly.tags.fmt.timeZone=&#x27;Asia/Shanghai&quot;</span> \</span><br><span class="line">-v /data/cicd/jenkins:/var/jenkins_home jenkins/jenkins:2.332.2-centos7-jdk8</span><br><span class="line"><span class="comment">#说明：</span></span><br><span class="line">8080   Jenkins  web端访问端口</span><br><span class="line">50000  Jenkins与Agent建立连接所需要的端口</span><br><span class="line">JAVA_OPTS环境变量为修改时间配置，否则可能jenkins的时间显示有问题！</span><br><span class="line"></span><br><span class="line">（4）验证</span><br><span class="line"><span class="comment">#查看jenkins容器运行状态</span></span><br><span class="line">[root@devops ~]<span class="comment">#docker ps</span></span><br><span class="line">CONTAINER ID   IMAGE                                  COMMAND                  CREATED          STATUS                 PORTS</span><br><span class="line">                                   NAMES</span><br><span class="line">dc6fa067248a   jenkins/jenkins:2.332.2-centos7-jdk8   <span class="string">&quot;/sbin/tini -- /usr/…&quot;</span>   48 seconds ago   Up 47 seconds          0.0.0.0:8080-&gt;8080/tcp, :::8080-&gt;8080/tcp, 0.0.0.0:50000-&gt;50000/tcp, :::50000-&gt;50000/tcp   jenkins</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看jenkins容器log</span></span><br><span class="line">[root@devops ~]<span class="comment">#docker logs jenkins</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412194828867.png" alt="image-20220412194828867"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412194819984.png" alt="image-20220412194819984"></p>
+<h4 id="2、访问web界面并输入密码"><a href="#2、访问web界面并输入密码" class="headerlink" title="2、访问web界面并输入密码"></a>2、访问web界面并输入密码</h4><p><a target="_blank" rel="noopener" href="http://172.29.9.101:8080/">http://172.29.9.101:8080/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412200907398.png" alt="image-20220412200907398"></p>
+<p>🍀 可通过如下2种方式来获取密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">(1)查看docker里的日志文件</span><br><span class="line">[root@devops ~]<span class="comment">#docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword</span></span><br><span class="line">cb910c09e8964c459ba6dcc7eff4f4cd</span><br><span class="line"></span><br><span class="line">（2）查看jenkins容器日志</span><br><span class="line">[root@devops ~]<span class="comment">#docker logs jenkins</span></span><br><span class="line">Jenkins initial setup is required. An admin user has been created and a password generated.</span><br><span class="line">Please use the following password to proceed to installation:</span><br><span class="line"></span><br><span class="line">cb910c09e8964c459ba6dcc7eff4f4cd</span><br><span class="line"></span><br><span class="line">This may also be found at: /var/jenkins_home/secrets/initialAdminPassword</span><br></pre></td></tr></table></figure>
+
+<p>输入密码后，这边的加载一会儿，耐心等一会儿：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414161955864.png" alt="image-20220414161955864"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162029581.png" alt="image-20220414162029581"></p>
+<p>加载完成后，出现如下界面：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162050826.png" alt="image-20220414162050826"></p>
+<h4 id="3、自定义安装插件"><a href="#3、自定义安装插件" class="headerlink" title="3、自定义安装插件"></a>3、自定义安装插件</h4><p>点击<code>选择插件来安装</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162245963.png" alt="image-20220414162245963"></p>
+<p>先点击<code>全部</code>，再点击<code>无</code>，我们来自定义安装一些插件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162334182.png" alt="image-20220414162334182"></p>
+<p>我们装一个<code>jenkins中文社区的插件</code>及<code>本地化插件</code>就好了：(后面我们课程用到哪些插件再去安装就可以了)选好后，点击<code>安装</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162615268.png" alt="image-20220414162615268"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162701127.png" alt="image-20220414162701127"></p>
+<p>插件安装完成后，出现如下界面：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162714531.png" alt="image-20220414162714531"></p>
+<h4 id="4、创建一个管理员用户"><a href="#4、创建一个管理员用户" class="headerlink" title="4、创建一个管理员用户"></a>4、创建一个管理员用户</h4><p>账户：admin 密码：admin ，输入完成后，点击<code>保存并完成</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162852614.png" alt="image-20220414162852614"></p>
+<p>点击<code>保存并完成</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414162950446.png" alt="image-20220414162950446"></p>
+<p>点击<code>开始使用jenkins</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414163030864.png" alt="image-20220414163030864"></p>
+<p>这里就进入到了jenkins的主界面：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414163055739.png" alt="image-20220414163055739"></p>
+<h4 id="5、配置插件源"><a href="#5、配置插件源" class="headerlink" title="5、配置插件源"></a>5、配置插件源</h4><p>🍀 jenkins官方中文社区源当时测试在这个jenkins版本下用不了！</p>
+<p>按老师提供的这个方法，貌似这个源地址对这个版本的jenkins是失效了：。。。(老师也是没测试出来。。。，最后直接更换清华源了！)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411204501950.png" alt="image-20220411204501950"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414164509887.png" alt="image-20220414164509887"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414164532649.png" alt="image-20220414164532649"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414164454098.png" alt="image-20220414164454098"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414164437545.png" alt="image-20220414164437545"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414164803805.png" alt="image-20220414164803805"></p>
+<p>🍀 因此这里进行更换清华源：</p>
+<p>输入<code>清华源链接地址</code>：<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">https://mirrors.tuna.tsinghua.edu.cn/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165110791.png" alt="image-20220414165110791"></p>
+<p>点击<code>updates</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165147663.png" alt="image-20220414165147663"></p>
+<p>看下自己当前jenkins版本：<code>Jenkins 2.332.2)</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165332771.png" alt="image-20220414165332771"></p>
+<p>这里没有<code>Jenkins 2.332.2</code>，用相近的版本也行：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165423917.png" alt="image-20220414165423917"></p>
+<p>点击<code>update-center.json</code>,然后复制其链接地址即可：</p>
+<p><code>https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/dynamic-stable-2.332.1/update-center.json</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165505933.png" alt="image-20220414165505933"></p>
+<p>🍀 得到清清华源地址后，我们再次按上面方式进行配置</p>
+<p><a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/dynamic-stable-2.332.1/update-center.json">https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/dynamic-stable-2.332.1/update-center.json</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165713879.png" alt="image-20220414165713879"></p>
+<p>验证，点击<code>立即获取</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165746977.png" alt="image-20220414165746977"></p>
+<p>可以看到，这个源地址是可以用的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414165803264.png" alt="image-20220414165803264"></p>
+<p>以上，jenkins master节点就配置成功了，接下来配置下jenkins agent节点！</p>
+<h3 id="2️⃣-Jenkins-agent节点安装"><a href="#2️⃣-Jenkins-agent节点安装" class="headerlink" title="2️⃣ Jenkins agent节点安装"></a>2️⃣ Jenkins agent节点安装</h3><p>agent就是真正去执行任务的节点。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170214550.png" alt="image-20220414170214550"></p>
+<h4 id="1、新建节点，并填写参数配置"><a href="#1、新建节点，并填写参数配置" class="headerlink" title="1、新建节点，并填写参数配置"></a>1、新建节点，并填写参数配置</h4><p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170237326.png" alt="image-20220414170237326"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170254014.png" alt="image-20220414170254014"></p>
+<p>🍀 自己具体配置过程</p>
+<p>点击<code>系统设置</code>-<code>节点管理</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414181258348.png" alt="image-20220414181258348"></p>
+<p>点击<code>新建节点</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414181326669.png" alt="image-20220414181326669"></p>
+<p>填写<code>节点名称</code>，Type选择<code>固定节点</code>，点击<code>Create</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414181413933.png" alt="image-20220414181413933"></p>
+<p>配置<code>执行器数量</code>，<code>远程工作目录</code>，<code>标签</code>内容，其余不变，填写完成后，点击保存：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220011821.png" alt="image-20220415220011821"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414182433149.png" alt="image-20220414182433149"></p>
+<blockquote>
+<p>:warning: <code>Number of executors</code></p>
+<p>你可以这样理解，我在jenkins上运行一个job，它就会占用一个执行器。它所运行作业的数量，作业的并发数。<br>所以你在调并发的时候，如果出现队列在排队的情况，那可能是因为这里的执行器数量设置不够！</p>
+</blockquote>
+<p>另外：如果这里配置了<code>自定义工作目录的话</code>，那么这里的值就会替代上面我们指定的<code>远程工作目录</code>！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414182033398.png" alt="image-20220414182033398"></p>
+<h4 id="2、获取agent启动程序并运行agent"><a href="#2、获取agent启动程序并运行agent" class="headerlink" title="2、获取agent启动程序并运行agent"></a>2、获取agent启动程序并运行agent</h4><p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170312222.png" alt="image-20220414170312222"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170329831.png" alt="image-20220414170329831"></p>
+<p>🍀 自己配置过程：</p>
+<p>在首页点击刚才新建的节点<code>build01</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414183524925.png" alt="image-20220414183524925"></p>
+<p>这里agent有2种方式可以连接到jenkins master，我们使用第二种方式：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414183658380.png" alt="image-20220414183658380"></p>
+<p>右键复制<code>agent.jar</code>包，在我们的虚机里将其下载下来：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414183750325.png" alt="image-20220414183750325"></p>
+<p>创建agent目录并下载<code>agent.jar</code>包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[root@devops ~]<span class="comment">#mkdir -p /data/cicd/jenkins/jenkinsagent</span></span><br><span class="line">[root@devops ~]<span class="comment">#cd /data/cicd/jenkins/jenkinsagent</span></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#wget http://172.29.9.101:8080/jnlpJars/agent.jar</span></span><br><span class="line">--2022-04-14 18:40:15--  http://172.29.9.101:8080/jnlpJars/agent.jar</span><br><span class="line">Connecting to 172.29.9.101:8080... connected.</span><br><span class="line">HTTP request sent, awaiting response... 200 OK</span><br><span class="line">Length: 1524115 (1.5M) [application/java-archive]</span><br><span class="line">Saving to: ‘agent.jar’</span><br><span class="line"></span><br><span class="line">100%[=====================================================================================================================================&gt;] 1,524,115   --.-K/s   <span class="keyword">in</span> 0.07s   </span><br><span class="line"></span><br><span class="line">2022-04-14 18:40:15 (22.2 MB/s) - ‘agent.jar’ saved [1524115/1524115]</span><br><span class="line"></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#ll -h agent.jar </span></span><br><span class="line">-rw-r--r-- 1 root root 1.5M Apr 14 16:09 agent.jar</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>编写启动脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@devops jenkinsagent]<span class="comment">#pwd</span></span><br><span class="line">/data/cicd/jenkins/jenkinsagent</span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#vim start.sh #将刚才网页出现的第二种方式的代码拷贝进去</span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> a6e5abcbbab18dd68f6a76cbab162507201d465bc64aefdc4f7240befe8b311b &gt; secret-file</span><br><span class="line">java -jar agent.jar -jnlpUrl http://172.29.9.101:8080/computer/build01/jenkins-agent.jnlp -secret @secret-file -workDir <span class="string">&quot;/opt/jenkins&quot;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>启动脚本并查看：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@devops jdk8u322-b06]<span class="comment">#cd /data/cicd/jenkins/jenkinsagent/</span></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#ls</span></span><br><span class="line">agent.jar  secret-file  start.sh</span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#sh start.sh </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414185914532.png" alt="image-20220414185914532"></p>
+<p>此时刷新下web页面，我么可以看到<code>bulid01 agent节点</code>状态正常了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414190013092.png" alt="image-20220414190013092"></p>
+<p>🍀 但是，现在有个问题，当我们把这个脚本退出后，这个agent程序就退出了：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414190108471.png" alt="image-20220414190108471"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414190125794.png" alt="image-20220414190125794"></p>
+<p>此时，该怎么办呢？可以在启动脚本里修改下配置，使其脚本在后台运行：😘</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#改进脚本</span></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#pwd</span></span><br><span class="line">/data/cicd/jenkins/jenkinsagent</span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#vim start.sh </span></span><br><span class="line"><span class="comment">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> a6e5abcbbab18dd68f6a76cbab162507201d465bc64aefdc4f7240befe8b311b &gt; secret-file</span><br><span class="line">nohup java -jar agent.jar -jnlpUrl http://172.29.9.101:8080/computer/build01/jenkins-agent.jnlp -secret @secret-file -workDir <span class="string">&quot;/opt/jenkins&quot;</span> &gt;/dev/null &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment">#我们再次启动脚本，然后刷新网页观察现象</span></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#sh start.sh </span></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#nohup: redirecting stderr to stdout</span></span><br><span class="line"></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#</span></span><br><span class="line">[root@devops jenkinsagent]<span class="comment">#ps -aux|grep java</span></span><br><span class="line">1000      83669  1.6 24.0 3016260 447312 pts/0  Sl+  16:41   2:26 java -Duser.home=/var/jenkins_home -Djenkins.model.Jenkins.slaveAgentPort=50000 -jar /usr/share/jenkins/jenkins.war</span><br><span class="line">root      94013 14.8  6.4 3036264 120800 pts/2  Sl   19:04   0:08 java -jar agent.jar -jnlpUrl http://172.29.9.101:8080/computer/build01/jenkins-agent.jnlp -secret @secret-file -workDir /opt/jenkins</span><br><span class="line">root      94183  0.0  0.0 112708   972 pts/2    S+   19:05   0:00 grep --color=auto java</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416095814729.png" alt="image-20220416095814729"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414190655895.png" alt="image-20220414190655895"></p>
+<p>:warning: 还有个问题：这个脚本应该要配置开机启动的！(属于linux方面的知识，搁置😂)</p>
+<h4 id="3、自定义agent通信端口"><a href="#3、自定义agent通信端口" class="headerlink" title="3、自定义agent通信端口"></a>3、自定义agent通信端口</h4><blockquote>
+<p>:warning: 注意：这里默认使用50000端口即可！尽量使用指定端口，如果使用随机端口的话，后续区域网络申请放行网络权限时，不好做！</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170348560.png" alt="image-20220414170348560"></p>
+<p>🍀 配置地方如下(保持默认即可)：<code>系统管理</code>-<code>安全/全局安全设置</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414191124040.png" alt="image-20220414191124040"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414191216232.png" alt="image-20220414191216232"></p>
+<p>至此，jenkins master节点和agent节点已全部安装成功！😘</p>
+<h2 id="实战3：terrrform方式安装jenkins-泽阳-2022-4-17-测试成功"><a href="#实战3：terrrform方式安装jenkins-泽阳-2022-4-17-测试成功" class="headerlink" title="实战3：terrrform方式安装jenkins-泽阳-2022.4.17(测试成功)"></a>实战3：terrrform方式安装jenkins-泽阳-2022.4.17(测试成功)</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414085747500.png" alt="image-20220414085747500"></p>
+<h3 id="实验环境-2"><a href="#实验环境-2" class="headerlink" title="实验环境"></a>实验环境</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">win10笔记本</span><br><span class="line">1台虚机 centos7.9 vmworkstation </span><br><span class="line">jenkins/jenkins:2.332.2-centos7-jdk8</span><br><span class="line">docker 20.10.11</span><br><span class="line">Terraform v1.1.8</span><br></pre></td></tr></table></figure>
+
+<h3 id="实验软件-2"><a href="#实验软件-2" class="headerlink" title="实验软件"></a>实验软件</h3><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/15VlZHrinn9kiy8kf9nZkDw?pwd=caih">https://pan.baidu.com/s/15VlZHrinn9kiy8kf9nZkDw?pwd=caih</a><br>提取码：caih<br><code>2022.4.13-实验软件-使用TF来起一个jenkins容器</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416231435863.png" alt="image-20220416231435863"></p>
+<h3 id="前置条件-1"><a href="#前置条件-1" class="headerlink" title="前置条件"></a>前置条件</h3><ul>
+<li>docker环境已安装(本次版本：20.10.11)</li>
+</ul>
+<h3 id="0、安装jdk环境-1"><a href="#0、安装jdk环境-1" class="headerlink" title="0、安装jdk环境"></a>0、安装jdk环境</h3><p>:warning: 我们测试环境，是在一台虚机上跑了一个jenkins容器。但后面添加一个jenkins agent时，是将这个虚机作为其agent使用，因此这个虚机也要安装java环境的！！！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(1)下载jdk软件</span><br><span class="line">[root@devops ~]<span class="comment">#wget https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/8/jdk/x64/linux/OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz --no-check-certificate</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414185032534.png" alt="image-20220414185032534"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414185225338.png" alt="image-20220414185225338"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">（2）配置jdk环境</span><br><span class="line">[root@devops ~]<span class="comment">#tar zxf OpenJDK8U-jdk_x64_linux_hotspot_8u322b06.tar.gz -C /usr/local/</span></span><br><span class="line">[root@devops ~]<span class="comment">#cd /usr/local/jdk8u322-b06/</span></span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#pwd</span></span><br><span class="line">/usr/<span class="built_in">local</span>/jdk8u322-b06</span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#vim /etc/profile</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/<span class="built_in">local</span>/jdk8u322-b06</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#source /etc/profile</span></span><br><span class="line"></span><br><span class="line">（3）验证</span><br><span class="line">[root@devops jdk8u322-b06]<span class="comment">#java -version</span></span><br><span class="line">openjdk version <span class="string">&quot;1.8.0_322&quot;</span></span><br><span class="line">OpenJDK Runtime Environment (Temurin)(build 1.8.0_322-b06)</span><br><span class="line">OpenJDK 64-Bit Server VM (Temurin)(build 25.322-b06, mixed mode)</span><br></pre></td></tr></table></figure>
+
+<h3 id="1、安装Terraform"><a href="#1、安装Terraform" class="headerlink" title="1、安装Terraform"></a>1、安装Terraform</h3><p>1、下载二进制包</p>
+<p><a target="_blank" rel="noopener" href="https://www.terraform.io/downloads">https://www.terraform.io/downloads</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412200555892.png" alt="image-20220412200555892"></p>
+<p>2、安装步骤</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">（1）上传下载好的二进制包到服务器</span><br><span class="line">[root@devops ~]<span class="comment">#ll -h terraform_1.1.8_linux_amd64.zip </span></span><br><span class="line">-rw-r--r-- 1 root root 18M Apr 12 19:59 terraform_1.1.8_linux_amd64.zip</span><br><span class="line">[root@devops ~]<span class="comment">#unzip terraform_1.1.8_linux_amd64.zip </span></span><br><span class="line">Archive:  terraform_1.1.8_linux_amd64.zip</span><br><span class="line">  inflating: terraform</span><br><span class="line">[root@devops ~]<span class="comment">#ll -h terraform</span></span><br><span class="line"></span><br><span class="line">（2）移动二进制文件到PATH路径</span><br><span class="line">-rwxr-xr-x 1 root root 61M Apr  8 00:54 terraform</span><br><span class="line">[root@devops ~]<span class="comment">#mv terraform /usr/local/bin/</span></span><br><span class="line"></span><br><span class="line">（3）验证</span><br><span class="line">[root@devops ~]<span class="comment">#terraform version</span></span><br><span class="line">Terraform v1.1.8</span><br><span class="line">on linux_amd64  </span><br></pre></td></tr></table></figure>
+
+
+
+<p>3、vscode想要对.tf文件语法的话，这里需要安装<code>Terraform</code>插件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412202300625.png" alt="image-20220412202300625"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412202356331.png" alt="image-20220412202356331"></p>
+<h3 id="2、定义Jenkins容器的资源tf文件"><a href="#2、定义Jenkins容器的资源tf文件" class="headerlink" title="2、定义Jenkins容器的资源tf文件"></a>2、定义Jenkins容器的资源tf文件</h3><p>1️⃣ 创建Jenkins数据目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@devops ~]<span class="comment">#mkdir -p /data/devops4/jenkins_home</span></span><br><span class="line">[root@devops ~]<span class="comment">#chmod -R 777 /data/devops4/jenkins_home/</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>2️⃣ 定义Jenkins容器的资源tf文件</p>
+<p>在devops目录下创建如下2个文件：</p>
+<p><code>jenkins.tf</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#### 定义docker镜像(jenkins.tf)</span><br><span class="line">resource &quot;docker_image&quot; &quot;jenkins&quot; &#123;</span><br><span class="line">  name         = &quot;jenkins/jenkins:2.332.2-centos7-jdk8&quot;</span><br><span class="line">  keep_locally = true  //资源销毁后不会删除本地镜像</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">resource &quot;docker_container&quot; &quot;jenkins&quot; &#123;</span><br><span class="line">  image = docker_image.jenkins.name</span><br><span class="line">  name  = &quot;devops_tutorial&quot;</span><br><span class="line">  ports &#123;</span><br><span class="line">    internal = 8080</span><br><span class="line">    external = 8080</span><br><span class="line">  &#125;</span><br><span class="line">  ports &#123;</span><br><span class="line">      internal = 50000</span><br><span class="line">      external = 50000</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  volumes&#123;</span><br><span class="line">      container_path = &quot;/var/jenkins_home&quot;</span><br><span class="line">      host_path = &quot;/data/devops4/jenkins_home&quot; //这个目录要提前在主机里进行创建</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>main.tf</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 定义provider（main.tf）</span><br><span class="line">terraform &#123;</span><br><span class="line">  required_providers &#123;</span><br><span class="line">    docker = &#123;</span><br><span class="line">      source = &quot;kreuzwerker/docker&quot;</span><br><span class="line">      version = &quot;~&gt; 2.13.0&quot;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">provider &quot;docker&quot; &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、terraform-init-初始化"><a href="#3、terraform-init-初始化" class="headerlink" title="3、terraform init  初始化"></a>3、terraform init  初始化</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops remote-vscode]<span class="comment">#terraform init</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414084938622.png" alt="image-20220414084938622"></p>
+<h3 id="4、terraform-plan-预览"><a href="#4、terraform-plan-预览" class="headerlink" title="4、terraform plan 预览"></a>4、terraform plan 预览</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops remote-vscode]<span class="comment">#terraform plan</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414085011712.png" alt="image-20220414085011712"></p>
+<h3 id="5、terraform-apply-部署"><a href="#5、terraform-apply-部署" class="headerlink" title="5、terraform apply 部署"></a>5、terraform apply 部署</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops remote-vscode]<span class="comment">#terraform apply</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414085052383.png" alt="image-20220414085052383"></p>
+<h3 id="6、验证"><a href="#6、验证" class="headerlink" title="6、验证"></a>6、验证</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops remote-vscode]<span class="comment">#docker ps |grep jenkins</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414085145859.png" alt="image-20220414085145859"></p>
+<p><a target="_blank" rel="noopener" href="http://172.29.9.101:8080/">http://172.29.9.101:8080/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414085225027.png" alt="image-20220414085225027"></p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><h4 id="📍-什么是Terraform？"><a href="#📍-什么是Terraform？" class="headerlink" title="📍 什么是Terraform？"></a>📍 什么是Terraform？</h4><p>Teffraform：基础设施即代码！</p>
+<p>IaC：基础设施即代码。</p>
+<p>现在，基本什么都代码，配置即代码，基础设置即代码；</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">管理docker容器</span><br><span class="line">	- docker命令</span><br><span class="line">	- docker-compose</span><br><span class="line">	- 本地用tf来管理docker环境: tf有一个provider，一个插件，它是支持管docker的。所以，我们后面一个tf模板就把整个实验环境就跑起来了，最终可以一键拉起来。</span><br><span class="line">	</span><br><span class="line">但是TF比较厉害，它的插件支持k8s，就是你不想使用yaml来管理k8s里的资源，那么TF也是可以通过插件来管理k8s里的资源的。此时，就行就需要你来写Tf的provider插件来着，但是还是yaml好使。</span><br><span class="line"></span><br><span class="line">这个TF太牛了！！(tf：管理你的基础设施的。)</span><br><span class="line">但这个工具也存在一定的危险性，我可以一键去创建，也可以一键去销毁。</span><br><span class="line">老师大力推荐！</span><br></pre></td></tr></table></figure>
+
+<h4 id="📍-ansible和terraform的区别？"><a href="#📍-ansible和terraform的区别？" class="headerlink" title="📍 ansible和terraform的区别？"></a>📍 ansible和terraform的区别？</h4><blockquote>
+<p>答：ansible和TF他们不是一个级别的东西：<br>    <strong>TF它管理的是你的服务器，其实TF主要是针对这个云供应商的，创建这些机器、网络、vpc……</strong><br>    ansible是实现基础设置之上的，应用部署这块的；<br>    他两之间可以结合去用；</p>
+</blockquote>
+<h4 id="📍-待提问：provider-“docker”-……-2375端口问题"><a href="#📍-待提问：provider-“docker”-……-2375端口问题" class="headerlink" title="📍 待提问：provider “docker” {……} 2375端口问题"></a>📍 待提问：provider “docker” {……} 2375端口问题</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412201923930.png" alt="image-20220412201923930"></p>
+<p><strong>如果是本机的话，provider “docker” {……}这里可以省略！</strong></p>
+<p>🍀 老师这里有监听到这个包2375端口，但是为什么我自己的没有呢？但是可以可以成功部署jenkins容器。</p>
+<p>老师说是docker服务默认监听的端口。。。。；😥</p>
+<p>老师现象：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412213420999.png" alt="image-20220412213420999"></p>
+<p>自己现象：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416101003652.png" alt="image-20220416101003652"></p>
+<h4 id="📍-搁置问题：如何在terraform里添加env，老师当时添加时报错了。。。"><a href="#📍-搁置问题：如何在terraform里添加env，老师当时添加时报错了。。。" class="headerlink" title="📍 搁置问题：如何在terraform里添加env，老师当时添加时报错了。。。"></a>📍 搁置问题：如何在terraform里添加<code>env</code>，老师当时添加时报错了。。。</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412215808332.png" alt="image-20220412215808332"></p>
+<h4 id="📍-这个terraform网站是真的慢。。。"><a href="#📍-这个terraform网站是真的慢。。。" class="headerlink" title="📍 这个terraform网站是真的慢。。。"></a>📍 这个terraform网站是真的慢。。。</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412213831635.png" alt="image-20220412213831635"></p>
+<h4 id="📍-terraform命令"><a href="#📍-terraform命令" class="headerlink" title="📍 terraform命令"></a>📍 terraform命令</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">terraform init  初始化</span><br><span class="line">terraform plan 预览 //看下它的变更</span><br><span class="line">terraform apply 部署</span><br></pre></td></tr></table></figure>
+
+<p>🍀 初始化</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terraform init</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412210533578.png" alt="image-20220412210533578"></p>
+<p>插件下载后存放位置：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412211501990.png" alt="image-20220412211501990"></p>
+<p>🍀 预览</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terraform plan </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412211629951.png" alt="image-20220412211629951"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412211710758.png" alt="image-20220412211710758"></p>
+<p>🍀 部署</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terraform apply</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412211745866.png" alt="image-20220412211745866"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412211840282.png" alt="image-20220412211840282"></p>
+<p>🍀 销毁资源命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">terraform destroy</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412210437676.png" alt="image-20220412210437676"></p>
+<h4 id="📍-terraform使用方法"><a href="#📍-terraform使用方法" class="headerlink" title="📍 terraform使用方法"></a>📍 terraform使用方法</h4><p>registry.terraform.io是terraform的仓库</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412204044454.png" alt="image-20220412204044454"></p>
+<p>点击<code>Browse Provider</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412204132272.png" alt="image-20220412204132272"></p>
+<p>搜索<code>docker</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412204221416.png" alt="image-20220412204221416"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412204251325.png" alt="image-20220412204251325"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412204316200.png" alt="image-20220412204316200"></p>
+<p>使用文档：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412204405864.png" alt="image-20220412204405864"></p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人csdn</p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人已开源干货😘</p>
+<p> 资料链接：<a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">《不服来怼：宇宙中最好用的云笔记！&amp; 其他开源干货》</a></p>
+<p> <a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">https://www.yuque.com/go/doc/73723298?#</a></p>
+ <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220417084709077.png" alt="image-20220417084709077" style="zoom: 67%;" /></li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>好了，关于Jenkins安装实验就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416222633005.png" alt="image-20220416222633005"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/04/17/145%20%E5%AE%9E%E6%88%98%EF%BC%9A3%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Jenkins-2022.4.17%EF%BC%88%E5%8D%9A%E5%AE%A2%E5%88%86%E4%BA%AB%EF%BC%89/">https://www.onlyonexl.cn/2022/04/17/145%20%E5%AE%9E%E6%88%98%EF%BC%9A3%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Jenkins-2022.4.17%EF%BC%88%E5%8D%9A%E5%AE%A2%E5%88%86%E4%BA%AB%EF%BC%89/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/jenkins/">
+                                    <span class="chip bg-color">jenkins</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/10/06/137%20%E5%AE%9E%E6%88%98%EF%BC%9AOpenKruise%E9%80%9A%E7%94%A8%E6%8E%A7%E5%88%B6%E5%99%A8-2022.3.12/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="实战：OpenKruise通用控制器-2022.3.12.md">
+                        
+                        <span class="card-title">实战：OpenKruise通用控制器-2022.3.12.md</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-10-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/k8s/" class="post-category">
+                                    k8s
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/OpenKruise/">
+                        <span class="chip bg-color">OpenKruise</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/16/144%20Devops%E7%90%86%E8%AE%BA%E4%B8%8E%E5%9F%BA%E7%A1%80-2022.4.15(%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83)/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Devops理论与基础">
+                        
+                        <span class="card-title">Devops理论与基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/devops/" class="post-category">
+                                    devops
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/devops/">
+                        <span class="chip bg-color">devops</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
