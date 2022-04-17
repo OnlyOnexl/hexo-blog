@@ -1,0 +1,1801 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Jenkins简介与应用, Love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Jenkins简介与应用 | Love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Jenkins简介与应用</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Jenkins/">
+                                <span class="chip bg-color">Jenkins</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Jenkins/" class="post-category">
+                                Jenkins
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-04-17
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="Jenkins简介与应用"><a href="#Jenkins简介与应用" class="headerlink" title="Jenkins简介与应用"></a>Jenkins简介与应用</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411181340139.png" alt="image-20220411181340139"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="1、Jenkins简介"><a href="#1、Jenkins简介" class="headerlink" title="1、Jenkins简介"></a>1、Jenkins简介</h2><h3 id="1-Jenkins简介"><a href="#1-Jenkins简介" class="headerlink" title="1.Jenkins简介"></a>1.Jenkins简介</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411181418381.png" alt="image-20220411181418381"></p>
+<p>jenkins 概述：是一个开源软件项目，<strong>是基于 Java 开发的一种持续集成工具</strong>，用于监控持续重复的工作，旨在提供一个开放易用的软件平台，使软件的持续集成变成可能。</p>
+<p>对于持续集成工具现在也有很多，目前<strong>应用最多的是Jenkins</strong>。</p>
+<ul>
+<li><p>Jenkins前身是Hudson，<strong>使用java语言开发</strong>的自动化发布工具。</p>
+</li>
+<li><p>Jenkins是<strong>跨平台</strong>的可以在Win、Linux、MacOS部署。</p>
+</li>
+<li><p>Jenkins是应用最广的<strong>开源免费</strong>的持续集成服务器，企业中普遍使用Jenkins来作为<strong>项目集成发布工具</strong>。</p>
+</li>
+<li><p>Jenkins官方提供的<strong>插件使Jenkins更为强大</strong>。</p>
+</li>
+</ul>
+<p>目前发展超过17年，比较成熟的CI工具（<strong>也可以CD</strong>）能够实现自动化集成发布。目前普遍使用Jenkins完成<strong>持续集成CI/持续部署CD</strong>等相关技术实践。 <strong>可以把Jenkins想象成一个脚本执行器</strong>，我们可以通过编写代码的方式灵活的控制Jenkins作业的运行与控制。</p>
+<p>:warning: 注意：插件是jenkins的一大优势，也是其一大弊端。</p>
+<blockquote>
+<p>1.推荐按需使用。尽量少装一些插件。为什么呢？当以后jenkins越来越大，任务越来越多时，如果插件很多，可能在重启jenkins后会因一些插件问题而导致jenkins无法启动。<br>2.能不用插件实现的尽量不要使用插件！可以写一些代码来实现，这样可以减少插件的依赖。另外一点，对你的技能提升也是有很大的帮助。</p>
+</blockquote>
+<p>🍀 jenkins官网:<a target="_blank" rel="noopener" href="https://jenkins.io/">https://jenkins.io/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411184657793.png" alt="image-20220411184657793"></p>
+<p>🍀 jenkins发布周期(每周发布一次)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210428060510962.png" alt="image-20210428060510962"></p>
+<h3 id="2-Jenkins应用场景"><a href="#2-Jenkins应用场景" class="headerlink" title="2.Jenkins应用场景"></a>2.Jenkins应用场景</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411182912017.png" alt="image-20220411182912017"></p>
+<ul>
+<li><p>持续集成实践</p>
+<ul>
+<li>集成svn/git客户端实现源代码下载检出</li>
+<li>集成<strong>maven/ant/gradle/npm</strong>等<strong>构建工具</strong>实现源码编译打包单元测试</li>
+<li>集成<strong>sonarqube</strong>对源代码进行质量检查（坏味道、复杂度、新增bug等）</li>
+</ul>
+</li>
+<li><p>持续部署实践</p>
+<ul>
+<li><p>集成SaltStack/Ansible实现自动化部署发布</p>
+<blockquote>
+<p>:warning: jenkins本身没有发布能力，它只是集成了这些工具的特性来实现发布，jenkins只是来调度的。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li><p>自动化测试实践</p>
+<ul>
+<li><p>集成<strong>Jmeter(压力测试、接口测试)/Soar(小米开源的一个sql扫描)/Kubernetes/</strong>…..</p>
+<blockquote>
+<p>sonarqube也能支持sql扫描，但是需要付费；</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-Jenkins功能特点"><a href="#3-Jenkins功能特点" class="headerlink" title="3.Jenkins功能特点"></a>3.Jenkins功能特点</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220411184259471.png" alt="image-20220411184259471"></p>
+<ul>
+<li>开源免费</li>
+<li>多平台支持（windows/linux/macos）</li>
+<li><strong>主从分布式架构</strong></li>
+<li>提供web可视化配置管理页面</li>
+<li>安装配置简单</li>
+<li>插件资源丰富</li>
+</ul>
+<p>🍀 主从分布式架构：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">jenkins：</span><br><span class="line">	master：做调度的。//1个master可以对应若干个agent。</span><br><span class="line">	agent：运行实际任务的。</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>:warning: master本身也具有作业构建的能力，但是一般我们用master节点作为调度。master节点不做构建，它只是用来存储这些任务。真正构建的时候，我们在agent上构建。我们做测试的时候，可能会用master节点来做一些任务。但是实际生产环境中，我们绝对不能用master节点去构建任务。因为任务一旦多了，会影响jenkins性能，导致你直接宕机了。</p>
+</blockquote>
+<h2 id="2、Jenkins使用"><a href="#2、Jenkins使用" class="headerlink" title="2、Jenkins使用"></a>2、Jenkins使用</h2><h3 id="1-jenkins数据目录"><a href="#1-jenkins数据目录" class="headerlink" title="1.jenkins数据目录"></a>1.jenkins数据目录</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170407227.png" alt="image-20220414170407227"></p>
+<p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170425811.png" alt="image-20220414170425811"></p>
+<p>🍀 自己测试过程</p>
+<ul>
+<li>注意：<code>jenkins_home</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">jenkins把所有的数据都存放在了文件系统里面。</span><br><span class="line"></span><br><span class="line">rpm方式安装的jenkins： 其家目录在/var/lib/jenkins 目录下；</span><br><span class="line">docker方式安装的jenkins： 其家目录在/var/jenkins_home 目录下；</span><br><span class="line"></span><br><span class="line">jenkins所有的配置文件都是以.xml格式存储的！</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414204739831.png" alt="image-20220414204739831"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414204756768.png" alt="image-20220414204756768"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220417123901671.png" alt="image-20220417123901671"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414205315986.png" alt="image-20220414205315986"></p>
+<ul>
+<li><code>userContent</code> :类似于web站点目录，可以上传一些文件</li>
+</ul>
+<p>这里可以放一个index.html文件，然后它会给你展示出来！</p>
+<p>类似于sftp功能，用的不是很多！</p>
+<ul>
+<li><code>workspace :默认的工作目录</code></li>
+</ul>
+<blockquote>
+<p>:warning: 注意：一般要把这个工作目录和jenkins的数据目录要分开存放，要不万一你这个目录io比较高的话，也会对jenkins有影响！</p>
+</blockquote>
+<p>这个目录非常重要，就是我们以后运行的每一个流水线作业，它是在哪里工作，是在这个workspace目录下工作的！</p>
+<p>默认情况下，这个workspace目录也是在<code>jenkins_home</code>下，但是我们可以自定义！</p>
+<h3 id="2-Jenkins用户管理和权限管理"><a href="#2-Jenkins用户管理和权限管理" class="headerlink" title="2.Jenkins用户管理和权限管理"></a>2.Jenkins用户管理和权限管理</h3><p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170517411.png" alt="image-20220414170517411"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170843488.png" alt="image-20220414170843488"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414220455155.png" alt="image-20220414220455155"></p>
+<p>💧 自己测试过程</p>
+<p>:warning: 注意</p>
+<blockquote>
+<p>就是后面我们把jenkins落地到了企业后，同志们如何登录这个系统呢？我们需要给它创建用户和账号，企业里面用户那么多，我们怎么给他们一一分配账号呢？<br>1、这里面有一种方法，叫做认证集成，你可以和LDAP系统做对接，<strong>LDAP</strong>是我们做统一认证的地方，用户的组织结构信息都在这里！<br>然后我们可以拿LDAP的插件和jenkins做集成，最终实现的一个效果就是，可以用LDAP里面的账号和密码去去登录Jenkins。</p>
+<p>2、如果你的集团里面可能没有LDAP，但是你有gitlab，那么Jenkins也可以支持gitlab的单点登录！</p>
+<p>所以，登录这一块，一个是它自己的数据库，刚才我们看到的那个jenkins_home目录就是它的数据库。另外一个就是跟认证系统做集成，或者和其他第三方平台做一个sso(类似于单点登录一样！)</p>
+</blockquote>
+<p>我们再刚开始安装的时候创建了一个<code>admin</code>账户，现在我们再创建一个账户<code>xyy</code>：</p>
+<p>点击<code>系统管理-管理用户</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414220842898.png" alt="image-20220414220842898"></p>
+<p>点击<code>新建用户</code>，创建新用户：账号：<code>xyy</code> 密码：<code>123456</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414220934658.png" alt="image-20220414220934658"></p>
+<p>查看创建好的<code>xyy</code>账户：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414220952675.png" alt="image-20220414220952675"></p>
+<p>然后退出当前用户，使用刚创建的<code>xyy</code>账户登录jenkins系统：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414221234295.png" alt="image-20220414221234295"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414221258988.png" alt="image-20220414221258988"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414221311898.png" alt="image-20220414221311898"></p>
+<p>我们会发现，本来自己是想创建一个普通用户来着的，结果创建的用户具有管理员权限，这可不得了。为什么会这样呢？</p>
+<p>我们退出当前账户继续以admin账户登录jenkins：</p>
+<p>点击<code>系统管理-安全-全局安全设置</code>：会发现当前授权策略是<code>登录用户可以做任何事</code>，原来产生上面那个现象的原因在这里！😂</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414221505788.png" alt="image-20220414221505788"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414221538422.png" alt="image-20220414221538422"></p>
+<p>🍀 要想解决以上问题，是需要安装一个叫<code>Role-Base strategy</code>的授权插件来着的：</p>
+<p>现在，我们来开始安装一下这个插件：</p>
+<blockquote>
+<p>:warning:  好用的插件也就这个了。这个插件不光提供了ui界面，还提供了api。<br>很早之前，老师分享了一篇这个<code>Role-Base strategy</code>api操作的文章，因为老师当时在后台给他们勾选权限的时候，都是框框……，看的眼睛真的受不了了！这个时候就可以调用api去加权限，特别恐怖，勾选一个权限，特别考验你的眼力！(当时老师应该有个公开课来着的)并且其api也没怎么变化！</p>
+</blockquote>
+<p>还有其他同学使用<code>矩阵matrix strategy</code>插件：(这个<code>Role-Base strategy</code>要比矩阵插件好用一些！)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415082429981.png" alt="image-20220415082429981"></p>
+<p>点击<code>系统管理-插件管理</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083018420.png" alt="image-20220415083018420"></p>
+<p>点击<code>可选插件</code>，搜索<code>role</code>，勾选<code>Role-based Authorization Strategy</code>插件，点击<code>现在下载和重启后安装</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083127522.png" alt="image-20220415083127522"></p>
+<p>下载完成后，点击<code>安装完成后重启jenkins</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083317942.png" alt="image-20220415083317942"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083331166.png" alt="image-20220415083331166"></p>
+<ul>
+<li>重启完成后，我们还需要开启下<code>Role-based Authorization Strategy </code>:</li>
+</ul>
+<p>点击<code>系统管理-全局安全配置</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083558002.png" alt="image-20220415083558002"></p>
+<p>勾选<code>Role-based Strategy</code>，点击<code>应用-保存</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083642274.png" alt="image-20220415083642274"></p>
+<ul>
+<li>开启<code>Role-based Strategy</code>后，我们就可以在首页看到<code>Manage and Assign Roles</code>选项了：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083811918.png" alt="image-20220415083811918"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083938019.png" alt="image-20220415083938019"></p>
+<ul>
+<li>现在是如何配置这个<code>Role-based Authorization Strategy</code>了</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083811918.png" alt="image-20220415083811918"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415083938019.png" alt="image-20220415083938019"></p>
+<p>🍀 我们先看<code>管理角色</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415084201515.png" alt="image-20220415084201515"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415084329665.png" alt="image-20220415084329665"></p>
+<p><code>Node roles</code>：我们基本上不怎么用到！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415084405464.png" alt="image-20220415084405464"></p>
+<p><code>Item roles</code>：（项目角色）Item就是每个作业，jenkins里面的每个任务！你可以设置每个组只能构建自己组的作业，但不能构建其他组的作业！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415084412423.png" alt="image-20220415084412423"></p>
+<p><code>Global roles</code>：全局角色</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415084633464.png" alt="image-20220415084633464"></p>
+<ul>
+<li>我们来添加一个组的全局角色：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415084806048.png" alt="image-20220415084806048"></p>
+<blockquote>
+<p>:warning: 一般情况，我们是不会让他们去配置任务的，因为一般情况，任务会有专门的人来配置！如果大家都去改，可能这个版本话就不太好了！不能随便去改，否则不可控了！</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415085913308.png" alt="image-20220415085913308"></p>
+<p>为了方便，我们再创建一个更高级权限的角色：</p>
+<p><code>t1-devops</code>和<code>te-devops-edit</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415085735302.png" alt="image-20220415085735302"></p>
+<p>点击<code>应用-保存</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415085846280.png" alt="image-20220415085846280"></p>
+<ul>
+<li>配置完成后，我们再次以<code>xyy用户</code>登录jenkins，查看效果：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415094304964.png" alt="image-20220415094304964"></p>
+<blockquote>
+<p>之前我们遇到过这种情况，用户登录上来后是这个现象，就会联系我们去给他们授权一下。但之前我们是按gitlab的组为单位，gitlab里面有group的概念，group里面有member，这个memer下面其实所有人都属于一个组。所以可以按照这个组为单位，在jenkins里面给他们创建权限！</p>
+</blockquote>
+<ul>
+<li>再次以admin用户登录</li>
+</ul>
+<p>我们先来创建一个任务：<code>t1-devops-service</code>，点击<code>创建任务</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415094706242.png" alt="image-20220415094706242"></p>
+<p>输入任务名称，选择<code>构建一个自由风格的软件项目</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415094812652.png" alt="image-20220415094812652"></p>
+<p>这里先不做任何配置，直接点击<code>应用-保存</code>即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095004411.png" alt="image-20220415095004411"></p>
+<p>按上述方法，我们再创建一个作业<code>t1-devops-ui</code>：（<strong>这里可以基于之前已经存在的作业来创建job</strong>）</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095219593.png" alt="image-20220415095219593"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095236673.png" alt="image-20220415095236673"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095326325.png" alt="image-20220415095326325"></p>
+<p>两个作业，一个前端，一个后端。</p>
+<p>同上，我们再来创建2个作业：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095458491.png" alt="image-20220415095458491"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095528413.png" alt="image-20220415095528413"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095543446.png" alt="image-20220415095543446"></p>
+<ul>
+<li>现在我想实现的效果是，例如说<code>xyy</code>是属于t1这个团队的，那么t1团队的用户登录jenkins只能看到t1组的项目，t2团队的用户登录jenkins只能看到t2组的项目，次时该如何配置呢？</li>
+</ul>
+<p>我们先需要创建下项目角色：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095944367.png" alt="image-20220415095944367"></p>
+<p>点击<code>Manage Roles</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415095956849.png" alt="image-20220415095956849"></p>
+<ul>
+<li>这里配置下项目权限：</li>
+</ul>
+<p><code>t1-.*?</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415100057189.png" alt="image-20220415100057189"></p>
+<p>配置完，点击<code>应用-保存</code>。</p>
+<ul>
+<li>配置完后，我们这里来给<code>xyy用户</code>授权下：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415100411487.png" alt="image-20220415100411487"></p>
+<p>全局角色：将xyy添加到t1devops组</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415100549512.png" alt="image-20220415100549512"></p>
+<p>项目角色：将xyy添加到t1组</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415100654044.png" alt="image-20220415100654044"></p>
+<p>配置完成后，点击应用，保存：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415100713835.png" alt="image-20220415100713835"></p>
+<ul>
+<li>以上配置完成后，这里再使用xyy用户登录：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415125906579.png" alt="image-20220415125906579"></p>
+<p>我们会发现，这里怎么也能看到t2组的job呢？</p>
+<p>:warning: </p>
+<blockquote>
+<p>这里，我要和大家强调下，全局权限肯定是要大于你的项目权限的！</p>
+</blockquote>
+<p>再次用admin登录，然后配置下<code>全局角色</code>，将任务里的权限全部去掉，然后给项目权限加上任务的<code>Read，Workspace权限</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415130421589.png" alt="image-20220415130421589"></p>
+<p>保存配置后，我们再次以xyy用户登录观察现象：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415130539392.png" alt="image-20220415130539392"></p>
+<p>符合预期效果！</p>
+<p>🍀 现在我们说下作业管理这一块！</p>
+<p>1.根据视图来分类</p>
+<p>2.根据文件夹来分类</p>
+<p>如果作业很多的话，这里的视图就会看起来特别乱。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415130933147.png" alt="image-20220415130933147"></p>
+<p>1️⃣ 首先我们根据视图来分类</p>
+<p>新建2个视图，<code>t1</code>和<code>t2</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131129786.png" alt="image-20220415131129786"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131152296.png" alt="image-20220415131152296"></p>
+<p>注意：这里可以手动选择添加作业，但如果作业很多的话，我么可以<strong>使用正则表达式来处理</strong>！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131314965.png" alt="image-20220415131314965"></p>
+<p>同上，添加<code>t2</code>视图：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131527796.png" alt="image-20220415131527796"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131616733.png" alt="image-20220415131616733"></p>
+<p>效果如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131631415.png" alt="image-20220415131631415"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131640029.png" alt="image-20220415131640029"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131647938.png" alt="image-20220415131647938"></p>
+<p>2️⃣ 我们使用文件夹来管理作业</p>
+<p>我们先装下pipline插件</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131458807.png" alt="image-20220415131458807"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415131838402.png" alt="image-20220415131838402"></p>
+<p><code>pipeline</code>插件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415132018592.png" alt="image-20220415132018592"></p>
+<p>等待插件下载完成后，重启jenkins。</p>
+<p>我们来新建一个文件夹：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415132804693.png" alt="image-20220415132804693"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415132845693.png" alt="image-20220415132845693"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415132906720.png" alt="image-20220415132906720"></p>
+<p>同样，我们可以把作业移动到文件夹里去：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415132957689.png" alt="image-20220415132957689"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415133013724.png" alt="image-20220415133013724"></p>
+<p>但是此时发现，有些怪怪的：。。。😥</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415145444161.png" alt="image-20220415145444161"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415145504107.png" alt="image-20220415145504107"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415142621908.png" alt="image-20220415142621908"></p>
+<p>:warning:注意：这里有些问题，需要修改下文件夹名称！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415143623706.png" alt="image-20220415143623706"></p>
+<p>修改完成后，此时一切都正常了：符合预期效果！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415144640057.png" alt="image-20220415144640057"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415144648537.png" alt="image-20220415144648537"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415144656768.png" alt="image-20220415144656768"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415144727526.png" alt="image-20220415144727526"></p>
+<p>🍀 总结</p>
+<p>没有基于视图进行授权的，总之，还是要把作业的前缀给命名好！！</p>
+<p>🍀 问题：</p>
+<blockquote>
+<p>经验证，是可以看到的，但一般不会这么操作，除非有一些公有项目，一些组建的额依赖！</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415150252606.png" alt="image-20220415150252606"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415150517263.png" alt="image-20220415150517263"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415150547651.png" alt="image-20220415150547651"></p>
+<h3 id="3-Jenkins项目类型与参数"><a href="#3-Jenkins项目类型与参数" class="headerlink" title="3.Jenkins项目类型与参数"></a>3.Jenkins项目类型与参数</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170530314.png" alt="image-20220414170530314"></p>
+<p>🍀 之前使用自由风格项目类型，后面全部都换成了<code>pipeline</code>!</p>
+<p>这里我们分别创建2个作业，一个是自由风格，一个是流水线：</p>
+<p>1️⃣ 自由风格</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415150954695.png" alt="image-20220415150954695"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151025132.png" alt="image-20220415151025132"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151032738.png" alt="image-20220415151032738"></p>
+<p>2️⃣ 流水线</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415150954695.png" alt="image-20220415150954695"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151135808.png" alt="image-20220415151135808"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151142154.png" alt="image-20220415151142154"></p>
+<p>也就是说，pipeline把所有的步骤给你以代码的形式来描述了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151329536.png" alt="image-20220415151329536"></p>
+<p>而自由风格这里，都是把这些步骤在图形界面去配置的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151459498.png" alt="image-20220415151459498"></p>
+<p>但自由风格入门可能简单一点，这些配置我们都可以在这里选择，基本上，这一条流水线就调好了。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415151732956.png" alt="image-20220415151732956"></p>
+<h4 id="（1）字符参数"><a href="#（1）字符参数" class="headerlink" title="（1）字符参数"></a>（1）字符参数</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170602437.png" alt="image-20220414170602437"></p>
+<p>🍀 自己测试过程</p>
+<p>选择<code>参数化构建过程-字符参数</code>:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415154915473.png" alt="image-20220415154915473"></p>
+<p>填写相应选项：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155235280.png" alt="image-20220415155235280"></p>
+<p>点击<code>build with parameters</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155328839.png" alt="image-20220415155328839"></p>
+<p>输入版本号信息：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155353154.png" alt="image-20220415155353154"></p>
+<p>这个是传递给jenkins的参数，那么 jenkins如何去读这个参数呢？</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155627665.png" alt="image-20220415155627665"></p>
+<p>来到流水线选项，修改脚本，引用变量：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155738215.png" alt="image-20220415155738215"></p>
+<p>再次编译，查看效果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155755906.png" alt="image-20220415155755906"></p>
+<p>本次输入1.1.8版本：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155810424.png" alt="image-20220415155810424"></p>
+<p>查看构建结果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155858476.png" alt="image-20220415155858476"></p>
+<p>点击<code>console output</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155914511.png" alt="image-20220415155914511"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415155948148.png" alt="image-20220415155948148"></p>
+<p>这是我们传递进去的变量，就是这样去引用的！</p>
+<h4 id="（2）选项参数"><a href="#（2）选项参数" class="headerlink" title="（2）选项参数"></a>（2）选项参数</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170622019.png" alt="image-20220414170622019"></p>
+<blockquote>
+<p>选项参数和字符参数是我们用的最多的！</p>
+</blockquote>
+<p>🍀 自己测试过程</p>
+<p>开始配置<code>选项参数</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415160620767.png" alt="image-20220415160620767"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415160649861.png" alt="image-20220415160649861"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415160752524.png" alt="image-20220415160752524"></p>
+<p>流水线里引用选项参数：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415160932830.png" alt="image-20220415160932830"></p>
+<p>开始构建：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415161008639.png" alt="image-20220415161008639"></p>
+<p>能够看到这里是可以选择envName的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415161026491.png" alt="image-20220415161026491"></p>
+<p>查看构建结果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415161048775.png" alt="image-20220415161048775"></p>
+<p>结束。😋</p>
+<h4 id="（3）历史构建"><a href="#（3）历史构建" class="headerlink" title="（3）历史构建"></a>（3）历史构建</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170647771.png" alt="image-20220414170647771"></p>
+<p>🍀 自己测试过程</p>
+<p>配置<code>历史构建</code>选项：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415161648935.png" alt="image-20220415161648935"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415161714897.png" alt="image-20220415161714897"></p>
+<p>进行多次构建并查看效果：发现这边只有最近的5次构建记录</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415161754218.png" alt="image-20220415161754218"></p>
+<p>结束。😋</p>
+<h4 id="（4）并行构建"><a href="#（4）并行构建" class="headerlink" title="（4）并行构建"></a>（4）并行构建</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170701393.png" alt="image-20220414170701393"></p>
+<p>🍀 默认就是开启并行构建的(只是一个选项配置而已)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415162023379.png" alt="image-20220415162023379"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415162038415.png" alt="image-20220415162038415"></p>
+<h4 id="（5）构建触发器"><a href="#（5）构建触发器" class="headerlink" title="（5）构建触发器"></a>（5）构建触发器</h4><p>后面离不开api，不管你是运维还是开发，你后面都离不开api了。</p>
+<p>这个url你就可以理解为是一个api接口，我们通过给这个api接口去传参，</p>
+<p>也可以用postman去测试，专业的测试工具！</p>
+<p>选项参数的值是不能改的！</p>
+<p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170715712.png" alt="image-20220414170715712"></p>
+<p>🍀 自己测试过程</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415162544472.png" alt="image-20220415162544472"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415162606552.png" alt="image-20220415162606552"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scm：源代码管理系统</span><br><span class="line">会定义轮询git版本控制系统的；</span><br><span class="line"></span><br><span class="line">关闭构建：不构建</span><br><span class="line"></span><br><span class="line">静默期：冷静期，休眠时间</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 来演示下这个<code>触发远程构建</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415162645616.png" alt="image-20220415162645616"></p>
+<p>开始配置：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415164210425.png" alt="image-20220415164210425"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415164306523.png" alt="image-20220415164306523"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">JENKINS_URL/job/t2-demo/build?token=TOKEN_NAME 或者 /buildWithParameters?token=TOKEN_NAME</span><br><span class="line"></span><br><span class="line">http://172.29.9.101:8080/job/t2-demo/build?token=devops123</span><br><span class="line"></span><br><span class="line">http://172.29.9.101:8080/job/t2-demo/buildWithParameters?token=devops123</span><br></pre></td></tr></table></figure>
+
+<p>此时再新建一个<code>t2-demo2</code>的流水线作业：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415164517368.png" alt="image-20220415164517368"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415164547997.png" alt="image-20220415164547997"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415164618819.png" alt="image-20220415164618819"></p>
+<p>现在我们先构建下<code>t2-demo2</code>观察下效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://172.29.9.101:8080/job/t2-demo2/build?token=devops123</span><br><span class="line"></span><br><span class="line">curl -uadmin:admin http://172.29.9.101:8080/job/t2-demo2/build?token=devops123</span><br></pre></td></tr></table></figure>
+
+<p>在自己虚机上构建就好：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops ~]<span class="comment">#curl -uadmin:admin http://172.29.9.101:8080/job/t2-demo2/build?token=devops123</span></span><br></pre></td></tr></table></figure>
+
+<p>再到web界面可以看到构建记录的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415164843500.png" alt="image-20220415164843500"></p>
+<p>现在我们先构建下<code>t2-demo</code>观察下效果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://172.29.9.101:8080/job/t2-demo/buildWithParameters?token=devops123&amp;version=1.1.4&amp;envName=prod</span><br></pre></td></tr></table></figure>
+
+<p>先在web界面看下，目前为第8次构建：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415180845326.png" alt="image-20220415180845326"></p>
+<p>此时在虚机上我们执行远程触发构建：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops ~]<span class="comment">#curl -uadmin:admin  http://172.29.9.101:8080/job/t2-demo/buildWithParameters?token=devops123&amp;version=1.1.4&amp;envName=prod</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415181124737.png" alt="image-20220415181124737"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415181154796.png" alt="image-20220415181154796"></p>
+<p>🍀 特备注意下：这里要使用双引号引起来，不然有问题的。。。。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@devops ~]<span class="comment">#curl -u admin:admin  &quot;http://172.29.9.101:8080/job/t2-demo/buildWithParameters?token=devops123&amp;version=1.1.4&amp;envName=dev&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415182716399.png" alt="image-20220415182716399"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415182727180.png"></p>
+<p>这里模拟几次报错：</p>
+<p>🍀 缺少认证信息</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415181415310.png" alt="image-20220415181415310"></p>
+<p>🍀 访问方式错误</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415181507879.png" alt="image-20220415181507879"></p>
+<p>🍀 一定要存在，不存在的也报错！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415182805259.png" alt="image-20220415182805259"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415182822944.png" alt="image-20220415182822944"></p>
+<p>测试结束。😋</p>
+<blockquote>
+<p>适合做系统之间的集成去使用的。比如说提交代码之后自动触发jenkins去构建，这个触发器也是能完成一些，但是它还是不够灵活。后面会讲更加灵活的方式的。</p>
+</blockquote>
+<h4 id="（6）定时构建"><a href="#（6）定时构建" class="headerlink" title="（6）定时构建"></a>（6）定时构建</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170733970.png" alt="image-20220414170733970"></p>
+<h4 id="（7）Jenkins视图"><a href="#（7）Jenkins视图" class="headerlink" title="（7）Jenkins视图"></a>（7）Jenkins视图</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414171130091.png" alt="image-20220414171130091"></p>
+<h3 id="4-Jenkins凭据管理"><a href="#4-Jenkins凭据管理" class="headerlink" title="4.Jenkins凭据管理"></a>4.Jenkins凭据管理</h3><p>🍀 课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414170910334.png" alt="image-20220414170910334"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414171109175.png" alt="image-20220414171109175"></p>
+<p>🍀 自己测试过程</p>
+<blockquote>
+<p>凭据管理，这个在装pipelin插件就会装好了的。</p>
+<p>其实，jenkins的凭据管理不是很安全，但总比明文密码要强很多！</p>
+</blockquote>
+<p>创建凭据：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415201428647.png" alt="image-20220415201428647"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415201449920.png" alt="image-20220415201449920"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415201501489.png" alt="image-20220415201501489"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415201644300.png" alt="image-20220415201644300"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415201703318.png" alt="image-20220415201703318"></p>
+<p>使用凭据：</p>
+<p>图形化界面，其实我们不推荐大家使用了！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415202106762.png" alt="image-20220415202106762"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415202130853.png" alt="image-20220415202130853"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415202246816.png" alt="image-20220415202246816"></p>
+<p>以后都是使用流水线pipeline：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415202340028.png" alt="image-20220415202340028"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415202534246.png" alt="image-20220415202534246"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415202607397.png" alt="image-20220415202607397"></p>
+<p>后期流水线里，我们就是用这种方式去写，这样的话，它就会把这个凭据对应的账号和密码都赋予给对应的变量，我们就可以像使用环境变量一样去调用username和password。</p>
+<p>结束。😋</p>
+<h3 id="5-Jenkins-BlueOcean"><a href="#5-Jenkins-BlueOcean" class="headerlink" title="5.Jenkins BlueOcean"></a>5.Jenkins BlueOcean</h3><p>Blue Ocean减少了混乱而且进一步明确了团队中每个成员</p>
+<p>Blue Ocean 的主要特性包括：</p>
+<ul>
+<li>持续交付(CD)Pipeline的 <strong>复杂可视化</strong> ，可以让您快速直观地理解管道状态。</li>
+<li><strong>Pipeline 编辑器</strong> - 引导用户通过直观的、可视化的过程来创建Pipeline，从而使Pipeline的创建变得平易近人。</li>
+<li><strong>个性化</strong> 以适应团队中每个成员不同角色的需求。</li>
+<li>在需要干预和/或出现问题时 <strong>精确定位</strong> 。Blue Ocean 展示 Pipeline中需要关注的地方，简化异常处理，提高生产力。</li>
+<li><strong>本地集成分支和合并请求</strong>, 在与GitHub 和 Bitbucket中的其他人协作编码时实现最大程度的开发人员生产力。</li>
+</ul>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://jenkins.io/zh/doc/book/blueocean/getting-started/">https://jenkins.io/zh/doc/book/blueocean/getting-started/</a></p>
+<blockquote>
+<p>BlueOcean也是需要很多很多的依赖，后来我们就自己开发了devops平台。</p>
+</blockquote>
+<p>🍀 老师课件内容</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414171025303.png" alt="image-20220414171025303"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414171032182.png" alt="image-20220414171032182"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414171042326.png" alt="image-20220414171042326"></p>
+<p>🍀 自己测试过程</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/OnlyOnexl/cidevops-java-service">https://github.com/OnlyOnexl/cidevops-java-service</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/cidevopsci/cidevops-java-service/blob/master/Jenkinsfile">https://github.com/cidevopsci/cidevops-java-service/blob/master/Jenkinsfile</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220417155711656.png" alt="image-20220417155711656"></p>
+<p>安装<code>BlueOcean</code>插件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415203335658.png" alt="image-20220415203335658"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415203354642.png" alt="image-20220415203354642"></p>
+<p>下载外重启jenkins。</p>
+<p>进入BlueOcean：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415203734029.png" alt="image-20220415203734029"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415211148661.png" alt="image-20220415211148661"></p>
+<p>运行</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415211216735.png" alt="image-20220415211216735"></p>
+<p>实战测试：(测试成功)-2022.4.16</p>
+<p>实验仓库代码：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220056877.png" alt="image-20220415220056877"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220113581.png" alt="image-20220415220113581"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220126039.png" alt="image-20220415220126039"></p>
+<p>生成token：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220344655.png" alt="image-20220415220344655"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220409128.png" alt="image-20220415220409128"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220429691.png" alt="image-20220415220429691"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220329209.png" alt="image-20220415220329209"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220604010.png" alt="image-20220415220604010"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220702362.png" alt="image-20220415220702362"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220758019.png" alt="image-20220415220758019"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415220646594.png" alt="image-20220415220646594"></p>
+<p>这里直接form一下代码仓库就好：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221022287.png"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221047560.png" alt="image-20220415221047560"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221103682.png" alt="image-20220415221103682"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221206686.png" alt="image-20220415221206686"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221310509.png" alt="image-20220415221310509"></p>
+<p>但是有时构架就会报错：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221602764.png" alt="image-20220415221602764"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415221642621.png" alt="image-20220415221642621"></p>
+<p>符合预期效果！😘</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>📍 问题：我这边用docker安装的jenkins，怎么这么卡呢。。。。一直刷新不出来，老师也是用容器起的jenkins，都没问题。。。-2022.4.14</p>
+<blockquote>
+<p>最后通过<code>docker restart jenkins</code>命令重启下jenkins容器就好了。。。。；</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220414164009396.png" alt="image-20220414164009396"></p>
+<h3 id="📍-重点学习jenkins的思想"><a href="#📍-重点学习jenkins的思想" class="headerlink" title="📍 重点学习jenkins的思想"></a>📍 重点学习<code>jenkins的思想</code></h3><p>我们去学习一个工具，不仅是学它这个技术本身，而是去了解这个技术的设计思想。比如jenkins，这个工具已经有16 17年了，已经很稳定了，但也面临着一个被替换的局面。但实际jenkins背后的这些思想和这个设计，很值得我们去学习。你只要把jenkins后面的思想掌握了之后，后面你再用任何一款ci工具，或者我们市面上见的这些devops平台，你都可以一通百通。</p>
+<p>我们通常一般可以用jenkins来完成任何你想自动化的任务。比如你想做一个自动构建打包，自动构建发布。<br>一句话，你想要做的jenkins都能去帮你实现！<br>只要能调接口实现的，jenkins都可以去包一层的！</p>
+<p>未来：<br>后面，我们把jenkins做成一个引擎，外面包了一个devops平台，然后devops平台去调jenkins，这样就不用让用户再操作jenkins了。</p>
+<p>devops：<br>我们是一个功能效能团队，提供的技术和支撑，什么时候来发，最终是交给开发，他们自己来发的。<br>现在有一种模式就是：自己开发的应用自己去维护。</p>
+<p>🍀 学习jenkins后，需要学习一些语言的！</p>
+<p>你会发现吗，用了jenkins之后，你要学习很多种语言！<br>gooary，学完这个语言后，你后面写流水钱基本就没什么问题了！<br>shell，python，go(k8s二开)</p>
+<p>🍀 注意：jenkins的最佳实践：我们建议不用它那个web ui页面了，我们直接用它的pipline，就是以代码的方式去描述我们每一条流水线。</p>
+<p>🍀 可能有些插件，你装完就是需要重启下jenkins!</p>
+<p>🍀 问题：master节点和slave节点可以在一台机器上吗？</p>
+<blockquote>
+<p>是可以的！</p>
+</blockquote>
+<p>🍀 注意：配置完成后，可以直接点击<code>Save</code>的，这样就直接调到上一级页面了！</p>
+<p>而点击应用是只保存了配置，但不会返回到上一级页面。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415130158654.png" alt="image-20220415130158654"></p>
+<h3 id="📍-生产里一般使用2套jenkins"><a href="#📍-生产里一般使用2套jenkins" class="headerlink" title="📍 生产里一般使用2套jenkins"></a>📍 生产里一般使用2套jenkins</h3><p>开发/测试：1套jenkins<br>生产环境：另一套jenkins  （预发布环境和生产环境基本是一样的）</p>
+<h3 id="📍-snoar-代码扫描工具"><a href="#📍-snoar-代码扫描工具" class="headerlink" title="📍 snoar:代码扫描工具"></a>📍 <code>snoar</code>:代码扫描工具</h3><p>sonar 代码质量检查：硬编码检查，安全检查，单元测试是否通过，代码质量</p>
+<p>snoar：</p>
+<ul>
+<li><p>旧项目：还是算了哈哈。(一扫就扫除很多bug哈哈) 需要有一个宽容的规范，例如对于旧的项目，我们只需要考虑新增代码的质量，然后你再慢慢去改这个旧代码。</p>
+</li>
+<li><p>新项目：用sonar去扫描，很容易改；一开始，就开发按照这个语言规范去写，基本上就没有什么问题；</p>
+</li>
+</ul>
+<h3 id="📍-问：yarn优化问题"><a href="#📍-问：yarn优化问题" class="headerlink" title="📍 问：yarn优化问题"></a>📍 问：yarn优化问题</h3><blockquote>
+<p>答：yarn相较于npm，它的速度更快一些！-2022.4.10</p>
+<p>优化就是：你把这个源放到内网；另外，就看你的机器性能要好一些；</p>
+</blockquote>
+<h3 id="📍-注意：新版本bug"><a href="#📍-注意：新版本bug" class="headerlink" title="📍 注意：新版本bug"></a>📍 注意：新版本bug</h3><p>但不影响使用！-2022.4.15</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415132348501.png" alt="image-20220415132348501"></p>
+<h3 id="📍-问题：静态节点-动态节点"><a href="#📍-问题：静态节点-动态节点" class="headerlink" title="📍 问题：静态节点/动态节点"></a>📍 问题：静态节点/动态节点</h3><ul>
+<li>问题现象</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220415195452441.png" alt="image-20220415195452441"></p>
+<blockquote>
+<p>回答：</p>
+<p>slave，我们有2种情况。我们再jenkins里面添加节点的时候，它有一个概念叫做固定节点(静态节点)，也有一个叫动态节点。</p>
+<p>动态节点：可能你按照作业的数量，假如说来了10个作业，那我可能就会临时拉取10个agent来进行构建。那拉取的这个过程，肯定会耗时间的。因为它也是调k8s的api，去给你创建一个pod。</p>
+<p>还有一种方法叫做静态pod：静态pod不会随时给你销毁掉，它是一直运行在k8s集群里面的，它一直在连着jenkins的master，来了认为它就去执行。因为部署在了k8s里面，它也具有这个水平扩展能力，动态的弹性也是有的。</p>
+<p>所以你要是觉得动态那种方式慢的话，那建议及就改成静态这种方式。</p>
+<p>静态的就是有些浪费资源，所以这个要平衡一下。</p>
+<p>如果现在用的是jenkins那个插件的话，要考虑到构建时间、资源情况，那就得自己去搞一个这样的平台了，把这个逻辑去实现一下，因为jenkins那个插件还是有点慢的。</p>
+</blockquote>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：我希望每一个人拿着我的博客都可以做出实验现象，先把实验做出来，然后再结合理论知识更深层次去理解技术点，这样学习起来才有乐趣和动力。并且，我的博客内容步骤是很完整的，也分享源码和实验用到的软件，希望能和大家一起共同进步！</p>
+<p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题：</p>
+<ol>
+<li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+</li>
+<li><p>个人微信公众号：云原生架构师实战</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+</li>
+<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144213.png" alt="image-20211002092057988"></p>
+</li>
+<li><p>个人csdn</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+</li>
+<li><p>个人已开源干货😘</p>
+<p>资料链接：<a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">《不服来怼：宇宙中最好用的云笔记！&amp; 其他开源干货》</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">https://www.yuque.com/go/doc/73723298?#</a></p>
+<img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220417084709077.png" alt="image-20220417084709077" style="zoom: 67%;" /></li>
+</ol>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>好了，关于Jenkins简介与应用到精通就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416091448084.png" alt="image-20220416091448084"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyonexl.cn/2022/04/17/146%20Jenkins%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%BA%94%E7%94%A8/">https://www.onlyonexl.cn/2022/04/17/146%20Jenkins%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%BA%94%E7%94%A8/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Jenkins/">
+                                    <span class="chip bg-color">Jenkins</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/04/17/145%20%E5%AE%9E%E6%88%98%EF%BC%9A3%E7%A7%8D%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85Jenkins-2022.4.17%EF%BC%88%E5%8D%9A%E5%AE%A2%E5%88%86%E4%BA%AB%EF%BC%89/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="实战：3种方式安装Jenkins-2022.4.17（博客分享）">
+                        
+                        <span class="card-title">实战：3种方式安装Jenkins-2022.4.17（博客分享）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-04-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/jenkins/" class="post-category">
+                                    jenkins
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/jenkins/">
+                        <span class="chip bg-color">jenkins</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/04/16/144%20Devops%E7%90%86%E8%AE%BA%E4%B8%8E%E5%9F%BA%E7%A1%80-2022.4.15(%E5%8D%9A%E5%AE%A2%E5%8F%91%E5%B8%83)/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Devops理论与基础">
+                        
+                        <span class="card-title">Devops理论与基础</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-04-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/devops/" class="post-category">
+                                    devops
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/devops/">
+                        <span class="chip bg-color">devops</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
