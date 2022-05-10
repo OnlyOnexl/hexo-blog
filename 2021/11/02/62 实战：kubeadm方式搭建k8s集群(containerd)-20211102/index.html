@@ -597,7 +597,7 @@
 
 <h2 id="2、安装-Containerd-all节点均要配置"><a href="#2、安装-Containerd-all节点均要配置" class="headerlink" title="2、安装 Containerd(all节点均要配置)"></a>2、安装 Containerd<font color=red>(all节点均要配置)</font></h2><h3 id="2-1安装containerd"><a href="#2-1安装containerd" class="headerlink" title="2.1安装containerd"></a>2.1安装containerd</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /root/</span><br><span class="line">yum install libseccomp -y</span><br><span class="line"></span><br><span class="line">wget https://download.fastgit.org/containerd/containerd/releases/download/v1.5.5/cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br><span class="line">tar -C / -xzf cri-containerd-cni-1.5.5-linux-amd64.tar.gz</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;export PATH=<span class="variable">$PATH</span>:/usr/local/bin:/usr/local/sbin&quot;</span> &gt;&gt; ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"></span><br><span class="line">mkdir -p /etc/containerd</span><br><span class="line">containerd config default &gt; /etc/containerd/config.toml</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> containerd --now</span><br><span class="line">ctr version</span><br></pre></td></tr></table></figure>
 
-<p>说明：centos7上具体如何安装containerd，请看文章:[实战：centos7上containerd的安装-20211023](<a href="https://www.onlyonexl.cn/2021/10/24/55">https://www.onlyonexl.cn/2021/10/24/55</a> 实战：centos7上containerd的安装-20211023/),本次只提供具体shell命令。</p>
+<p>说明：centos7上具体如何安装containerd，请看文章:[实战：centos7上containerd的安装-20211023](<a target="_blank" rel="noopener" href="https://www.onlyonexl.cn/2021/10/24/55">https://www.onlyonexl.cn/2021/10/24/55</a> 实战：centos7上containerd的安装-20211023/),本次只提供具体shell命令。</p>
 <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211030225954589.png" alt="image-20211030225954589"></p>
 <h3 id="2-2将-containerd-的-cgroup-driver-配置为-systemd"><a href="#2-2将-containerd-的-cgroup-driver-配置为-systemd" class="headerlink" title="2.2将 containerd 的 cgroup driver 配置为 systemd"></a>2.2将 containerd 的 cgroup driver 配置为 systemd</h3><p>对于使用 systemd 作为 init system 的 Linux 的发行版，使用 <code>systemd</code> 作为容器的 <code>cgroup driver</code> 可以确保节点在资源紧张的情况更加稳定，所以推荐将 containerd 的 cgroup driver 配置为 systemd。</p>
 <p>修改前面生成的配置文件 <code>/etc/containerd/config.toml</code>，在 <code>plugins.&quot;io.containerd.grpc.v1.cri&quot;.containerd.runtimes.runc.options</code> 配置块下面将 <code>SystemdCgroup</code> 设置为 <code>true</code>：</p>
@@ -890,7 +890,7 @@
 <li><p>个人微信二维码：x2675263825 （舍得）， qq：2675263825。</p>
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002091450217.png" alt="image-20211002091450217"></p>
 </li>
-<li><p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<li><p>个人博客地址：<a target="_blank" rel="noopener" href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
 <p> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211002092057988.png" alt="image-20211002092057988"></p>
 </li>
 <li><p>个人微信公众号：云原生架构师实战</p>
@@ -929,7 +929,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/11/02/62%20%E5%AE%9E%E6%88%98%EF%BC%9Akubeadm%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4(containerd)-20211102/">https://www.onlyonexl.cn/2021/11/02/62%20%E5%AE%9E%E6%88%98%EF%BC%9Akubeadm%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4(containerd)-20211102/</a>
+                    <a href="https://www.onlyyou520.com/2021/11/02/62%20%E5%AE%9E%E6%88%98%EF%BC%9Akubeadm%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4(containerd)-20211102/">https://www.onlyyou520.com/2021/11/02/62%20%E5%AE%9E%E6%88%98%EF%BC%9Akubeadm%E6%96%B9%E5%BC%8F%E6%90%AD%E5%BB%BAk8s%E9%9B%86%E7%BE%A4(containerd)-20211102/</a>
                 </span>
             </div>
             <div class="reprint__notice">

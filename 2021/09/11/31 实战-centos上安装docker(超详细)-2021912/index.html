@@ -483,7 +483,7 @@
 <p>各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人免费帮您解决问题，微信：x2675263825  qq:2675263825。</p>
 <p>个人微信二维码：（舍得）</p>
 <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210913130033222.png" alt="image-20210913130033222"></p>
-<p>个人博客地址：<a href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
+<p>个人博客地址：<a target="_blank" rel="noopener" href="http://www.onlyonexl.cn/">www.onlyonexl.cn</a></p>
 <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1.虚机版本：1台Centos.7.6 1810 vmworkstation虚机;</span><br><span class="line">2.虚机IP：172.29.9.2 nat网络(保证可通外网)  主机名：docker；</span><br><span class="line">3.docker版本：20.10.8</span><br></pre></td></tr></table></figure>
 
 <h2 id="一、基础环境配置"><a href="#一、基础环境配置" class="headerlink" title="一、基础环境配置"></a>一、基础环境配置</h2><h3 id="1、关闭且禁用firewalld、NetworkManager、selinux服务"><a href="#1、关闭且禁用firewalld、NetworkManager、selinux服务" class="headerlink" title="1、关闭且禁用firewalld、NetworkManager、selinux服务"></a>1、关闭且禁用firewalld、NetworkManager、selinux服务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl <span class="built_in">disable</span>  firewalld</span><br><span class="line"></span><br><span class="line">systemctl stop NetworkManager</span><br><span class="line">systemctl <span class="built_in">disable</span>  NetworkManager</span><br><span class="line"></span><br><span class="line">setenforce 0</span><br><span class="line">sed -i s/SELINUX=enforcing/SELINUX=disabled/ /etc/selinux/config</span><br></pre></td></tr></table></figure>
@@ -720,7 +720,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/09/11/31%20%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker(%E8%B6%85%E8%AF%A6%E7%BB%86)-2021912/">https://www.onlyonexl.cn/2021/09/11/31%20%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker(%E8%B6%85%E8%AF%A6%E7%BB%86)-2021912/</a>
+                    <a href="https://www.onlyyou520.com/2021/09/11/31%20%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker(%E8%B6%85%E8%AF%A6%E7%BB%86)-2021912/">https://www.onlyyou520.com/2021/09/11/31%20%E5%AE%9E%E6%88%98-centos%E4%B8%8A%E5%AE%89%E8%A3%85docker(%E8%B6%85%E8%AF%A6%E7%BB%86)-2021912/</a>
                 </span>
             </div>
             <div class="reprint__notice">

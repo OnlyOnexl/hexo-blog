@@ -483,7 +483,7 @@
 <p>提取码：c4ue</p>
 <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210527110446681.png" alt="image-20210527110446681"></p>
 <h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><p>​    注意：本次实验环境是基于我的上一篇博客基础上修改的，具体如何配置pxe环境，请翻阅</p>
-<p><a href="https://www.onlyonexl.cn/2021/05/25/2-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Ebios%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210525-md/">实战-pxe部署(从bios启动)-(过程超详细-已成功测试)-20210525</a>文章。</p>
+<p><a target="_blank" rel="noopener" href="https://www.onlyonexl.cn/2021/05/25/2-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Ebios%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210525-md/">实战-pxe部署(从bios启动)-(过程超详细-已成功测试)-20210525</a>文章。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">1台win10 pc;</span><br><span class="line">1台pxe server为centos7.7虚机 ,要安装的目标机器系统也是centos7.7；</span><br><span class="line">虚机添加2块网卡：</span><br><span class="line">	nat网卡：172.29.9.11</span><br><span class="line">	仅主机网卡： pxe所使用的ip为192.168.1.30(同时作为dhcp server的ip)</span><br><span class="line"></span><br><span class="line">本次pxe脚本包含功能：</span><br><span class="line">	最小化安装系统；</span><br><span class="line">	规划好系统分区；</span><br><span class="line">	包含数据盘划分脚本；(本次实验不涉及，但提供脚本文件)</span><br><span class="line">	包含升级ssh脚本；</span><br><span class="line">	包含基于服务器sn号来配置主机名和网卡(一般工作汇中会做bond mode=1主备多一些)；(本次实验不涉及，但提供脚本文件)</span><br><span class="line">	</span><br><span class="line">注意：</span><br><span class="line">	本次pxe环境是直接使用工作中常用的部署方式进行测试的，因此，在学习本节内容后，你将能够独立完成对批量物理机的系统安装工作。</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210526103614315.png" alt="image-20210526103614315"></p>
@@ -577,7 +577,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyonexl.cn/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/">https://www.onlyonexl.cn/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/</a>
+                    <a href="https://www.onlyyou520.com/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/">https://www.onlyyou520.com/2021/05/27/4-%E5%AE%9E%E6%88%98-pxe%E9%83%A8%E7%BD%B2-%E4%BB%8Euefi%E5%90%AF%E5%8A%A8-%E8%BF%87%E7%A8%8B%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E6%88%90%E5%8A%9F%E6%B5%8B%E8%AF%95-20210527/</a>
                 </span>
             </div>
             <div class="reprint__notice">
