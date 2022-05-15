@@ -1,0 +1,1747 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="实战：打造最强王者云笔记及个人知识管理库-&#34;Obsidian+Typora+坚果云&#34;-2022.5.15（超详细-已开源-纯干货-持续更新）, love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>实战：打造最强王者云笔记及个人知识管理库-&#34;Obsidian+Typora+坚果云&#34;-2022.5.15（超详细-已开源-纯干货-持续更新） | love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">实战：打造最强王者云笔记及个人知识管理库-&#34;Obsidian+Typora+坚果云&#34;-2022.5.15（超详细-已开源-纯干货-持续更新）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Typora/">
+                                <span class="chip bg-color">Typora</span>
+                            </a>
+                        
+                            <a href="/tags/Obsidian/">
+                                <span class="chip bg-color">Obsidian</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E4%BA%91%E7%AC%94%E8%AE%B0/" class="post-category">
+                                云笔记
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-05-14
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>#Obsidian #Typora</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514165022049.png" alt="image-20220514165022049"></p>
+<h2 id="文档版本"><a href="#文档版本" class="headerlink" title="文档版本"></a>文档版本</h2><blockquote>
+<p>注意：以后有新版本的Typora和Obsidian主题文件也是会更细在本文档里的！</p>
+</blockquote>
+<ul>
+<li><p>2022年5月14日 创建文档</p>
+<p>Typora主题最新版本：<code>lovexyy-2022.4.26.css</code></p>
+<p>Obsidian主题最新版本：<code>Blue Topaz-2022.5.14.css</code>：更改字体为<code>霞鹜文楷体</code></p>
+</li>
+</ul>
+<h2 id="最终效果"><a href="#最终效果" class="headerlink" title="最终效果"></a>最终效果</h2><p>👉🏼 有的人可能很纠结，typora编辑md文件很舒服，但Obsidain编辑md文件也是很强大，那么要选择哪一款软件作为自己的主力笔记呢？哈哈，成年人不做选择，我都要！🤣</p>
+<p>🍀 Obsidian皮肤最新效果：<code>2022年5月14日</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514165022049.png" alt="image-20220514165022049"></p>
+<p>🍀 Typora皮肤最新效果：<code>2022年5月14日</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514165249071.png" alt="image-20220514165249071"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514165232344.png" alt="image-20220514165232344"></p>
+<p>🍀 坚果云效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220306084248114.png" alt="image-20220306084248114"></p>
+<h2 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">win10笔记本</span><br><span class="line">Typora</span><br><span class="line">Obsidian</span><br><span class="line">Picgo</span><br><span class="line">阿里云oss</span><br></pre></td></tr></table></figure>
+<h2 id="实验软件"><a href="#实验软件" class="headerlink" title="实验软件"></a>实验软件</h2><p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/10OZDGAJ-0x41vlMEj2mr9w?pwd=a9io">https://pan.baidu.com/s/10OZDGAJ-0x41vlMEj2mr9w?pwd=a9io</a><br>提取码：a9io </p>
+<p><code>2022.5.14-实战：打造个人最强王者云笔记-Obsidian+Typora+坚果云-(已开源-纯干货-持续更新)-涉及软件</code></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514164643076.png" alt="image-20220514164643076"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="1-一个优秀的云笔记该具有什么样的功能"><a href="#1-一个优秀的云笔记该具有什么样的功能" class="headerlink" title="1.一个优秀的云笔记该具有什么样的功能"></a>1.一个优秀的云笔记该具有什么样的功能</h3><ol>
+<li><p>颜值即正义哈哈</p>
+<p>必须具备良好的编辑体验和阅读体验。</p>
+</li>
+<li><p>功能简洁，不需要太多功能</p>
+<p>我用云笔记的目的就是为了写文章，所以用的云笔记软件都是专注于写文章的，而且还是个人使用，所以像协同工作、个人工作进度管理等这类的功能我都不需要。</p>
+<p>如果你想要有协同工作和个人工作管理这类功能云笔记软件，推荐可以用 notion 或者 wolai，他们功能非常多，要能用起来，得去找个视频学一下。</p>
+</li>
+<li><p>支持 markdown 语法；遵循<code>所见即所得</code>的原则，不要用双屏来显示效果；md文件必须要有文章目录；</p>
+<p>其实<code>分栏显示</code>这种方式会让你在写作的时候很容易分心，你写一下文章，还得停顿一下看显示效果，我认为一款好的云笔记软件是能让使用者能全身心的关注写作，不要有额外的页面和功能来打扰使用者。</p>
+</li>
+<li><p>解耦合</p>
+<p>笔记里的文章不应该和笔记应用捆绑在一起，必须全部采用md格式的笔记进行维护，方便发布博客到各个平台，及方便迁移文章到其他云笔记！</p>
+</li>
+<li><p>支持图床，且图片地址可以被其他网站引用和显示；(软件自身的图床都会有防盗链机制……)</p>
+<p>之所以我对图床功能有需求，是为了能方便将 markdown 文章一键复制到各个博客平台发布，比如CSDN、掘金、博客园、知乎等，这样就不需要将文章的图片上传到各个博客平台，所有博客平台的文章图片都用同一个图床显示，能减轻很多工作量。</p>
+</li>
+<li><p>支持多级目录</p>
+<p>(起码和markdown看齐，6级目录)</p>
+</li>
+<li><p>同步速度快</p>
+</li>
+<li><p>数据安全且文档有历史版本及有回收站功能</p>
+</li>
+<li><p>双向链接</p>
+</li>
+<li><p>块功能</p>
+</li>
+<li><p>……</p>
+</li>
+</ol>
+<h3 id="2-IT工程师选择一个优秀云笔记的重要性"><a href="#2-IT工程师选择一个优秀云笔记的重要性" class="headerlink" title="2.IT工程师选择一个优秀云笔记的重要性"></a>2.IT工程师选择一个优秀云笔记的重要性</h3><ol>
+<li>注意：无论哪种云笔记，总有不完美的地方，但相比之下，要选择一个适合自己需求的笔记，但笔记终归只是一个工具，知识才是核心。</li>
+<li>关于IT知识点，我们的大脑是用来理解新知识点的，原来旧知识点肯定是会随着时间的推移而遗忘掉的，因此，此时，需要用一个云笔记来完美地记录it知识点；</li>
+<li>没有十全十美的云笔记，适合自己的才是最好的！</li>
+<li>千万不要一直来回切换云笔记，这样是非常耗费时间的；</li>
+<li>自己的数据必须要有规律地维护起来，否则会造成数据泛滥；</li>
+</ol>
+<h2 id="个人笔记维护原则"><a href="#个人笔记维护原则" class="headerlink" title="个人笔记维护原则"></a>个人笔记维护原则</h2><p>👉🏼 注意：一个人数据是非常珍贵的，因此all数据均推荐上云！</p>
+<p>🍂 首先要明确你的云笔记需求是什么</p>
+<p> me是做it的，因此维护一份良好的笔记文档至关重要！</p>
+<p>个人IT笔记知识点维护原则：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">一个知识点由一个目录构成，目录下由各个md文件组成！</span><br><span class="line">1.简单知识点：</span><br><span class="line">   一个目录下存放一个md文件即可；</span><br><span class="line">2.复杂知识点：</span><br><span class="line">   一个目录下存放多个目录，然后每个目录下存放多个md文件；</span><br><span class="line">   </span><br><span class="line">1.我不需要在一篇文章里引用其他文件的内容，如果有这个需求，我会直接截图显示的吗，这样做的目的是维持每个md文件都不产生依赖，方便迁移数据，维护数据！ </span><br><span class="line">2.后期重点维护好自己的坚果云里的每份md数据即可，持续优化内容！</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍂 个人笔记维护原则：</p>
+<ul>
+<li><p>Obsidian：</p>
+<p>今后主力编辑md文档，编辑/阅读体验极好的md软件(需要先打开一个项目库才行)；</p>
+<p>个人知识库管理工具；</p>
+</li>
+<li><p>Typora：</p>
+<p>今后辅助编辑md文档，编辑/阅读体验极好的md软件(可轻松打开单个md文件)；</p>
+</li>
+<li><p>坚果云：提供本地文件云同步功能(自己的所有数据均要进行云备份)</p>
+</li>
+<li><p>阿里云oss：提供图床功能</p>
+</li>
+<li><p>百度云盘：`一个超级大容量的移动云U盘，存放自己的视频、软件等大文件；</p>
+</li>
+<li><p>picgo：上传图片到常见图床</p>
+</li>
+<li><p>语雀：用于汇总分享传播文章</p>
+</li>
+<li><p>为知笔记：收藏微信号优秀文章</p>
+</li>
+</ul>
+<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><h3 id="0-掌握markdown语法"><a href="#0-掌握markdown语法" class="headerlink" title="0.掌握markdown语法"></a>0.掌握markdown语法</h3><p>相信我，学习markdown语法后，你会喜欢上写作的，因为它的语法是特别容易记忆的！</p>
+<p>具体学习教程，请看我的另一篇文章或者百度：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554/article/details/124773300?spm=1001.2014.3001.5502">https://blog.csdn.net/weixin_39246554/article/details/124773300?spm=1001.2014.3001.5502</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514202453767.png" alt="image-20220514202453767"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514201007850.png" alt="image-20220514201007850"></p>
+<h3 id="1-安装好看的中文字体霞鹜文楷"><a href="#1-安装好看的中文字体霞鹜文楷" class="headerlink" title="1.安装好看的中文字体霞鹜文楷"></a>1.安装好看的中文字体<code>霞鹜文楷</code></h3><p>👉🏼 如下这2款是非常好看的中文字体，非常推荐大家使用！(本次我们使用<code>霞鹜文楷</code>字体)</p>
+<p>中文字体：<code>华康手札体W5P字体</code>效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211201153738155.png" alt="image-20211201153738155"></p>
+<p>中文字体：<code>&quot;霞鹜文楷&quot;</code>效果</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514081611550.png" alt="image-20220514081611550"></p>
+<p>1️⃣ 在我的百度云链接下载所需中文字体</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514150055808.png" alt="image-20220514150055808"></p>
+<p>2️⃣ 安装下载好的字体</p>
+<p>方式1：直接全选右键安装即可</p>
+<p>方式2：或者将压缩包解压后，直接把<code>华康手札体w5.ttf</code>文件复制到windows下的<code>C:\WINDOWS\Fonts</code>目录下即可。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404065421073.png" alt="image-20210404065421073"></p>
+<h3 id="2-购买阿里云oss作为markdown图床"><a href="#2-购买阿里云oss作为markdown图床" class="headerlink" title="2.购买阿里云oss作为markdown图床"></a>2.购买阿里云oss作为markdown图床</h3><p>1️⃣ 购买阿里云OSS</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210114074421.png" alt="image-20210114074421747"></p>
+<ul>
+<li>进入阿里云官网，注册登录后，点击对象存储OSS：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://www.aliyun.com/">https://www.aliyun.com/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113201155510.png" alt="image-20210113201155510"></p>
+<p>选择立即开通：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113201846771.png" alt="image-20210113201846771"></p>
+<p>同意，选择立即开通：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113203937857.png" alt="image-20210113203937857"></p>
+<ul>
+<li>关于本次阿里云oss费用问题：</li>
+</ul>
+<p>购买的时候可以选择按月付费一月一元的,也可以年费9元的,40GB作为博客图床基本就够用了；<br>我选择的是两年18元的，还是比较划算的；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113204120223.png" alt="image-20210113204120223"></p>
+<p>通过支付宝支付费用后，阿里云OSS就已经算是成功开通了。</p>
+<p>2️⃣ 创建子用户</p>
+<ul>
+<li>接下来，就开始创建子用户了。</li>
+</ul>
+<p>主用户权限过高，只是作为图床就没有必要这么高的权限，我们通过创建子用户的方式来管理图床，点击头像——&gt;访问控制：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113204515736.png" alt="image-20210113204515736"></p>
+<p>选择用户–&gt;新建用户:<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113204533792.png" alt="image-20210113204533792"></p>
+<p><strong>记得勾选编程访问,这样才会生成秘钥</strong>,密码登录勾不勾选都可以,我之前是没勾选~然后确定：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113232243.png" alt="image-20210113232242917"></p>
+<p>新建用户成功后弹出:<br>用户创建完成后，会生成Access ID和Access secret，可以点击复制保存起来，后面做参数使用：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113204842596.png" alt="image-20210113204842596"><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113204930016.png" alt="image-20210113204930016"></p>
+<ul>
+<li>创建之后，对子用户添加权限：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205258437.png" alt="image-20210113205258437"></p>
+<p>只添加AliyunOSSFullAccess的权限即可：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205315376.png" alt="image-20210113205315376"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205337015.png" alt="image-20210113205337015"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205413506.png" alt="image-20210113205413506"><br>至此，子用户已经创建完成了。</p>
+<p>3️⃣ 创建Bucket</p>
+<ul>
+<li>接下来，就开始创建Bucket了：</li>
+</ul>
+<p>开通成功后，貌似会自动跳转到对象存储页面，没有自动跳转就手动进入，如下所示，进入后点击 创建 Bucket：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205701009.png" alt="image-20210113205701009"></p>
+<p><strong>Bucket名称请记住，读写权限选择公共读</strong>（其他都默认）：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205859290.png" alt="image-20210113205859290"></p>
+<p>创建成功后，在左边会显示你的Bucket名称：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113205954106.png" alt="image-20210113205954106"></p>
+<p>点击你的Bucket名称,将EndPoint(地域节点)下的 oss-cn-shanghai 复制下来(创个txt文件记录吧)：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113210050506.png" alt="image-20210113210050506"></p>
+<ul>
+<li>创建云端图片存放的目录,点击文件管理,新建目录,取一个存放路径名:</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113210141896.png" alt="image-20210113210141896"></p>
+<p>创建成功后,在下面会显示如下目录:<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113210216114.png" alt="image-20210113210216114"></p>
+<p>现在已经拥有了<strong>Bucket名称( xxx )、 oss-cn-shanghai 、图片存放目录( img/ )</strong>,以及<strong>前面生成的子用户key id及秘钥</strong>最好将这5个<br>参数放到一个txt文件中,方便后面PicGo需要用到：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113210537591.png" alt="image-20210113210537591"></p>
+<p>以上，我们的阿里云oss图床就配置成功了，接下来就是如何使用picgo上传图片到图床了。</p>
+<h3 id="3-安装并配置picgo软件"><a href="#3-安装并配置picgo软件" class="headerlink" title="3.安装并配置picgo软件"></a>3.安装并配置picgo软件</h3><h4 id="1-下载并配置PicGo"><a href="#1-下载并配置PicGo" class="headerlink" title="1.下载并配置PicGo"></a>1.下载并配置PicGo</h4><ul>
+<li>软件介绍</li>
+</ul>
+<p>PicGo: 一个用于快速上传图片并获取图片 URL 链接的工具。使用markdown一直有一个痛点，那就是图片的问题，不想word那样可以直接保存图片，markdown不行，如果插入图片，图片在本地会单独存放，以链接的形式插入在markdown中，如果本地图片丢失或者位置变了，那就不显示了。所以这里就需要一个图床，也就是把图片传上去，弄个链接，然后插入markdown中，那么图床不少，怎么传呢？使用PicGo这个工具，只要复制下图片，然后按个快捷键就可以直接将图片上传到你事先设定好的图床上，然后返回给你个链接，可以直接用。</p>
+<ul>
+<li>官网链接如下：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://picgo.github.io/PicGo-Doc/zh/guide/">https://picgo.github.io/PicGo-Doc/zh/guide/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113221308404.png" alt="image-20210113221308404"></p>
+<ul>
+<li>安装方式：</li>
+</ul>
+<p>因次软件的下载速度贼慢，小伙伴可直接从如下百度云链接里提取：<br>目前次版本为最新版，版本号为<code>PicGo 2.3.0 beta4</code>:<code>PicGo-Setup-2.3.0-beta.4.exe</code></p>
+<p>下载完成后，一直下一步安装即可（要记住软件的安装目录，后续Typora软件配置需要用到次路径）。</p>
+<p>安装软件完成后，可能在桌面上不会生成快捷方式，可从安装目录把次快捷方式发送到桌面。<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113222015815.png" alt="image-20210113222015815"></p>
+<p>双击PicGo图标，开始配置：</p>
+<ul>
+<li>配置PicGo<br>点击<code>图床设置</code>，找到<code>阿里云OSS</code>:</li>
+</ul>
+<p>把前面保存在文档里的信息填写到对应位置即可：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113210537591.png" alt="image-20210113210537591"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113222213642.png" alt="image-20210113222213642"></p>
+<p>下面的设置没什么需要改动的，自己认为有需要的就开启来，不影响软件使用：（以下是我自己的配置，可以作为参考）<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210113222525190.png" alt="image-20210113222525190"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113222610.png" alt="image-20210113222610761"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113222639.png" alt="image-20210113222639842"></p>
+<h4 id="2-测试PicGo"><a href="#2-测试PicGo" class="headerlink" title="2.测试PicGo"></a>2.测试PicGo</h4><p>PicGo配置完成后，开始测试：</p>
+<p><strong>测试是否可以正常上传文件到OSS</strong>：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113222855.png" alt="image-20210113222854916"></p>
+<p>已经上传成功：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113222913.png" alt="image-20210113222913783"><br>以上PicGo配置成功。</p>
+<h3 id="4-科学上网"><a href="#4-科学上网" class="headerlink" title="4.科学上网"></a>4.科学上网</h3><p>哈哈，作为一个it人，能够科学上网是一个必备的技能哦。🤣</p>
+<h2 id="1、下载并安装坚果云"><a href="#1、下载并安装坚果云" class="headerlink" title="1、下载并安装坚果云"></a>1、下载并安装<code>坚果云</code></h2><p>👉🏼 写在前面：坚果云是一款非常优秀的文件级别同步软件，使用起来非常丝滑，值得每个人拥有！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514203823754.png" alt="image-20220514203823754"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514203842662.png" alt="image-20220514203842662"></p>
+<ul>
+<li><p>功能：提供本地文件云同步功能。</p>
+</li>
+<li><p>官网：<a target="_blank" rel="noopener" href="https://www.jianguoyun.com/">https://www.jianguoyun.com/</a></p>
+</li>
+<li><p>优点：</p>
+</li>
+</ul>
+<p>同步文件的速度特别快，很丝滑；<br>文档又有历史版本功能；<br>年vip199元，空间40g，每年多购买一次vip，就会多增加12g；<br>总之很良心，用起来很舒服……<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211203155726062.png" alt="image-20211203155726062"></p>
+<ul>
+<li>安装方式：</li>
+</ul>
+<p>下载链接：<a target="_blank" rel="noopener" href="https://www.jianguoyun.com/s/downloads">https://www.jianguoyun.com/s/downloads</a><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220514132015.png"><br>下载好软件后，一直点击下一步安装即可。<br>安装完成后，桌面就会出现如下一个图标：<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220514132258.png"></p>
+<ul>
+<li>如何使用</li>
+</ul>
+<p>将自己的all数据笔记全部放在一个坚果云同步目录即可</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514202517429.png" alt="image-20220514202517429"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514202559008.png" alt="image-20220514202559008"></p>
+<h2 id="2、下载并安装Typora"><a href="#2、下载并安装Typora" class="headerlink" title="2、下载并安装Typora"></a>2、下载并安装<code>Typora</code></h2><p>👉🏼 写在前面：</p>
+<p>Typora真的是一款良心软件，之前测试版是免费的，个人百度云盘也提供了测试版软件包，但本人强烈建议读者能够购买一个license，支持作者，89元终生价真的很便宜了！😘</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220514133719.png"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514203343554.png" alt="image-20220514203343554"></p>
+<ul>
+<li>软件介绍：</li>
+</ul>
+<p> Typora 是一款支持实时预览的 Markdown 文本编辑器。</p>
+<ul>
+<li>官网：</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://typoraio.cn/#">https://typoraio.cn/#</a><br><a target="_blank" rel="noopener" href="https://store.lizhi.io/p/typora?cid=xztt6ynq#features">https://store.lizhi.io/p/typora?cid=xztt6ynq#features</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220514133151.png"></p>
+<h3 id="1-下载并安装typora软件"><a href="#1-下载并安装typora软件" class="headerlink" title="1.下载并安装typora软件"></a>1.下载并安装typora软件</h3><ul>
+<li>安装方式：</li>
+</ul>
+<p>下载好软件后，一直点击下一步安装即可。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220514133321.png"></p>
+<p>安装完成后，桌面就会出现如下一个图标：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220514133300.png"></p>
+<h3 id="2-配置并测试Typora"><a href="#2-配置并测试Typora" class="headerlink" title="2.配置并测试Typora"></a>2.配置并测试Typora</h3><ul>
+<li>双击软件打开后，点击<code>文件-偏好设置-图像</code>，按如下标识进行配置即可：</li>
+</ul>
+<p>因为前面，我们已经搭建好了阿里云oss作为我们的图床，且在picgo里已经配置好了阿里云oss图床的信息，并测试可正常上传成功图片。因此，现在在typora里配置一下PicGo软件的路径及相关配置即可：</p>
+<p>默认，typora的图片会存放到本地硬盘的某个路径下的，因此这里需要修改配置。使其默认粘贴到typora的图片就会被上传到自己的阿里云oss：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113224309.png" alt="image-20210113224309663"></p>
+<p>配置好后点击<code>验证图片上传选项</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210113224546.png" alt="image-20210113224546654"></p>
+<p>看到<code>成功上传图片并获得新的URL</code>字样，就代表验证测试通过了，后面可以开心的用Tyora来写文章了！</p>
+<p>👉🏼 扩展</p>
+<ul>
+<li>进一步验证测试，用Typora新建一个md文件，随便粘贴一张图片，看是否会自动同步到阿里云OSS上去，观察效果：</li>
+</ul>
+<p>Typora软件里可成功上传图片：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210114074655.png" alt="image-20210114074655541"></p>
+<p>PicGo相册里也可以看到刚上传的图片：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210114074817.png" alt="image-20210114074817589"></p>
+<p>阿里云OSS后台也可以看到刚上传的文件：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20210114074841.png" alt="image-20210114074841200"></p>
+<h3 id="3-配置Typora定制主题"><a href="#3-配置Typora定制主题" class="headerlink" title="3.配置Typora定制主题"></a>3.配置Typora定制主题</h3><p>配置定制typora皮肤方法如下：</p>
+<p>1️⃣ 下载typora主题文件并放到typora主题目录</p>
+<p>首先打开typora的偏好设置，在外观中找到主题文件夹，打开这个文件夹：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210404065633823.png" alt="image-20210404065633823"></p>
+<p>然后把下载好的<code>bg_images</code>目录和<code>lovexyy-2022.4.26.css</code>文件一起放到该目录下即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514155045588.png" alt="image-20220514155045588"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514155217441.png" alt="image-20220514155217441"></p>
+<p>2️⃣ 验证typora定制主题皮肤效果</p>
+<p>重启typora软件，观察效果：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211203213509137.png" alt="image-20211203213509137"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211207104922673.png" alt="image-20211207104922673"></p>
+<h2 id="3、下载并安装Obsidian"><a href="#3、下载并安装Obsidian" class="headerlink" title="3、下载并安装Obsidian"></a>3、下载并安装<code>Obsidian</code></h2><p>👉🏼 写在前面：Obsidian是一款强大的免费本地markdown软件！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514203629251.png" alt="image-20220514203629251"></p>
+<ul>
+<li>软件介绍：一款强大的markdownb编辑及个人知识库软件。总之很牛就是了🤣</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514195032012.png" alt="image-20220514195032012"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416131557709.png" alt="image-20220416131557709"></p>
+<ul>
+<li>官网</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://obsidian.md/">https://obsidian.md/</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511111027647.png" alt="image-20220511111027647"></p>
+<h3 id="1-下载并安装Obsidian"><a href="#1-下载并安装Obsidian" class="headerlink" title="1.下载并安装Obsidian"></a>1.下载并安装Obsidian</h3><p>下载好软件后，一直点击下一步安装即可。</p>
+<p>安装完成后，桌面就会出现如下一个图标：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514161532487.png" alt="image-20220514161532487"></p>
+<h3 id="2-配置并测试Obsidian"><a href="#2-配置并测试Obsidian" class="headerlink" title="2.配置并测试Obsidian"></a>2.配置并测试Obsidian</h3><h4 id="📍-修改软件为中文语言"><a href="#📍-修改软件为中文语言" class="headerlink" title="📍 修改软件为中文语言"></a>📍 修改软件为中文语言</h4><p>双击打开软件后，底线下这里选择中文即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514161701732.png" alt="image-20220514161701732"></p>
+<h4 id="📍-创建新库或者打开一个已经存在的目录"><a href="#📍-创建新库或者打开一个已经存在的目录" class="headerlink" title="📍 创建新库或者打开一个已经存在的目录"></a>📍 创建新库或者打开一个已经存在的目录</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514161746380.png" alt="image-20220514161746380"></p>
+<p>🍀 创建一个新库</p>
+<p>指定新库名称及位置：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514161921005.png" alt="image-20220514161921005"></p>
+<p>点击创建：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514161941929.png" alt="image-20220514161941929"></p>
+<h4 id="📍-关闭安全模式以安装第三方插件"><a href="#📍-关闭安全模式以安装第三方插件" class="headerlink" title="📍 关闭安全模式以安装第三方插件"></a>📍 关闭安全模式以安装第三方插件</h4><p>默认情况，Obsidian是关闭了安全模式的，那么我们是无法使用第三方插件的，因此想要使用功能非常强大的第三方插件，这里就需要关闭安全模式：</p>
+<p>点击<code>设置-&gt;第三方插件-&gt;安全模式</code>：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514163750122.png" alt="image-20220514163750122"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514162517433.png" alt="image-20220514162517433"></p>
+<h4 id="📍-安装插件Image-auto-upload-Plugin，以解决-Obsidian-图片存储问题"><a href="#📍-安装插件Image-auto-upload-Plugin，以解决-Obsidian-图片存储问题" class="headerlink" title="📍 安装插件Image auto upload Plugin，以解决 Obsidian 图片存储问题"></a>📍 安装插件<code>Image auto upload Plugin</code>，以解决 Obsidian 图片存储问题</h4><p>🍀 前言</p>
+<p>配置图床的目的：解决 Obsidian 图片存储问题，一般来说 Obsidian 图片是以本地链接的方式存储在文章当中，当图片移动的时候文章中的图片就会出错。</p>
+<p>这点不如 Typora 可以在文章所在文件夹自动创建 .assets 的文件夹用以保存。</p>
+<p>不过 Obsidian 并不是图片笔记应用，更多的是文字配以双链、反链，<strong>用以搭建个人知识体系</strong>，但对于喜欢配图的人来说很不方便，那么本文来解决这个问题。</p>
+<p>🍀 问题现象：默认情况：复制到md里的图片是放在md文件同目录下的-2022.5.11</p>
+<p>这种方式其实是很不友好的：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124014009.png" alt="image-20220511124014009"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124027144.png" alt="image-20220511124027144"></p>
+<p>🍀 那么是否可以在Obsidian里配置下图床呢？(肯定是可以的哦)😘</p>
+<p>安装插件：</p>
+<p>打开 Obsidian 按箭头标识数字顺序：设置 =》 第三方插件 =》 关闭安全模式 =》 浏览<strong>社区插件</strong></p>
+<p>搜索：<strong>Image auto upload Plugin</strong></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124554002.png" alt="image-20220511124554002"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124522500.png" alt="image-20220511124522500"></p>
+<p>安装后打开<strong>选项</strong>，默认什么都不要改：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124703016.png" alt="image-20220511124703016"></p>
+<p>🍀 测试</p>
+<p>此时粘贴一个图片到Obsidian，此时会发现有几秒的时间会显示正在<code>Uploading file……</code>，后面查看链接就发现图片已经上传到oss图床了！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124901789.png" alt="image-20220511124901789"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511124932208.png" alt="image-20220511124932208"></p>
+<p>测试结束，完美。😘</p>
+<h4 id="📍-开启文章大纲功能"><a href="#📍-开启文章大纲功能" class="headerlink" title="📍 开启文章大纲功能"></a>📍 开启文章大纲功能</h4><p>🍀 默认情况：Obsidian是没有目录大纲的</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511132308313.png" alt="image-20220511132308313"></p>
+<p>🍀 开启方法</p>
+<p>如何打开ob里面的大纲功能？</p>
+<p>obsidian设置——核心插件——大纲：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511145318622.png" alt="image-20220511145318622"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511145333741.png" alt="image-20220511145333741"></p>
+<p>同时，可以把大纲拖动到左侧哈哈。</p>
+<p>🍀 效果</p>
+<p>飞起来了哈哈：😘 666</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511145056496.png" alt="image-20220511145056496"></p>
+<h4 id="📍-配置Obsidian定制主题"><a href="#📍-配置Obsidian定制主题" class="headerlink" title="📍 配置Obsidian定制主题"></a>📍 配置Obsidian定制主题</h4><ul>
+<li>配置方法</li>
+</ul>
+<p>点击<code>设置-&gt;外观-&gt;主题</code>：打开主题文件夹</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514164112867.png" alt="image-20220514164112867"></p>
+<p>将我的百度云云盘里定制好的<code>Blue Topaz.css</code>文件移动到这个目录下即可：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514164255523.png" alt="image-20220514164255523"></p>
+<ul>
+<li>观察效果</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514164228250.png" alt="image-20220514164228250"></p>
+<h2 id="次种云笔记的优缺点"><a href="#次种云笔记的优缺点" class="headerlink" title="次种云笔记的优缺点"></a>次种云笔记的优缺点</h2><h3 id="1、优点"><a href="#1、优点" class="headerlink" title="1、优点"></a>1、优点</h3><h4 id="📍-数据迁移：md文件配合坚果云可方便进行数据迁移及博客发布"><a href="#📍-数据迁移：md文件配合坚果云可方便进行数据迁移及博客发布" class="headerlink" title="📍 数据迁移：md文件配合坚果云可方便进行数据迁移及博客发布"></a>📍 数据迁移：<code>md文件配合坚果云可方便进行数据迁移及博客发布</code></h4><ul>
+<li>typora笔记可以轻松导出各种格式；</li>
+<li>且迁移数据很方便，因为笔记都是以md格式存储；</li>
+<li>且可以方便地发布到例如微信公众及各种博客平台；</li>
+<li>md软件结合各种云，转移都很方便。（这个非常关键，如果把维护数据都放在类似有道云等云笔记上去的话，迁移数据是非常麻烦的，因此采用坚果云+typora维护数据是非常完美的）有道云和印象笔记，深陷进去，转出去就非常困难了。</li>
+</ul>
+<h4 id="📍-同步速度：坚果云的同步速度杠杠的"><a href="#📍-同步速度：坚果云的同步速度杠杠的" class="headerlink" title="📍 同步速度：坚果云的同步速度杠杠的"></a>📍 同步速度：<code>坚果云的同步速度杠杠的</code></h4><ul>
+<li>坚果云的同步功能非常不错，是文件级别的同步，保证了数据的完整性，同步完的状态从下面图标或者目录图标可以直观发现；</li>
+</ul>
+<ul>
+<li>上传下载速度快；</li>
+</ul>
+<ul>
+<li>坚果云笔记空间足够大，付费空间 30G，年付加享空间1G/月=每年12G，坚果云vip 199元/年；</li>
+</ul>
+<ul>
+<li>书签功能不错；</li>
+</ul>
+<ul>
+<li>坚果云这种数据是直接存放在本地目录的，因此这些等待上传的数据可以随时更改数据，对上传不影响的，这个用户体验很不错；</li>
+</ul>
+<ul>
+<li>保留了文件的历史版本及回收站可找回数据；</li>
+</ul>
+<h4 id="📍-图床问题：阿里云oss做图床稳定且安全"><a href="#📍-图床问题：阿里云oss做图床稳定且安全" class="headerlink" title="📍 图床问题：阿里云oss做图床稳定且安全"></a>📍 图床问题：<code>阿里云oss做图床稳定且安全</code></h4><p>🍀 图床使用阿里云oss(数据安全可靠，价格低廉，使用方便)</p>
+<ul>
+<li>阿里云oss数据安全性是有报障的，并且资费也是非常低的；</li>
+<li>啥时候typora可以提供图床功能了，那就very赞了，其实现在有阿里云oss图床，已经能够满足要求了；</li>
+<li>图片是以链接形式存放的，不会出现笔记打卡时的卡顿现象；</li>
+</ul>
+<p>🍀 <code>云端+本地</code>报障markdown涉及图片用不丢失！😋</p>
+<p>这种<code>坚果云+typora</code>笔记方式，makdown文件本身由<code>坚果云</code>保证了文档的高可用及文档历史版本及回收站等的高可用！</p>
+<p>喂一存在的问题就是阿里云oss是否能保证其高可用，万一oss里的图片丢失了，那岂不废了！</p>
+<p>但阿里云oss本身就具有高可用性，这点基本可以放心。但保证数据容灾的要求，可同事利用阿里云oss客户端将oss的文件批量下载下来，然后备份到自己的百度云或者坚果云即可！(这样，再也不怕自己的数据丢失额哈哈，good😘)</p>
+<p>这个备份周期：可以是1个月一次，或者根据，看自己性情哈哈！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220507152651373.png" alt="image-20220507152651373"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220507155555163.png" alt="image-20220507155555163"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220507153006826.png" alt="image-20220507153006826"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220507153056526.png" alt="image-20220507153056526"></p>
+<p>🍀 阿里云oss每月支出逐渐变大！</p>
+<ul>
+<li>发现时间：2022年4月5日07:11:34</li>
+<li>问题描述：阿里云oss搭建的图床每月支出资费可能越来越多！</li>
+<li>解决办法：看后续从这个收费如何，实在很贵的话，就要考虑全部使用本地图床，或者github图床了！(但是目前每月1.7块附近，就怕后面图片量大了，以后资费情况，目前还是相对可以接受的！)😂😂</li>
+</ul>
+<h4 id="📍-搜索功能：typora全文搜索和坚果云文档搜索-Obsidian搜索功能-搭配"><a href="#📍-搜索功能：typora全文搜索和坚果云文档搜索-Obsidian搜索功能-搭配" class="headerlink" title="📍 搜索功能：typora全文搜索和坚果云文档搜索/Obsidian搜索功能 搭配"></a>📍 搜索功能：<code>typora全文搜索</code>和<code>坚果云文档搜索</code>/Obsidian搜索功能 搭配</h4><p>👉🏼 Obsidian强大的搜索功能也是完全能hou得住<code>全文搜索</code>！</p>
+<blockquote>
+<p>一般情况，更多使用的是坚果云的文档搜索功能，可使用快捷键，特别强大，很舒服！</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220412102638306.png" alt="image-20220412102638306"></p>
+<p><strong>1.关于文件搜索功能</strong></p>
+<p>(1)可使用坚果云的<code>ctrl q强大的搜索功能</code>在坚果云笔记里搜索任何文件；(推荐😘)</p>
+<p>(2)或者使用<code>librarty或者everything</code>来搜索本电脑上all文件；</p>
+<p><strong>2.关于全文搜索功能</strong></p>
+<p>(1)使用typora自带的<code>文档树</code>的<code>搜索(全文搜索)</code>功能</p>
+<p>这个<code>文档树</code>的<code>搜索(全文搜索)</code>功能很强大，这样的话，完全填补了我的云笔记需求。</p>
+<p>注意：这个全文搜索功能，好像不能搜索到目录的名称，只能搜文章内容，问题不大，可以使用坚果云的<code>ctrl q</code>来进行搜索。</p>
+<blockquote>
+<p>坚果云的搜索功能是不区分大小写的；</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211201143134098.png" alt="image-20211201143134098"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220408074014141.png" alt="image-20220408074014141"></p>
+<p>(2)利用<code>vscode把我的坚果云目录打开</code>，然后进行全文搜索;(这个方法也不错的😋)</p>
+<p>🍀 typora优秀的<code>文档目录树和大纲功能</code></p>
+<blockquote>
+<ul>
+<li><p>使用typora的左侧文档目录树功能，可方便地把typoa做为自己的本地云笔记应用来使用，左侧是目录树层级结构，右侧是文档大纲功能，这个是非常棒的功能！</p>
+</li>
+<li><p>这个typora结合坚果云组成的云笔记，具有<code>无限层级目录</code>功能，这个非常不错，有利于自己的it知识体系数据库的形成及沉淀。</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211203213509137.png" alt="image-20211203213509137"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416154912320.png" alt="image-20220416154912320"></p>
+<p>🍀 typora左侧文档树功能默认不识别其他文件(问题不大)</p>
+<blockquote>
+<ul>
+<li>typora默认新建的文件就是md，不识别<code>.pdf  .sh</code>文件，但可以识别：<code>目录  .txt   .md</code>; </li>
+<li>问题不大：因为一般存放在typora云笔记里的数据都是.md格式的，除了一些极少数文件；</li>
+</ul>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211226080455637.png" alt="image-20211226080455637"></p>
+<p>🍀 技巧：如何在typora的左侧目录树视图删除文件-2022.1.22(已解决)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220122004927632.png" alt="image-20220122004927632"></p>
+<h4 id="📍-排版方面：typora软件-文章排版界的天花板"><a href="#📍-排版方面：typora软件-文章排版界的天花板" class="headerlink" title="📍 排版方面：typora软件-文章排版界的天花板"></a>📍 排版方面：<code>typora软件-文章排版界的天花板</code></h4><blockquote>
+<ul>
+<li>typora很适合维护IT笔记，大纲清晰；</li>
+</ul>
+</blockquote>
+<h4 id="📍-数据安全：坚果云金融级别的安全性报障"><a href="#📍-数据安全：坚果云金融级别的安全性报障" class="headerlink" title="📍 数据安全：坚果云金融级别的安全性报障"></a>📍 数据安全：<code>坚果云金融级别的安全性报障</code></h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416172011560.png" alt="image-20220416172011560"></p>
+<h4 id="📍-编辑-阅读体验：markdown领域的颜王"><a href="#📍-编辑-阅读体验：markdown领域的颜王" class="headerlink" title="📍 编辑/阅读体验：markdown领域的颜王"></a>📍 编辑/阅读体验：<code>markdown领域的颜王</code></h4><p>👉🏼 <code>奶绿色</code>皮肤比白色和黑色效果要好很多的！</p>
+<p>​    1.更护眼</p>
+<p>​    2.白色和黑丝都太刺眼，看时间久了，会产生视觉疲劳的</p>
+<blockquote>
+<p>typora编辑/阅读体验–&gt;王者，其它都是渣渣！</p>
+</blockquote>
+<p>🍀 效果图如下：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211213103100202.png" alt="image-20211213103100202"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416154912320.png" alt="image-20220416154912320"></p>
+<h4 id="📍-借助vscode可实现批量替换md文件标题级别问题"><a href="#📍-借助vscode可实现批量替换md文件标题级别问题" class="headerlink" title="📍 借助vscode可实现批量替换md文件标题级别问题"></a>📍 借助vscode可实现批量替换md文件标题级别问题</h4><blockquote>
+<p>常用操作：(一般在整理it知识点或者排版时会用到)</p>
+<p>在typora没办法批量对某一集标题进行升降级操作，但我们可借助于vscode替换功能对md文件同一级目录进行批量升降级操作!</p>
+<p>1.vscode虽然编辑起来很舒服，即使也有typora即时预览插件，<strong>但和typora比较起来还是差些感觉哈哈</strong>！<br>2.但如果你很喜欢vscode用来编辑的话，可以考虑把vscode当做自己的第二编辑器使用；</p>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220103184601874.png" alt="image-20220103184601874"></p>
+<h3 id="2、缺点"><a href="#2、缺点" class="headerlink" title="2、缺点"></a>2、缺点</h3><h4 id="👎🏼-分享功能：分享功能有待提升！😂"><a href="#👎🏼-分享功能：分享功能有待提升！😂" class="headerlink" title="👎🏼 分享功能：分享功能有待提升！😂"></a>👎🏼 分享功能：<code>分享功能有待提升！😂</code></h4><p>🍀 坚果云的分享功能</p>
+<ul>
+<li>坚果云里的任何文件/目录都可以以链接形式进行分享，可设置为<code>只读权限</code>和<code>允许下载权限</code>!</li>
+</ul>
+<blockquote>
+<p>总结：坚果云的分享功能做的不是很好！权限控制不够灵活。😥😥(这个只能看坚果云产品团队什么时候添加这个功能了！)</p>
+<p>按理说应该分为如下几种：</p>
+<ul>
+<li>只读(不可复制)</li>
+<li>只读(可复制)</li>
+<li>允许下载</li>
+<li>不允许下载</li>
+</ul>
+</blockquote>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220121082016067.png" alt="image-20220121082016067"></p>
+<p>坚果云分享功能存在一个问题就是：只读的文档/目录，其内容是不可复制的，这个就有些说不过去了。。。！😥😥</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416165311089.png" alt="image-20220416165311089"></p>
+<p>测试：有<code>访问密码</code>的文档被分享出来后，如果设置了<code>禁止下载</code>选项后，依然是不可以复制的！😥😥</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianguoyun.com/p/DWGeTPwQvPWVCRiJ6bkEIAA">https://www.jianguoyun.com/p/DWGeTPwQvPWVCRiJ6bkEIAA</a> (访问密码 : 520)</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416165432777.png" alt="image-20220416165432777"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416165519163.png" alt="image-20220416165519163"></p>
+<ul>
+<li>管理我文件过的链接只能在web端：</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220121082213210.png" alt="image-20220121082213210"></p>
+<ul>
+<li>注意：如果把这个目录分享出去的话，那么这个目录名称/文件名称是不能被改变的，否则原来的链接会失效：😥</li>
+</ul>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220122003458575.png" alt="image-20220122003458575"></p>
+<ul>
+<li>一个文件，如果分享多次，会是不同的链接！(注意下)</li>
+</ul>
+<p>🍀 这里可以配合<code>语雀进行</code>分享！(但是源文件只读这个硬伤还是无法解决！😥😥)</p>
+<blockquote>
+<ul>
+<li>坚果云+typora：解决了文档编辑体验最佳，整理文档体验最灵活，文档同步更强大，文件搜索功能强大等等！但美中不足的是，其分享功能欠缺，且不利于文档的传播！</li>
+<li>但语雀功能刚好相反，其文章的传播及分享功能非常好用，因此可将坚果云+语雀进行搭配使用！</li>
+</ul>
+</blockquote>
+<p> 效果如下：</p>
+<p><a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#%E3%80%8A%E4%B8%8D%E6%9C%8D%E6%9D%A5%E6%80%BC%EF%BC%9A%E5%AE%87%E5%AE%99%E4%B8%AD%E6%9C%80%E5%A5%BD%E7%94%A8%E7%9A%84%E4%BA%91%E7%AC%94%E8%AE%B0%EF%BC%81%E3%80%8B">https://www.yuque.com/go/doc/73723298?#《不服来怼：宇宙中最好用的云笔记！》</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416105703875.png" alt="image-20220416105703875"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416105734073.png" alt="image-20220416105734073"></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220416105815438.png" alt="image-20220416105815438"></p>
+<h4 id="👎🏼-文档版本：有保障但是有所欠缺😥"><a href="#👎🏼-文档版本：有保障但是有所欠缺😥" class="headerlink" title="👎🏼 文档版本：有保障但是有所欠缺😥"></a>👎🏼 文档版本：<code>有保障但是有所欠缺</code>😥</h4><p>借助于坚果云的这种<code>文件历史信息</code>不能很好地对比2个文件之间的区别，是个小缺憾！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220413150323941.png" alt="image-20220413150323941"></p>
+<h4 id="👎🏼-typora代码框无一键复制按钮"><a href="#👎🏼-typora代码框无一键复制按钮" class="headerlink" title="👎🏼 typora代码框无一键复制按钮"></a>👎🏼 typora代码框无一键复制按钮</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220422124119035.png" alt="image-20220422124119035"></p>
+<h4 id="👎🏼-typora里面的图片不能双击全屏显示"><a href="#👎🏼-typora里面的图片不能双击全屏显示" class="headerlink" title="👎🏼 typora里面的图片不能双击全屏显示"></a>👎🏼 typora里面的图片不能双击全屏显示</h4><p>typora里面的图片不能双击全屏显示，这样的话，在本地编辑时，有的图片想全屏查看时，只能将其保存到本地进行查看了，有些不方便！</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220422181115362.png" alt="image-20220422181115362"></p>
+<h4 id="👎🏼-手机客户端不支持搜索，编辑功能有bug"><a href="#👎🏼-手机客户端不支持搜索，编辑功能有bug" class="headerlink" title="👎🏼 手机客户端不支持搜索，编辑功能有bug"></a>👎🏼 手机客户端不支持搜索，编辑功能有bug</h4><p>坚果云的手机端无法对md文件里的内容进行搜索，只推荐查看；</p>
+<p>编辑功能也有问题，有时用手机markdown编辑后，可能数据会丢失。-2022.4.29</p>
+<h4 id="👎🏼-图床特性：离线查看文档时，图片不会显示"><a href="#👎🏼-图床特性：离线查看文档时，图片不会显示" class="headerlink" title="👎🏼 图床特性：离线查看文档时，图片不会显示"></a>👎🏼 图床特性：离线查看文档时，图片不会显示</h4><blockquote>
+<ul>
+<li><p>发现时间：2022.4.5</p>
+</li>
+<li><p>结论：md里面的图片如果使用的是图床，那么肯定要有网络的；使用这个还是相对可以接受；现在，干任何事情，基本离不开网络。但也算是一个小小不满意的地方；</p>
+</li>
+</ul>
+</blockquote>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>后期需要深入学习下前端知识了(html,css,javascript)，这样才能更加容易定制Typora和Obsidian主题！</li>
+<li>后期要深入研究下Obsidian软件，尽可能将其打造成一个自己的<code>第二大脑</code>！</li>
+</ul>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：</p>
+<ul>
+<li>  排版美观，语言精炼；</li>
+<li>  文档即手册，步骤明细，拒绝埋坑，提供源码；</li>
+<li>  本人实战文档都是亲测成功的，各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人帮您解决问题，让我们一起进步！</li>
+</ul>
+<ol>
+<li>个人微信二维码：x2675263825 （舍得）， qq：2675263825。<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></li>
+<li>个人微信公众号：《云原生架构师实战<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></li>
+<li>个人csdn<br> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></li>
+<li>个人博客：<a href="http://www.onlyyou520.com/">www.onlyyou520.com</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220513150311181.png" alt="image-20220513150311181"></li>
+<li>开源干货😘<br> 语雀：<a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">https://www.yuque.com/go/doc/73723298?#</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220513150633944.png" alt="image-20220513150633944"><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2>好了，关于本次就到这里了，感谢大家阅读，最后祝大家生活快乐，每天都过的有意义哦，我们下期见！</li>
+</ol>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220514164959069.png" alt="image-20220514164959069"></p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyyou520.com/2022/05/14/153%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%89%93%E9%80%A0%E6%9C%80%E5%BC%BA%E7%8E%8B%E8%80%85%E4%BA%91%E7%AC%94%E8%AE%B0%E5%8F%8A%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%BA%93-Obsidian+Typora+%E5%9D%9A%E6%9E%9C%E4%BA%91-2022.5.15%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E5%BC%80%E6%BA%90-%E7%BA%AF%E5%B9%B2%E8%B4%A7-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">https://www.onlyyou520.com/2022/05/14/153%20%E5%AE%9E%E6%88%98%EF%BC%9A%E6%89%93%E9%80%A0%E6%9C%80%E5%BC%BA%E7%8E%8B%E8%80%85%E4%BA%91%E7%AC%94%E8%AE%B0%E5%8F%8A%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E5%BA%93-Obsidian+Typora+%E5%9D%9A%E6%9E%9C%E4%BA%91-2022.5.15%EF%BC%88%E8%B6%85%E8%AF%A6%E7%BB%86-%E5%B7%B2%E5%BC%80%E6%BA%90-%E7%BA%AF%E5%B9%B2%E8%B4%A7-%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Typora/">
+                                    <span class="chip bg-color">Typora</span>
+                                </a>
+                            
+                                <a href="/tags/Obsidian/">
+                                    <span class="chip bg-color">Obsidian</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2022/05/14/151%20markdown%E8%AF%AD%E6%B3%95/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/7.jpg" class="responsive-img" alt="markdown语法">
+                        
+                        <span class="card-title">markdown语法</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2022-05-14
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/markdown/" class="post-category">
+                                    markdown
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/markdown/">
+                        <span class="chip bg-color">markdown</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/10/148%20%20%E7%88%B1%E7%9A%84%E8%A1%8C%E5%8A%A8%EF%BC%8C%E6%97%A0%E7%A7%81%E7%9A%84%E4%BB%98%E5%87%BA%E3%80%90%E8%8D%90%E3%80%91/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="17 爱的行动，无私的付出">
+                        
+                        <span class="card-title">17 爱的行动，无私的付出</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-10
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E9%99%88%E6%9E%9C%E7%9A%84%E5%B9%B8%E7%A6%8F%E5%93%B2%E5%AD%A6%E8%AF%BE/" class="post-category">
+                                    陈果的幸福哲学课
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E9%99%88%E6%9E%9C%E7%9A%84%E5%B9%B8%E7%A6%8F%E5%93%B2%E5%AD%A6%E8%AF%BE/">
+                        <span class="chip bg-color">陈果的幸福哲学课</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
