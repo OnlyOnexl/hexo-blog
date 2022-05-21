@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="golang-运算符, love">
+    <meta name="keywords" content="公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22, love">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>golang-运算符 | love</title>
+    <title>公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22 | love</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/17.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">golang-运算符</h1>
+                    <h1 class="description center-align post-title">公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22</h1>
                 </div>
             </div>
         </div>
@@ -431,8 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/golang/">
-                                <span class="chip bg-color">golang</span>
+                            <a href="/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/">
+                                <span class="chip bg-color">调度器</span>
                             </a>
                         
                     </div>
@@ -443,8 +443,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
-                                编程语言
+                            <a href="/categories/k8s/" class="post-category">
+                                k8s
                             </a>
                         
                     </div>
@@ -456,7 +456,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2022-05-20
+                    2022-05-21
                 </div>
                 
 
@@ -477,24 +477,30 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220520062730.png"></p>
+                <h2 id="公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22"><a href="#公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22" class="headerlink" title="公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22"></a>公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220521171021.png"></p>
 <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
-<h2 id="1、算数运算符"><a href="#1、算数运算符" class="headerlink" title="1、算数运算符"></a>1、算数运算符</h2><p>🍀 语法<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511061120953.png" alt="image-20220511061120953" style="zoom: 80%;" /><br>🍀 演示<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511062723333.png" alt="image-20220511062723333"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">operateDemo</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="keyword">int</span> = <span class="number">21</span></span><br><span class="line">	<span class="keyword">var</span> b <span class="keyword">int</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> c <span class="keyword">int</span></span><br><span class="line">	c = a + b</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a+b=%d\n&quot;</span>, c)</span><br><span class="line"></span><br><span class="line">	c = a - b</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a-b=%d\n&quot;</span>, c)</span><br><span class="line"></span><br><span class="line">	c = a * b</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a*b=%d\n&quot;</span>, c)</span><br><span class="line"></span><br><span class="line">	c = a / b</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a/b=%d\n&quot;</span>, c)</span><br><span class="line"></span><br><span class="line">	c = a % b</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a%%b=%d\n&quot;</span>, c) <span class="comment">// 注意这里的%%用法</span></span><br><span class="line"></span><br><span class="line">	a++</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a++=%d\n&quot;</span>, a)</span><br><span class="line"></span><br><span class="line">	a = <span class="number">21</span></span><br><span class="line">	a--</span><br><span class="line">	fmt.Printf(<span class="string">&quot;a--=%d\n&quot;</span>, a)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	operateDemo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="2、关系运算符"><a href="#2、关系运算符" class="headerlink" title="2、关系运算符"></a>2、关系运算符</h2><p>🍀 语法<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511061843826.png" alt="image-20220511061843826" style="zoom:80%;" /><br>🍀 演示<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511063852591.png" alt="image-20220511063852591"></p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">relationDemo</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="keyword">int</span> = <span class="number">21</span></span><br><span class="line">	<span class="keyword">var</span> b <span class="keyword">int</span> = <span class="number">10</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> a == b &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a == b&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a != b&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> a != b &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a != b&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a == b&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> a &gt; b &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a &gt; b&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a &lt;= b&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> a &lt; b &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a &lt; b&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a &gt;= b&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	relationDemo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="3、逻辑运算符"><a href="#3、逻辑运算符" class="headerlink" title="3、逻辑运算符"></a>3、逻辑运算符</h2><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511063248144.png" alt="image-20220511063248144" style="zoom: 80%;" />
-🍀 案例
-![image-20220511065225536](https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511065225536.png)
-
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">logicDemo</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">var</span> a <span class="keyword">bool</span> = <span class="literal">true</span>  <span class="comment">// 真</span></span><br><span class="line">	<span class="keyword">var</span> b <span class="keyword">bool</span> = <span class="literal">false</span> <span class="comment">// 假</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> a &amp;&amp; b &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a和b都是真&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a和b有假&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> a || b &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a和b中有一个为真&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a和b都为假&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> !a &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a为假&quot;</span>)</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		fmt.Println(<span class="string">&quot;a为真&quot;</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	logicDemo()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="4、位运算符"><a href="#4、位运算符" class="headerlink" title="4、位运算符"></a>4、位运算符</h2><p>🍀 语法</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511064638604.png" alt="image-20220511064638604"></p>
-<h2 id="5、赋值运算符"><a href="#5、赋值运算符" class="headerlink" title="5、赋值运算符"></a>5、赋值运算符</h2><p>🍀 语法</p>
-<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220511070418870.png" alt="image-20220511070418870"></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518220634.png"></p>
+<h2 id="个人简介"><a href="#个人简介" class="headerlink" title="个人简介"></a>个人简介</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518220704.png"></p>
+<h2 id="本节内容"><a href="#本节内容" class="headerlink" title="本节内容"></a>本节内容</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518220821.png"></p>
+<h2 id="1、Kubernetes调度器的发展历史"><a href="#1、Kubernetes调度器的发展历史" class="headerlink" title="1、Kubernetes调度器的发展历史"></a>1、Kubernetes调度器的发展历史</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518221647.png"></p>
+<h3 id="前置知识"><a href="#前置知识" class="headerlink" title="前置知识"></a>前置知识</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518221755.png"><br>存储：(容器：可写层 &amp; 挂载外部存储)<br>扩展资源：gpu等；</p>
+<h3 id="Kubernetes概O览"><a href="#Kubernetes概O览" class="headerlink" title="Kubernetes概O览"></a>Kubernetes概O览</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518221830.png"></p>
+<h3 id="什么是调度"><a href="#什么是调度" class="headerlink" title="什么是调度"></a>什么是调度</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518221948.png"></p>
+<h3 id="最简单的Scheduler实现"><a href="#最简单的Scheduler实现" class="headerlink" title="最简单的Scheduler实现"></a>最简单的Scheduler实现</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518222014.png"><br>k8s 0.2版本的一个架构图，基本调度方式就是随机，轮询会稍微复杂一些；</p>
+<h3 id="随机"><a href="#随机" class="headerlink" title="随机"></a>随机</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518222230.png"></p>
+<h3 id="分阶段调度"><a href="#分阶段调度" class="headerlink" title="分阶段调度"></a>分阶段调度</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518222258.png"></p>
+<h3 id="可扩展的Scheduler-extender"><a href="#可扩展的Scheduler-extender" class="headerlink" title="可扩展的Scheduler(extender)"></a>可扩展的Scheduler(extender)</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518222335.png"></p>
+<h3 id="可扩展的Scheduling-Framework"><a href="#可扩展的Scheduling-Framework" class="headerlink" title="可扩展的Scheduling Framework"></a>可扩展的Scheduling Framework</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518222422.png"></p>
+<h2 id="2、Kubernetes如何进行调度"><a href="#2、Kubernetes如何进行调度" class="headerlink" title="2、Kubernetes如何进行调度"></a>2、Kubernetes如何进行调度</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225503.png"></p>
+<h3 id="创建pod的过程"><a href="#创建pod的过程" class="headerlink" title="创建pod的过程"></a>创建pod的过程</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225536.png"></p>
+<h3 id="schedulePod"><a href="#schedulePod" class="headerlink" title="schedulePod"></a>schedulePod</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225555.png"></p>
+<h3 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225611.png"></p>
+<h2 id="3、如何自定义Kubernetes调度器"><a href="#3、如何自定义Kubernetes调度器" class="headerlink" title="3、如何自定义Kubernetes调度器"></a>3、如何自定义Kubernetes调度器</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225648.png"></p>
+<h3 id="自定义方式"><a href="#自定义方式" class="headerlink" title="自定义方式"></a>自定义方式</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225716.png"><br>1.19版本以后：Schedulling Framework，已经达到了stable状态</p>
+<h3 id="扩展配置"><a href="#扩展配置" class="headerlink" title="扩展配置"></a>扩展配置</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225758.png"></p>
+<h3 id="初始化plugin"><a href="#初始化plugin" class="headerlink" title="初始化plugin"></a>初始化plugin</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225824.png"></p>
+<h3 id="核心逻辑"><a href="#核心逻辑" class="headerlink" title="核心逻辑"></a>核心逻辑</h3><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225844.png"></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220518225901.png"></p>
 <h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：</p>
 <ul>
 <li>排版美观，语言精炼；</li>
@@ -502,11 +508,12 @@
 <li>本人实战文档都是亲测成功的，各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人帮您解决问题，让我们一起进步！</li>
 </ul>
 <ol>
-<li>个人微信二维码：x2675263825 （舍得）， qq：2675263825。<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></li>
-<li>个人微信公众号：《云原生架构师实战》<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></li>
-<li>个人csdn<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></li>
-<li>个人博客：(<a href="http://www.onlyyou520.com/">www.onlyyou520.com</a>)<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220513150311181.png" alt="image-20220513150311181"></li>
-<li>开源干货😘<br>语雀：<a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">https://www.yuque.com/go/doc/73723298?#</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220516182344032.png" alt="image-20220516182344032"><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2>好了，关于本次就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108223350304.png" alt="image-20211108223350304"></li>
+<li>微信二维码<br>x2675263825 （舍得）， qq：2675263825。<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></li>
+<li>微信公众号<br>《云原生架构师实战》<br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></li>
+<li>csdn<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></li>
+<li>博客<br><a href="http://www.onlyyou520.com/">www.onlyyou520.com</a><br> <img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220513150311181.png" alt="image-20220513150311181"></li>
+<li>开源干货<br>语雀：<a target="_blank" rel="noopener" href="https://www.yuque.com/go/doc/73723298#">https://www.yuque.com/go/doc/73723298?#</a><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220520080306203.png" alt="image-20220520080306203"></li>
+<li>知乎<br><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/foryouone">https://www.zhihu.com/people/foryouone</a><br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220521151425.png"><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2>好了，关于本次就到这里了，感谢大家阅读，最后贴上我女神的photo，祝大家生活快乐，每天都过的有意义哦，我们下期见！<br><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20211108223350304.png" alt="image-20211108223350304"></li>
 </ol>
 
                 
@@ -534,7 +541,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://www.onlyyou520.com/2022/05/20/159%20%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88%E5%8D%9A%E5%AE%A2%E5%88%86%E4%BA%AB%EF%BC%89-2022.5.20/">https://www.onlyyou520.com/2022/05/20/159%20%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88%E5%8D%9A%E5%AE%A2%E5%88%86%E4%BA%AB%EF%BC%89-2022.5.20/</a>
+                    <a href="https://www.onlyyou520.com/2022/05/21/162%20%E5%85%AC%E5%BC%80%E8%AF%BE%EF%BC%9A%E3%80%8AKubernetes%E8%B0%83%E5%BA%A6%E5%99%A8%E8%AF%A6%E8%A7%A3%E3%80%8B-%E5%BC%A0%E6%99%8B%E6%B6%9B-2022-4-22/">https://www.onlyyou520.com/2022/05/21/162%20%E5%85%AC%E5%BC%80%E8%AF%BE%EF%BC%9A%E3%80%8AKubernetes%E8%B0%83%E5%BA%A6%E5%99%A8%E8%AF%A6%E8%A7%A3%E3%80%8B-%E5%BC%A0%E6%99%8B%E6%B6%9B-2022-4-22/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -572,8 +579,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/golang/">
-                                    <span class="chip bg-color">golang</span>
+                                <a href="/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/">
+                                    <span class="chip bg-color">调度器</span>
                                 </a>
                             
                         </div>
@@ -749,13 +756,13 @@
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2022/05/21/162%20%E5%85%AC%E5%BC%80%E8%AF%BE%EF%BC%9A%E3%80%8AKubernetes%E8%B0%83%E5%BA%A6%E5%99%A8%E8%AF%A6%E8%A7%A3%E3%80%8B-%E5%BC%A0%E6%99%8B%E6%B6%9B-2022-4-22/">
+                <a href="/2022/05/21/160%20Devops%E4%B9%8B%E6%9E%84%E5%BB%BA%E5%B7%A5%E5%85%B7%E5%AE%9E%E8%B7%B5/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Devops之构建工具实践">
                         
-                        <span class="card-title">公开课：《Kubernetes调度器详解》-张晋涛-2022-4-22</span>
+                        <span class="card-title">Devops之构建工具实践</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -772,8 +779,8 @@
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/devops/" class="post-category">
+                                    devops
                                 </a>
                             
                             
@@ -783,8 +790,24 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/">
-                        <span class="chip bg-color">调度器</span>
+                    <a href="/tags/Maven/">
+                        <span class="chip bg-color">Maven</span>
+                    </a>
+                    
+                    <a href="/tags/Gradle/">
+                        <span class="chip bg-color">Gradle</span>
+                    </a>
+                    
+                    <a href="/tags/Npm/">
+                        <span class="chip bg-color">Npm</span>
+                    </a>
+                    
+                    <a href="/tags/Yarn/">
+                        <span class="chip bg-color">Yarn</span>
+                    </a>
+                    
+                    <a href="/tags/ANT/">
+                        <span class="chip bg-color">ANT</span>
                     </a>
                     
                 </div>
@@ -798,13 +821,13 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2022/05/17/157%20kubernetes%E8%B0%83%E5%BA%A6%E5%99%A8/">
+                <a href="/2022/05/20/159%20%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88%E5%8D%9A%E5%AE%A2%E5%88%86%E4%BA%AB%EF%BC%89-2022.5.20/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/17.jpg" class="responsive-img" alt="kubernetes调度器">
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="golang-运算符">
                         
-                        <span class="card-title">kubernetes调度器</span>
+                        <span class="card-title">golang-运算符</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -815,14 +838,14 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-17
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/k8s/" class="post-category">
-                                    k8s
+                            <a href="/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    编程语言
                                 </a>
                             
                             
@@ -832,8 +855,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E8%B0%83%E5%BA%A6%E5%99%A8/">
-                        <span class="chip bg-color">调度器</span>
+                    <a href="/tags/golang/">
+                        <span class="chip bg-color">golang</span>
                     </a>
                     
                 </div>
