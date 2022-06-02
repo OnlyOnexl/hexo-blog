@@ -1,0 +1,1564 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="Linux时间服务(ntp和chrony), love">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>Linux时间服务(ntp和chrony) | love</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">love</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">love</div>
+        <div class="logo-desc">
+            
+            Never really desperate, only the lost of the soul.
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">Linux时间服务(ntp和chrony)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/ntp/">
+                                <span class="chip bg-color">ntp</span>
+                            </a>
+                        
+                            <a href="/tags/chrony/">
+                                <span class="chip bg-color">chrony</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Linux/" class="post-category">
+                                Linux
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2022-06-02
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531084103957.png" alt="image-20220531084103957"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>[TOC]</p>
+<h2 id="本节实践"><a href="#本节实践" class="headerlink" title="本节实践"></a>本节实践</h2><ol>
+<li>实践：Centos7 时间服务器搭建（ntp服务方式）(测试成功)-2022.5.31</li>
+<li>实践：Centos7 时间服务器搭建（chrony服务方式）(测试成功)-2022.5.31</li>
+</ol>
+<h2 id="1、Centos7-时间服务器搭建（ntp服务方式）"><a href="#1、Centos7-时间服务器搭建（ntp服务方式）" class="headerlink" title="1、Centos7 时间服务器搭建（ntp服务方式）"></a>1、Centos7 时间服务器搭建（ntp服务方式）</h2><table><tr><td bgcolor=yellow>💘 实践：Centos7 时间服务器搭建（ntp服务方式）(测试成功)-2022.5.31</td></tr></table>
+
+<img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps2A8A.tmp.jpg" alt="img" style="zoom:150%;" />
+
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p><strong>Linux的两种时钟</strong>：<br>（1）<strong>系统时钟（System Clock）</strong>：<strong>由Linux内核通过CPU的工作频率进行的</strong><br>（2）<strong>硬件时钟（RealTime Clock，简称RTC）</strong>：主板</p>
+<p>注意：<strong>系统时间是基于内存的，断电就会丢失；硬件时间是写在硬件中的bios程序里的</strong>。</p>
+<p><strong>系统时钟</strong>是指当前Linux Kernel中的时钟，而<strong>硬件时钟</strong>则是主板上由电池供电的时钟，这个硬件时钟可以在BIOS中的“Standard BIOS Feture”选项进行设置。</p>
+<p><strong>当Linux启动时，硬件时钟会去读取系统时钟的设置，然后系统时钟就会独立于硬件运作</strong>。因此系统时钟和硬件时钟可以采用<strong>异步方式</strong>，<strong>即系统时间和硬件时间可以不同</strong>。从linux启动过程来看，<strong>系统时钟和硬件时钟不会发生冲突</strong>，<strong>但linux中的所有命令都是采用的系统时钟设置</strong>。</p>
+<h4 id="1-标准时间"><a href="#1-标准时间" class="headerlink" title="1.标准时间"></a>1.标准时间</h4><p>说到时间，我们先来了解一下标准时间的概念及演变。</p>
+<p>早期，标准时间采用的是<strong>格林尼治时间</strong>，即<strong>GMT</strong>，也称为<strong>世界时</strong>。它是指<strong>英国伦敦格林尼治天文台</strong>的标准时间，是以地球自转为基础，根据太阳横穿格<strong>林尼治本初子午线（即0度经线）</strong>来确定标准时间，用天来定义秒的计量系统，<strong>是基于天文学的</strong>。<strong>由于地球自转速度不均匀，并且正在缓慢减速</strong>，因此，<strong>在GMT下，每天的一秒在微观尺度上和其它天的都不相同，不是一种均匀的时间系统</strong>。</p>
+<p><strong>基于某些元素的原子能级跃迁频率有极高的稳定性</strong>这一特点，<strong>1967年国际度量衡大会</strong>对秒重新进行了定义：<strong>铯133元素的两个超精细能阶之间跃迁时所辐射的电磁波的周期的9,192,631,770倍的时间定义为一秒</strong>。在此基础上，1971年由<strong>国际时间局</strong>建立了<strong>国际原子时（TAI）</strong>，并取<strong>1958年1月1日0时0分0秒世界时的瞬间</strong>作为同年同月同日0时0分0秒TAI。因此，<strong>TAI是基于物理学，为一种极其精确的时间系统，是用秒来定义天。</strong></p>
+<p>为解决TAI和GMT之间的时间误差，<strong>协调世界时</strong>于1972年面世。<strong>协调世界时</strong>，又称<strong>世界标准时间、国际协调时间</strong>，简称<strong>UTC</strong>。以TAI秒长为基础，当GMT与TAI之间时刻相差超过0.9秒时，通过在当年的<strong>6月30日或12月31日的最后时刻增减1秒进行修正</strong>，在时刻上尽量接近GMT。这就是<strong>闰秒</strong>。自1972年以来，一共进行了<strong>27次闰秒调整</strong>，都是<strong>正闰秒，即增加一秒</strong>。</p>
+<p>闰秒在当今存在一些争议。一些国家（如美国、法国、日本）认为应该直接使用TAI，不需要闰秒。<strong>因为要让世界各国在同一个瞬间增加一个闰秒，绝非易事。</strong>稍有疏忽，很多重要系统就会因时间误差而导致混乱。而且，<strong>基于闰秒出现的无规律性和不可预知性</strong>，<strong>要在设备上预留“置闰”设置也非常麻烦</strong>。总而言之，闰秒会让全世界付出更多的许多人力财力成本。而另一些国家（如中国、英国、俄罗斯）则认为，<strong>在地球越转越慢的现实之中</strong>，五千年后的人类将发现，“日居正中”将是下午1时。“<strong>作为科技进步的产物，全面采用原子时，意味着人们可以完全摆脱地球自转与日月更替，孤独地奔跑在向前的路上。”</strong>，因此需要用闰秒进行修正。就最近<strong>国际电信联盟</strong>的投票结679C而言，闰秒得以保留，<strong>UTC依然作为公认的国际标准时间</strong>。</p>
+<h4 id="2-网络时间-NTP-协议"><a href="#2-网络时间-NTP-协议" class="headerlink" title="2.网络时间(NTP)协议"></a>2.网络时间(NTP)协议</h4><p>NTP(Network Time Protocol) 网络时间协议，工作在<strong>UDP的123端口</strong>上。是用来使计算机时间同步化的一种协议，它可以使计算机对其服务器或<strong>时钟源（如石英钟，GPS等等)<strong>做同步化，它可以提供高精准度的</strong>时间校正（局域网上与标准间差小于1毫秒，互联网上几十毫秒）</strong>，<strong>且可介由加密确认的方式来防止恶毒的协议攻击</strong>。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220601083647715.png" alt="image-20220601083647715"></p>
+<p>既然确定了UTC作为公认的国际标准时间。<strong>那如何保证时间的统一性和准确性</strong>，是按照A这台计算机的时间，还是按照B这台计算机的时间？这就需要用到网络时间协议，英文名称为Network Time Protocol ，简称NTP。通过该协议，可以把计算机的时钟同步到UTC，<strong>其精度在局域网内可达0.1ms，在互联网上绝大多数的地方其精度可以达到1-50ms</strong>。</p>
+<p>在NTP中，时间按照服务器的等级传播，<strong>Stratum-1</strong>（我们一般称作<strong>一级服务器</strong>）为最高层，其时间源为<strong>标准UTC</strong>，该时间源可以来自外部，如<strong>北斗、GPS</strong>，<strong>也可以来自该服务器内部的原子钟</strong>。而<strong>Stratum-2（二级服务器）</strong>则从Stratum-1获取时间，Stratum-3从Stratum-2获取时间，以此类推，<strong>但Stratum层的总数最多不超过15层</strong>。<strong>为防止单点故障，每一级服务器都应该有多台，且数量一般为奇数，以便于下级服务器决策。</strong></p>
+<p>在NTP协议中，下级服务器在<strong>指定的轮询时间范围（如64秒至1024秒）</strong>内，向上一级服务器通过<strong>*UDP123端口**发送报文，进行探测，根据多次的探测结果进行时间校准。</strong>在默认配置下，时差在128ms以内，会分成多步慢慢调整<strong>；</strong>时差在128ms至1000ms，时间会一次性调整到位<em><strong>；</strong>时差超过1000ms，NTP会判定为当前环境不可靠，而中止运行。</em>*有些系统支持对以上参数进行调整，但有些系统则不可以。</p>
+<p>正如之前所提到的，<strong>在对时间精确度要求很高的环境下进行闰秒的调整绝非易事</strong>，<em>其最主要的原则就是<strong>不能发生时间跳变</strong></em>。在一个复杂网络环境中，<strong>不是所有的系统或设备都能支持参数调整，也就是说在向上级服务器探测时间时，时差不能超过128ms</strong>。所以<strong>闰秒调整需分多步进行</strong>，以保证每一级服务时间差不超过128ms。受到网络传输延时的影响，在广域网内，越远端的服务器（如Stratum-15）的时间波动越明显，因此，在确认闰秒分步调整时，需要考虑这方面的因素，合理确定分步范围。<strong>根据笔者最近两次的调整经验，在3层服务器架构中，一次闰秒调整需分13次至15次完成。</strong></p>
+<p><em><strong>NTP有足够的容错性</strong></em>，除之前提到的1000ms中止运行外，<strong>还能根据算法，选用可靠的上一级服务器</strong>。当无法正确获得上一级服务器时间时，NTP将使用自身的时间设备（普通设备一般为<strong>晶振</strong>，一级服务器一般为<strong>原子钟</strong>）提供服务。</p>
+<h4 id="3-NTP服务器"><a href="#3-NTP服务器" class="headerlink" title="3.NTP服务器"></a>3.NTP服务器</h4><p>NTP服务器提供准确时间，首先要有准确的时间来源，这一时间应该是<strong>国际标准时间UTC</strong>。NTP获得UTC的时间来源可以是<strong>原子钟、天文台、卫星</strong>，<strong>也可以从Internet上获取</strong>。这样就有了准确而可靠的时间源。时间按NTP服务器的等级传播。按照离外部UTC 源的远近将所有服务器归入不同的Stratum（层）中。Stratum-1在顶层，有外部UTC接入，而Stratum-2则从Stratum-1获取时间，Stratum-3从Stratum-2获取时间，以此类推，但Stratum层的总数限制在15以内。所有这些服务器在逻辑上形成阶梯式的架构相互连接，而Stratum-1的时间服务器是整个系统的基础。</p>
+<p>计算机主机一般同多个时间服务器连接， <strong>利用统计学的算法过滤来自不同服务器的时间，以选择最佳的路径和来源来校正主机时间</strong>。<strong>即使主机在长时间无法与某一时间服务器相联系的情况下，NTP服务依然有效运转</strong>。为防止对时间服务器的恶意破坏，<strong>NTP使用了识别(Authentication)机制</strong>，检查来对时的信息是否是真正来自所宣称的服务器并检查资料的返回路径，以提供对抗干扰的保护机制。</p>
+<h4 id="4-NTP校时方式"><a href="#4-NTP校时方式" class="headerlink" title="4.NTP校时方式"></a>4.NTP校时方式</h4><p>时间服务器可以利用以下三种方式与其他服务器对时：broadcast/multicast，client/server和<strong>Symmetric</strong>。</p>
+<p>（1）<strong>broadcast/multicast</strong>:方式主要适用于局域网的环境，时间服务器周期性的以广播的方式，将时间信息传送给其他网路中的时间服务器，其时间仅会有少许的延迟，而且配置非常的简单。<strong>但是此方式的精确度并不高</strong>，对时间精确度要求不是很高的情况下可以采用。</p>
+<p>（2）<strong>Symmetric</strong>:的方式得一台服务器可以从远端时间服务器获取时钟，<strong>如果需要也可提供时间信息给远端的时间服务器</strong>。<strong>此一方式适用于配置冗余的时间服务器</strong>，可以提供更高的精确度给主机。</p>
+<p>（3）<strong>client/server</strong>:方式与symmetric方式比较相似，只是不提供给其他时间服务器时间信息，此方式适用于一台时间服务器接收上层时间服务器的时间信息，并提供时间信息给下层的用户。 </p>
+<p>上述三种方式，时间信息的传输都使用UDP协议。时间服务器利用一个<strong>过滤演算法</strong>，及<strong>先前八个校时资料</strong>计算出时间参考值，判断后续校时包的精确性，<strong>一个相对较高的离散程度，表示一个对时资料的可信度比较低</strong>。<strong>仅从一个时间服务器获得校时信息，不能校正通讯过程所造成的时间偏差</strong>，而同时与许多时间服务器通信校时，就可利用过滤算法找出相对较可靠的时间来源，然后采用它的时间来校时。</p>
+<h3 id="1-ntp服务器配置"><a href="#1-ntp服务器配置" class="headerlink" title="1.ntp服务器配置"></a>1.ntp服务器配置</h3><ul>
+<li>安装并配置ntp时间服务器</li>
+</ul>
+<p>NTP在Linux主机上默认一般都是安装过的，只是服务没有启用。如果没有安装可直接使用<code>yum install ntp</code>命令即可。</p>
+<p>NTP的主配置文件，以下是NTP服务器可选的指令：</p>
+<p>//特别注意：以下配置文件是服务器端即ntp时间服务器的配置方法，这里csdn文章只作为配置参考，工作中并没有亲自配置过。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/ntp.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 允许172.16.*.*的IP使用该时间服务器;</span></span><br><span class="line">restrict 172.16.0.0 mask 255.255.0.0 nomodify</span><br><span class="line"></span><br><span class="line"><span class="comment">#允许任何人来同步;</span></span><br><span class="line">restrict default nomodify notrap</span><br><span class="line"></span><br><span class="line"><span class="comment"># 屏蔽其他IP过来更新时间;</span></span><br><span class="line">restrict 0.0.0.0 mask 0.0.0.0 nomodify notrap noquery notrust </span><br><span class="line"><span class="comment">#ignore:关闭所有的NTP联机服务;</span></span><br><span class="line"><span class="comment">#nomodify:表示Client端不能更改Server端的时间参数；不过Client端仍然可以透过Server端来进行网络校时;</span></span><br><span class="line"><span class="comment">#notrust:该Client除非通过认证否则该Client来源将被视为不信任网域;</span></span><br><span class="line"><span class="comment">#noquery:不提供Client端的时间查询;</span></span><br><span class="line"><span class="comment">#notrap:允许任何人来查询;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 同步的上层服务器（210.72.145.44国家时间服务器）,NTP服务器默认也有同步的时间服务器;</span></span><br><span class="line">server 210.72.145.44</span><br><span class="line"></span><br><span class="line"><span class="comment"># 同步本地时间;</span></span><br><span class="line">server 127.127.1.0 prefer</span><br><span class="line"></span><br><span class="line"><span class="comment"># 本地服务器的stratum大小不能超过16;</span></span><br><span class="line">fudge 127.127.1.0 stratum 8</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将时间同步到硬件时钟</span></span><br><span class="line">SYNC_HWCLOCK=yes</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>启动NTP服务器</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl <span class="built_in">enable</span> ntpd</span><br><span class="line">systemctl start ntpd</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>查看NTP信息</li>
+</ul>
+<p>1.查看NTP状态：<code>ntpq -p</code> （注意，客户端上也是可以用这个命令的）</p>
+<p>可以使用ntpq –p查看ntp状态。正常情况下：remote列的各个服务器前， 应该有一个*，其它为+</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1AE3.tmp.jpg" alt="img"> </p>
+<p> 注意：本次这个时间是与阿里云源同步的；</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1AE4.tmp.jpg" alt="img"> </p>
+<p>注意：<strong>NTP服务器配置完成启动之后，NTP自身或者与其server的同步需要一个时间段这个过程可能是5-10分钟</strong>，在这个时间段内客户端运行ntpdate命令时会产生<code>no serversuitable for synchronization found</code>的错误。</p>
+<p>输出说明如下：</p>
+<p>remote: 对应的NTP服务器，服务器名字前的符号含义如下： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">*：选定的时间服务器</span><br><span class="line">+： 处于候选状态的服务器</span><br><span class="line">#： 选定的时间服务器，但距离超过最大值（这句话不太容易理解，但就经验判断，一般是上级之上的服务器存在问题）。</span><br><span class="line">空格：该服务器不可用，原因为未能同步（可能是刚启动还未同步，也有可能是其它原因）。</span><br><span class="line">-： 该服务器不可用。被集群算法所放弃。</span><br><span class="line">x： 该服务器不可用。被交集算法所放弃。</span><br></pre></td></tr></table></figure>
+
+<p>refid:  对应的NTP服务器的上一级NTP服务器。</p>
+<p>st:  对应的NTP服务器所在的Stratum（即服务器级别，1为第一级，2为第二级，以此类推）</p>
+<p>t:……</p>
+<p>when: 上一次探测ntp服务器到现在的时间（默认单位为秒，如果时间较长，会出现m、h,分别代表分钟和小时）</p>
+<p>poll: 探测ntp服务器的轮询时间，单位为秒。</p>
+<p>reach:为8进制，转换为二进制后，代表最近8次探测ntp服务器的状态。失败为0，成功为1。</p>
+<p>delay:与ntp服务器的网络时延，单位为毫秒。</p>
+<p>offset:与NTP服务器的时间（协议值）偏差，单位为毫秒。本机时间+offset=NTP服务器时间</p>
+<p>jitter:有的版本为disp。多数情况下为最近两次有变化的offset差的绝对值。</p>
+<p>2.查看实时时间偏差：<code>ntpdate -q 对方ip </code>（注意，客户端上也是可以用这个命令的）</p>
+<p>正常输出如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server 192.168.11.33, stratum 2, offset 0.000843, delay 0.02579</span><br><span class="line">24 Jan 20:09:19 ntpdate[10420968]: adjust time server 192.168.11.33 offset 0.000843</span><br></pre></td></tr></table></figure>
+
+<p>offset的值即为实时偏差值，单位为s。</p>
+<p>如果显示如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">server 192.168.11.44, ***\*stratum 0, offset 0.000000, delay 0.00000</span><br><span class="line">24 Jan 20:11:26 ntpdate[15139008]: no server suitable <span class="keyword">for</span> synchronization found</span><br></pre></td></tr></table></figure>
+
+<p>则说明无法从上级服务器获得时间信息，产生原因有可能是网络不通，也有可能是上级服务器未开启ntp服务。</p>
+<ul>
+<li>将时间同步到硬件时钟</li>
+</ul>
+<p>[root@centos77-test ~]#vim /etc/ntp.conf</p>
+<p>SYNC_HWCLOCK=yes # 添加如下内容到此配置文件中去。</p>
+<h3 id="2-ntp客户端配置"><a href="#2-ntp客户端配置" class="headerlink" title="2.ntp客户端配置"></a>2.ntp客户端配置</h3><p>注意：一般客户端建议的配置做法如下</p>
+<p>1、确保服务器安装了ntp服务：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install -y ntp</span><br><span class="line"></span><br><span class="line">systemctl <span class="built_in">enable</span> ntpd</span><br><span class="line">systemctl start ntpd </span><br></pre></td></tr></table></figure>
+
+
+
+<p>2、配置ntp配置文件</p>
+<p>本人在工作中常用到的配置如下：</p>
+<p>vim /etc/ntp.conf</p>
+<p>注释上面4个server行，添加如下2个ntp时间服务器ip，然后重启ntpd服务即可。 </p>
+<p>server 主时间服务器 preferserver </p>
+<p>从时间服务器server 从时间服务器</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1AE5.tmp.jpg" alt="img"> </p>
+<p>3、与服务器端同步时间</p>
+<p>注意，一般工作中，没用到下面这些脚本，是从配置openstack中Get到的方法，可以作为参考。</p>
+<p>ntpdate 172.16.16.1 # 注意，这个ip就是ntp时间服务器的ip</p>
+<p>需要注意的是，这个命令将一次性把时间同步到位，会产生时间的跳变，需确定无影响后再执行。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//写到脚本中去。</span><br><span class="line">crontab -e</span><br><span class="line">*/10 * * * * /usr/sbin/ntpdate time1.aliyun.com &amp;&amp; hwclock -w</span><br><span class="line"></span><br><span class="line"><span class="comment"># */10 * * * * /usr/sbin/ntpdate ntp时间服务器ip &amp;&amp; hwclock -w </span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>4、查看ntp服务状态</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl status ntpd </span><br><span class="line">ntpq -p </span><br><span class="line">ntpdate -q ip  </span><br></pre></td></tr></table></figure>
+
+<p>测试结束😘</p>
+<h2 id="2、Centos7时间服务器搭建（chrony服务方式）"><a href="#2、Centos7时间服务器搭建（chrony服务方式）" class="headerlink" title="2、Centos7时间服务器搭建（chrony服务方式）"></a>2、Centos7时间服务器搭建（chrony服务方式）</h2><table><tr><td bgcolor=yellow>💘 实践：Centos7 时间服务器搭建（chrony服务方式）(测试成功)-2022.5.31</td></tr></table>
+
+<h3 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h3><p>Chrony是一个开源的自由软件，它能保持系统时钟与时钟服务器（NTP）同步，让时间保持精确。它由两个程序组成：<strong>chronyd和chronyc</strong>。</p>
+<p>chronyd是一个后台运行的守护进程，用于调整内核中运行的系统时钟和时钟服务器同步。它确定计算机增减时间的比率，并对此进行补偿。</p>
+<p>chronyc 提供了一个用户界面，用于监控性能并进行多样化的配置。它可以在chronyd实例控制的计算机上工作，也可以在一台不同的远程计算机上工作</p>
+<p>配置文件：Chrony启动时，它会读取<code>/etc/chrony.conf</code>配置文件中的设置。</p>
+<h3 id="1、服务端时间同步配置"><a href="#1、服务端时间同步配置" class="headerlink" title="1、服务端时间同步配置"></a>1、服务端时间同步配置</h3><p>服务端安装chrony：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># yum install chrony –y  #安装chrony</span></span><br></pre></td></tr></table></figure>
+
+<p>服务端配置chrony主机： cat /etc/chrony.conf<br>备注：以下配置内容为csdn博客当时配置的信息，具体内容视情况而定。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210422104441906.png" alt="image-20210422104441906"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">设置开机自启:</span><br><span class="line"><span class="comment">#systemctl start  chronyd</span></span><br><span class="line"><span class="comment">#systemctl status chronyd --查看chronyd服务状态</span></span><br><span class="line"><span class="comment">#systemctl enable chronyd --开机启动</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看时间同步源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chronyc sources -v</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210422104504783.png" alt="image-20210422104504783"></p>
+<h3 id="2、客户端时间同步配置"><a href="#2、客户端时间同步配置" class="headerlink" title="2、客户端时间同步配置"></a>2、客户端时间同步配置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">客户端安装chrony</span><br><span class="line">[root@localhost ~]<span class="comment"># yum install chrony –y</span></span><br><span class="line"></span><br><span class="line">客户端配置文件：</span><br><span class="line">cat  /etc/chrony.conf</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210422104530888.png" alt="image-20210422104530888"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">客户端启动服务:</span><br><span class="line"><span class="comment">#systemctl start  chronyd</span></span><br><span class="line"><span class="comment">#systemctl status chronyd --查看chronyd服务状态</span></span><br><span class="line"><span class="comment">#systemctl enable chronyd --开机启动</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>查看时间同步源：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># chronyc sources -v </span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210422104549694.png" alt="image-20210422104549694"></p>
+<p>* 符号就代表客户端已经正常与时间服务器进行时间同步。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210422104623380.png" alt="image-20210422104623380"></p>
+<h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>csdn：<a target="_blank" rel="noopener" href="https://blog.csdn.net/genglei1022/article/details/77833406">https://blog.csdn.net/genglei1022/article/details/77833406</a></p>
+<h2 id="3、chrony和ntpd精度对比测试"><a href="#3、chrony和ntpd精度对比测试" class="headerlink" title="3、chrony和ntpd精度对比测试"></a>3、chrony和ntpd精度对比测试</h2><p>一般搭建NTP时间服务器的搭建有2种方式：</p>
+<p>\1. 利用ntp服务搭建；</p>
+<p>\2. 利用chrony服务搭建；</p>
+<p>尽量优先使用chrony配置时间同步（较好适配centOS7及以上版本）。并且，常规的ntp服务可能会涉及一些系统相关信息，不安全。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1AFB.tmp.jpg" alt="img"> </p>
+<h3 id="1-chrony和ntpd精度对比测试"><a href="#1-chrony和ntpd精度对比测试" class="headerlink" title="1. chrony和ntpd精度对比测试"></a>1. chrony和ntpd精度对比测试</h3><p>Redhat从RHEL 7.0开始使用chrony替换ntpd作为默认的ntp同步工具。从chrony的官方网站上可以看到与ntpd各维度详细对比：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B0B.tmp.jpg" alt="img"><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B0C.tmp.jpg" alt="img"> </p>
+<p>在测试之前，从理论上说chrony的主要优点在于：</p>
+<p>\1. 支持Hardware timestamping，时间戳会更加准确，因为从网卡到内核之间的延迟可能有几十us。</p>
+<p>\2. 支持xleave，可以提升对网络延迟的测量精度。</p>
+<p>为了评估内部是否需要使用chrony来替换ntpd，我自己也做了一些测试。主要是从<strong>集群的延迟稳定性和时钟偏差</strong>2个维度来衡量。</p>
+<p>测试集群选择三个城市的多个机房内服务器做测试。</p>
+<p>1.chrony的延迟稳定性</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B0D.tmp.jpg" alt="img"></p>
+<p>2.ntpd延迟稳定性</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B0E.tmp.jpg" alt="img">****</p>
+<p>3.chrony时钟稳定性</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B0F.tmp.jpg" alt="img"> </p>
+<p>4.ntpd的时钟稳定性</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B10.tmp.jpg" alt="img"> </p>
+<p>从上面的4个图可以看到，实际上<strong>NTPD的同步稳定性相对比较好一些</strong>。NTP协议本身精度的瓶颈是在于<strong>网络延迟稳定性</strong>，NTPD在这一块有大量的算法保证：</p>
+<p>\1. Clock Filter Algorithm （huff-n’-puff filter）</p>
+<p>\2. Clock Select Algorithm</p>
+<p>\3. Clock Cluster Algorithm：</p>
+<p>\4. Clock Discipline Algorithm：</p>
+<p>整体的流程如下:</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps1B21.tmp.jpg" alt="img"> </p>
+<p> 正因为NTP的设计者一开始就考虑的非常全面，使得目前NTP的授时精度早已经达到理论瓶颈。<strong>广域网的授时精度要想稳定性&amp;精度超越ntpd，几乎不太可能（PTP只能用户局域网）</strong>，因此短期内我还是会继续选择NTPD作为时钟同步软件。</p>
+<p>对于NTP这种古老的协议，目前还有人愿意投入精力去改进实际是非常难能可贵的，真心希望chrony能早日从稳定性&amp;精度两个方面超越ntpd。</p>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://chrony.tuxfamily.org/comparison.html">https://chrony.tuxfamily.org/comparison.html</a></p>
+<p>引用：<a target="_blank" rel="noopener" href="https://blog.gnuers.org/?p=1483">https://blog.gnuers.org/?p=1483</a></p>
+<h3 id="2-关于时间服务-ntpd、chrony-的应用场景"><a href="#2-关于时间服务-ntpd、chrony-的应用场景" class="headerlink" title="2. 关于时间服务(ntpd、chrony)的应用场景"></a>2. 关于时间服务(ntpd、chrony)的应用场景</h3><p>一般来说在中大型的网络环境中时间服务器基本上来说是必须的,在内网中建立一台时间服务器,其他的服务器都来此服务器同步时间。 像虚拟机如果关机或者是被暂停了之后再开机的时候时间还是原来的时间,这个时候就需要从新同步时间。如果时间不对可能对业务环境有影响。 比如说像一些<strong>分布式系统</strong>、<strong>集群</strong>等相互协调工作的应用都需要时间同步服务来确保每个服务器的时间是一致的。 ntpd、chrony这两款时间管理服务应该怎样选型呢？<strong>centos7.4之前的系统默认是提供的ntpd</strong>来作为时间管理服务的,之后就是chrony。其实两个都差不多,看个人喜好。</p>
+<h2 id="4、Linux时间服务相关命令"><a href="#4、Linux时间服务相关命令" class="headerlink" title="4、Linux时间服务相关命令"></a>4、Linux时间服务相关命令</h2><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530213030473.png" alt="image-20220530213030473"></p>
+<h3 id="1、显示与设定系统时钟：date命令"><a href="#1、显示与设定系统时钟：date命令" class="headerlink" title="1、显示与设定系统时钟：date命令"></a>1、显示与设定系统时钟：<code>date命令</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date命令使用“+”来传递参数。常用参数如下：</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="1-显示系统时间"><a href="#1-显示系统时间" class="headerlink" title="1.显示系统时间"></a>1.显示系统时间</h4><h5 id="📍-例子：显示系统时间：date-hwclock-clock"><a href="#📍-例子：显示系统时间：date-hwclock-clock" class="headerlink" title="📍 例子：显示系统时间：date;hwclock;clock"></a>📍 例子：显示系统时间：date;hwclock;clock</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#date</span></span><br><span class="line">Wed May 18 07:23:01 CST 2022</span><br><span class="line">[root@gitlab-runner ~]<span class="comment">#hwclock </span></span><br><span class="line">cWed 18 May 2022 07:23:04 AM CST  -0.282491 seconds</span><br><span class="line">[root@gitlab-runner ~]<span class="comment">#clock</span></span><br><span class="line">Wed 18 May 2022 07:23:05 AM CST  -0.065940 seconds</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 例子</p>
+<p>%Y表示年、%m表示月、%d表示天、<br>%H表示小时、%M表示分钟、%S表示秒;（%T==%H:%M:%S）</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530214021950.png" alt="image-20220530214021950"></p>
+<h5 id="📍-例子：获取年月日：date-Y-m-d-；date-F"><a href="#📍-例子：获取年月日：date-Y-m-d-；date-F" class="headerlink" title="📍 例子：获取年月日：date +%Y-%m-%d  ；date %F"></a>📍 例子：获取年月日：date +%Y-%m-%d  ；<strong>date %F</strong></h5><p>方法1：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%F</span></span><br><span class="line">2022-05-18</span><br><span class="line"></span><br><span class="line"><span class="comment"># 说明：</span></span><br><span class="line">%F 显示当下日期</span><br></pre></td></tr></table></figure>
+
+<p>方法2:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%Y-%m-%d</span></span><br><span class="line">2022-05-18 </span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 例子：<code>date +%y-%m-%d %H:%M:%S</code></p>
+<p>%y 代表年份最后2位数</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530214543577.png" alt="image-20220530214543577"></p>
+<p>🍀 利用变量输出当前时间：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#DATETIME=$(date &quot;+%Y-%m-%d %H:%M:%S %A&quot;)</span></span><br><span class="line">[root@gitlab-runner ~]<span class="comment">#echo $DATETIME</span></span><br><span class="line">2022-05-18 07:25:48 Wednesday</span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：获取时间戳：date-s"><a href="#📍-例子：获取时间戳：date-s" class="headerlink" title="📍 例子：获取时间戳：date +%s"></a>📍 例子：获取时间戳：date +%s</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%s #%s表示时间戳</span></span><br><span class="line">1652830295</span><br><span class="line"></span><br><span class="line">[root@gitlab-runner ~]<span class="comment">#date --date=20150820 +%s  #获取2015/08/20 的时间戳。</span></span><br><span class="line">1440000000</span><br><span class="line"></span><br><span class="line"><span class="comment"># %s表示linux时间戳的秒数。</span></span><br><span class="line"><span class="comment">#  Unix时间戳（英文为Unixepoch, Unix time, POSIX time 或 Unix timestamp）</span></span><br><span class="line"><span class="comment">#  是从1970年1月1日（UTC/GMT的午夜）开始所经过的秒数，不考虑闰秒。</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：显示周几：date-A-；date-a"><a href="#📍-例子：显示周几：date-A-；date-a" class="headerlink" title="📍 例子：显示周几：date +%A  ；date +%a"></a>📍 例子：显示周几：date +%A  ；date +%a</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%A</span></span><br><span class="line">Wednesday</span><br><span class="line"></span><br><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%a</span></span><br><span class="line">Wed</span><br><span class="line"></span><br><span class="line"><span class="comment"># 说明：</span></span><br><span class="line">%A 显示周</span><br><span class="line">%a 显示周（前3个字母，其缩写形式）</span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：显示月份：date-B；date-b"><a href="#📍-例子：显示月份：date-B；date-b" class="headerlink" title="📍 例子：显示月份：date +%B；date +%b"></a>📍 例子：显示月份：date +%B；date +%b</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%B</span></span><br><span class="line">May</span><br><span class="line"></span><br><span class="line">[root@gitlab-runner ~]<span class="comment">#date +%b</span></span><br><span class="line">May</span><br><span class="line"></span><br><span class="line"><span class="comment"># %B %b 显示月份</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：时间格式的2种输出"><a href="#📍-例子：时间格式的2种输出" class="headerlink" title="📍 例子：时间格式的2种输出"></a>📍 例子：时间格式的2种输出</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># date +%F_%H-%M-%S #方法1</span></span><br><span class="line">2021-03-10_14-26-39</span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># date +%Y-%m-%d_%H-%M-%S #方法2</span></span><br><span class="line">2021-03-10_14-28-31</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 例子：显示昨天和明天</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#当前日期：</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#date</span></span><br><span class="line">Mon May 30 21:49:36 CST 2022</span><br><span class="line"></span><br><span class="line">[root@k8s-master ~]<span class="comment">#date -d yesterday</span></span><br><span class="line">Sun May 29 21:51:58 CST 2022</span><br><span class="line">[root@k8s-master ~]<span class="comment">#date -d tomorrow</span></span><br><span class="line">Tue May 31 21:52:03 CST 2022</span><br><span class="line"></span><br><span class="line">或者：</span><br><span class="line">[root@k8s-master ~]<span class="comment">#date +%Y%m%d -d &quot;-1 day&quot;</span></span><br><span class="line">20220529</span><br><span class="line">[root@k8s-master ~]<span class="comment">#date +%Y%m%d -d &quot;+1 day&quot;</span></span><br><span class="line">20220531</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 例子：显示本月和下月</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#date +%Y%m%d -d &quot;-1 month&quot;</span></span><br><span class="line">20220430</span><br><span class="line">[root@k8s-master ~]<span class="comment">#date +%Y%m%d -d &quot;+1 month&quot;</span></span><br><span class="line">20220630</span><br><span class="line"></span><br><span class="line">或者：</span><br><span class="line">[root@k8s-master ~]<span class="comment">#date +%Y%m%d --date=&quot;-1 month&quot;</span></span><br><span class="line">20220430</span><br><span class="line">[root@k8s-master ~]<span class="comment">#date +%Y%m%d --date=&quot;+1 month&quot;</span></span><br><span class="line">20220630</span><br></pre></td></tr></table></figure>
+
+
+
+<p>🍀 例子：shell脚本指定日期减去一天或几天</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">date -d参数可以根据当前日期获取更多我们需要的日期。</span><br><span class="line"><span class="comment">#如果只减去一天的话，直接写就可以了。</span></span><br><span class="line"><span class="comment">#date -d&quot;yesterday 20150401&quot; +%Y%m%d</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#date -d&quot;yesterday 20150401&quot; +%Y%m%d</span></span><br><span class="line">20150331</span><br><span class="line"></span><br><span class="line"><span class="comment">#如果要减去几天，还可以这样写，如果用负数是往前数，</span></span><br><span class="line"><span class="comment">#date -d&quot;10 day ago 2015-04-01&quot; +%Y-%m-%d</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#date -d&quot;10 day ago 2015-04-01&quot; +%Y-%m-%d</span></span><br><span class="line">2015-03-22</span><br><span class="line"></span><br><span class="line"><span class="comment">#在指定的日期上加上指定的小时</span></span><br><span class="line">[dc@dc010.tj.momo.com init_env]$ date -d <span class="string">&quot;20150416 12 3 hour&quot;</span> +<span class="string">&quot;%Y%m%d%H&quot;</span></span><br><span class="line">2015041615</span><br><span class="line"></span><br><span class="line"><span class="comment">#在指定的日期上减去指定的小时</span></span><br><span class="line">[dc@dc010.tj.momo.com init_env]$ date -d <span class="string">&quot;20150416 12 -1 hour&quot;</span> +<span class="string">&quot;%Y%m%d%H&quot;</span></span><br><span class="line">2015041611</span><br><span class="line"></span><br><span class="line"><span class="comment">#在指定的日期上加上指定的分钟</span></span><br><span class="line">[dc@dc010.tj.momo.com init_env]$ date -d <span class="string">&quot;20150416 12:20 10 minute&quot;</span> +<span class="string">&quot;%Y%m%d%H%M&quot;</span></span><br><span class="line">201504161230</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-修改系统时间"><a href="#2-修改系统时间" class="headerlink" title="2.修改系统时间"></a>2.修改系统时间</h4><h5 id="📍-例子：修改日期和时间"><a href="#📍-例子：修改日期和时间" class="headerlink" title="📍 例子：修改日期和时间"></a>📍 例子：修改日期和时间</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date -s <span class="string">&#x27;2015-04-11 13:15:15&#x27;</span> </span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530213531590.png" alt="image-20220530213531590"></p>
+<p>date命令修改完时间后，系统时间立即且永久生效，再次登录shell发现已经是修改后的时间了：</p>
+<h5 id="📍-例子：修改日期"><a href="#📍-例子：修改日期" class="headerlink" title="📍 例子：修改日期"></a>📍 例子：修改日期</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># date -s 2015/08/23 #设置日期</span></span><br><span class="line">Sun Aug 23 00:00:00 CST 2015</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530213744100.png" alt="image-20220530213744100"></p>
+<p>或者：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530213803111.png" alt="image-20220530213803111"></p>
+<h5 id="📍-例子：修改时间"><a href="#📍-例子：修改时间" class="headerlink" title="📍 例子：修改时间"></a>📍 例子：修改时间</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># date -s 19:18:30 #设置时间</span></span><br><span class="line">Sun Aug 9 19:18:30 CST 2015</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220530213846304.png" alt="image-20220530213846304"></p>
+<h3 id="2、显示与设定硬件时钟：clock命令-amp-hwclock命令"><a href="#2、显示与设定硬件时钟：clock命令-amp-hwclock命令" class="headerlink" title="2、显示与设定硬件时钟：clock命令 &amp; hwclock命令"></a>2、显示与设定硬件时钟：<code>clock命令 &amp; hwclock命令</code></h3><h4 id="命令介绍"><a href="#命令介绍" class="headerlink" title="命令介绍"></a>命令介绍</h4><p>hwclock命令是一个硬件时钟访问工具，它可以显示当前时间、设置硬件时钟的时间和设置硬件时钟为系统时间，也可设置系统时间为硬件时钟的时间。</p>
+<p>hwclock和clock用来显示与设定硬件时钟，不过hwclock和clock可以视为一个命令。（<strong>clock是hwclock的软连接。</strong>）</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># type -a hwclock</span></span><br><span class="line">hwclock is /sbin/hwclock</span><br><span class="line">hwclock is /usr/sbin/hwclock</span><br><span class="line"></span><br><span class="line"><span class="comment"># type -a clock</span></span><br><span class="line">clock is /sbin/clock </span><br><span class="line"></span><br><span class="line"><span class="comment"># ls -l /sbin/clock</span></span><br><span class="line">lrwxrwxrwx. 1 root root 7 12月 13 2013 /sbin/clock -&gt; hwclock</span><br></pre></td></tr></table></figure>
+
+<h4 id="命令选项"><a href="#命令选项" class="headerlink" title="命令选项"></a>命令选项</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">–debug 	显示hwclock执行时详细的信息。</span><br><span class="line">–directisa	hwclock预设从/dev/rtc设备来存取硬件时钟。若无法存取时，可用此参数直接以I/O指令来存取硬件时钟。</span><br><span class="line">–<span class="built_in">set</span> –date=&lt;日期与时间&gt; 	设定硬件时钟。</span><br><span class="line">–show	显示硬件时钟的时间与日期。</span><br><span class="line">–systohc	将硬件时钟调整为与目前的系统时钟一致。</span><br><span class="line">–<span class="built_in">test</span> 	仅测试程序，而不会实际更改硬件时钟。</span><br><span class="line">–utc	若要使用格林威治时间，请加入此参数，hwclock会执行转换的工作。</span><br><span class="line">–version	显示版本信息。</span><br><span class="line">-w, --systohc 以系统时钟为准，校正硬件时钟</span><br><span class="line">-s, --hctosys 以硬件时钟为准，校正系统时钟</span><br></pre></td></tr></table></figure>
+
+<h4 id="1-查看硬件时间：clock-或者-hwclock"><a href="#1-查看硬件时间：clock-或者-hwclock" class="headerlink" title="1. 查看硬件时间：clock 或者 hwclock"></a>1. 查看硬件时间：<code>clock 或者 hwclock</code></h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#clock</span></span><br><span class="line">Tue 31 May 2022 06:51:04 AM CST  -0.178876 seconds</span><br><span class="line">[root@k8s-master ~]<span class="comment">#hwclock </span></span><br><span class="line">Tue 31 May 2022 06:51:08 AM CST  -0.677708 seconds</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-设置硬件时钟"><a href="#2-设置硬件时钟" class="headerlink" title="2. 设置硬件时钟"></a>2. 设置硬件时钟</h4><h5 id="📍-例子：设置硬件时钟"><a href="#📍-例子：设置硬件时钟" class="headerlink" title="📍 例子：设置硬件时钟"></a>📍 例子：设置硬件时钟</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clock --<span class="built_in">set</span> --date=<span class="string">&#x27;2015/08/23 19:33:00&#x27;</span> <span class="comment">#设置硬件时间</span></span><br><span class="line">hwclock --<span class="built_in">set</span> --date <span class="string">&#x27;2015-04-11 13:36:11&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：将系统时钟同步–-gt-到硬件时钟"><a href="#📍-例子：将系统时钟同步–-gt-到硬件时钟" class="headerlink" title="📍 例子：将系统时钟同步–&gt;到硬件时钟"></a>📍 例子：将系统时钟同步–&gt;到硬件时钟</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">方法1  clock -w</span><br><span class="line"><span class="comment"># date</span></span><br><span class="line">2015年 04月 11日 星期六 20:36:26 CST</span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2015年04月11日 星期六 13时41分18秒  -0.437760 seconds</span><br><span class="line"></span><br><span class="line"><span class="comment"># clock -w       #将系统时钟同步到硬件时钟</span></span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2015年04月11日 星期六 20时37分36秒  -0.515922 seconds</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">方法2   clock --systohc</span><br><span class="line"><span class="comment"># clock --set --date=&quot;08/16/2013 13:26:00&quot;</span></span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2013年08月16日 星期五 13时26分04秒  -0.390867 seconds</span><br><span class="line"><span class="comment"># date</span></span><br><span class="line">2015年 04月 11日 星期六 20:41:13 CST</span><br><span class="line"><span class="comment"># clock --systohc</span></span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2015年04月11日 星期六 20时43分18秒  -0.094007 seconds</span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：将硬件时钟同步–-gt-到系统时钟"><a href="#📍-例子：将硬件时钟同步–-gt-到系统时钟" class="headerlink" title="📍 例子：将硬件时钟同步–&gt;到系统时钟"></a>📍 例子：将硬件时钟同步–&gt;到系统时钟</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># clock --set --date=&quot;08/16/2013 13:26:00&quot; </span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2013年08月16日 星期五 13时26分03秒  -0.281525 seconds</span><br><span class="line"><span class="comment"># date</span></span><br><span class="line">2015年 04月 11日 星期六 20:45:14 CST</span><br><span class="line"></span><br><span class="line"><span class="comment"># clock --hctosys   \\时钟同步</span></span><br><span class="line"><span class="comment"># date</span></span><br><span class="line">2013年 08月 16日 星期五 13:26:22 CST</span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2013年08月16日 星期五 13时26分25秒  -0.406511 seconds</span><br></pre></td></tr></table></figure>
+
+<h5 id="📍-例子：一般，我们把系统时钟与网络时钟同步，再同步到硬件时钟"><a href="#📍-例子：一般，我们把系统时钟与网络时钟同步，再同步到硬件时钟" class="headerlink" title="📍 例子：一般，我们把系统时钟与网络时钟同步，再同步到硬件时钟"></a>📍 例子：一般，我们把系统时钟与网络时钟同步，再同步到硬件时钟</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1 ntpdate 0.rhel.pool.ntp.org</span></span><br><span class="line">11 Apr 13:48:03 ntpdate[5786]: step time server 202.112.29.82 offset 52100210.175926 sec</span><br><span class="line"><span class="comment"># date</span></span><br><span class="line">2015年 04月 11日 星期六 13:48:14 CST</span><br><span class="line"></span><br><span class="line"><span class="comment">#2 clock -w</span></span><br><span class="line"><span class="comment"># clock</span></span><br><span class="line">2015年04月11日 星期六 13时48分30秒  -0.750266 seconds</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、时区：timedatectl命令"><a href="#3、时区：timedatectl命令" class="headerlink" title="3、时区：timedatectl命令"></a>3、时区：<code>timedatectl命令</code></h3><h4 id="📍-例子：查看日期时间及NTP状态（包括时区）"><a href="#📍-例子：查看日期时间及NTP状态（包括时区）" class="headerlink" title="📍 例子：查看日期时间及NTP状态（包括时区）"></a>📍 例子：查看日期时间及NTP状态（包括时区）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@k8s-master ~]<span class="comment">#timedatectl </span></span><br><span class="line">      Local time: Tue 2022-05-31 07:14:15 CST</span><br><span class="line">  Universal time: Mon 2022-05-30 23:14:15 UTC</span><br><span class="line">        RTC time: Mon 2022-05-30 23:14:15</span><br><span class="line">       Time zone: Asia/Shanghai (CST, +0800)</span><br><span class="line">     NTP enabled: n/a</span><br><span class="line">NTP synchronized: no</span><br><span class="line"> RTC <span class="keyword">in</span> <span class="built_in">local</span> TZ: no</span><br><span class="line">      DST active: n/a</span><br></pre></td></tr></table></figure>
+
+<h4 id="📍-例子：配置时区"><a href="#📍-例子：配置时区" class="headerlink" title="📍 例子：配置时区"></a>📍 例子：配置时区</h4><p>（1）查看当前时区：</p>
+<p>查看时间：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531071516087.png" alt="image-20220531071516087"></p>
+<p>或者用如下命令查看：</p>
+<p>ll /etc/localtime</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531071528519.png" alt="image-20220531071528519"></p>
+<p>（2）配置时区</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看有哪些时区：timedatectl list-timezones |more</span></span><br><span class="line">[root@k8s-master ~]<span class="comment">#timedatectl list-timezones |more</span></span><br><span class="line">Africa/Abidjan</span><br><span class="line">Africa/Accra</span><br><span class="line">Africa/Addis_Ababa</span><br><span class="line">Africa/Algiers</span><br><span class="line">Africa/Asmara</span><br><span class="line">Africa/Bamako</span><br><span class="line">Africa/Bangui</span><br><span class="line">Africa/Banjul</span><br><span class="line">……</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（3）配置为亚洲/上海时区：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timedatectl set-timezone Asia/Shanghai</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（4）再次查看当前时区：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531071719632.png" alt="image-20220531071719632"></p>
+<h4 id="📍-例子：OpenStack中配置时间同步服务方法"><a href="#📍-例子：OpenStack中配置时间同步服务方法" class="headerlink" title="📍 例子：OpenStack中配置时间同步服务方法"></a>📍 例子：OpenStack中配置时间同步服务方法</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531072203868.png" alt="image-20220531072203868"></p>
+<p>注意：</p>
+<p>同步时间 //注意这里原来装系统时已经选好了上海时区，这里就不再选择时区了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@openstack-template ~]<span class="comment"># date</span></span><br><span class="line">Sun Oct 11 09:28:12 CST 2020</span><br><span class="line"><span class="comment">#1</span></span><br><span class="line">[root@openstack-template ~]<span class="comment"># ntpdate time1.aliyun.com # 和阿里云同步时间</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#2</span></span><br><span class="line">11 Oct 09:36:35 ntpdate[1618]: step time server 203.107.6.88 offset 5.388041 sec</span><br><span class="line">[root@openstack-template ~]<span class="comment"># hwclock -w # 同步时间到硬件</span></span><br><span class="line"></span><br><span class="line">[root@openstack-template ~]<span class="comment"># date</span></span><br><span class="line">Sun Oct 11 09:36:57 CST 2020</span><br><span class="line">[root@openstack-template ~]<span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3</span></span><br><span class="line">这边做个定时任务：由于后期虚机可能要迁移</span><br><span class="line">[root@openstack-template ~]<span class="comment"># whereis ntpdate</span></span><br><span class="line">ntpdate: /usr/sbin/ntpdate /usr/share/man/man8/ntpdate.8.gz</span><br><span class="line">crontab: installing new crontab</span><br><span class="line">*/10 * * * * /usr/sbin/ntpdate time1.aliyun.com &amp;&amp; hwclock -w</span><br></pre></td></tr></table></figure>
+
+<h4 id="📍-例子：自己vmwareworkstation虚机系统时钟与当前时间不一致问题（2021-3-10）（已解决）"><a href="#📍-例子：自己vmwareworkstation虚机系统时钟与当前时间不一致问题（2021-3-10）（已解决）" class="headerlink" title="📍 例子：自己vmwareworkstation虚机系统时钟与当前时间不一致问题（2021.3.10）（已解决）"></a>📍 例子：自己vmwareworkstation虚机系统时钟与当前时间不一致问题（2021.3.10）（已解决）</h4><p>注意，自己的vmwareworkstation虚机date查看的系统时钟比实际慢了好几个小时。且clock显示的硬件时钟时间是12格式制的，这个貌似正常。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20210310141614097.png" alt="image-20210310141614097"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#默认无ntp服务，因此无法用ntpdate命令与网络时间同步</span></span><br><span class="line">[root@localhost ~]<span class="comment"># rpm -qa|grep ntp</span></span><br><span class="line"><span class="comment">#安装ntp</span></span><br><span class="line"></span><br><span class="line">[root@localhost ~]<span class="comment"># yum install -y ntp</span></span><br><span class="line"><span class="comment">#与阿里云ntp服务同步</span></span><br><span class="line">[root@localhost ~]<span class="comment"># ntpdate time1.aliyun.com </span></span><br><span class="line">10 Mar 14:21:24 ntpdate[18073]: step time server 203.107.6.88 offset 126659.756107 sec</span><br><span class="line">[root@localhost ~]<span class="comment"># hwclock -w #同步时间到硬件时钟</span></span><br><span class="line">[root@localhost ~]<span class="comment"># date #总这里可以看到，date显示的系统时钟是4进制格式，而clock显示的硬件时钟依然是12进制格式。</span></span><br><span class="line">Wed Mar 10 14:21:37 CST 2021</span><br><span class="line">[root@localhost ~]<span class="comment"># clock</span></span><br><span class="line">Wed 10 Mar 2021 02:21:39 PM CST  -0.149360 seconds</span><br></pre></td></tr></table></figure>
+
+<h4 id="📍-注意：CST概念，utc为标准时区"><a href="#📍-注意：CST概念，utc为标准时区" class="headerlink" title="📍 注意：CST概念，utc为标准时区"></a>📍 注意：CST概念，utc为标准时区</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531072434971.png" alt="image-20220531072434971"></p>
+<p>#中国比美国快13个小时：</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps5C7F.tmp.jpg" alt="img"> </p>
+<p>#GMT+8 东八区</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps5C80.tmp.jpg" alt="img"> </p>
+<p>#CST可视为美国、澳大利亚、古巴或中国的标准时间。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wpsAB4D.tmp.jpg" alt="img"> </p>
+<h4 id="📍-注意：ntpdate可同步的时区"><a href="#📍-注意：ntpdate可同步的时区" class="headerlink" title="📍 注意：ntpdate可同步的时区"></a>📍 注意：ntpdate可同步的时区</h4><p>🍀</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531072616631.png" alt="image-20220531072616631"></p>
+<p>🍀 例子：和阿里云同步时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@openstack-template ~]<span class="comment"># ntpdate time1.aliyun.com</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="4、显示日历：cal命令"><a href="#4、显示日历：cal命令" class="headerlink" title="4、显示日历：cal命令"></a>4、显示日历：<code>cal命令</code></h3><h4 id="📍-例子：cal-默认显示当月日历"><a href="#📍-例子：cal-默认显示当月日历" class="headerlink" title="📍 例子：cal # 默认显示当月日历"></a>📍 例子：cal # 默认显示当月日历</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531073045259.png" alt="image-20220531073045259"></p>
+<h4 id="📍-例子：cal-2030-显示某年的日历"><a href="#📍-例子：cal-2030-显示某年的日历" class="headerlink" title="📍 例子：cal 2030 # 显示某年的日历"></a>📍 例子：cal 2030 # 显示某年的日历</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220531073106752.png" alt="image-20220531073106752"></p>
+<h4 id="📍-例子：cal-y-y选项代表本年的日历"><a href="#📍-例子：cal-y-y选项代表本年的日历" class="headerlink" title="📍 例子：cal -y # -y选项代表本年的日历"></a>📍 例子：cal -y # -y选项代表本年的日历</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps9131.tmp.jpg" alt="img"> </p>
+<h4 id="📍-例子：cal-11-2020-显示某年某个月份"><a href="#📍-例子：cal-11-2020-显示某年某个月份" class="headerlink" title="📍 例子：cal 11 2020 # 显示某年某个月份"></a>📍 例子：cal 11 2020 # 显示某年某个月份</h4><p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/wps9132.tmp.jpg" alt="img">  </p>
+<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我的博客主旨：</p>
+<ul>
+<li>排版美观，语言精炼；</li>
+<li>文档即手册，步骤明细，拒绝埋坑，提供源码；</li>
+<li>本人实战文档都是亲测成功的，各位小伙伴在实际操作过程中如有什么疑问，可随时联系本人帮您解决问题，让我们一起进步！</li>
+</ul>
+<p>🍀 微信二维码<br>x2675263825 （舍得）， qq：2675263825。</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144206.png" alt="image-20211002091450217"></p>
+<p>🍀 微信公众号<br>《云原生架构师实战》</p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144224.png" alt="image-20211002141739664"></p>
+<p>🍀 csdn<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421">https://blog.csdn.net/weixin_39246554?spm=1010.2135.3001.5421</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20211106144230.png" alt="image-20211002092344616"></p>
+<p>🍀 博客<br><a href="http://www.onlyyou520.com/">www.onlyyou520.com</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/image-20220513150311181.png" alt="image-20220513150311181"></p>
+<p>🍀 知乎</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/foryouone">https://www.zhihu.com/people/foryouone</a></p>
+<p><img src="https://bucket-hg.oss-cn-shanghai.aliyuncs.com/img/20220521151425.png"></p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>好了，关于本次就到这里了，感谢大家阅读，最后祝大家生活快乐，每天都过的有意义哦，我们下期见！</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">一个人</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://www.onlyyou520.com/2022/06/02/166%20Linux%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1(ntp%E5%92%8Cchrony)/">https://www.onlyyou520.com/2022/06/02/166%20Linux%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1(ntp%E5%92%8Cchrony)/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">一个人</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/ntp/">
+                                    <span class="chip bg-color">ntp</span>
+                                </a>
+                            
+                                <a href="/tags/chrony/">
+                                    <span class="chip bg-color">chrony</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2022/06/02/166%20Linux%E6%97%B6%E9%97%B4%E6%9C%8D%E5%8A%A1(ntp%E5%92%8Cchrony)/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/16.jpg" class="responsive-img" alt="Linux时间服务(ntp和chrony)">
+                        
+                        <span class="card-title">Linux时间服务(ntp和chrony)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-06-02
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Linux/" class="post-category">
+                                    Linux
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/ntp/">
+                        <span class="chip bg-color">ntp</span>
+                    </a>
+                    
+                    <a href="/tags/chrony/">
+                        <span class="chip bg-color">chrony</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2022/05/22/165%20%E5%85%AC%E5%BC%80%E8%AF%BE%EF%BC%9A%E3%80%8A%E4%BA%91%E5%8E%9F%E7%94%9F%E6%97%B6%E4%BB%A3%E7%9A%84%20DevOps%E3%80%8B-%E6%BD%98%E9%87%8E-2022-4-25/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="公开课：《云原生时代的 DevOps》-潘野-2022-4-25">
+                        
+                        <span class="card-title">公开课：《云原生时代的 DevOps》-潘野-2022-4-25</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2022-05-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Devops/" class="post-category">
+                                    Devops
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Devops/">
+                        <span class="chip bg-color">Devops</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2022</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">一个人</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/OnlyOnexl" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:2675263825@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2675263825" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2675263825" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
