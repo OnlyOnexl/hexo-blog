@@ -394,11 +394,11 @@
                 </a>
                 
                 
-                <a href="/tags/git/" title="git: 19">
+                <a href="/tags/git/" title="git: 20">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="git" style="background-color: #E8F8F5;">git
-                        <span class="tag-length">19</span>
+                        <span class="tag-length">20</span>
                     </span>
                 </a>
                 
@@ -610,11 +610,11 @@
                 </a>
                 
                 
-                <a href="/tags/typora/" title="typora: 1">
+                <a href="/tags/typora/" title="typora: 2">
                     <span class="chip center-align waves-effect waves-light
                              chip-default "
                             data-tagname="typora" style="background-color: #F5EEF8;">typora
-                        <span class="tag-length">1</span>
+                        <span class="tag-length">2</span>
                     </span>
                 </a>
                 
@@ -1131,6 +1131,79 @@ $(function () {
 
                                 str += "<p class=\"search-result\">" + match_content + "...</p>"
                             }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
                             str += "</li>";
                         }
                     });
